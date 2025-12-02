@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "next dev",
-    "dev": "cross-env INIT_CWD=$PWD next dev",
+    "dev": "cross-env NODE_OPTIONS='--no-deprecation' INIT_CWD=$PWD next dev --webpack",
     "build": "cross-env INIT_CWD=$PWD next build && cross-env NODE_OPTIONS='--experimental-json-modules' node ./scripts/postbuild.mjs",
     "serve": "next start",
     "analyze": "cross-env ANALYZE=true next build",
@@ -75,6 +75,9 @@
     ]
   },
   "overrides": {
-    "js-yaml": "4.1.1"
+    "js-yaml": "4.1.1",
+    "gray-matter": {
+      "js-yaml": "^3.14.1"
+    }
   }
 }
