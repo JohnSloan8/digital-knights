@@ -6,25 +6,24 @@ import { fileURLToPath } from 'node:url'
 import js from '@eslint/js'
 import { FlatCompat } from '@eslint/eslintrc'
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
+const filename = fileURLToPath(import.meta.url)
+const dirname = path.dirname(filename)
 const compat = new FlatCompat({
-  baseDirectory: __dirname,
+  baseDirectory: dirname,
 })
 
 export default [
   {
-    ignores: [],
+    ignores: ['.next/', '.contentlayer/', 'next.config.js', 'scripts/rss.mjs'],
   },
   js.configs.recommended,
   ...compat.extends(
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:jsx-a11y/recommended',
-    'plugin:prettier/recommended',
-    'next',
-    'next/core-web-vitals'
+    'plugin:prettier/recommended'
   ),
+  // ...compat.extends('next', 'next/core-web-vitals'),
   {
     plugins: {
       '@typescript-eslint': typescriptEslint,
@@ -43,7 +42,7 @@ export default [
 
       parserOptions: {
         project: true,
-        tsconfigRootDir: __dirname,
+        tsconfigRootDir: dirname,
       },
     },
 
