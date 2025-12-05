@@ -1,18 +1,13 @@
 'use client'
 
-import { Canvas, useFrame } from '@react-three/fiber'
-import { OrbitControls, useGLTF, useAnimations, useTexture, useHelper } from '@react-three/drei'
+import { Canvas, useFrame, useThree } from '@react-three/fiber'
+import { OrbitControls, useGLTF, useAnimations, useTexture } from '@react-three/drei'
 import { useEffect, useMemo, Suspense, useRef, useState, MutableRefObject } from 'react'
 import * as THREE from 'three'
 import { SkeletonUtils } from 'three-stdlib'
 
-function OrbitingSprites() {
+function OrbitingCubes() {
   const groupRef = useRef<THREE.Group>(null)
-  const textures = useTexture([
-    encodeURI('/static/animation-files/sprites/ChatGPT Image Dec 3, 2025, 10_56_30 AM.png'),
-    encodeURI('/static/animation-files/sprites/ChatGPT Image Dec 3, 2025, 10_57_40 AM.png'),
-    encodeURI('/static/animation-files/sprites/ChatGPT Image Dec 3, 2025, 10_59_59 AM.png'),
-  ])
 
   useFrame((state, delta) => {
     if (groupRef.current) {
@@ -20,64 +15,83 @@ function OrbitingSprites() {
     }
   })
 
-  const radius = 8
-  const yPos = 0.0
+  const radius = 2
+  const yPos = 0.9
 
   return (
     <group ref={groupRef}>
-      {textures.map((texture, i) => {
-        const angle = (i / 3) * Math.PI * 2
+      {Array.from({ length: 5 }).map((_, i) => {
+        const angle = (i / 5) * Math.PI * 2
         const x = Math.cos(angle) * radius
         const z = Math.sin(angle) * radius
         return (
-          <sprite key={i} position={[x, yPos, z]} scale={[4, 4, 4]}>
-            <spriteMaterial map={texture} />
-          </sprite>
+          <mesh
+            key={i}
+            position={[x, yPos, z]}
+            rotation={[0, -angle - Math.PI / 2, 0]}
+            castShadow
+            receiveShadow
+          >
+            <boxGeometry args={[0.65, 0.65, 0.05]} />
+            <meshStandardMaterial color="#4488ff" />
+          </mesh>
         )
       })}
     </group>
   )
 }
 
-function Knight({ playAction, onActionEnd }: { playAction: boolean; onActionEnd: () => void }) {
-  const { scene, animations } = useGLTF(encodeURI('/static/animation-files/Female Survivor 1 .glb'))
+function Knight({
+  currentAnimation,
+  onAnimationEnd,
+}: {
+  currentAnimation: string
+  onAnimationEnd: () => void
+}) {
+  const modelPath = '/static/animation-files/Studio Ochi Medieval Knights_Male.A.glb'
+  const texturePath = '/static/animation-files/maps/Knights_01.png'
+  const { scene, animations } = useGLTF(encodeURI(modelPath))
   const clone = useMemo(() => SkeletonUtils.clone(scene), [scene])
   const { ref, actions, mixer } = useAnimations(animations)
-  useHelper(ref as MutableRefObject<THREE.Object3D>, THREE.SkeletonHelper)
-  const texture = useTexture(encodeURI('/static/animation-files/maps/F Surv 1 512x512.png'))
-  console.log('scene', scene)
+  const texture = useTexture(encodeURI(texturePath))
+
   texture.colorSpace = THREE.SRGBColorSpace
-  texture.flipY = false
 
   useEffect(() => {
-    const idle = actions['NlaTrack']
-    if (idle) {
-      idle.reset().fadeIn(0.5).play()
-    }
-    return () => {
-      idle?.fadeOut(0.5)
-    }
-  }, [actions])
+    const idleAction = actions['Knight.Idle.New'] || actions['Knight.Idle']
+    const slashAction = actions['Knight.Slash.New']
+    const powerUpAction = actions['Knight.PowerUp']
 
-  useEffect(() => {
-    if (playAction) {
-      const idle = actions['NlaTrack']
-      const action = actions['NlaTrack.004']
-
-      if (idle && action) {
-        action.reset()
-        action.setLoop(THREE.LoopOnce, 1)
-        action.clampWhenFinished = true
-
-        idle.crossFadeTo(action, 0.5, true)
-        action.play()
+    if (currentAnimation === 'Idle') {
+      if (slashAction) slashAction.fadeOut(0.2)
+      if (powerUpAction) powerUpAction.fadeOut(0.2)
+      if (idleAction) idleAction.reset().fadeIn(0.2).play()
+    } else if (currentAnimation === 'Slash') {
+      if (idleAction) idleAction.fadeOut(0.2)
+      if (slashAction) {
+        slashAction.reset().setLoop(THREE.LoopOnce, 1).fadeIn(0.2).play()
+        slashAction.clampWhenFinished = true
 
         const onFinished = (e: { action: THREE.AnimationAction }) => {
-          if (e.action === action) {
-            action.fadeOut(0.5)
-            idle.reset().fadeIn(0.5).play()
-            onActionEnd()
-            mixer.removeEventListener('finished', onFinished)
+          if (e.action === slashAction) {
+            onAnimationEnd()
+          }
+        }
+        mixer.addEventListener('finished', onFinished)
+
+        return () => {
+          mixer.removeEventListener('finished', onFinished)
+        }
+      }
+    } else if (currentAnimation === 'PowerUp') {
+      if (idleAction) idleAction.fadeOut(0.2)
+      if (powerUpAction) {
+        powerUpAction.reset().setLoop(THREE.LoopOnce, 1).fadeIn(0.2).play()
+        powerUpAction.clampWhenFinished = true
+
+        const onFinished = (e: { action: THREE.AnimationAction }) => {
+          if (e.action === powerUpAction) {
+            onAnimationEnd()
           }
         }
         mixer.addEventListener('finished', onFinished)
@@ -87,7 +101,7 @@ function Knight({ playAction, onActionEnd }: { playAction: boolean; onActionEnd:
         }
       }
     }
-  }, [playAction, actions, mixer, onActionEnd])
+  }, [currentAnimation, actions, mixer, onAnimationEnd])
 
   useEffect(() => {
     clone.traverse((child) => {
@@ -105,33 +119,52 @@ function Knight({ playAction, onActionEnd }: { playAction: boolean; onActionEnd:
     })
   }, [clone, texture])
 
-  return <primitive object={clone} ref={ref} position={[0, 0, 0]} />
+  return <primitive object={clone} ref={ref} position={[0, 0, 0]} scale={[1, 1, 1]} />
+}
+
+function CameraHandler() {
+  const { camera } = useThree()
+  useEffect(() => {
+    camera.lookAt(0, 1.0, 0)
+  }, [camera])
+  return null
 }
 
 export default function ThreeScene() {
-  const [playAction, setPlayAction] = useState(false)
+  const [animation, setAnimation] = useState('Idle')
 
   return (
     <div className="relative h-[500px] w-full">
-      <button
-        className="absolute top-4 right-4 z-10 rounded bg-blue-600 px-4 py-2 font-bold text-white hover:bg-blue-700 disabled:opacity-50"
-        onClick={() => setPlayAction(true)}
-        disabled={playAction}
-      >
-        Play Action
-      </button>
-      <Canvas shadows gl={{ alpha: true }} camera={{ position: [-5, 5, 15] }}>
-        <ambientLight intensity={0.75} />
-        <pointLight position={[5, 10, 10]} castShadow />
+      <div className="absolute top-4 right-4 z-10 flex flex-col gap-2">
+        <select
+          className="rounded bg-gray-800 px-2 py-1 text-white"
+          value={animation}
+          onChange={(e) => setAnimation(e.target.value)}
+        >
+          <option value="Idle">Idle</option>
+          <option value="Slash">Slash</option>
+          <option value="PowerUp">PowerUp</option>
+        </select>
+      </div>
+      <Canvas shadows gl={{ alpha: true }} camera={{ position: [-1.5, 1.5, 4], fov: 40 }}>
+        <ambientLight intensity={1.5} />
+        <directionalLight
+          position={[5, 10, 7.5]}
+          castShadow
+          intensity={3.0}
+          shadow-mapSize-width={1024}
+          shadow-mapSize-height={1024}
+        />
         <Suspense fallback={null}>
-          <Knight playAction={playAction} onActionEnd={() => setPlayAction(false)} />
-          <OrbitingSprites />
+          <Knight currentAnimation={animation} onAnimationEnd={() => setAnimation('Idle')} />
+          <OrbitingCubes />
         </Suspense>
-        <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -9.5, 0]} receiveShadow>
+        <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]} receiveShadow>
           <planeGeometry args={[100, 100]} />
           <shadowMaterial transparent opacity={0.4} />
         </mesh>
-        <OrbitControls />
+        <CameraHandler />
+        <OrbitControls target={[0, 1, 0]} />
       </Canvas>
     </div>
   )
