@@ -8,10 +8,36 @@ import { SkeletonUtils } from 'three-stdlib'
 
 function OrbitingCubes() {
   const groupRef = useRef<THREE.Group>(null)
+  const cubesRef = useRef<(THREE.Mesh | null)[]>([])
+  const vec = useMemo(() => new THREE.Vector3(), [])
 
   useFrame((state, delta) => {
     if (groupRef.current) {
       groupRef.current.rotation.y += delta * 0.5
+      groupRef.current.updateMatrixWorld(true)
+
+      cubesRef.current.forEach((cube, i) => {
+        if (cube) {
+          cube.getWorldPosition(vec)
+          const angle = Math.atan2(vec.z, vec.x)
+
+          // Active section: Front (Z+)
+          // 1/5 of circle is 2PI/5. Half width is PI/5.
+          // Center is PI/2. Range [PI/2 - PI/5, PI/2 + PI/5] => [3PI/10, 7PI/10]
+          const isActive = angle > (3 * Math.PI) / 10 && angle < (7 * Math.PI) / 10
+
+          const material = cube.material as THREE.MeshStandardMaterial
+          if (isActive) {
+            material.color.set('#00f0ff')
+            material.emissive.set('#00f0ff')
+            material.emissiveIntensity = 2
+          } else {
+            material.color.set('#4488ff')
+            material.emissive.set('#000000')
+            material.emissiveIntensity = 0
+          }
+        }
+      })
     }
   })
 
@@ -27,6 +53,9 @@ function OrbitingCubes() {
         return (
           <mesh
             key={i}
+            ref={(el) => {
+              cubesRef.current[i] = el
+            }}
             position={[x, yPos, z]}
             rotation={[0, -angle - Math.PI / 2, 0]}
             castShadow
@@ -106,7 +135,7 @@ function Knight({
   useEffect(() => {
     clone.traverse((child) => {
       if (child instanceof THREE.Mesh) {
-        console.log('Applying texture to', child)
+        console.log('Applying texture to', child.name)
         child.castShadow = true
         child.receiveShadow = true
         if (child.material instanceof THREE.Material) {
