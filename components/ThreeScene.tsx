@@ -106,6 +106,7 @@ function Knight({
   useEffect(() => {
     clone.traverse((child) => {
       if (child instanceof THREE.Mesh) {
+        console.log('Applying texture to', child)
         child.castShadow = true
         child.receiveShadow = true
         if (child.material instanceof THREE.Material) {
@@ -158,7 +159,7 @@ export default function ThreeScene() {
       <div className="absolute bottom-0 left-1/2 z-10 -translate-x-1/2 transform">
         <button
           onClick={() => setAnimation('Slash')}
-          className="flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3 font-bold text-[#00f0ff] transition-colors hover:bg-blue-700"
+          className="flex cursor-pointer items-center gap-2 rounded-full border-2 border-[#00f0ff] bg-transparent px-6 py-3 font-bold text-[#00f0ff] transition-colors hover:bg-[#00f0ff]/10"
         >
           Use Sword
           <svg
