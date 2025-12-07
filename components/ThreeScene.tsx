@@ -6,10 +6,109 @@ import { useEffect, useMemo, Suspense, useRef, useState, MutableRefObject } from
 import * as THREE from 'three'
 import { SkeletonUtils } from 'three-stdlib'
 
-function OrbitingCubes() {
+function Debris({ position }: { position: THREE.Vector3 }) {
+  const groupRef = useRef<THREE.Group>(null)
+  const shards = useMemo(() => {
+    return new Array(8).fill(0).map(() => ({
+      offset: [Math.random() * 0.4 - 0.2, Math.random() * 0.4 - 0.2, Math.random() * 0.4 - 0.2] as [
+        number,
+        number,
+        number,
+      ],
+      velocity: [Math.random() * 2 - 1, Math.random() * 2 + 2, Math.random() * 2 - 1],
+      rotation: [Math.random() * Math.PI, Math.random() * Math.PI, 0] as [number, number, number],
+      scale: Math.random() * 0.5 + 0.2,
+    }))
+  }, [])
+
+  useFrame((state, delta) => {
+    if (groupRef.current) {
+      groupRef.current.children.forEach((child, i) => {
+        const shard = shards[i]
+        shard.velocity[1] -= 9.8 * delta
+        child.position.x += shard.velocity[0] * delta
+        child.position.y += shard.velocity[1] * delta
+        child.position.z += shard.velocity[2] * delta
+        child.rotation.x += delta * 2
+        child.rotation.z += delta * 2
+      })
+    }
+  })
+
+  return (
+    <group ref={groupRef} position={position}>
+      {shards.map((s, i) => (
+        <mesh key={i} position={s.offset} rotation={s.rotation} scale={s.scale}>
+          <dodecahedronGeometry args={[0.1, 0]} />
+          <meshStandardMaterial color="#4488ff" />
+        </mesh>
+      ))}
+    </group>
+  )
+}
+
+function OrbitingCubes({
+  slashTrigger,
+  onAllCubesGone,
+}: {
+  slashTrigger: number
+  onAllCubesGone: () => void
+}) {
   const groupRef = useRef<THREE.Group>(null)
   const cubesRef = useRef<(THREE.Mesh | null)[]>([])
   const vec = useMemo(() => new THREE.Vector3(), [])
+  const activeIndicesRef = useRef<Set<number>>(new Set())
+  const [visibleCubes, setVisibleCubes] = useState<boolean[]>(new Array(5).fill(true))
+  const [debrisList, setDebrisList] = useState<{ id: number; position: THREE.Vector3 }[]>([])
+  const allGoneRef = useRef(false)
+  const debrisIdCounter = useRef(0)
+
+  const texturePaths = [
+    '/static/animation-files/sprites/ChatGPT Image Dec 3, 2025, 10_56_30 AM.png',
+    '/static/animation-files/sprites/ChatGPT Image Dec 3, 2025, 10_57_40 AM.png',
+    '/static/animation-files/sprites/ChatGPT Image Dec 3, 2025, 10_59_59 AM.png',
+    '/static/animation-files/sprites/spying.jpg',
+    '/static/animation-files/sprites/virus-image.png',
+  ]
+  const textures = useTexture(texturePaths)
+
+  useEffect(() => {
+    if (visibleCubes.every((v) => !v) && !allGoneRef.current) {
+      allGoneRef.current = true
+      onAllCubesGone()
+    }
+  }, [visibleCubes, onAllCubesGone])
+
+  useEffect(() => {
+    if (slashTrigger === 0) return
+    const timer = setTimeout(() => {
+      setVisibleCubes((prev) => {
+        const next = [...prev]
+        const newDebris: { id: number; position: THREE.Vector3 }[] = []
+
+        activeIndicesRef.current.forEach((index) => {
+          if (next[index]) {
+            next[index] = false
+            if (cubesRef.current[index]) {
+              const worldPos = new THREE.Vector3()
+              cubesRef.current[index]!.getWorldPosition(worldPos)
+              newDebris.push({ id: debrisIdCounter.current++, position: worldPos })
+            }
+          }
+        })
+
+        if (newDebris.length > 0) {
+          setDebrisList((prev) => [...prev, ...newDebris])
+          setTimeout(() => {
+            setDebrisList((prev) => prev.filter((d) => !newDebris.find((nd) => nd.id === d.id)))
+          }, 2000)
+        }
+
+        return next
+      })
+    }, 750)
+    return () => clearTimeout(timer)
+  }, [slashTrigger])
 
   useFrame((state, delta) => {
     if (groupRef.current) {
@@ -26,16 +125,13 @@ function OrbitingCubes() {
           // Center is PI/2. Range [PI/2 - PI/5, PI/2 + PI/5] => [3PI/10, 7PI/10]
           const isActive = angle > (3 * Math.PI) / 10 && angle < (7 * Math.PI) / 10
 
-          const material = cube.material as THREE.MeshStandardMaterial
           if (isActive) {
-            material.color.set('#00f0ff')
-            material.emissive.set('#00f0ff')
-            material.emissiveIntensity = 2
+            activeIndicesRef.current.add(i)
           } else {
-            material.color.set('#4488ff')
-            material.emissive.set('#000000')
-            material.emissiveIntensity = 0
+            activeIndicesRef.current.delete(i)
           }
+        } else {
+          activeIndicesRef.current.delete(i)
         }
       })
     }
@@ -45,28 +141,39 @@ function OrbitingCubes() {
   const yPos = 0.9
 
   return (
-    <group ref={groupRef}>
-      {Array.from({ length: 5 }).map((_, i) => {
-        const angle = (i / 5) * Math.PI * 2
-        const x = Math.cos(angle) * radius
-        const z = Math.sin(angle) * radius
-        return (
-          <mesh
-            key={i}
-            ref={(el) => {
-              cubesRef.current[i] = el
-            }}
-            position={[x, yPos, z]}
-            rotation={[0, -angle - Math.PI / 2, 0]}
-            castShadow
-            receiveShadow
-          >
-            <boxGeometry args={[0.65, 0.65, 0.05]} />
-            <meshStandardMaterial color="#4488ff" />
-          </mesh>
-        )
-      })}
-    </group>
+    <>
+      <group ref={groupRef}>
+        {Array.from({ length: 5 }).map((_, i) => {
+          if (!visibleCubes[i]) return null
+          const angle = (i / 5) * Math.PI * 2
+          const x = Math.cos(angle) * radius
+          const z = Math.sin(angle) * radius
+          return (
+            <mesh
+              key={i}
+              ref={(el) => {
+                cubesRef.current[i] = el
+              }}
+              position={[x, yPos, z]}
+              rotation={[0, -angle - Math.PI / 2, 0]}
+              castShadow
+              receiveShadow
+            >
+              <boxGeometry args={[0.65, 0.65, 0.05]} />
+              <meshStandardMaterial attach="material-0" color="#747474ff" />
+              <meshStandardMaterial attach="material-1" color="#747474ff" />
+              <meshStandardMaterial attach="material-2" color="#747474ff" />
+              <meshStandardMaterial attach="material-3" color="#747474ff" />
+              <meshStandardMaterial attach="material-4" map={textures[i]} color="#ffffff" />
+              <meshStandardMaterial attach="material-5" map={textures[i]} color="#ffffff" />
+            </mesh>
+          )
+        })}
+      </group>
+      {debrisList.map((d) => (
+        <Debris key={d.id} position={d.position} />
+      ))}
+    </>
   )
 }
 
@@ -135,7 +242,6 @@ function Knight({
   useEffect(() => {
     clone.traverse((child) => {
       if (child instanceof THREE.Mesh) {
-        console.log('Applying texture to', child.name)
         child.castShadow = true
         child.receiveShadow = true
         if (child.material instanceof THREE.Material) {
@@ -162,6 +268,9 @@ function CameraHandler() {
 
 export default function ThreeScene() {
   const [animation, setAnimation] = useState('Idle')
+  const [slashTrigger, setSlashTrigger] = useState(0)
+  const [resetKey, setResetKey] = useState(0)
+  const gameOverRef = useRef(false)
 
   return (
     <div className="relative h-[500px] w-full">
@@ -175,8 +284,29 @@ export default function ThreeScene() {
           shadow-mapSize-height={1024}
         />
         <Suspense fallback={null}>
-          <Knight currentAnimation={animation} onAnimationEnd={() => setAnimation('Idle')} />
-          <OrbitingCubes />
+          <Knight
+            currentAnimation={animation}
+            onAnimationEnd={() => {
+              if (animation === 'PowerUp') {
+                setAnimation('Idle')
+                gameOverRef.current = false
+                setResetKey((prev) => prev + 1)
+                setSlashTrigger(0)
+              } else if (animation === 'Slash' && gameOverRef.current) {
+                setAnimation('Idle')
+                setTimeout(() => setAnimation('PowerUp'), 200)
+              } else {
+                setAnimation('Idle')
+              }
+            }}
+          />
+          <OrbitingCubes
+            key={resetKey}
+            slashTrigger={slashTrigger}
+            onAllCubesGone={() => {
+              gameOverRef.current = true
+            }}
+          />
         </Suspense>
         <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]} receiveShadow>
           <planeGeometry args={[100, 100]} />
@@ -187,8 +317,16 @@ export default function ThreeScene() {
       </Canvas>
       <div className="absolute bottom-0 left-1/2 z-10 -translate-x-1/2 transform">
         <button
-          onClick={() => setAnimation('Slash')}
-          className="flex cursor-pointer items-center gap-2 rounded-full border-2 border-[#00f0ff] bg-transparent px-6 py-3 font-bold text-[#00f0ff] transition-colors hover:bg-[#00f0ff]/10"
+          disabled={animation !== 'Idle' || gameOverRef.current}
+          onClick={() => {
+            setAnimation('Slash')
+            setSlashTrigger(Date.now())
+          }}
+          className={`flex items-center gap-2 rounded-full border-2 px-6 py-3 font-bold transition-colors ${
+            animation !== 'Idle' || gameOverRef.current
+              ? 'cursor-not-allowed border-gray-500 text-gray-500 opacity-50'
+              : 'cursor-pointer border-[#00f0ff] text-[#00f0ff] hover:bg-[#00f0ff]/10'
+          }`}
         >
           Use Sword
           <svg
