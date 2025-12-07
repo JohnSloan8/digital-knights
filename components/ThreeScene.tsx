@@ -135,17 +135,6 @@ export default function ThreeScene() {
 
   return (
     <div className="relative h-[500px] w-full">
-      <div className="absolute top-4 right-4 z-10 flex flex-col gap-2">
-        <select
-          className="rounded bg-gray-800 px-2 py-1 text-white"
-          value={animation}
-          onChange={(e) => setAnimation(e.target.value)}
-        >
-          <option value="Idle">Idle</option>
-          <option value="Slash">Slash</option>
-          <option value="PowerUp">PowerUp</option>
-        </select>
-      </div>
       <Canvas shadows gl={{ alpha: true }} camera={{ position: [-1.5, 1.5, 4], fov: 40 }}>
         <ambientLight intensity={1.5} />
         <directionalLight
@@ -166,6 +155,30 @@ export default function ThreeScene() {
         <CameraHandler />
         <OrbitControls target={[0, 1, 0]} />
       </Canvas>
+      <div className="absolute bottom-0 left-1/2 z-10 -translate-x-1/2 transform">
+        <button
+          onClick={() => setAnimation('Slash')}
+          className="flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3 font-bold text-[#00f0ff] transition-colors hover:bg-blue-700"
+        >
+          Use Sword
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <polyline points="14.5 17.5 3 6 3 3 6 3 17.5 14.5" />
+            <line x1="13" y1="19" x2="19" y2="13" />
+            <line x1="16" y1="16" x2="20" y2="20" />
+            <line x1="19" y1="21" x2="21" y2="19" />
+          </svg>
+        </button>
+      </div>
     </div>
   )
 }
