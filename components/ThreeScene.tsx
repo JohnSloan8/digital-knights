@@ -282,6 +282,7 @@ function Knight({
       }
     } else if (currentAnimation === 'PowerUp') {
       if (idleAction) idleAction.fadeOut(0.2)
+      if (slashAction) slashAction.fadeOut(0.2)
       if (powerUpAction) {
         powerUpAction.reset().setLoop(THREE.LoopOnce, 1).fadeIn(0.2).play()
         powerUpAction.clampWhenFinished = true
@@ -349,13 +350,7 @@ export default function ThreeScene() {
             currentAnimation={animation}
             onAnimationEnd={() => {
               if (animation === 'PowerUp') {
-                setAnimation('Idle')
-                gameOverRef.current = false
-                setResetKey((prev) => prev + 1)
-                setSlashTrigger(0)
-              } else if (animation === 'Slash' && gameOverRef.current) {
-                setAnimation('Idle')
-                setTimeout(() => setAnimation('PowerUp'), 200)
+                // Game Over state - do not reset
               } else {
                 setAnimation('Idle')
               }
@@ -366,6 +361,7 @@ export default function ThreeScene() {
             slashTrigger={slashTrigger}
             onAllCubesGone={() => {
               gameOverRef.current = true
+              setAnimation('PowerUp')
             }}
           />
         </Suspense>
