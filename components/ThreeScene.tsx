@@ -64,11 +64,11 @@ function OrbitingCubes({
   const debrisIdCounter = useRef(0)
 
   const texturePaths = [
-    '/static/animation-files/sprites/ChatGPT Image Dec 3, 2025, 10_56_30 AM.png',
-    '/static/animation-files/sprites/ChatGPT Image Dec 3, 2025, 10_57_40 AM.png',
-    '/static/animation-files/sprites/ChatGPT Image Dec 3, 2025, 10_59_59 AM.png',
-    '/static/animation-files/sprites/spying.jpg',
-    '/static/animation-files/sprites/virus-image.png',
+    '/static/animation-files/sprites/location.png',
+    '/static/animation-files/sprites/hacker.png',
+    '/static/animation-files/sprites/password.png',
+    '/static/animation-files/sprites/cookies.png',
+    '/static/animation-files/sprites/virus.png',
   ]
   const textures = useTexture(texturePaths)
 
@@ -159,13 +159,13 @@ function OrbitingCubes({
               castShadow
               receiveShadow
             >
-              <boxGeometry args={[0.65, 0.65, 0.05]} />
-              <meshStandardMaterial attach="material-0" color="#747474ff" />
-              <meshStandardMaterial attach="material-1" color="#747474ff" />
-              <meshStandardMaterial attach="material-2" color="#747474ff" />
-              <meshStandardMaterial attach="material-3" color="#747474ff" />
-              <meshStandardMaterial attach="material-4" map={textures[i]} color="#ffffff" />
-              <meshStandardMaterial attach="material-5" map={textures[i]} color="#ffffff" />
+              <planeGeometry args={[0.65, 0.65]} />
+              <meshStandardMaterial
+                map={textures[i]}
+                color="#ffffff"
+                transparent
+                side={THREE.DoubleSide}
+              />
             </mesh>
           )
         })}
