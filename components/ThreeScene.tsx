@@ -5,21 +5,63 @@ import { OrbitControls, useGLTF, useAnimations, useTexture } from '@react-three/
 import { useEffect, useMemo, Suspense, useRef, useState, MutableRefObject } from 'react'
 import * as THREE from 'three'
 import { SkeletonUtils } from 'three-stdlib'
+import spriteColors from '../public/static/animation-files/sprites/color_analysis.json'
 
-function Debris({ position }: { position: THREE.Vector3 }) {
+function Debris({
+  position,
+  colorMap,
+}: {
+  position: THREE.Vector3
+  colorMap: Record<string, number>
+}) {
   const groupRef = useRef<THREE.Group>(null)
   const shards = useMemo(() => {
-    return new Array(8).fill(0).map(() => ({
-      offset: [Math.random() * 0.4 - 0.2, Math.random() * 0.4 - 0.2, Math.random() * 0.4 - 0.2] as [
-        number,
-        number,
-        number,
-      ],
-      velocity: [Math.random() * 2 - 1, Math.random() * 2 + 2, Math.random() * 2 - 1],
-      rotation: [Math.random() * Math.PI, Math.random() * Math.PI, 0] as [number, number, number],
-      scale: Math.random() * 0.5 + 0.2,
-    }))
-  }, [])
+    // Prepare cumulative distribution for colors
+    const colors = Object.keys(colorMap)
+    const cumulative: number[] = []
+    let sum = 0
+    for (const color of colors) {
+      sum += colorMap[color]
+      cumulative.push(sum)
+    }
+
+    return new Array(8).fill(0).map(() => {
+      const r = Math.random()
+      let scale = 0
+      if (r < 0.4) {
+        // Small 0.1-0.4 (40%)
+        scale = Math.random() * 0.3 + 0.1
+      } else if (r < 0.7) {
+        // Medium 0.4-0.8 (30%)
+        scale = Math.random() * 0.4 + 0.4
+      } else {
+        // Large 0.8-1.2 (30%)
+        scale = Math.random() * 0.4 + 0.8
+      }
+
+      // Pick color
+      const randColor = Math.random() * sum
+      let selectedColor = colors[0]
+      for (let i = 0; i < cumulative.length; i++) {
+        if (randColor <= cumulative[i]) {
+          selectedColor = colors[i]
+          break
+        }
+      }
+
+      return {
+        offset: [
+          Math.random() * 0.4 - 0.2,
+          Math.random() * 0.4 - 0.2,
+          Math.random() * 0.4 - 0.2,
+        ] as [number, number, number],
+        velocity: [Math.random() * 2 - 1, Math.random() * 2 + 2, Math.random() * 2 - 1],
+        rotation: [Math.random() * Math.PI, Math.random() * Math.PI, 0] as [number, number, number],
+        scale,
+        color: selectedColor,
+      }
+    })
+  }, [colorMap])
 
   useFrame((state, delta) => {
     if (groupRef.current) {
@@ -39,8 +81,8 @@ function Debris({ position }: { position: THREE.Vector3 }) {
     <group ref={groupRef} position={position}>
       {shards.map((s, i) => (
         <mesh key={i} position={s.offset} rotation={s.rotation} scale={s.scale}>
-          <dodecahedronGeometry args={[0.1, 0]} />
-          <meshStandardMaterial color="#4488ff" />
+          <circleGeometry args={[0.1, 3]} />
+          <meshStandardMaterial color={s.color} side={THREE.DoubleSide} />
         </mesh>
       ))}
     </group>
@@ -59,7 +101,9 @@ function OrbitingCubes({
   const vec = useMemo(() => new THREE.Vector3(), [])
   const activeIndicesRef = useRef<Set<number>>(new Set())
   const [visibleCubes, setVisibleCubes] = useState<boolean[]>(new Array(5).fill(true))
-  const [debrisList, setDebrisList] = useState<{ id: number; position: THREE.Vector3 }[]>([])
+  const [debrisList, setDebrisList] = useState<
+    { id: number; position: THREE.Vector3; colorMap: Record<string, number> }[]
+  >([])
   const allGoneRef = useRef(false)
   const debrisIdCounter = useRef(0)
 
@@ -84,7 +128,11 @@ function OrbitingCubes({
     const timer = setTimeout(() => {
       setVisibleCubes((prev) => {
         const next = [...prev]
-        const newDebris: { id: number; position: THREE.Vector3 }[] = []
+        const newDebris: {
+          id: number
+          position: THREE.Vector3
+          colorMap: Record<string, number>
+        }[] = []
 
         activeIndicesRef.current.forEach((index) => {
           if (next[index]) {
@@ -92,7 +140,20 @@ function OrbitingCubes({
             if (cubesRef.current[index]) {
               const worldPos = new THREE.Vector3()
               cubesRef.current[index]!.getWorldPosition(worldPos)
-              newDebris.push({ id: debrisIdCounter.current++, position: worldPos })
+
+              const texturePath = texturePaths[index]
+              const filename = texturePath.split('/').pop()!
+              const colorMap = (spriteColors as Record<string, Record<string, number>>)[
+                filename
+              ] || {
+                '#ffffff': 1,
+              }
+
+              newDebris.push({
+                id: debrisIdCounter.current++,
+                position: worldPos,
+                colorMap,
+              })
             }
           }
         })
@@ -171,7 +232,7 @@ function OrbitingCubes({
         })}
       </group>
       {debrisList.map((d) => (
-        <Debris key={d.id} position={d.position} />
+        <Debris key={d.id} position={d.position} colorMap={d.colorMap} />
       ))}
     </>
   )
