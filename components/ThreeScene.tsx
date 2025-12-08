@@ -361,7 +361,9 @@ export default function ThreeScene() {
             slashTrigger={slashTrigger}
             onAllCubesGone={() => {
               gameOverRef.current = true
-              setAnimation('PowerUp')
+              setTimeout(() => {
+                setAnimation('PowerUp')
+              }, 500)
             }}
           />
         </Suspense>
