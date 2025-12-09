@@ -245,7 +245,7 @@ function Knight({
   currentAnimation: string
   onAnimationEnd: () => void
 }) {
-  const modelPath = '/static/animation-files/Studio Ochi Medieval Knights_Male.A.glb'
+  const modelPath = '/static/animation-files/Male.A.glb'
   const texturePath = '/static/animation-files/maps/Knights_01.png'
   const { scene, animations } = useGLTF(encodeURI(modelPath))
   const clone = useMemo(() => SkeletonUtils.clone(scene), [scene])
@@ -255,16 +255,24 @@ function Knight({
   texture.colorSpace = THREE.SRGBColorSpace
 
   useEffect(() => {
-    const idleAction = actions['Knight.Idle.New'] || actions['Knight.Idle']
-    const slashAction = actions['Knight.Slash.New']
-    const powerUpAction = actions['Knight.PowerUp']
+    const idleAlertAction = actions['idle-alert']
+    const idleStillAction = actions['idle-still']
+    const slashAction = actions['slash-simple']
+    const powerUpAction = actions['power-up']
 
-    if (currentAnimation === 'Idle') {
+    if (currentAnimation === 'idle') {
       if (slashAction) slashAction.fadeOut(0.2)
       if (powerUpAction) powerUpAction.fadeOut(0.2)
-      if (idleAction) idleAction.reset().fadeIn(0.2).play()
-    } else if (currentAnimation === 'Slash') {
-      if (idleAction) idleAction.fadeOut(0.2)
+      if (idleStillAction) idleStillAction.fadeOut(0.2)
+      if (idleAlertAction) idleAlertAction.reset().fadeIn(0.2).play()
+    } else if (currentAnimation === 'idle-still') {
+      if (slashAction) slashAction.fadeOut(0.2)
+      if (powerUpAction) powerUpAction.fadeOut(0.2)
+      if (idleAlertAction) idleAlertAction.fadeOut(0.2)
+      if (idleStillAction) idleStillAction.reset().fadeIn(0.2).play()
+    } else if (currentAnimation === 'slash') {
+      if (idleAlertAction) idleAlertAction.fadeOut(0.2)
+      if (idleStillAction) idleStillAction.fadeOut(0.2)
       if (slashAction) {
         slashAction.reset().setLoop(THREE.LoopOnce, 1).fadeIn(0.2).play()
         slashAction.clampWhenFinished = true
@@ -280,8 +288,9 @@ function Knight({
           mixer.removeEventListener('finished', onFinished)
         }
       }
-    } else if (currentAnimation === 'PowerUp') {
-      if (idleAction) idleAction.fadeOut(0.2)
+    } else if (currentAnimation === 'power-up') {
+      if (idleAlertAction) idleAlertAction.fadeOut(0.2)
+      if (idleStillAction) idleStillAction.fadeOut(0.2)
       if (slashAction) slashAction.fadeOut(0.2)
       if (powerUpAction) {
         powerUpAction.reset().setLoop(THREE.LoopOnce, 1).fadeIn(0.2).play()
@@ -328,14 +337,14 @@ function CameraHandler() {
   return null
 }
 
-export default function ThreeScene() {
-  const [animation, setAnimation] = useState('Idle')
+export default function ThreeScene({ className }: { className?: string }) {
+  const [animation, setAnimation] = useState('idle')
   const [slashTrigger, setSlashTrigger] = useState(0)
   const [resetKey, setResetKey] = useState(0)
   const gameOverRef = useRef(false)
 
   return (
-    <div className="relative h-[500px] w-full">
+    <div className={className || 'relative h-[500px] w-full'}>
       <Canvas shadows gl={{ alpha: true }} camera={{ position: [-1.5, 1.5, 4], fov: 40 }}>
         <ambientLight intensity={1.5} />
         <directionalLight
@@ -349,10 +358,10 @@ export default function ThreeScene() {
           <Knight
             currentAnimation={animation}
             onAnimationEnd={() => {
-              if (animation === 'PowerUp') {
-                // Game Over state - do not reset
+              if (animation === 'power-up') {
+                setAnimation('idle-still')
               } else {
-                setAnimation('Idle')
+                setAnimation('idle')
               }
             }}
           />
@@ -362,7 +371,7 @@ export default function ThreeScene() {
             onAllCubesGone={() => {
               gameOverRef.current = true
               setTimeout(() => {
-                setAnimation('PowerUp')
+                setAnimation('power-up')
               }, 500)
             }}
           />
@@ -376,13 +385,13 @@ export default function ThreeScene() {
       </Canvas>
       <div className="absolute bottom-0 left-1/2 z-10 -translate-x-1/2 transform">
         <button
-          disabled={animation !== 'Idle' || gameOverRef.current}
+          disabled={animation !== 'idle' || gameOverRef.current}
           onClick={() => {
-            setAnimation('Slash')
+            setAnimation('slash')
             setSlashTrigger(Date.now())
           }}
           className={`flex items-center gap-2 rounded-full border-2 px-6 py-3 font-bold transition-colors ${
-            animation !== 'Idle' || gameOverRef.current
+            animation !== 'idle' || gameOverRef.current
               ? 'cursor-not-allowed border-gray-500 text-gray-500 opacity-50'
               : 'cursor-pointer border-[#00f0ff] text-[#00f0ff] hover:bg-[#00f0ff]/10'
           }`}
