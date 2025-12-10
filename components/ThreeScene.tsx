@@ -110,7 +110,7 @@ function OrbitingCubes({
   const texturePaths = [
     '/static/animation-files/sprites/location.png',
     '/static/animation-files/sprites/hacker.png',
-    '/static/animation-files/sprites/password.png',
+    '/static/animation-files/sprites/facial-recognition.png',
     '/static/animation-files/sprites/cookies.png',
     '/static/animation-files/sprites/virus.png',
   ]
@@ -346,11 +346,11 @@ export default function ThreeScene({ className }: { className?: string }) {
   return (
     <div className={className || 'relative h-[500px] w-full'}>
       <Canvas shadows gl={{ alpha: true }} camera={{ position: [-1.5, 1.5, 4], fov: 40 }}>
-        <ambientLight intensity={1.5} />
+        <ambientLight intensity={2.5} />
         <directionalLight
           position={[5, 10, 7.5]}
           castShadow
-          intensity={3.0}
+          intensity={2.0}
           shadow-mapSize-width={1024}
           shadow-mapSize-height={1024}
         />
@@ -378,7 +378,7 @@ export default function ThreeScene({ className }: { className?: string }) {
         </Suspense>
         <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]} receiveShadow>
           <planeGeometry args={[100, 100]} />
-          <shadowMaterial transparent opacity={0.4} />
+          <shadowMaterial transparent opacity={0.8} />
         </mesh>
         <CameraHandler />
         <OrbitControls target={[0, 1, 0]} />
