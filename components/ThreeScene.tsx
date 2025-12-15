@@ -97,10 +97,10 @@ function OrbitingCubes({
   onAllCubesGone: () => void
 }) {
   const groupRef = useRef<THREE.Group>(null)
-  const cubesRef = useRef<(THREE.Mesh | null)[]>([])
+  const cubesRef = useRef<(THREE.Object3D | null)[]>([])
   const vec = useMemo(() => new THREE.Vector3(), [])
   const activeIndicesRef = useRef<Set<number>>(new Set())
-  const [visibleCubes, setVisibleCubes] = useState<boolean[]>(new Array(5).fill(true))
+  const [visibleCubes, setVisibleCubes] = useState<boolean[]>(new Array(6).fill(true))
   const [debrisList, setDebrisList] = useState<
     { id: number; position: THREE.Vector3; colorMap: Record<string, number> }[]
   >([])
@@ -108,11 +108,14 @@ function OrbitingCubes({
   const debrisIdCounter = useRef(0)
 
   const texturePaths = [
-    '/static/animation-files/sprites/location.png',
-    '/static/animation-files/sprites/hacker.png',
-    '/static/animation-files/sprites/facial-recognition.png',
-    '/static/animation-files/sprites/cookies.png',
-    '/static/animation-files/sprites/virus.png',
+    '/static/animation-files/sprites/location-min.png',
+    '/static/animation-files/sprites/hacker-min.png',
+    '/static/animation-files/sprites/facial-recognition-min.png',
+    '/static/animation-files/sprites/cookies-min.png',
+    '/static/animation-files/sprites/ads-min.png',
+    '/static/animation-files/sprites/password-min.png',
+
+    '/static/animation-files/sprites/misinformation.png',
   ]
   const textures = useTexture(texturePaths)
 
@@ -182,9 +185,9 @@ function OrbitingCubes({
           const angle = Math.atan2(vec.z, vec.x)
 
           // Active section: Front (Z+)
-          // 1/5 of circle is 2PI/5. Half width is PI/5.
-          // Center is PI/2. Range [PI/2 - PI/5, PI/2 + PI/5] => [3PI/10, 7PI/10]
-          const isActive = angle > (3 * Math.PI) / 10 && angle < (7 * Math.PI) / 10
+          // 1/6 of circle is 2PI/6 = PI/3. Half width is PI/6.
+          // Center is PI/2. Range [PI/2 - PI/6, PI/2 + PI/6] => [PI/3, 2PI/3]
+          const isActive = angle > Math.PI / 3 && angle < (2 * Math.PI) / 3
 
           if (isActive) {
             activeIndicesRef.current.add(i)
@@ -204,25 +207,70 @@ function OrbitingCubes({
   return (
     <>
       <group ref={groupRef}>
-        {Array.from({ length: 5 }).map((_, i) => {
+        {Array.from({ length: 6 }).map((_, i) => {
           if (!visibleCubes[i]) return null
-          const angle = (i / 5) * Math.PI * 2
+          const angle = (i / 6) * Math.PI * 2
           const x = Math.cos(angle) * radius
           const z = Math.sin(angle) * radius
+          const texture = textures[i]
+          const aspect = texture.image.width / texture.image.height
+          const isFacialRecognition = texturePaths[i].includes('facial-recognition')
+          const isAds = texturePaths[i].includes('ads')
+          const baseScale = 0.65
+          const scale = isFacialRecognition ? baseScale * 1.33 : baseScale
+          const w = aspect > 1 ? scale : scale * aspect
+          const h = aspect > 1 ? scale / aspect : scale
+
+          if (isAds) {
+            return (
+              <group
+                key={i}
+                ref={(el) => {
+                  cubesRef.current[i] = el
+                  if (el) {
+                    el.lookAt(0, yPos, 0)
+                  }
+                }}
+                position={[x, yPos, z]}
+              >
+                <mesh castShadow receiveShadow>
+                  <planeGeometry args={[w, h]} />
+                  <meshStandardMaterial
+                    map={texture}
+                    color="#ffffff"
+                    transparent
+                    side={THREE.FrontSide}
+                  />
+                </mesh>
+                <mesh castShadow receiveShadow rotation={[0, 0, 0]} scale={[-1, 1, 1]}>
+                  <planeGeometry args={[w, h]} />
+                  <meshStandardMaterial
+                    map={texture}
+                    color="#ffffff"
+                    transparent
+                    side={THREE.BackSide}
+                  />
+                </mesh>
+              </group>
+            )
+          }
+
           return (
             <mesh
               key={i}
               ref={(el) => {
                 cubesRef.current[i] = el
+                if (el) {
+                  el.lookAt(0, yPos, 0)
+                }
               }}
               position={[x, yPos, z]}
-              rotation={[0, -angle - Math.PI / 2, 0]}
               castShadow
               receiveShadow
             >
-              <planeGeometry args={[0.65, 0.65]} />
+              <planeGeometry args={[w, h]} />
               <meshStandardMaterial
-                map={textures[i]}
+                map={texture}
                 color="#ffffff"
                 transparent
                 side={THREE.DoubleSide}
@@ -329,6 +377,16 @@ function Knight({
   return <primitive object={clone} ref={ref} position={[0, 0, 0]} scale={[1, 1, 1]} />
 }
 
+function Floor() {
+  const texture = useTexture('/static/images/circuit-floor-triple-width.webp')
+  return (
+    <mesh rotation={[-Math.PI / 2, 0, -0.4]} position={[0, 0, 0]} receiveShadow>
+      <planeGeometry args={[14, 7]} />
+      <meshStandardMaterial map={texture} />
+    </mesh>
+  )
+}
+
 function CameraHandler() {
   const { camera } = useThree()
   useEffect(() => {
@@ -345,12 +403,12 @@ export default function ThreeScene({ className }: { className?: string }) {
 
   return (
     <div className={className || 'relative h-[500px] w-full'}>
-      <Canvas shadows gl={{ alpha: true }} camera={{ position: [-1.5, 1.5, 4], fov: 40 }}>
-        <ambientLight intensity={2.5} />
+      <Canvas shadows gl={{ alpha: true }} camera={{ position: [-2.5, 2.0, 6], fov: 40 }}>
+        <ambientLight intensity={2.0} />
         <directionalLight
           position={[5, 10, 7.5]}
           castShadow
-          intensity={2.0}
+          intensity={3.0}
           shadow-mapSize-width={1024}
           shadow-mapSize-height={1024}
         />
@@ -375,32 +433,29 @@ export default function ThreeScene({ className }: { className?: string }) {
               }, 500)
             }}
           />
+          <Floor />
         </Suspense>
-        <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]} receiveShadow>
-          <planeGeometry args={[100, 100]} />
-          <shadowMaterial transparent opacity={0.8} />
-        </mesh>
         <CameraHandler />
-        <OrbitControls target={[0, 1, 0]} />
+        {/* <OrbitControls target={[0, 1, 0]} /> */}
       </Canvas>
-      <div className="absolute bottom-0 left-1/2 z-10 -translate-x-1/2 transform">
+      <div className="absolute bottom-40 left-1/2 z-30 -translate-x-1/2 transform">
         <button
           disabled={animation !== 'idle' || gameOverRef.current}
           onClick={() => {
             setAnimation('slash')
             setSlashTrigger(Date.now())
           }}
-          className={`flex items-center gap-2 rounded-full border-2 px-6 py-3 font-bold transition-colors ${
+          className={`flex items-center gap-3 rounded-full border-2 bg-black/50 px-6 py-4 text-xl font-bold transition-colors ${
             animation !== 'idle' || gameOverRef.current
               ? 'cursor-not-allowed border-gray-500 text-gray-500 opacity-50'
-              : 'cursor-pointer border-[#00f0ff] text-[#00f0ff] hover:bg-[#00f0ff]/10'
+              : 'cursor-pointer border-[#00f0ff] text-[#00f0ff] hover:bg-black/70'
           }`}
         >
           Use Sword
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
+            width="32"
+            height="32"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"

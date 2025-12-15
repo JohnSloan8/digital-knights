@@ -6,9 +6,12 @@ import MobileNav from './MobileNav'
 import SearchButton from './SearchButton'
 
 const Header = () => {
-  let headerClass = 'flex items-center w-full bg-transparent justify-between py-10'
+  let headerClass =
+    'flex items-center w-full bg-gradient-to-b from-black/75 to-transparent justify-between py-10'
   if (siteMetadata.stickyNav) {
     headerClass += ' sticky top-0 z-50'
+  } else {
+    headerClass += ' relative z-50'
   }
 
   return (
