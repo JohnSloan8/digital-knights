@@ -1,7 +1,7 @@
 'use client'
 
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
-import { OrbitControls, useGLTF, useAnimations, useTexture } from '@react-three/drei'
+import { OrbitControls, useGLTF, useAnimations, useTexture, useProgress } from '@react-three/drei'
 import { useEffect, useMemo, Suspense, useRef, useState, MutableRefObject } from 'react'
 import * as THREE from 'three'
 import { SkeletonUtils } from 'three-stdlib'
@@ -395,6 +395,55 @@ function CameraHandler() {
   return null
 }
 
+function LoadingScreen() {
+  const { progress } = useProgress()
+  const [finished, setFinished] = useState(false)
+
+  useEffect(() => {
+    if (progress === 100) {
+      const timer = setTimeout(() => setFinished(true), 500)
+      return () => clearTimeout(timer)
+    }
+  }, [progress])
+
+  return (
+    <div
+      className={`pointer-events-none absolute inset-0 z-50 flex items-center justify-center ${
+        finished ? 'bg-transparent' : 'bg-black'
+      }`}
+    >
+      {/* Left Curtain */}
+      <div
+        className={`absolute top-0 left-0 h-full w-1/2 bg-black transition-transform duration-1000 ease-in-out ${
+          finished ? '-translate-x-full' : 'translate-x-0'
+        }`}
+      />
+
+      {/* Right Curtain */}
+      <div
+        className={`absolute top-0 right-0 h-full w-1/2 bg-black transition-transform duration-1000 ease-in-out ${
+          finished ? 'translate-x-full' : 'translate-x-0'
+        }`}
+      />
+
+      {/* Loading Bar */}
+      <div
+        className={`relative z-60 flex flex-col items-center gap-4 transition-opacity duration-500 ${
+          finished ? 'opacity-0' : 'opacity-100'
+        }`}
+      >
+        <div className="font-mono text-xl text-[#00f0ff]">LOADING...</div>
+        <div className="h-8 w-64 border-4 border-[#00f0ff] p-1">
+          <div
+            className="h-full bg-[#00f0ff] transition-all duration-200"
+            style={{ width: `${progress}%` }}
+          />
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export default function ThreeScene({ className }: { className?: string }) {
   const [animation, setAnimation] = useState('idle')
   const [slashTrigger, setSlashTrigger] = useState(0)
@@ -403,6 +452,7 @@ export default function ThreeScene({ className }: { className?: string }) {
 
   return (
     <div className={className || 'relative h-[500px] w-full'}>
+      <LoadingScreen />
       <Canvas shadows gl={{ alpha: true }} camera={{ position: [-2.5, 2.0, 6], fov: 40 }}>
         <ambientLight intensity={2.0} />
         <directionalLight
@@ -438,14 +488,22 @@ export default function ThreeScene({ className }: { className?: string }) {
         <CameraHandler />
         {/* <OrbitControls target={[0, 1, 0]} /> */}
       </Canvas>
-      <div className="absolute bottom-40 left-1/2 z-30 -translate-x-1/2 transform">
+      <div className="absolute bottom-0 left-0 z-60 w-full bg-gradient-to-t from-black/50 to-transparent pt-32 pb-10 text-center">
+        <h1 className="pb-2 text-3xl leading-9 font-extrabold tracking-tight text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
+          Digital Knights
+        </h1>
+        <p className="text-2xl leading-7 font-medium text-gray-300">
+          Cybersecurity for kids, teens and parents
+        </p>
+      </div>
+      <div className="absolute bottom-48 left-1/2 z-30 -translate-x-1/2 transform">
         <button
           disabled={animation !== 'idle' || gameOverRef.current}
           onClick={() => {
             setAnimation('slash')
             setSlashTrigger(Date.now())
           }}
-          className={`flex items-center gap-3 rounded-full border-2 bg-black/50 px-6 py-4 text-xl font-bold transition-colors ${
+          className={`flex items-center gap-3 rounded-full border-2 bg-black/50 px-4 py-2 text-lg font-bold transition-colors ${
             animation !== 'idle' || gameOverRef.current
               ? 'cursor-not-allowed border-gray-500 text-gray-500 opacity-50'
               : 'cursor-pointer border-[#00f0ff] text-[#00f0ff] hover:bg-black/70'
