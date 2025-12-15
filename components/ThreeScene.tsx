@@ -3,6 +3,7 @@
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { OrbitControls, useGLTF, useAnimations, useTexture, useProgress } from '@react-three/drei'
 import { useEffect, useMemo, Suspense, useRef, useState, MutableRefObject } from 'react'
+import Image from 'next/image'
 import * as THREE from 'three'
 import { SkeletonUtils } from 'three-stdlib'
 import spriteColors from '../public/static/animation-files/sprites/color_analysis.json'
@@ -488,10 +489,17 @@ export default function ThreeScene({ className }: { className?: string }) {
         <CameraHandler />
         {/* <OrbitControls target={[0, 1, 0]} /> */}
       </Canvas>
-      <div className="absolute bottom-0 left-0 z-60 w-full bg-gradient-to-t from-black/50 to-transparent pt-32 pb-10 text-center">
-        <h1 className="pb-2 text-3xl leading-9 font-extrabold tracking-tight text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
-          Digital Knights
-        </h1>
+      <div className="absolute bottom-0 left-0 z-60 w-full bg-gradient-to-t from-black/50 to-transparent pt-32 pb-4 text-center">
+        <div className="flex justify-center pb-4">
+          <Image
+            src="/static/images/logo-full-text.png"
+            alt="Digital Knights"
+            width={600}
+            height={150}
+            className="h-auto w-full max-w-[300px] md:max-w-[500px]"
+            priority
+          />
+        </div>
         <p className="text-2xl leading-7 font-medium text-gray-300">
           Cybersecurity for kids, teens and parents
         </p>
