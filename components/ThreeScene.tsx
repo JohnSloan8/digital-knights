@@ -379,11 +379,11 @@ function Knight({
 }
 
 function Floor() {
-  const texture = useTexture('/static/images/circuit-floor-triple-width.webp')
+  const texture = useTexture('/static/images/circuit-background-flipped-double.webp')
   return (
     <mesh rotation={[-Math.PI / 2, 0, -0.4]} position={[0, 0, 0]} receiveShadow>
-      <planeGeometry args={[14, 7]} />
-      <meshStandardMaterial map={texture} />
+      <planeGeometry args={[20, 10]} />
+      <meshStandardMaterial map={texture} transparent />
     </mesh>
   )
 }
@@ -454,7 +454,14 @@ export default function ThreeScene({ className }: { className?: string }) {
   return (
     <div className={className || 'relative h-[500px] w-full'}>
       <LoadingScreen />
-      <Canvas shadows gl={{ alpha: true }} camera={{ position: [-2.5, 2.0, 6], fov: 40 }}>
+      <Canvas
+        shadows
+        gl={{ alpha: true }}
+        camera={{ position: [-2.5, 2.0, 6], fov: 40 }}
+
+        // fog={{ color: '#000612', near: 5, far: 20 }}
+      >
+        <color attach="background" args={['#000612']} />
         <ambientLight intensity={2.0} />
         <directionalLight
           position={[5, 10, 7.5]}
@@ -492,7 +499,7 @@ export default function ThreeScene({ className }: { className?: string }) {
       <div className="absolute bottom-0 left-0 z-60 w-full bg-gradient-to-t from-black/50 to-transparent pt-32 pb-4 text-center">
         <div className="flex justify-center pb-4">
           <Image
-            src="/static/images/logo-full-text.png"
+            src="/static/images/DK-logo-full-text-blue.png"
             alt="Digital Knights"
             width={600}
             height={150}
@@ -504,7 +511,7 @@ export default function ThreeScene({ className }: { className?: string }) {
           Cybersecurity for kids, teens and parents
         </p>
       </div>
-      <div className="absolute bottom-48 left-1/2 z-30 -translate-x-1/2 transform">
+      <div className="absolute bottom-48 left-1/2 z-70 -translate-x-1/2 transform">
         <button
           disabled={animation !== 'idle' || gameOverRef.current}
           onClick={() => {
