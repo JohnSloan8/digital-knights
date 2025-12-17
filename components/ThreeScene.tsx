@@ -712,6 +712,16 @@ export default function ThreeScene({ className }: { className?: string }) {
 
   return (
     <div className={className || 'relative h-[500px] w-full'}>
+      <div className="absolute top-0 left-0 -z-10 w-screen">
+        <Image
+          src="/static/images/mountains-dark.webp"
+          alt="Background"
+          width={1920}
+          height={1080}
+          className="h-auto w-screen"
+          priority
+        />
+      </div>
       <LoadingScreen />
       <Canvas
         shadows
@@ -720,7 +730,7 @@ export default function ThreeScene({ className }: { className?: string }) {
 
         // fog={{ color: '#000612', near: 5, far: 20 }}
       >
-        <color attach="background" args={['#000612']} />
+        {/* <color attach="background" args={['#000612']} /> */}
         <ambientLight intensity={2.0} />
         <directionalLight
           position={[5, 10, 7.5]}
@@ -761,9 +771,17 @@ export default function ThreeScene({ className }: { className?: string }) {
             priority
           />
         </div>
-        <p className="text-2xl leading-7 font-medium text-gray-300">
-          Cybersecurity for kids, teens and parents
-        </p>
+        <div className="flex items-center justify-center gap-4">
+          <svg width="60" height="12" viewBox="0 0 60 12" className="rotate-180 text-gray-400">
+            <path d="M0 6 H15 M15 1 V11 M15 6 H60" stroke="currentColor" strokeWidth="2" />
+          </svg>
+          <p className="text-2xl leading-7 font-medium text-gray-300">
+            Cybersecurity for kids, teens and parents
+          </p>
+          <svg width="60" height="12" viewBox="0 0 60 12" className="rotate-180 text-gray-400">
+            <path d="M0 6 H45 M45 1 V11 M45 6 H60" stroke="currentColor" strokeWidth="2" />
+          </svg>
+        </div>
       </div>
       <div className="absolute bottom-60 left-1/2 z-41 -translate-x-1/2 transform">
         <button
