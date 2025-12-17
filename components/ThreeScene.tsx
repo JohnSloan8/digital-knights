@@ -9,7 +9,7 @@ import {
   useProgress,
   Line,
 } from '@react-three/drei'
-import { useEffect, useMemo, Suspense, useRef, useState } from 'react'
+import { useEffect, useMemo, Suspense, useRef, useState, useCallback } from 'react'
 import Image from 'next/image'
 import * as THREE from 'three'
 import { SkeletonUtils } from 'three-stdlib'
@@ -39,7 +39,7 @@ function Lightning({
 
   // Initial points
   const initialPoints = useMemo(() => {
-    const pts = []
+    const pts: THREE.Vector3[] = []
     for (let i = 0; i < pointsCount; i++) {
       pts.push(start.clone().lerp(end, i / (pointsCount - 1)))
     }
@@ -63,7 +63,7 @@ function Lightning({
     const opacity = fadeIn
 
     // Update positions
-    const flatPoints = []
+    const flatPoints: number[] = []
     for (let i = 0; i < pointsCount; i++) {
       const t = i / (pointsCount - 1)
       const x = THREE.MathUtils.lerp(start.x, end.x, t)
@@ -217,7 +217,8 @@ function CubeGroup({
   const backMeshRef = useRef<THREE.Mesh>(null)
   const age = useRef(0)
 
-  const aspect = texture.image.width / texture.image.height
+  const aspect =
+    (texture.image as HTMLImageElement).width / (texture.image as HTMLImageElement).height
   const isFacialRecognition = texturePath.includes('facial-recognition')
   const isAds = texturePath.includes('ads')
   const baseScale = 0.65
@@ -387,7 +388,7 @@ function OrbitingCubes({
 
         return next
       })
-    }, 700)
+    }, 550)
     return () => clearTimeout(timer)
   }, [slashTrigger])
 
@@ -453,9 +454,11 @@ function OrbitingCubes({
 function Knight({
   currentAnimation,
   onAnimationEnd,
+  onFirstIdleCycleEnd,
 }: {
   currentAnimation: string
   onAnimationEnd: () => void
+  onFirstIdleCycleEnd?: () => void
 }) {
   const modelPath = '/static/animation-files/Male.A.glb'
   const texturePath = '/static/animation-files/maps/Knights_01.png'
@@ -476,7 +479,14 @@ function Knight({
       if (slashAction) slashAction.fadeOut(0.2)
       if (powerUpAction) powerUpAction.fadeOut(0.2)
       if (idleStillAction) idleStillAction.fadeOut(0.2)
-      if (idleAlertAction) idleAlertAction.reset().fadeIn(0.2).play()
+      if (idleAlertAction) {
+        idleAlertAction.reset().fadeIn(0.2).play()
+        if (onFirstIdleCycleEnd) {
+          const duration = idleAlertAction.getClip().duration
+          const timer = setTimeout(onFirstIdleCycleEnd, (duration / 2) * 1000)
+          return () => clearTimeout(timer)
+        }
+      }
     } else if (currentAnimation === 'idle-still') {
       if (slashAction) slashAction.fadeOut(0.2)
       if (powerUpAction) powerUpAction.fadeOut(0.2)
@@ -486,7 +496,12 @@ function Knight({
       if (idleAlertAction) idleAlertAction.fadeOut(0.2)
       if (idleStillAction) idleStillAction.fadeOut(0.2)
       if (slashAction) {
-        slashAction.reset().setLoop(THREE.LoopOnce, 1).fadeIn(0.2).play()
+        slashAction
+          .reset()
+          .setLoop(THREE.LoopOnce, 1)
+          .fadeIn(0.2)
+          .setEffectiveTimeScale(1.25)
+          .play()
         slashAction.clampWhenFinished = true
 
         const onFinished = (e: { action: THREE.AnimationAction }) => {
@@ -520,7 +535,7 @@ function Knight({
         }
       }
     }
-  }, [currentAnimation, actions, mixer, onAnimationEnd])
+  }, [currentAnimation, actions, mixer, onAnimationEnd, onFirstIdleCycleEnd])
 
   useEffect(() => {
     clone.traverse((child) => {
@@ -620,7 +635,22 @@ export default function ThreeScene({ className }: { className?: string }) {
   const [animation, setAnimation] = useState('idle-still')
   const [slashTrigger, setSlashTrigger] = useState(0)
   const [resetKey, setResetKey] = useState(0)
+  const [buttonVisible, setButtonVisible] = useState(false)
   const gameOverRef = useRef(false)
+
+  const handleAnimationEnd = useCallback(() => {
+    setAnimation((prev) => {
+      if (prev === 'power-up') {
+        return 'idle-still'
+      } else {
+        return 'idle'
+      }
+    })
+  }, [])
+
+  const handleFirstIdleCycleEnd = useCallback(() => {
+    setButtonVisible(true)
+  }, [])
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -651,13 +681,8 @@ export default function ThreeScene({ className }: { className?: string }) {
         <Suspense fallback={null}>
           <Knight
             currentAnimation={animation}
-            onAnimationEnd={() => {
-              if (animation === 'power-up') {
-                setAnimation('idle-still')
-              } else {
-                setAnimation('idle')
-              }
-            }}
+            onAnimationEnd={handleAnimationEnd}
+            onFirstIdleCycleEnd={handleFirstIdleCycleEnd}
           />
           <OrbitingCubes
             key={resetKey}
@@ -691,13 +716,13 @@ export default function ThreeScene({ className }: { className?: string }) {
       </div>
       <div className="absolute bottom-60 left-1/2 z-41 -translate-x-1/2 transform">
         <button
-          disabled={animation !== 'idle' || gameOverRef.current}
+          disabled={!buttonVisible || animation !== 'idle' || gameOverRef.current}
           onClick={() => {
             setAnimation('slash')
             setSlashTrigger(Date.now())
           }}
-          className={`flex items-center gap-3 rounded-full border-2 bg-black/50 px-4 py-2 text-lg font-bold transition-all duration-500 ${
-            animation !== 'idle' || gameOverRef.current
+          className={`flex items-center gap-3 rounded-full border-2 bg-black/50 px-4 py-2 text-lg font-bold ${
+            !buttonVisible || animation !== 'idle' || gameOverRef.current
               ? 'cursor-not-allowed border-gray-500 text-gray-500 opacity-0'
               : 'cursor-pointer border-[#00f0ff] text-[#00f0ff] opacity-100 hover:bg-black/70'
           }`}
