@@ -1,12 +1,121 @@
 'use client'
 
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
-import { OrbitControls, useGLTF, useAnimations, useTexture, useProgress } from '@react-three/drei'
-import { useEffect, useMemo, Suspense, useRef, useState, MutableRefObject } from 'react'
+import {
+  OrbitControls,
+  useGLTF,
+  useAnimations,
+  useTexture,
+  useProgress,
+  Line,
+} from '@react-three/drei'
+import { useEffect, useMemo, Suspense, useRef, useState } from 'react'
 import Image from 'next/image'
 import * as THREE from 'three'
 import { SkeletonUtils } from 'three-stdlib'
 import spriteColors from '../public/static/animation-files/sprites/color_analysis.json'
+
+type Line2Impl = THREE.Mesh & {
+  geometry: THREE.BufferGeometry & {
+    setPositions: (positions: number[] | Float32Array) => void
+  }
+  material: THREE.Material & {
+    opacity: number
+  }
+}
+
+function Lightning({
+  start,
+  end,
+  delay = 0,
+}: {
+  start: THREE.Vector3
+  end: THREE.Vector3
+  delay?: number
+}) {
+  const lineRef = useRef<Line2Impl>(null)
+  const age = useRef(0)
+  const pointsCount = 8
+
+  // Initial points
+  const initialPoints = useMemo(() => {
+    const pts = []
+    for (let i = 0; i < pointsCount; i++) {
+      pts.push(start.clone().lerp(end, i / (pointsCount - 1)))
+    }
+    return pts
+  }, [start, end])
+
+  useFrame((state, delta) => {
+    if (!lineRef.current) return
+
+    age.current += delta
+
+    // Fade in: 0s to 1s
+    const fadeIn = Math.min(Math.max((age.current - delay) / 1, 0), 1)
+
+    // Disappear completely after 1.5s
+    if (age.current > 1.5) {
+      lineRef.current.visible = false
+      return
+    }
+
+    const opacity = fadeIn
+
+    // Update positions
+    const flatPoints = []
+    for (let i = 0; i < pointsCount; i++) {
+      const t = i / (pointsCount - 1)
+      const x = THREE.MathUtils.lerp(start.x, end.x, t)
+      const y = THREE.MathUtils.lerp(start.y, end.y, t)
+      const z = THREE.MathUtils.lerp(start.z, end.z, t)
+
+      if (i !== 0 && i !== pointsCount - 1) {
+        const jitter = 0.1
+        flatPoints.push(
+          x + (Math.random() - 0.5) * jitter,
+          y + (Math.random() - 0.5) * jitter,
+          z + (Math.random() - 0.5) * jitter
+        )
+      } else {
+        flatPoints.push(x, y, z)
+      }
+    }
+
+    // Update geometry
+    if (lineRef.current.geometry) {
+      lineRef.current.geometry.setPositions(flatPoints)
+    }
+
+    // Flicker opacity
+    if (lineRef.current.material) {
+      lineRef.current.material.opacity = opacity * (Math.random() > 0.5 ? 1 : 0.3)
+    }
+  })
+
+  return (
+    <Line
+      ref={lineRef}
+      points={initialPoints}
+      color="#00f0ff"
+      lineWidth={4}
+      transparent
+      opacity={0}
+    />
+  )
+}
+
+function ElectricEffect({ position }: { position: [number, number, number] }) {
+  const node1 = useMemo(() => new THREE.Vector3(-0.3, 0, 0), [])
+  const node2 = useMemo(() => new THREE.Vector3(0.3, 0, 0), [])
+
+  return (
+    <group position={position}>
+      <Lightning start={node1} end={node2} />
+      <Lightning start={node1} end={node2} delay={0.1} />
+    </group>
+  )
+}
 
 function Debris({
   position,
@@ -90,6 +199,105 @@ function Debris({
   )
 }
 
+function CubeGroup({
+  texture,
+  texturePath,
+  position,
+  lookAtTarget,
+  onRef,
+}: {
+  texture: THREE.Texture
+  texturePath: string
+  position: [number, number, number]
+  lookAtTarget: [number, number, number]
+  onRef: (el: THREE.Object3D | null) => void
+}) {
+  const groupRef = useRef<THREE.Group>(null)
+  const meshRef = useRef<THREE.Mesh>(null)
+  const backMeshRef = useRef<THREE.Mesh>(null)
+  const age = useRef(0)
+
+  const aspect = texture.image.width / texture.image.height
+  const isFacialRecognition = texturePath.includes('facial-recognition')
+  const isAds = texturePath.includes('ads')
+  const baseScale = 0.65
+  const scale = isFacialRecognition ? baseScale * 1.33 : baseScale
+  const w = aspect > 1 ? scale : scale * aspect
+  const h = aspect > 1 ? scale / aspect : scale
+
+  useFrame((state, delta) => {
+    age.current += delta
+
+    // Cube opacity: 0.5s to 1.5s
+    const opacity = Math.max(0, Math.min(1, (age.current - 0.5) / 1.0))
+
+    if (meshRef.current) {
+      const mat = meshRef.current.material as THREE.MeshStandardMaterial
+      mat.opacity = opacity
+    }
+    if (backMeshRef.current) {
+      const mat = backMeshRef.current.material as THREE.MeshStandardMaterial
+      mat.opacity = opacity
+    }
+
+    if (groupRef.current) {
+      groupRef.current.lookAt(...lookAtTarget)
+    }
+  })
+
+  return (
+    <group ref={groupRef} position={position}>
+      <ElectricEffect position={[0, 0, 0]} />
+      {isAds ? (
+        <group
+          ref={(el) => {
+            onRef(el)
+          }}
+        >
+          <mesh ref={meshRef} castShadow receiveShadow>
+            <planeGeometry args={[w, h]} />
+            <meshStandardMaterial
+              map={texture}
+              color="#ffffff"
+              transparent
+              opacity={0}
+              side={THREE.FrontSide}
+            />
+          </mesh>
+          <mesh ref={backMeshRef} castShadow receiveShadow rotation={[0, 0, 0]} scale={[-1, 1, 1]}>
+            <planeGeometry args={[w, h]} />
+            <meshStandardMaterial
+              map={texture}
+              color="#ffffff"
+              transparent
+              opacity={0}
+              side={THREE.BackSide}
+            />
+          </mesh>
+        </group>
+      ) : (
+        <mesh
+          ref={(el) => {
+            meshRef.current = el
+            onRef(el)
+          }}
+          castShadow
+          receiveShadow
+        >
+          <planeGeometry args={[w, h]} />
+          <meshStandardMaterial
+            map={texture}
+            color="#ffffff"
+            transparent
+            opacity={0}
+            side={THREE.DoubleSide}
+          />
+        </mesh>
+      )}
+    </group>
+  )
+}
+
 function OrbitingCubes({
   slashTrigger,
   onAllCubesGone,
@@ -102,6 +310,7 @@ function OrbitingCubes({
   const vec = useMemo(() => new THREE.Vector3(), [])
   const activeIndicesRef = useRef<Set<number>>(new Set())
   const [visibleCubes, setVisibleCubes] = useState<boolean[]>(new Array(6).fill(true))
+  const [appearingCubes, setAppearingCubes] = useState<boolean[]>(new Array(6).fill(false))
   const [debrisList, setDebrisList] = useState<
     { id: number; position: THREE.Vector3; colorMap: Record<string, number> }[]
   >([])
@@ -115,10 +324,17 @@ function OrbitingCubes({
     '/static/animation-files/sprites/cookies-min.png',
     '/static/animation-files/sprites/ads-min.png',
     '/static/animation-files/sprites/password-min.png',
-
-    '/static/animation-files/sprites/misinformation.png',
   ]
   const textures = useTexture(texturePaths)
+  useMemo(() => textures.forEach((t) => (t.colorSpace = THREE.SRGBColorSpace)), [textures])
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setAppearingCubes(new Array(6).fill(true))
+    }, 4000)
+
+    return () => clearTimeout(timer)
+  }, [])
 
   useEffect(() => {
     if (visibleCubes.every((v) => !v) && !allGoneRef.current) {
@@ -171,13 +387,13 @@ function OrbitingCubes({
 
         return next
       })
-    }, 750)
+    }, 700)
     return () => clearTimeout(timer)
   }, [slashTrigger])
 
   useFrame((state, delta) => {
     if (groupRef.current) {
-      groupRef.current.rotation.y += delta * 0.5
+      groupRef.current.rotation.y += delta * 0.665
       groupRef.current.updateMatrixWorld(true)
 
       cubesRef.current.forEach((cube, i) => {
@@ -185,10 +401,11 @@ function OrbitingCubes({
           cube.getWorldPosition(vec)
           const angle = Math.atan2(vec.z, vec.x)
 
-          // Active section: Front (Z+)
-          // 1/6 of circle is 2PI/6 = PI/3. Half width is PI/6.
-          // Center is PI/2. Range [PI/2 - PI/6, PI/2 + PI/6] => [PI/3, 2PI/3]
-          const isActive = angle > Math.PI / 3 && angle < (2 * Math.PI) / 3
+          // Active section: Front (Z+) rotated 1/12 CCW then 1/24 CW
+          // Net rotation: PI/6 - PI/12 = PI/12 CCW from original Front (PI/2)
+          // Center: PI/2 + PI/12 = 7PI/12
+          // Range: [7PI/12 - PI/6, 7PI/12 + PI/6] => [5PI/12, 3PI/4]
+          const isActive = angle > (5 * Math.PI) / 12 && angle < (3 * Math.PI) / 4
 
           if (isActive) {
             activeIndicesRef.current.add(i)
@@ -209,74 +426,20 @@ function OrbitingCubes({
     <>
       <group ref={groupRef}>
         {Array.from({ length: 6 }).map((_, i) => {
-          if (!visibleCubes[i]) return null
+          if (!visibleCubes[i] || !appearingCubes[i]) return null
           const angle = (i / 6) * Math.PI * 2
           const x = Math.cos(angle) * radius
           const z = Math.sin(angle) * radius
-          const texture = textures[i]
-          const aspect = texture.image.width / texture.image.height
-          const isFacialRecognition = texturePaths[i].includes('facial-recognition')
-          const isAds = texturePaths[i].includes('ads')
-          const baseScale = 0.65
-          const scale = isFacialRecognition ? baseScale * 1.33 : baseScale
-          const w = aspect > 1 ? scale : scale * aspect
-          const h = aspect > 1 ? scale / aspect : scale
-
-          if (isAds) {
-            return (
-              <group
-                key={i}
-                ref={(el) => {
-                  cubesRef.current[i] = el
-                  if (el) {
-                    el.lookAt(0, yPos, 0)
-                  }
-                }}
-                position={[x, yPos, z]}
-              >
-                <mesh castShadow receiveShadow>
-                  <planeGeometry args={[w, h]} />
-                  <meshStandardMaterial
-                    map={texture}
-                    color="#ffffff"
-                    transparent
-                    side={THREE.FrontSide}
-                  />
-                </mesh>
-                <mesh castShadow receiveShadow rotation={[0, 0, 0]} scale={[-1, 1, 1]}>
-                  <planeGeometry args={[w, h]} />
-                  <meshStandardMaterial
-                    map={texture}
-                    color="#ffffff"
-                    transparent
-                    side={THREE.BackSide}
-                  />
-                </mesh>
-              </group>
-            )
-          }
 
           return (
-            <mesh
+            <CubeGroup
               key={i}
-              ref={(el) => {
-                cubesRef.current[i] = el
-                if (el) {
-                  el.lookAt(0, yPos, 0)
-                }
-              }}
+              texture={textures[i]}
+              texturePath={texturePaths[i]}
               position={[x, yPos, z]}
-              castShadow
-              receiveShadow
-            >
-              <planeGeometry args={[w, h]} />
-              <meshStandardMaterial
-                map={texture}
-                color="#ffffff"
-                transparent
-                side={THREE.DoubleSide}
-              />
-            </mesh>
+              lookAtTarget={[0, yPos, 0]}
+              onRef={(el) => (cubesRef.current[i] = el)}
+            />
           )
         })}
       </group>
@@ -375,7 +538,15 @@ function Knight({
     })
   }, [clone, texture])
 
-  return <primitive object={clone} ref={ref} position={[0, 0, 0]} scale={[1, 1, 1]} />
+  return (
+    <primitive
+      object={clone}
+      ref={ref}
+      position={[0, 0, 0]}
+      rotation={[0, -0.2, 0]}
+      scale={[1, 1, 1]}
+    />
+  )
 }
 
 function Floor() {
@@ -391,7 +562,7 @@ function Floor() {
 function CameraHandler() {
   const { camera } = useThree()
   useEffect(() => {
-    camera.lookAt(0, 1.0, 0)
+    camera.lookAt(0, 0.67, 0)
   }, [camera])
   return null
 }
@@ -446,10 +617,17 @@ function LoadingScreen() {
 }
 
 export default function ThreeScene({ className }: { className?: string }) {
-  const [animation, setAnimation] = useState('idle')
+  const [animation, setAnimation] = useState('idle-still')
   const [slashTrigger, setSlashTrigger] = useState(0)
   const [resetKey, setResetKey] = useState(0)
   const gameOverRef = useRef(false)
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setAnimation((prev) => (prev === 'idle-still' ? 'idle' : prev))
+    }, 5000)
+    return () => clearTimeout(timer)
+  }, [])
 
   return (
     <div className={className || 'relative h-[500px] w-full'}>
@@ -496,10 +674,10 @@ export default function ThreeScene({ className }: { className?: string }) {
         <CameraHandler />
         {/* <OrbitControls target={[0, 1, 0]} /> */}
       </Canvas>
-      <div className="absolute bottom-0 left-0 z-60 w-full bg-gradient-to-t from-black/50 to-transparent pt-32 pb-4 text-center">
+      <div className="absolute bottom-0 left-0 z-40 w-full bg-gradient-to-t from-black/50 to-transparent pt-32 pb-4 text-center">
         <div className="flex justify-center pb-4">
           <Image
-            src="/static/images/DK-logo-full-text-blue.png"
+            src="/static/images/DK-logo-full-text-blue.webp"
             alt="Digital Knights"
             width={600}
             height={150}
@@ -511,17 +689,17 @@ export default function ThreeScene({ className }: { className?: string }) {
           Cybersecurity for kids, teens and parents
         </p>
       </div>
-      <div className="absolute bottom-48 left-1/2 z-70 -translate-x-1/2 transform">
+      <div className="absolute bottom-60 left-1/2 z-41 -translate-x-1/2 transform">
         <button
           disabled={animation !== 'idle' || gameOverRef.current}
           onClick={() => {
             setAnimation('slash')
             setSlashTrigger(Date.now())
           }}
-          className={`flex items-center gap-3 rounded-full border-2 bg-black/50 px-4 py-2 text-lg font-bold transition-colors ${
+          className={`flex items-center gap-3 rounded-full border-2 bg-black/50 px-4 py-2 text-lg font-bold transition-all duration-500 ${
             animation !== 'idle' || gameOverRef.current
-              ? 'cursor-not-allowed border-gray-500 text-gray-500 opacity-50'
-              : 'cursor-pointer border-[#00f0ff] text-[#00f0ff] hover:bg-black/70'
+              ? 'cursor-not-allowed border-gray-500 text-gray-500 opacity-0'
+              : 'cursor-pointer border-[#00f0ff] text-[#00f0ff] opacity-100 hover:bg-black/70'
           }`}
         >
           Use Sword
