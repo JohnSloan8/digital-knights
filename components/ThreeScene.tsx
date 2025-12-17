@@ -8,6 +8,7 @@ import {
   useTexture,
   useProgress,
   Line,
+  Html,
 } from '@react-three/drei'
 import { useEffect, useMemo, Suspense, useRef, useState, useCallback } from 'react'
 import Image from 'next/image'
@@ -199,6 +200,38 @@ function Debris({
   )
 }
 
+function FloatingText({ position, text }: { position: THREE.Vector3; text: string }) {
+  return (
+    <group position={[position.x, position.y + 0.5, position.z]}>
+      <Html position={[0, 0, 0]} center zIndexRange={[100, 0]}>
+        <div
+          className="pointer-events-none font-bold text-[#00f0ff] select-none"
+          style={{
+            fontSize: '24px',
+            textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000',
+            animation: 'floatUp 1.5s ease-out forwards',
+            whiteSpace: 'nowrap',
+          }}
+        >
+          {text}
+          <style>{`
+            @keyframes floatUp {
+              0% {
+                opacity: 1;
+                transform: translateY(0);
+              }
+              100% {
+                opacity: 0;
+                transform: translateY(-100px);
+              }
+            }
+          `}</style>
+        </div>
+      </Html>
+    </group>
+  )
+}
+
 function CubeGroup({
   texture,
   texturePath,
@@ -313,18 +346,18 @@ function OrbitingCubes({
   const [visibleCubes, setVisibleCubes] = useState<boolean[]>(new Array(6).fill(true))
   const [appearingCubes, setAppearingCubes] = useState<boolean[]>(new Array(6).fill(false))
   const [debrisList, setDebrisList] = useState<
-    { id: number; position: THREE.Vector3; colorMap: Record<string, number> }[]
+    { id: number; position: THREE.Vector3; colorMap: Record<string, number>; text: string }[]
   >([])
   const allGoneRef = useRef(false)
   const debrisIdCounter = useRef(0)
 
   const texturePaths = [
-    '/static/animation-files/sprites/location-min.png',
-    '/static/animation-files/sprites/hacker-min.png',
-    '/static/animation-files/sprites/facial-recognition-min.png',
-    '/static/animation-files/sprites/cookies-min.png',
-    '/static/animation-files/sprites/ads-min.png',
-    '/static/animation-files/sprites/password-min.png',
+    '/static/animation-files/sprites/location-tracking.png',
+    '/static/animation-files/sprites/hacker.png',
+    '/static/animation-files/sprites/facial-recognition.png',
+    '/static/animation-files/sprites/cookies.png',
+    '/static/animation-files/sprites/ads.png',
+    '/static/animation-files/sprites/password-breach.png',
   ]
   const textures = useTexture(texturePaths)
   useMemo(() => textures.forEach((t) => (t.colorSpace = THREE.SRGBColorSpace)), [textures])
@@ -353,6 +386,7 @@ function OrbitingCubes({
           id: number
           position: THREE.Vector3
           colorMap: Record<string, number>
+          text: string
         }[] = []
 
         activeIndicesRef.current.forEach((index) => {
@@ -370,10 +404,24 @@ function OrbitingCubes({
                 '#ffffff': 1,
               }
 
+              const textMap: Record<string, string> = {
+                'facial-recognition.png': 'facial recognition thwarted!',
+                'hacker.png': 'hacker neutralised!',
+                'password-breach.png': 'password breach avoided!',
+                'location-tracking.png': 'location tracking blocked!',
+                'ads.png': 'ads removed!',
+                'cookies.png': 'cookies blocked!',
+              }
+
+              const text =
+                textMap[filename] ||
+                `${filename.replace(/\.[^/.]+$/, '').replace(/-/g, ' ')} neutralised!`
+
               newDebris.push({
                 id: debrisIdCounter.current++,
                 position: worldPos,
                 colorMap,
+                text,
               })
             }
           }
@@ -445,7 +493,10 @@ function OrbitingCubes({
         })}
       </group>
       {debrisList.map((d) => (
-        <Debris key={d.id} position={d.position} colorMap={d.colorMap} />
+        <group key={d.id}>
+          <Debris position={d.position} colorMap={d.colorMap} />
+          <FloatingText position={d.position} text={d.text} />
+        </group>
       ))}
     </>
   )
