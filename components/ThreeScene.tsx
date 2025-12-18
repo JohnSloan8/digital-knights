@@ -12,6 +12,7 @@ import {
 } from '@react-three/drei'
 import { useEffect, useMemo, Suspense, useRef, useState, useCallback } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import * as THREE from 'three'
 import { SkeletonUtils } from 'three-stdlib'
 import spriteColors from '../public/static/animation-files/sprites/color_analysis.json'
@@ -98,7 +99,7 @@ function Lightning({
     <Line
       ref={lineRef}
       points={initialPoints}
-      color="#00f0ff"
+      color="#ff0000"
       lineWidth={4}
       transparent
       opacity={0}
@@ -254,8 +255,11 @@ function CubeGroup({
     (texture.image as HTMLImageElement).width / (texture.image as HTMLImageElement).height
   const isFacialRecognition = texturePath.includes('facial-recognition')
   const isAds = texturePath.includes('ads')
+  const isCyberbullying = texturePath.includes('cyberbullying')
   const baseScale = 0.65
-  const scale = isFacialRecognition ? baseScale * 1.33 : baseScale
+  let scale = baseScale
+  if (isFacialRecognition) scale = baseScale * 1.33
+  if (isCyberbullying) scale = baseScale * 1.5
   const w = aspect > 1 ? scale : scale * aspect
   const h = aspect > 1 ? scale / aspect : scale
 
@@ -282,7 +286,7 @@ function CubeGroup({
   return (
     <group ref={groupRef} position={position}>
       <ElectricEffect position={[0, 0, 0]} />
-      {isAds ? (
+      {isAds || isCyberbullying ? (
         <group
           ref={(el) => {
             onRef(el)
@@ -356,7 +360,7 @@ function OrbitingCubes({
     '/static/animation-files/sprites/hacker.png',
     '/static/animation-files/sprites/facial-recognition.png',
     '/static/animation-files/sprites/cookies.png',
-    '/static/animation-files/sprites/ads.png',
+    '/static/animation-files/sprites/cyberbullying.png',
     '/static/animation-files/sprites/password-breach.png',
   ]
   const textures = useTexture(texturePaths)
@@ -405,11 +409,11 @@ function OrbitingCubes({
               }
 
               const textMap: Record<string, string> = {
-                'facial-recognition.png': 'facial recognition thwarted!',
+                'facial-recognition.png': 'facial recognition denied!',
                 'hacker.png': 'hacker neutralised!',
                 'password-breach.png': 'password breach avoided!',
                 'location-tracking.png': 'location tracking blocked!',
-                'ads.png': 'ads removed!',
+                'cyberbullying.png': 'cyberbullying stopped!',
                 'cookies.png': 'cookies blocked!',
               }
 
@@ -616,10 +620,10 @@ function Knight({
 }
 
 function Floor() {
-  const texture = useTexture('/static/images/circuit-background-flipped-double.webp')
+  const texture = useTexture('/static/images/circuit-background-path-lines.webp')
   return (
-    <mesh rotation={[-Math.PI / 2, 0, -0.4]} position={[0, 0, 0]} receiveShadow>
-      <planeGeometry args={[20, 10]} />
+    <mesh rotation={[-Math.PI / 2, 0, -0.4]} position={[1.4, 0, 0]} receiveShadow>
+      <planeGeometry args={[25, 8]} />
       <meshStandardMaterial map={texture} transparent />
     </mesh>
   )
@@ -687,6 +691,11 @@ export default function ThreeScene({ className }: { className?: string }) {
   const [slashTrigger, setSlashTrigger] = useState(0)
   const [resetKey, setResetKey] = useState(0)
   const [buttonVisible, setButtonVisible] = useState(false)
+  const [showThreatText, setShowThreatText] = useState(false)
+  const [threatMessage, setThreatMessage] = useState('THREAT INCOMING')
+  const [isPulsing, setIsPulsing] = useState(true)
+  const [showEnterSite, setShowEnterSite] = useState(false)
+  const [fadeOutThreat, setFadeOutThreat] = useState(false)
   const gameOverRef = useRef(false)
 
   const handleAnimationEnd = useCallback(() => {
@@ -707,18 +716,26 @@ export default function ThreeScene({ className }: { className?: string }) {
     const timer = setTimeout(() => {
       setAnimation((prev) => (prev === 'idle-still' ? 'idle' : prev))
     }, 5000)
-    return () => clearTimeout(timer)
+
+    const threatTimer = setTimeout(() => {
+      setShowThreatText(true)
+    }, 3000)
+
+    return () => {
+      clearTimeout(timer)
+      clearTimeout(threatTimer)
+    }
   }, [])
 
   return (
     <div className={className || 'relative h-[500px] w-full'}>
       <div className="absolute top-0 left-0 -z-10 w-screen">
         <Image
-          src="/static/images/mountains-dark.webp"
+          src="/static/images/mountains-background.webp"
           alt="Background"
           width={1920}
           height={1080}
-          className="h-auto w-screen"
+          className="h-113 w-full object-cover"
           priority
         />
       </div>
@@ -731,9 +748,9 @@ export default function ThreeScene({ className }: { className?: string }) {
         // fog={{ color: '#000612', near: 5, far: 20 }}
       >
         {/* <color attach="background" args={['#000612']} /> */}
-        <ambientLight intensity={2.0} />
+        <ambientLight intensity={1.75} />
         <directionalLight
-          position={[5, 10, 7.5]}
+          position={[3, 8, 5]}
           castShadow
           intensity={3.0}
           shadow-mapSize-width={1024}
@@ -753,6 +770,20 @@ export default function ThreeScene({ className }: { className?: string }) {
               setTimeout(() => {
                 setAnimation('power-up')
               }, 500)
+              setTimeout(() => {
+                setButtonVisible(false)
+                setThreatMessage('WELL DONE! ALL THREATS DEFEATED!')
+                setIsPulsing(false)
+                setShowThreatText(true)
+
+                setTimeout(() => {
+                  setFadeOutThreat(true)
+                  setTimeout(() => {
+                    setShowThreatText(false)
+                    setShowEnterSite(true)
+                  }, 1000)
+                }, 3000)
+              }, 1000)
             }}
           />
           <Floor />
@@ -760,7 +791,10 @@ export default function ThreeScene({ className }: { className?: string }) {
         <CameraHandler />
         {/* <OrbitControls target={[0, 1, 0]} /> */}
       </Canvas>
-      <div className="absolute bottom-0 left-0 z-40 w-full bg-gradient-to-t from-black/50 to-transparent pt-32 pb-4 text-center">
+      <div
+        className="absolute bottom-0 left-0 z-40 w-full pt-32 pb-4 text-center"
+        style={{ background: 'linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0))' }}
+      >
         <div className="flex justify-center pb-4">
           <Image
             src="/static/images/DK-logo-full-text-blue.webp"
@@ -775,7 +809,7 @@ export default function ThreeScene({ className }: { className?: string }) {
           <svg width="60" height="12" viewBox="0 0 60 12" className="rotate-180 text-gray-400">
             <path d="M0 6 H15 M15 1 V11 M15 6 H60" stroke="currentColor" strokeWidth="2" />
           </svg>
-          <p className="text-2xl leading-7 font-medium text-gray-300">
+          <p className="text-lg leading-7 font-medium text-gray-300 md:text-2xl">
             Cybersecurity for kids, teens and parents
           </p>
           <svg width="60" height="12" viewBox="0 0 60 12" className="rotate-180 text-gray-400">
@@ -783,16 +817,51 @@ export default function ThreeScene({ className }: { className?: string }) {
           </svg>
         </div>
       </div>
-      <div className="absolute bottom-60 left-1/2 z-41 -translate-x-1/2 transform">
+      <div className="absolute bottom-60 left-1/2 z-41 flex -translate-x-1/2 transform flex-col items-center justify-center">
+        {showThreatText && !buttonVisible && (
+          <div className="absolute top-1/2 left-1/2 w-max -translate-x-1/2 -translate-y-1/2">
+            <div
+              className={`pointer-events-none text-lg font-bold select-none md:text-2xl ${isPulsing ? 'text-[#ff0000]' : 'text-[#00f0ff]'} ${fadeOutThreat ? 'opacity-0 transition-opacity duration-1000' : 'opacity-100'}`}
+              style={{
+                // fontSize: '24px',
+                textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000',
+                animation: isPulsing ? 'pulse 0.5s ease-in-out infinite' : 'none',
+                whiteSpace: 'pre-line',
+                textAlign: 'center',
+              }}
+            >
+              {threatMessage}
+              <style>{`
+              @keyframes pulse {
+                0%, 100% { transform: scale(1); }
+                50% { transform: scale(1.1); }
+              }
+            `}</style>
+            </div>
+          </div>
+        )}
+        {showEnterSite && (
+          <div className="absolute top-1/2 left-1/2 w-max -translate-x-1/2 -translate-y-1/2">
+            <Link
+              href="/about"
+              className="pointer-events-auto text-lg font-bold text-[#00f0ff] underline transition-colors duration-300 select-none hover:text-white md:text-2xl"
+              style={{
+                textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000',
+              }}
+            >
+              ENTER SITE
+            </Link>
+          </div>
+        )}
         <button
           disabled={!buttonVisible || animation !== 'idle' || gameOverRef.current}
           onClick={() => {
             setAnimation('slash')
             setSlashTrigger(Date.now())
           }}
-          className={`flex items-center gap-3 rounded-full border-2 bg-black/50 px-4 py-2 text-lg font-bold ${
+          className={`flex items-center gap-3 rounded-full border-2 bg-black/50 px-4 py-2 text-xl font-bold ${
             !buttonVisible || animation !== 'idle' || gameOverRef.current
-              ? 'cursor-not-allowed border-gray-500 text-gray-500 opacity-0'
+              ? 'pointer-events-none cursor-not-allowed border-gray-500 text-gray-500 opacity-0'
               : 'cursor-pointer border-[#00f0ff] text-[#00f0ff] opacity-100 hover:bg-black/70'
           }`}
         >
