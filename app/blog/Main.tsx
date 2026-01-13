@@ -3,6 +3,7 @@ import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import { formatDate } from 'pliny/utils/formatDate'
 import NewsletterForm from 'pliny/ui/NewsletterForm'
+import PageHeader from '@/components/PageHeader'
 
 const MAX_DISPLAY = 5
 
@@ -10,12 +11,7 @@ export default function Home({ posts }) {
   return (
     <>
       <div className="divide-y divide-gray-700">
-        <div className="space-y-2 pt-6 pb-8 md:space-y-5">
-          <h1 className="text-3xl leading-9 font-extrabold tracking-tight text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
-            Latest
-          </h1>
-          <p className="text-lg leading-7 text-gray-400">{siteMetadata.description}</p>
-        </div>
+        <PageHeader title="Latest" description={siteMetadata.description} />
         <ul className="divide-y divide-gray-700">
           {!posts.length && 'No posts found.'}
           {posts.slice(0, MAX_DISPLAY).map((post) => {

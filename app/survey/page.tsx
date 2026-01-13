@@ -2,6 +2,7 @@ import Link from '@/components/Link'
 import { PageSEO } from '@/components/SEO'
 import siteMetadata from '@/data/siteMetadata'
 import { genPageMetadata } from 'app/seo'
+import PageHeader from '@/components/PageHeader'
 
 export const metadata = genPageMetadata({ title: "Parents' Cybersecurity Survey 2026" })
 
@@ -9,16 +10,11 @@ export default function SurveyPage() {
   return (
     <>
       <div className="divide-y divide-gray-700">
-        <div className="space-y-2 pt-6 pb-8 md:space-y-5">
-          <h1 className="text-3xl leading-9 font-extrabold tracking-tight text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
-            Parents' Cybersecurity Survey 2026
-          </h1>
-          <p className="text-lg leading-7 text-gray-400">
-            This is a survey aimed at gathering parents' awareness, knowledge and opinions on tech
-            and cybersecurity education for their children.
-          </p>
-        </div>
-        <div className="container py-12">
+        <PageHeader
+          title="Parents' Cybersecurity Survey 2026"
+          description="This is a survey aimed at gathering parents' awareness, knowledge and opinions on tech and cybersecurity education for their children."
+        />
+        <div className="py-12">
           <div className="flex flex-col items-center justify-center space-y-4">
             <div className="prose prose-invert max-w-none pb-8">
               <p>

@@ -1,4 +1,5 @@
 import { genPageMetadata } from 'app/seo'
+import PageHeader from '@/components/PageHeader'
 
 export async function generateMetadata(props: { params: Promise<{ level: string }> }) {
   const params = await props.params
@@ -17,12 +18,8 @@ export default async function LevelPage(props: { params: Promise<{ level: string
   return (
     <>
       <div className="divide-y divide-gray-700">
-        <div className="space-y-2 pt-6 pb-8 md:space-y-5">
-          <h1 className="text-3xl leading-9 font-extrabold tracking-tight text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
-            {levelTitle}
-          </h1>
-        </div>
-        <div className="container py-12">
+        <PageHeader title={levelTitle} />
+        <div className="py-12">
           <div className="prose prose-invert max-w-none pt-10 pb-8">
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor

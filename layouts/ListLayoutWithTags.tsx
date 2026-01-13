@@ -9,6 +9,7 @@ import Link from '@/components/Link'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import tagData from 'app/tag-data.json'
+import PageHeader from '@/components/PageHeader'
 
 interface PaginationProps {
   totalPages: number
@@ -82,11 +83,7 @@ export default function ListLayoutWithTags({
   return (
     <>
       <div>
-        <div className="pt-6 pb-6">
-          <h1 className="text-3xl leading-9 font-extrabold tracking-tight text-gray-100 sm:hidden sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
-            {title}
-          </h1>
-        </div>
+        <PageHeader title={title} />
         <div className="flex sm:space-x-24">
           <div className="hidden h-full max-h-screen max-w-[280px] min-w-[280px] flex-wrap overflow-auto rounded-sm bg-gray-900/70 pt-5 shadow-md shadow-gray-800/40 sm:flex">
             <div className="px-6 py-4">

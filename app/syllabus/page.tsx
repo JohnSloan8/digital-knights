@@ -1,6 +1,7 @@
 import { genPageMetadata } from 'app/seo'
 import Image from '@/components/Image'
 import Link from '@/components/Link'
+import PageHeader from '@/components/PageHeader'
 
 export const metadata = genPageMetadata({ title: 'Syllabus' })
 
@@ -71,22 +72,15 @@ export default function Syllabus() {
   return (
     <>
       <div className="divide-y divide-gray-700">
-        <div className="space-y-2 pt-6 pb-8 md:space-y-5">
-          <h1 className="text-3xl leading-9 font-extrabold tracking-tight text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
-            Syllabus
-          </h1>
-          <p className="text-lg leading-7 text-gray-400">
-            Our curriculum is designed to take students on a journey from beginners to digital
-            guardians. Students will be taught in 5 levels, beginning with a gentle and fun
-            introduction to computational thinking, building up knowledge, technical and cyber
-            security skills.
-          </p>
-        </div>
-        <div className="container py-12">
+        <PageHeader
+          title="Syllabus"
+          description="Our curriculum is designed to take students on a journey from beginners to digital guardians. Students will be taught in 5 levels, beginning with a gentle and fun introduction to computational thinking, building up knowledge, technical and cyber security skills."
+        />
+        <div className="space-y-24 py-12">
           {levels.map((level, index) => (
             <div
               key={level.title}
-              className={`flex flex-col gap-8 py-12 ${
+              className={`flex flex-col gap-8 ${
                 index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
               } items-center`}
             >
