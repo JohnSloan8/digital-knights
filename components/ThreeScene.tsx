@@ -99,7 +99,7 @@ function Lightning({
     <Line
       ref={lineRef}
       points={initialPoints}
-      color="#ff0000"
+      color="#00f0ff"
       lineWidth={4}
       transparent
       opacity={0}
@@ -799,8 +799,8 @@ export default function ThreeScene({ className }: { className?: string }) {
           <Image
             src="/static/images/DK-logo-full-text-blue.webp"
             alt="Digital Knights"
-            width={600}
-            height={150}
+            width={500}
+            height={120}
             className="h-auto w-full max-w-[300px] md:max-w-[500px]"
             priority
           />
@@ -821,7 +821,7 @@ export default function ThreeScene({ className }: { className?: string }) {
         {showThreatText && !buttonVisible && (
           <div className="absolute top-1/2 left-1/2 w-max -translate-x-1/2 -translate-y-1/2">
             <div
-              className={`pointer-events-none text-lg font-bold select-none md:text-2xl ${isPulsing ? 'text-[#ff0000]' : 'text-[#00f0ff]'} ${fadeOutThreat ? 'opacity-0 transition-opacity duration-1000' : 'opacity-100'}`}
+              className={`pointer-events-none text-lg font-bold text-[#00f0ff] select-none md:text-2xl ${fadeOutThreat ? 'opacity-0 transition-opacity duration-1000' : 'opacity-100'}`}
               style={{
                 // fontSize: '24px',
                 textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000',
