@@ -12,9 +12,9 @@ interface MatrixRadioProps {
 const MatrixRadio = ({ question, options, rows, name }: MatrixRadioProps) => {
   return (
     <div className="mb-8 overflow-x-auto">
-      <h3 className="mb-4 text-lg font-semibold text-gray-900 dark:text-gray-100">{question}</h3>
-      <table className="min-w-full text-left text-sm text-gray-500 dark:text-gray-400">
-        <thead className="bg-gray-50 text-xs text-gray-700 uppercase dark:bg-gray-700 dark:text-gray-400">
+      <h3 className="mb-4 text-lg font-semibold text-gray-100">{question}</h3>
+      <table className="min-w-full text-left text-sm text-gray-400">
+        <thead className="bg-gray-700 text-xs text-gray-400 uppercase">
           <tr>
             <th scope="col" className="px-6 py-3">
               Question \ Option
@@ -28,18 +28,15 @@ const MatrixRadio = ({ question, options, rows, name }: MatrixRadioProps) => {
         </thead>
         <tbody>
           {rows.map((row, rowIdx) => (
-            <tr
-              key={rowIdx}
-              className="border-b bg-white hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-600"
-            >
-              <td className="px-6 py-4 font-medium text-gray-900 dark:text-white">{row}</td>
+            <tr key={rowIdx} className="border-b border-gray-700 bg-gray-800 hover:bg-gray-600">
+              <td className="px-6 py-4 font-medium text-white">{row}</td>
               {options.map((option, optIdx) => (
                 <td key={optIdx} className="px-6 py-4 text-center">
                   <input
                     type="radio"
                     name={`${name}-${rowIdx}`}
                     value={option}
-                    className="text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 h-4 w-4 border-gray-300 bg-gray-100 focus:ring-2 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800"
+                    className="focus:ring-primary-600 text-primary-600 h-4 w-4 border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-2"
                   />
                 </td>
               ))}
@@ -61,11 +58,11 @@ interface MatrixSliderProps {
 const MatrixSlider = ({ question, rows, name, suffix = '%' }: MatrixSliderProps) => {
   return (
     <div className="mb-8">
-      <h3 className="mb-4 text-lg font-semibold text-gray-900 dark:text-gray-100">{question}</h3>
+      <h3 className="mb-4 text-lg font-semibold text-gray-100">{question}</h3>
       <div className="space-y-6">
         {rows.map((row, idx) => (
           <div key={idx} className="flex flex-col space-y-2">
-            <label className="text-sm font-medium text-gray-900 dark:text-white">{row}</label>
+            <label className="text-sm font-medium text-white">{row}</label>
             <div className="flex items-center space-x-4">
               <input
                 type="range"
@@ -73,9 +70,9 @@ const MatrixSlider = ({ question, rows, name, suffix = '%' }: MatrixSliderProps)
                 max="100"
                 defaultValue="50"
                 name={`${name}-${idx}`}
-                className="h-2 w-full cursor-pointer appearance-none rounded-lg bg-gray-200 dark:bg-gray-700"
+                className="h-2 w-full cursor-pointer appearance-none rounded-lg bg-gray-700"
               />
-              <span className="w-12 text-sm text-gray-500 dark:text-gray-400">50{suffix}</span>
+              <span className="w-12 text-sm text-gray-400">50{suffix}</span>
             </div>
           </div>
         ))}
@@ -93,7 +90,7 @@ interface CheckboxesProps {
 const Checkboxes = ({ question, options, name }: CheckboxesProps) => {
   return (
     <div className="mb-8">
-      <h3 className="mb-4 text-lg font-semibold text-gray-900 dark:text-gray-100">{question}</h3>
+      <h3 className="mb-4 text-lg font-semibold text-gray-100">{question}</h3>
       <div className="space-y-4">
         {options.map((option, idx) => (
           <div key={idx} className="flex items-center">
@@ -102,12 +99,9 @@ const Checkboxes = ({ question, options, name }: CheckboxesProps) => {
               type="checkbox"
               value={option}
               name={name}
-              className="text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 h-4 w-4 rounded border-gray-300 bg-gray-100 focus:ring-2 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800"
+              className="focus:ring-primary-600 text-primary-600 h-4 w-4 rounded border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-2"
             />
-            <label
-              htmlFor={`${name}-${idx}`}
-              className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-            >
+            <label htmlFor={`${name}-${idx}`} className="ml-2 text-sm font-medium text-gray-300">
               {option}
             </label>
           </div>
@@ -128,9 +122,9 @@ const MatrixRating = ({ question, rows, name, scale = 10 }: MatrixRatingProps) =
   const scaleArr = Array.from({ length: scale }, (_, i) => i + 1)
   return (
     <div className="mb-8 overflow-x-auto">
-      <h3 className="mb-4 text-lg font-semibold text-gray-900 dark:text-gray-100">{question}</h3>
-      <table className="min-w-full text-left text-sm text-gray-500 dark:text-gray-400">
-        <thead className="bg-gray-50 text-xs text-gray-700 uppercase dark:bg-gray-700 dark:text-gray-400">
+      <h3 className="mb-4 text-lg font-semibold text-gray-100">{question}</h3>
+      <table className="min-w-full text-left text-sm text-gray-400">
+        <thead className="bg-gray-700 text-xs text-gray-400 uppercase">
           <tr>
             <th scope="col" className="px-6 py-3">
               Question \ Rating
@@ -144,18 +138,15 @@ const MatrixRating = ({ question, rows, name, scale = 10 }: MatrixRatingProps) =
         </thead>
         <tbody>
           {rows.map((row, rowIdx) => (
-            <tr
-              key={rowIdx}
-              className="border-b bg-white hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-600"
-            >
-              <td className="px-6 py-4 font-medium text-gray-900 dark:text-white">{row}</td>
+            <tr key={rowIdx} className="border-b border-gray-700 bg-gray-800 hover:bg-gray-600">
+              <td className="px-6 py-4 font-medium text-white">{row}</td>
               {scaleArr.map((s) => (
                 <td key={s} className="px-2 py-4 text-center">
                   <input
                     type="radio"
                     name={`${name}-${rowIdx}`}
                     value={s}
-                    className="text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 h-4 w-4 border-gray-300 bg-gray-100 focus:ring-2 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800"
+                    className="focus:ring-primary-600 text-primary-600 h-4 w-4 border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-2"
                   />
                 </td>
               ))}
@@ -172,12 +163,12 @@ const ChildrenTable = () => {
 
   return (
     <div className="mb-8 overflow-x-auto">
-      <h3 className="mb-4 text-lg font-semibold text-gray-900 dark:text-gray-100">
+      <h3 className="mb-4 text-lg font-semibold text-gray-100">
         Input the age of each child, gender, and whether they currently possess their own
         smartphone.
       </h3>
-      <table className="min-w-full text-left text-sm text-gray-500 dark:text-gray-400">
-        <thead className="bg-gray-50 text-xs text-gray-700 uppercase dark:bg-gray-700 dark:text-gray-400">
+      <table className="min-w-full text-left text-sm text-gray-400">
+        <thead className="bg-gray-700 text-xs text-gray-400 uppercase">
           <tr>
             <th className="px-6 py-3">#</th>
             <th className="px-6 py-3">Age</th>
@@ -187,16 +178,16 @@ const ChildrenTable = () => {
         </thead>
         <tbody>
           {rows.map((r) => (
-            <tr key={r} className="border-b bg-white dark:border-gray-700 dark:bg-gray-800">
+            <tr key={r} className="border-b border-gray-700 bg-gray-800">
               <td className="px-6 py-4">{r}</td>
               <td className="px-6 py-4">
                 <input
                   type="number"
-                  className="focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
+                  className="focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-white placeholder-gray-400"
                 />
               </td>
               <td className="px-6 py-4">
-                <select className="focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400">
+                <select className="focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-white placeholder-gray-400">
                   <option value="">Select...</option>
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
@@ -207,7 +198,7 @@ const ChildrenTable = () => {
               <td className="px-6 py-4 text-center">
                 <input
                   type="checkbox"
-                  className="text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 h-4 w-4 rounded border-gray-300 bg-gray-100 focus:ring-2 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800"
+                  className="focus:ring-primary-600 text-primary-600 h-4 w-4 rounded border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-2"
                 />
               </td>
             </tr>
@@ -223,10 +214,10 @@ export default function SurveyForm() {
     <form className="space-y-12">
       {/* SECTION 1 */}
       <div>
-        <h2 className="mb-6 border-b border-gray-200 pb-2 text-2xl font-bold text-gray-900 dark:border-gray-700 dark:text-white">
+        <h2 className="mb-6 border-b border-gray-700 pb-2 text-2xl font-bold text-white">
           Section 1: Competency
         </h2>
-        <p className="mb-6 text-gray-500 dark:text-gray-400">
+        <p className="mb-6 text-gray-400">
           The following pages contain questions relating to your: Technical ability, Attitude to
           cybersecurity, and Cybersecurity practices.
           <br />
@@ -294,11 +285,11 @@ export default function SurveyForm() {
 
       {/* SECTION 2 */}
       <div>
-        <h2 className="mb-6 border-b border-gray-200 pb-2 text-2xl font-bold text-gray-900 dark:border-gray-700 dark:text-white">
+        <h2 className="mb-6 border-b border-gray-700 pb-2 text-2xl font-bold text-white">
           Section 2: Awareness
         </h2>
 
-        <p className="mb-4 text-sm text-gray-500 dark:text-gray-400">
+        <p className="mb-4 text-sm text-gray-400">
           *Figures in Question 1 are based on data from the &apos;Cybersafekids Trends and Usage
           Report Academic Year 2024-2025&apos;. Actual figures from the survey will be shown on the
           following page. A link to the Cybersafekids website is provided later in this section.
@@ -318,11 +309,11 @@ export default function SurveyForm() {
           ]}
         />
 
-        <div className="mb-8 rounded-lg bg-blue-50 p-4 dark:bg-blue-900/20">
-          <h4 className="font-semibold text-blue-800 dark:text-blue-100">
+        <div className="mb-8 rounded-lg bg-blue-900/20 p-4">
+          <h4 className="font-semibold text-blue-100">
             Answer 1/4: Current tech trends for 8-12 year olds
           </h4>
-          <p className="text-sm text-blue-700 dark:text-blue-200">
+          <p className="text-sm text-blue-200">
             Actual figures from the survey will be shown on the report page.
           </p>
         </div>
@@ -341,11 +332,11 @@ export default function SurveyForm() {
           ]}
         />
 
-        <div className="mb-8 rounded-lg bg-blue-50 p-4 dark:bg-blue-900/20">
-          <h4 className="font-semibold text-blue-800 dark:text-blue-100">
+        <div className="mb-8 rounded-lg bg-blue-900/20 p-4">
+          <h4 className="font-semibold text-blue-100">
             Answer 2/4: Current tech trends for 12-15 year olds
           </h4>
-          <p className="text-sm text-blue-700 dark:text-blue-200">
+          <p className="text-sm text-blue-200">
             Actual figures from the survey will be shown on the report page.
           </p>
         </div>
@@ -381,7 +372,7 @@ export default function SurveyForm() {
 
       {/* SECTION 3 */}
       <div>
-        <h2 className="mb-6 border-b border-gray-200 pb-2 text-2xl font-bold text-gray-900 dark:border-gray-700 dark:text-white">
+        <h2 className="mb-6 border-b border-gray-700 pb-2 text-2xl font-bold text-white">
           Section 3: Concerns
         </h2>
 
@@ -440,7 +431,7 @@ export default function SurveyForm() {
 
       {/* SECTION 4 */}
       <div>
-        <h2 className="mb-6 border-b border-gray-200 pb-2 text-2xl font-bold text-gray-900 dark:border-gray-700 dark:text-white">
+        <h2 className="mb-6 border-b border-gray-700 pb-2 text-2xl font-bold text-white">
           Section 4: Education
         </h2>
 
@@ -463,7 +454,7 @@ export default function SurveyForm() {
           ]}
         />
 
-        <div className="mb-8 text-sm text-gray-500 dark:text-gray-400">
+        <div className="mb-8 text-sm text-gray-400">
           <p className="mb-1 font-semibold">References:</p>
           <ol className="list-decimal space-y-1 pl-5">
             <li>
@@ -471,7 +462,7 @@ export default function SurveyForm() {
                 href="https://www.rte.ie/news/education/2024/0821/1466075-schools-mobile-phones/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-primary-600 dark:text-primary-400 hover:underline"
+                className="text-primary-400 hover:underline"
               >
                 RTE: Schools mobile phones (2024)
               </a>
@@ -481,7 +472,7 @@ export default function SurveyForm() {
                 href="https://www.rte.ie/news/ireland/2025/0910/1532761-phone-bans-ireland/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-primary-600 dark:text-primary-400 hover:underline"
+                className="text-primary-400 hover:underline"
               >
                 RTE: Phone bans Ireland (2025)
               </a>
@@ -491,7 +482,7 @@ export default function SurveyForm() {
                 href="https://www.cybersafekids.ie/report2025/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-primary-600 dark:text-primary-400 hover:underline"
+                className="text-primary-400 hover:underline"
               >
                 CyberSafeKids Report (2025)
               </a>
@@ -501,7 +492,7 @@ export default function SurveyForm() {
                 href="https://www.oco.ie/app/uploads/2025/09/OCO-Smartphone-Ban-Child-Friendly-Report.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-primary-600 dark:text-primary-400 hover:underline"
+                className="text-primary-400 hover:underline"
               >
                 OCO Smartphone Ban Child Friendly Report (2025)
               </a>
@@ -511,7 +502,7 @@ export default function SurveyForm() {
                 href="https://www.webwise.ie/parents/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-primary-600 dark:text-primary-400 hover:underline"
+                className="text-primary-400 hover:underline"
               >
                 Webwise: Parents Guide
               </a>
@@ -559,21 +550,18 @@ export default function SurveyForm() {
 
       {/* SECTION 5 */}
       <div>
-        <h2 className="mb-6 border-b border-gray-200 pb-2 text-2xl font-bold text-gray-900 dark:border-gray-700 dark:text-white">
+        <h2 className="mb-6 border-b border-gray-700 pb-2 text-2xl font-bold text-white">
           Section 5: Basic Demographics
         </h2>
 
         <div className="mb-8 grid grid-cols-1 gap-6 md:grid-cols-2">
           <div>
-            <label
-              htmlFor="role"
-              className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
-            >
+            <label htmlFor="role" className="mb-2 block text-sm font-medium text-white">
               What is your role?
             </label>
             <select
               id="role"
-              className="focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
+              className="focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-white placeholder-gray-400"
             >
               <option>Father</option>
               <option>Mother</option>
@@ -581,15 +569,12 @@ export default function SurveyForm() {
             </select>
           </div>
           <div>
-            <label
-              htmlFor="children-count"
-              className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
-            >
+            <label htmlFor="children-count" className="mb-2 block text-sm font-medium text-white">
               How many children do you have?
             </label>
             <select
               id="children-count"
-              className="focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
+              className="focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-white placeholder-gray-400"
             >
               <option>1</option>
               <option>2</option>
@@ -603,9 +588,9 @@ export default function SurveyForm() {
       </div>
 
       {/* FINAL */}
-      <div className="rounded-lg bg-gray-50 p-8 dark:bg-gray-800">
-        <h3 className="mb-4 text-xl font-bold text-gray-900 dark:text-white">Finally</h3>
-        <p className="mb-6 text-gray-500 dark:text-gray-400">
+      <div className="rounded-lg bg-gray-800 p-8">
+        <h3 className="mb-4 text-xl font-bold text-white">Finally</h3>
+        <p className="mb-6 text-gray-400">
           Thank you for completing the survey! Your responses will be a great help in informing the
           development of a new tech and cybersecurity curriculum.
           <br className="mb-2" />
@@ -615,36 +600,30 @@ export default function SurveyForm() {
         </p>
 
         <div className="mb-6">
-          <label
-            htmlFor="email"
-            className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
-          >
+          <label htmlFor="email" className="mb-2 block text-sm font-medium text-white">
             Email address
           </label>
           <input
             id="email"
             type="email"
-            className="focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
+            className="focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-white placeholder-gray-400"
           />
         </div>
 
         <div className="mb-6">
-          <label
-            htmlFor="comments"
-            className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
-          >
+          <label htmlFor="comments" className="mb-2 block text-sm font-medium text-white">
             Any further comments or questions:
           </label>
           <textarea
             id="comments"
             rows={4}
-            className="focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
+            className="focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-white placeholder-gray-400"
           ></textarea>
         </div>
 
         <button
           type="submit"
-          className="bg-primary-700 hover:bg-primary-800 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 w-full rounded-lg px-5 py-2.5 text-center text-sm font-medium text-white focus:ring-4 focus:outline-none sm:w-auto"
+          className="bg-primary-600 hover:bg-primary-700 focus:ring-primary-800 w-full rounded-lg px-5 py-2.5 text-center text-sm font-medium text-white focus:ring-4 focus:outline-none sm:w-auto"
         >
           Submit Survey
         </button>

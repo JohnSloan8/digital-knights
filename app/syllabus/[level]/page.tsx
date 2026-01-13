@@ -23,7 +23,7 @@ export default async function LevelPage(props: { params: Promise<{ level: string
           </h1>
         </div>
         <div className="container py-12">
-          <div className="prose dark:prose-invert max-w-none pt-10 pb-8">
+          <div className="prose prose-invert max-w-none pt-10 pb-8">
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
               incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
