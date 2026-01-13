@@ -7,7 +7,7 @@ import SearchButton from './SearchButton'
 
 const Header = () => {
   let headerClass =
-    'flex items-center w-full bg-gradient-to-b from-black/75 to-transparent justify-between py-10'
+    'flex items-center w-full bg-gradient-to-b from-black/75 to-transparent justify-between py-4 md:py-8'
   if (siteMetadata.stickyNav) {
     headerClass += ' sticky top-0 z-50'
   } else {
@@ -19,11 +19,11 @@ const Header = () => {
       <div className="flex w-full items-center justify-between px-4 sm:px-6 xl:px-8">
         <Link href="/" aria-label={siteMetadata.headerTitle}>
           <div className="flex items-center justify-between">
-            <div className="mr-3">
+            <div className="mr-1 origin-left translate-y-[0px]">
               <Logo />
             </div>
             {typeof siteMetadata.headerTitle === 'string' ? (
-              <div className="hidden h-6 text-2xl font-semibold sm:block">
+              <div className="text-primary-500 hidden h-7 text-lg font-semibold sm:block md:h-8 md:text-2xl">
                 {siteMetadata.headerTitle}
               </div>
             ) : (
@@ -31,15 +31,15 @@ const Header = () => {
             )}
           </div>
         </Link>
-        <div className="flex items-center space-x-4 leading-5 sm:-mr-6 sm:space-x-6">
-          <div className="no-scrollbar hidden max-w-40 items-center gap-x-4 overflow-x-auto sm:flex md:max-w-72 lg:max-w-96">
+        <div className="flex items-center space-x-1 leading-2 sm:space-x-1 md:space-x-2">
+          <div className="no-scrollbar hidden max-w-full items-center gap-x-2 overflow-x-auto sm:flex md:gap-x-2">
             {headerNavLinks
               .filter((link) => link.href !== '/')
               .map((link) => (
                 <Link
                   key={link.title}
                   href={link.href}
-                  className="hover:text-primary-400 m-1 font-medium text-gray-100"
+                  className="hover:text-primary-400 text-primary-500 m-1 text-sm font-medium md:text-base"
                 >
                   {link.title}
                 </Link>

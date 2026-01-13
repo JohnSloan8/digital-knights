@@ -10,6 +10,7 @@ import SectionContainer from '@/components/SectionContainer'
 import Footer from '@/components/Footer'
 import siteMetadata from '@/data/siteMetadata'
 import { Metadata } from 'next'
+import MainContentWrapper from '@/components/MainContentWrapper'
 
 const space_grotesk = Space_Grotesk({
   subsets: ['latin'],
@@ -97,10 +98,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Analytics analyticsConfig={siteMetadata.analytics as AnalyticsConfig} />
         <SearchProvider searchConfig={siteMetadata.search as SearchConfig}>
           <Header />
-          <SectionContainer>
+          <MainContentWrapper>
             <main className="mb-auto">{children}</main>
             {/* <Footer /> */}
-          </SectionContainer>
+          </MainContentWrapper>
         </SearchProvider>
       </body>
     </html>

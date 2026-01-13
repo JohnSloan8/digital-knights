@@ -53,6 +53,7 @@
 /* Custom utilities/global styles */
 html {
   scrollbar-gutter: stable;
+  font-size: 18px;
 }
 
 /*
