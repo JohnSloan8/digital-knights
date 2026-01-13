@@ -134,7 +134,7 @@ interface MatrixRadioProps {
 
 const MatrixRadio = ({ questionLabel, questionText, options, rows, name }: MatrixRadioProps) => {
   return (
-    <div className="mb-8">
+    <div className="mb-10 pb-6">
       <h3 className="text-base font-semibold text-white">{questionLabel}</h3>
       <p className="mb-4 text-base text-gray-400">{questionText}</p>
 
@@ -243,13 +243,38 @@ const MatrixSlider = ({
   name,
   suffix = '%',
 }: MatrixSliderProps) => {
+  const [values, setValues] = useState<Record<number, number>>(() =>
+    rows.reduce((acc, _, idx) => ({ ...acc, [idx]: 0 }), {})
+  )
+  const [touched, setTouched] = useState<Record<number, boolean>>({})
+
+  const handleInteraction = (index: number) => {
+    if (!touched[index]) {
+      setTouched((prev) => ({ ...prev, [index]: true }))
+    }
+  }
+
+  const handleChange = (index: number, newValue: string) => {
+    handleInteraction(index)
+    setValues((prev) => ({
+      ...prev,
+      [index]: parseInt(newValue, 10),
+    }))
+  }
+
   return (
-    <div className="mb-8">
+    <div className="mb-10 pb-6">
       <h3 className="text-base font-semibold text-white">{questionLabel}</h3>
       <p className="mb-4 text-base text-gray-400">{questionText}</p>
       <div className="space-y-6">
         {rows.map((row, idx) => {
           const displayRow = formatSubQuestion(row, idx)
+          const val = values[idx] ?? 0
+          const isTouched = touched[idx]
+          const thumbClasses = isTouched
+            ? '[&::-moz-range-thumb]:h-5 [&::-moz-range-thumb]:w-5 [&::-moz-range-thumb]:bg-white [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:bg-white'
+            : '[&::-moz-range-thumb]:h-3 [&::-moz-range-thumb]:w-3 [&::-moz-range-thumb]:bg-gray-400 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:bg-gray-400'
+
           return (
             <div key={idx} className="flex flex-col space-y-2">
               <label className="text-base text-white">{displayRow}</label>
@@ -258,11 +283,20 @@ const MatrixSlider = ({
                   type="range"
                   min="0"
                   max="100"
-                  defaultValue="50"
+                  value={val}
+                  onChange={(e) => handleChange(idx, e.target.value)}
+                  onMouseDown={() => handleInteraction(idx)}
+                  onTouchStart={() => handleInteraction(idx)}
                   name={`${name}-${idx}`}
-                  className="h-2 w-full cursor-pointer appearance-none rounded-lg bg-gray-700"
+                  style={{
+                    background: `linear-gradient(to right, white ${val}%, #374151 ${val}%)`,
+                  }}
+                  className={`h-2 w-full cursor-pointer appearance-none rounded-lg [&::-moz-range-thumb]:rounded-full [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full ${thumbClasses}`}
                 />
-                <span className="w-12 text-base text-gray-400">50{suffix}</span>
+                <span className="w-12 text-base text-white">
+                  {val}
+                  {suffix}
+                </span>
               </div>
             </div>
           )
@@ -292,7 +326,7 @@ const Checkboxes = ({ questionLabel, questionText, options, name }: CheckboxesPr
   }
 
   return (
-    <div className="mb-8">
+    <div className="mb-10 pb-6">
       <h3 className="text-base font-semibold text-white">{questionLabel}</h3>
       <p className="mb-4 text-base text-gray-400">{questionText}</p>
       <div className="space-y-4">
@@ -352,7 +386,7 @@ const MatrixRating = ({
 }: MatrixRatingProps) => {
   const scaleArr = Array.from({ length: scale }, (_, i) => i + 1)
   return (
-    <div className="mb-8">
+    <div className="mb-10 pb-6">
       <h3 className="text-base font-semibold text-white">{questionLabel}</h3>
       <p className="mb-4 text-base text-gray-400">{questionText}</p>
 
@@ -520,7 +554,7 @@ export default function SurveyForm() {
             Section 1: Competency
           </h2>
           <p className="mb-4 text-gray-400">
-            3 questions relating to your technical ability, attitude to cybersecurity, and
+            Questions relating to your technical ability, attitude to cybersecurity, and
             cybersecurity practices.
           </p>
           <h3 className="mb-2 text-lg font-semibold text-white">
@@ -530,12 +564,15 @@ export default function SurveyForm() {
             A parent's competency in technology and cybersecurity may exert a strong influence on
             how their children interact online.
           </p>
-
+          <h3 className="mb-2 text-lg font-semibold text-white">
+            How many questions in this section?
+          </h3>
+          <p className="mb-6 text-gray-400">3</p>
           <div className="border-t border-gray-700 pt-8">
             <MatrixRadio
               name="tech_knowledge"
-              questionLabel="Question 1"
-              questionText="Your own technical knowledge. Select how strongly you agree or disagree with the following statements about your technical knowledge."
+              questionLabel="Question 1: Your own technical knowledge"
+              questionText="Select how strongly you agree or disagree with the following statements about your technical knowledge."
               options={['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree']}
               rows={[
                 'I am confident when using a computer.',
@@ -549,8 +586,8 @@ export default function SurveyForm() {
 
           <MatrixRadio
             name="privacy_attitude"
-            questionLabel="Question 2"
-            questionText="Attitude to cybersecurity. Select how strongly you agree or disagree with the following statements on privacy and cybersecurity."
+            questionLabel="Question 2: Attitude to cybersecurity"
+            questionText="Select how strongly you agree or disagree with the following statements on privacy and cybersecurity."
             options={['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree']}
             rows={[
               'I feel confident in my ability to identify and avoid common cybersecurity threats, such as phishing emails or malicious websites',
@@ -565,8 +602,8 @@ export default function SurveyForm() {
 
           <Checkboxes
             name="tools_usage"
-            questionLabel="Question 3"
-            questionText="Cybersecurity Practices. Select all of the following privacy and cybersecurity tools that you currently use."
+            questionLabel="Question 3: Cybersecurity practices"
+            questionText="Select all of the following privacy and cybersecurity tools that you currently use."
             options={[
               {
                 label: 'VPN',
@@ -628,19 +665,34 @@ export default function SurveyForm() {
           <h2 className="mb-6 pb-2 text-center text-2xl font-bold text-white">
             Section 2: Awareness
           </h2>
-
-          <p className="mb-4 text-base text-gray-400">
-            *Figures in Question 1 are based on data from the &apos;Cybersafekids Trends and Usage
-            Report Academic Year 2024-2025&apos;. Actual figures from the survey will be shown on
-            the following page. A link to the Cybersafekids website is provided later in this
-            section.
+          <p className="mb-4 text-gray-400">
+            Questions on your awareness of trends in children's use of technology, risks with using
+            currently popular devices/websites/apps, and currently available educational resources.
           </p>
+          <h3 className="mb-2 text-lg font-semibold text-white">
+            Why are these questions being asked?
+          </h3>
+          <p className="mb-6 text-gray-400">
+            Awareness of current trends of technology use, the risks involved, and the tools
+            available to combat these risks, are important factors in a parent's approach to their
+            child/children's online safety.
+          </p>
+          <h3 className="mb-2 text-lg font-semibold text-white">
+            How many questions in this section?
+          </h3>
+          <p className="mb-6 text-gray-400">3</p>
 
           <div className="border-t border-gray-700 pt-8">
+            <p className="mb-4 text-base text-gray-400">
+              *Figures in the following question are based on data from the &apos;Cybersafekids
+              Trends and Usage Report Academic Year 2024-2025&apos;. Actual figures from the survey
+              will be shown on the following page. A link to the Cybersafekids website is provided
+              later in this section.
+            </p>
             <MatrixSlider
               name="trends_8_12"
-              questionLabel="Question 1"
-              questionText="Current tech trends for 8-12 year olds. Estimate the percentage of 8-12 year olds in Ireland who..."
+              questionLabel="Question 1: Current tech trends for 8-12 year olds"
+              questionText="Estimate the percentage of 8-12 year olds in Ireland who..."
               rows={[
                 'have their own smart device',
                 'have accounts on 13+ social media/messaging apps',
@@ -664,8 +716,8 @@ export default function SurveyForm() {
 
           <MatrixSlider
             name="trends_12_15"
-            questionLabel="Question 2"
-            questionText="Current tech trends for 12-15 year olds. Estimate the percentage of 12-15 year olds in Ireland who..."
+            questionLabel="Question 2: Current tech trends for 12-15 year olds"
+            questionText="Estimate the percentage of 12-15 year olds in Ireland who..."
             rows={[
               'have their own smart device',
               'have accounts on 13+ social media/messaging apps',
@@ -688,8 +740,8 @@ export default function SurveyForm() {
 
           <Checkboxes
             name="privacy_violations"
-            questionLabel="Question 3"
-            questionText="Privacy violations relating to children. Below is a list of fines imposed on tech firms for privacy violations specifically relating to children. Please check those that you are aware of."
+            questionLabel="Question 3: Privacy violations relating to children"
+            questionText="Below is a list of fines imposed on tech firms for privacy violations specifically relating to children. Please check those that you are aware of."
             options={[
               {
                 label:
@@ -736,8 +788,8 @@ export default function SurveyForm() {
 
           <Checkboxes
             name="edu_resources"
-            questionLabel="Question 4"
-            questionText="Available Educational Resources. Below is a list of resources for educating children in Ireland on online safety and cybersecurity. Please check those that you are familiar with."
+            questionLabel="Question 4: Available educational resources"
+            questionText="Below is a list of resources for educating children in Ireland on online safety and cybersecurity. Please check those that you are familiar with."
             options={[
               {
                 label: 'CyberSafeKids',
@@ -788,8 +840,8 @@ export default function SurveyForm() {
           <div className="border-t border-gray-700 pt-8">
             <MatrixRating
               name="safety_concerns"
-              questionLabel="Question 1"
-              questionText="Online safety concerns for children. Rank the following concerns you have for your own child/children from 1 - Not concerned at all, to 10 - Extremely concerned."
+              questionLabel="Question 1: Online safety concerns for children"
+              questionText="Rank the following concerns you have for your own child/children from 1 - Not concerned at all, to 10 - Extremely concerned."
               rows={[
                 'Cyberbullying',
                 'Phone/Internet/Gaming addiction',
@@ -808,8 +860,8 @@ export default function SurveyForm() {
 
           <MatrixRadio
             name="tech_attitude"
-            questionLabel="Question 2"
-            questionText="Attitude to child/children's use of technology. Select how strongly you agree or disagree with the following statements on children's use of phones/internet"
+            questionLabel="Question 2: Attitude to child/children's use of technology"
+            questionText="Select how strongly you agree or disagree with the following statements on children's use of phones/internet."
             options={['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree']}
             rows={[
               'Social media should be banned for users under a certain age',
@@ -824,8 +876,8 @@ export default function SurveyForm() {
 
           <MatrixRadio
             name="controls"
-            questionLabel="Question 3"
-            questionText="Cybersecurity controls you use/intend to use for your child/children. Which of the following services/controls for aiding with child smartphone safety do you currently use, or intend to use."
+            questionLabel="Question 3: Cybersecurity controls you use or intend to use for your child/children"
+            questionText="Which of the following services/controls for aiding with child smartphone safety do you currently use, or intend to use?"
             options={['Do not/Will not use', 'Unsure', 'Use/Will use', "Don't know"]}
             rows={[
               'Real time location tracking',
@@ -847,8 +899,8 @@ export default function SurveyForm() {
           <div className="border-t border-gray-700 pt-8">
             <MatrixRadio
               name="expert_opinions"
-              questionLabel="Question 1"
-              questionText="Opinions of experts and children. Select how strongly you agree or disagree with the following statements."
+              questionLabel="Question 1: Opinions of experts and children"
+              questionText="Select how strongly you agree or disagree with the following statements."
               options={['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree']}
               rows={[
                 'Mobile phones should be banned at schools - Minister for Education Norma Foley (2024) [1]',
@@ -918,8 +970,8 @@ export default function SurveyForm() {
 
           <MatrixRadio
             name="skills_importance"
-            questionLabel="Question 2"
-            questionText="Aspirations for your own child/children's education. How important are the following skills for your child to learn?"
+            questionLabel="Question 2: Aspirations for your own child/children's education"
+            questionText="How important are the following skills for your child to learn?"
             options={[
               'Not at all important',
               'Not important',
@@ -939,8 +991,8 @@ export default function SurveyForm() {
 
           <MatrixRadio
             name="edu_opinion"
-            questionLabel="Question 3"
-            questionText="Your opinion on your child/children's tech & cybersecurity education. Select how strongly you agree or disagree with the following statements on online safety and tech education."
+            questionLabel="Question 3: Your opinion on your child/children's tech & cybersecurity education"
+            questionText="Select how strongly you agree or disagree with the following statements on online safety and tech education."
             options={['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree']}
             rows={[
               'I am confident I can personally teach my child/children how to stay safe online.',
