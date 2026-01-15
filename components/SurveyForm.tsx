@@ -104,7 +104,7 @@ const NavButtons = ({
       <button
         type="button"
         onClick={prev}
-        className="rounded-lg border border-gray-600 bg-gray-700 px-5 py-2.5 text-base font-medium text-white hover:bg-gray-600 focus:ring-4 focus:ring-gray-700 focus:outline-none"
+        className="cursor-pointer rounded-lg border border-gray-600 bg-gray-700 px-5 py-2.5 text-base font-medium text-white hover:bg-gray-600 focus:ring-4 focus:ring-gray-700 focus:outline-none"
       >
         {prevLabel}
       </button>
@@ -116,7 +116,7 @@ const NavButtons = ({
       <button
         type="button"
         onClick={next}
-        className="bg-primary-600 hover:bg-primary-700 focus:ring-primary-800 rounded-lg px-5 py-2.5 text-base font-medium text-white focus:ring-4 focus:outline-none"
+        className="bg-primary-600 hover:bg-primary-700 focus:ring-primary-800 cursor-pointer rounded-lg px-5 py-2.5 text-base font-medium text-white focus:ring-4 focus:outline-none"
       >
         {nextLabel}
       </button>
@@ -234,6 +234,7 @@ interface MatrixSliderProps {
   rows: string[]
   name: string
   suffix?: string
+  actualValues?: number[]
 }
 
 const MatrixSlider = ({
@@ -242,16 +243,20 @@ const MatrixSlider = ({
   rows,
   name,
   suffix = '%',
+  actualValues,
 }: MatrixSliderProps) => {
   const [values, setValues] = useState<Record<number, number>>(() =>
     rows.reduce((acc, _, idx) => ({ ...acc, [idx]: 0 }), {})
   )
   const [touched, setTouched] = useState<Record<number, boolean>>({})
+  const [showActuals, setShowActuals] = useState(false)
+  const [showError, setShowError] = useState(false)
 
   const handleInteraction = (index: number) => {
     if (!touched[index]) {
       setTouched((prev) => ({ ...prev, [index]: true }))
     }
+    if (showError) setShowError(false)
   }
 
   const handleChange = (index: number, newValue: string) => {
@@ -260,6 +265,15 @@ const MatrixSlider = ({
       ...prev,
       [index]: parseInt(newValue, 10),
     }))
+  }
+
+  const handleShowActuals = () => {
+    const allTouched = rows.every((_, idx) => touched[idx])
+    if (!allTouched) {
+      setShowError(true)
+      return
+    }
+    setShowActuals(true)
   }
 
   return (
@@ -275,33 +289,84 @@ const MatrixSlider = ({
             ? '[&::-moz-range-thumb]:h-5 [&::-moz-range-thumb]:w-5 [&::-moz-range-thumb]:bg-white [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:bg-white'
             : '[&::-moz-range-thumb]:h-3 [&::-moz-range-thumb]:w-3 [&::-moz-range-thumb]:bg-gray-400 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:bg-gray-400'
 
+          const actualVal = actualValues?.[idx]
+
           return (
-            <div key={idx} className="flex flex-col space-y-2">
-              <label className="text-base text-white">{displayRow}</label>
-              <div className="flex items-center space-x-4">
-                <input
-                  type="range"
-                  min="0"
-                  max="100"
-                  value={val}
-                  onChange={(e) => handleChange(idx, e.target.value)}
-                  onMouseDown={() => handleInteraction(idx)}
-                  onTouchStart={() => handleInteraction(idx)}
-                  name={`${name}-${idx}`}
-                  style={{
-                    background: `linear-gradient(to right, white ${val}%, #374151 ${val}%)`,
-                  }}
-                  className={`h-2 w-full cursor-pointer appearance-none rounded-lg [&::-moz-range-thumb]:rounded-full [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full ${thumbClasses}`}
-                />
-                <span className="w-12 text-base text-white">
-                  {val}
-                  {suffix}
-                </span>
+            <div key={idx}>
+              <div className="flex flex-col space-y-2">
+                <label className="text-base text-white">{displayRow}</label>
+                <div className="flex items-center space-x-4">
+                  <input
+                    type="range"
+                    min="0"
+                    max="100"
+                    value={val}
+                    onChange={(e) => handleChange(idx, e.target.value)}
+                    onMouseDown={() => handleInteraction(idx)}
+                    onTouchStart={() => handleInteraction(idx)}
+                    disabled={showActuals}
+                    name={`${name}-${idx}`}
+                    style={{
+                      background: `linear-gradient(to right, white ${val}%, #374151 ${val}%)`,
+                    }}
+                    className={`h-2 w-full cursor-pointer appearance-none rounded-lg [&::-moz-range-thumb]:rounded-full [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full ${thumbClasses} ${showActuals ? 'cursor-not-allowed opacity-60' : ''}`}
+                  />
+                  <span className="w-12 text-base text-white">
+                    {val}
+                    {suffix}
+                  </span>
+                </div>
               </div>
+
+              {/* Drawer for Actual Value */}
+              {actualValues && actualVal !== undefined && (
+                <div
+                  className={`overflow-hidden transition-all duration-700 ease-in-out ${
+                    showActuals && isTouched
+                      ? 'mt-1 max-h-24 opacity-100'
+                      : 'mt-0 max-h-0 opacity-0'
+                  }`}
+                >
+                  <div className="flex items-center space-x-4">
+                    <input
+                      type="range"
+                      min="0"
+                      max="100"
+                      value={actualVal}
+                      disabled
+                      style={{
+                        background: `linear-gradient(to right, #4ade80 ${actualVal}%, #374151 ${actualVal}%)`,
+                      }}
+                      className="h-2 w-full appearance-none rounded-lg [&::-moz-range-thumb]:hidden [&::-webkit-slider-thumb]:hidden"
+                    />
+                    <span className="w-12 text-base font-bold text-green-400">
+                      {actualVal}
+                      {suffix}
+                    </span>
+                  </div>
+                </div>
+              )}
             </div>
           )
         })}
       </div>
+
+      {actualValues && !showActuals && (
+        <div className="mt-8 flex flex-col items-center justify-center space-y-3">
+          {showError && (
+            <p className="text-sm text-red-400">
+              Please make a guess for each question before revealing actual figures
+            </p>
+          )}
+          <button
+            type="button"
+            onClick={handleShowActuals}
+            className={`cursor-pointer rounded-lg border border-green-600 bg-green-900/30 px-6 py-2.5 text-sm font-semibold text-green-400 transition-colors hover:bg-green-900/50 focus:ring-4 focus:ring-green-900/50 focus:outline-none ${!Object.keys(touched).length ? 'opacity-50' : ''}`}
+          >
+            Show Actual Figures
+          </button>
+        </div>
+      )}
     </div>
   )
 }
@@ -350,7 +415,7 @@ const Checkboxes = ({ questionLabel, questionText, options, name }: CheckboxesPr
                 <button
                   type="button"
                   onClick={() => toggleDescription(option.label)}
-                  className="focus:ring-primary-600 ml-3 flex h-7 w-7 items-center justify-center rounded-full border border-gray-600 text-sm text-white hover:bg-gray-700 focus:ring-2 focus:outline-none"
+                  className="focus:ring-primary-600 ml-3 flex h-6 w-6 cursor-pointer items-center justify-center rounded-full border border-gray-600 text-sm text-white hover:bg-gray-700 focus:ring-2 focus:outline-none"
                   aria-label={`Learn more about ${option.label}`}
                 >
                   ?
@@ -571,7 +636,7 @@ export default function SurveyForm() {
           <div className="border-t border-gray-700 pt-8">
             <MatrixRadio
               name="tech_knowledge"
-              questionLabel="Question 1: Your own technical knowledge"
+              questionLabel="Q.1 Your own technical knowledge"
               questionText="Select how strongly you agree or disagree with the following statements about your technical knowledge."
               options={['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree']}
               rows={[
@@ -586,7 +651,7 @@ export default function SurveyForm() {
 
           <MatrixRadio
             name="privacy_attitude"
-            questionLabel="Question 2: Attitude to cybersecurity"
+            questionLabel="Q.2 Attitude to cybersecurity"
             questionText="Select how strongly you agree or disagree with the following statements on privacy and cybersecurity."
             options={['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree']}
             rows={[
@@ -602,7 +667,7 @@ export default function SurveyForm() {
 
           <Checkboxes
             name="tools_usage"
-            questionLabel="Question 3: Cybersecurity practices"
+            questionLabel="Q.3 Cybersecurity practices"
             questionText="Select all of the following privacy and cybersecurity tools that you currently use."
             options={[
               {
@@ -691,7 +756,7 @@ export default function SurveyForm() {
             </p>
             <MatrixSlider
               name="trends_8_12"
-              questionLabel="Question 1: Current tech trends for 8-12 year olds"
+              questionLabel="Q.4 Current tech trends for 8-12 year olds"
               questionText="Estimate the percentage of 8-12 year olds in Ireland who..."
               rows={[
                 'have their own smart device',
@@ -702,6 +767,7 @@ export default function SurveyForm() {
                 'have used AI chatbots',
                 'have shared images or videos of themselves online',
               ]}
+              actualValues={[93, 71, 22, 66, 41, 26, 16]}
             />
           </div>
 
@@ -716,7 +782,7 @@ export default function SurveyForm() {
 
           <MatrixSlider
             name="trends_12_15"
-            questionLabel="Question 2: Current tech trends for 12-15 year olds"
+            questionLabel="Q.5 Current tech trends for 12-15 year olds"
             questionText="Estimate the percentage of 12-15 year olds in Ireland who..."
             rows={[
               'have their own smart device',
@@ -740,7 +806,7 @@ export default function SurveyForm() {
 
           <Checkboxes
             name="privacy_violations"
-            questionLabel="Question 3: Privacy violations relating to children"
+            questionLabel="Q.6 Privacy violations relating to children"
             questionText="Below is a list of fines imposed on tech firms for privacy violations specifically relating to children. Please check those that you are aware of."
             options={[
               {
@@ -788,7 +854,7 @@ export default function SurveyForm() {
 
           <Checkboxes
             name="edu_resources"
-            questionLabel="Question 4: Available educational resources"
+            questionLabel="Q.7 Available educational resources"
             questionText="Below is a list of resources for educating children in Ireland on online safety and cybersecurity. Please check those that you are familiar with."
             options={[
               {
@@ -840,7 +906,7 @@ export default function SurveyForm() {
           <div className="border-t border-gray-700 pt-8">
             <MatrixRating
               name="safety_concerns"
-              questionLabel="Question 1: Online safety concerns for children"
+              questionLabel="Q.8 Online safety concerns for children"
               questionText="Rank the following concerns you have for your own child/children from 1 - Not concerned at all, to 10 - Extremely concerned."
               rows={[
                 'Cyberbullying',
@@ -860,7 +926,7 @@ export default function SurveyForm() {
 
           <MatrixRadio
             name="tech_attitude"
-            questionLabel="Question 2: Attitude to child/children's use of technology"
+            questionLabel="Q.9 Attitude to child/children's use of technology"
             questionText="Select how strongly you agree or disagree with the following statements on children's use of phones/internet."
             options={['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree']}
             rows={[
@@ -876,7 +942,7 @@ export default function SurveyForm() {
 
           <MatrixRadio
             name="controls"
-            questionLabel="Question 3: Cybersecurity controls you use or intend to use for your child/children"
+            questionLabel="Q.10 Cybersecurity controls you use or intend to use for your child/children"
             questionText="Which of the following services/controls for aiding with child smartphone safety do you currently use, or intend to use?"
             options={['Do not/Will not use', 'Unsure', 'Use/Will use', "Don't know"]}
             rows={[
@@ -899,7 +965,7 @@ export default function SurveyForm() {
           <div className="border-t border-gray-700 pt-8">
             <MatrixRadio
               name="expert_opinions"
-              questionLabel="Question 1: Opinions of experts and children"
+              questionLabel="Q.11 Opinions of experts and children"
               questionText="Select how strongly you agree or disagree with the following statements."
               options={['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree']}
               rows={[
@@ -970,7 +1036,7 @@ export default function SurveyForm() {
 
           <MatrixRadio
             name="skills_importance"
-            questionLabel="Question 2: Aspirations for your own child/children's education"
+            questionLabel="Q.12 Aspirations for your own child/children's education"
             questionText="How important are the following skills for your child to learn?"
             options={[
               'Not at all important',
@@ -991,7 +1057,7 @@ export default function SurveyForm() {
 
           <MatrixRadio
             name="edu_opinion"
-            questionLabel="Question 3: Your opinion on your child/children's tech & cybersecurity education"
+            questionLabel="Q.13 Your opinion on your child/children's tech & cybersecurity education"
             questionText="Select how strongly you agree or disagree with the following statements on online safety and tech education."
             options={['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree']}
             rows={[
@@ -1085,13 +1151,13 @@ export default function SurveyForm() {
             <button
               type="button"
               onClick={prevStep}
-              className="w-full rounded-lg border border-gray-600 bg-gray-700 px-5 py-2.5 text-center text-base font-medium text-white hover:bg-gray-600 focus:ring-4 focus:ring-gray-700 focus:outline-none sm:w-auto"
+              className="w-full cursor-pointer rounded-lg border border-gray-600 bg-gray-700 px-5 py-2.5 text-center text-base font-medium text-white hover:bg-gray-600 focus:ring-4 focus:ring-gray-700 focus:outline-none sm:w-auto"
             >
               Previous
             </button>
             <button
               type="submit"
-              className="bg-primary-600 hover:bg-primary-700 focus:ring-primary-800 w-full rounded-lg px-5 py-2.5 text-center text-base font-medium text-white focus:ring-4 focus:outline-none sm:w-auto"
+              className="bg-primary-600 hover:bg-primary-700 focus:ring-primary-800 w-full cursor-pointer rounded-lg px-5 py-2.5 text-center text-base font-medium text-white focus:ring-4 focus:outline-none sm:w-auto"
             >
               Submit Survey
             </button>
