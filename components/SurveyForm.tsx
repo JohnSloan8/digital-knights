@@ -235,6 +235,7 @@ interface MatrixSliderProps {
   name: string
   suffix?: string
   actualValues?: number[]
+  note?: string
 }
 
 const MatrixSlider = ({
@@ -244,6 +245,7 @@ const MatrixSlider = ({
   name,
   suffix = '%',
   actualValues,
+  note,
 }: MatrixSliderProps) => {
   const [values, setValues] = useState<Record<number, number>>(() =>
     rows.reduce((acc, _, idx) => ({ ...acc, [idx]: 0 }), {})
@@ -275,6 +277,8 @@ const MatrixSlider = ({
     }
     setShowActuals(true)
   }
+
+  const allTouched = rows.every((_, idx) => touched[idx])
 
   return (
     <div className="mb-10 pb-6">
@@ -361,10 +365,12 @@ const MatrixSlider = ({
           <button
             type="button"
             onClick={handleShowActuals}
-            className={`cursor-pointer rounded-lg border border-green-600 bg-green-900/30 px-6 py-2.5 text-sm font-semibold text-green-400 transition-colors hover:bg-green-900/50 focus:ring-4 focus:ring-green-900/50 focus:outline-none ${!Object.keys(touched).length ? 'opacity-50' : ''}`}
+            className={`cursor-pointer rounded-lg border border-green-600 bg-green-900/30 px-6 py-2.5 text-sm font-semibold text-green-400 transition-colors hover:bg-green-900/50 focus:ring-4 focus:ring-green-900/50 focus:outline-none ${!allTouched ? 'opacity-50' : ''}`}
           >
-            Show Actual Figures
+            Show Actual Figures*
           </button>
+
+          {note && <p className="mt-4 max-w-3xl text-center text-sm text-green-400">{note}</p>}
         </div>
       )}
     </div>
@@ -748,12 +754,6 @@ export default function SurveyForm() {
           <p className="mb-6 text-gray-400">3</p>
 
           <div className="border-t border-gray-700 pt-8">
-            <p className="mb-4 text-base text-gray-400">
-              *Figures in the following question are based on data from the &apos;Cybersafekids
-              Trends and Usage Report Academic Year 2024-2025&apos;. Actual figures from the survey
-              will be shown on the following page. A link to the Cybersafekids website is provided
-              later in this section.
-            </p>
             <MatrixSlider
               name="trends_8_12"
               questionLabel="Q.4 Current tech trends for 8-12 year olds"
@@ -768,16 +768,8 @@ export default function SurveyForm() {
                 'have shared images or videos of themselves online',
               ]}
               actualValues={[93, 71, 22, 66, 41, 26, 16]}
+              note="*Figures based on data from the 'Cybersafekids Trends and Usage Report Academic Year 2024-2025'."
             />
-          </div>
-
-          <div className="mb-8 rounded-lg bg-blue-900/20 p-4">
-            <h4 className="font-semibold text-blue-100">
-              Answer 1/4: Current tech trends for 8-12 year olds
-            </h4>
-            <p className="text-base text-blue-200">
-              Actual figures from the survey will be shown on the report page.
-            </p>
           </div>
 
           <MatrixSlider
@@ -793,16 +785,8 @@ export default function SurveyForm() {
               'have used AI chatbots',
               'have shared images or videos of themselves online',
             ]}
+            actualValues={[99, 99, 34, 52, 41, 36, 34]}
           />
-
-          <div className="mb-8 rounded-lg bg-blue-900/20 p-4">
-            <h4 className="font-semibold text-blue-100">
-              Answer 2/4: Current tech trends for 12-15 year olds
-            </h4>
-            <p className="text-base text-blue-200">
-              Actual figures from the survey will be shown on the report page.
-            </p>
-          </div>
 
           <Checkboxes
             name="privacy_violations"
