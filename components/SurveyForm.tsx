@@ -163,9 +163,17 @@ interface MatrixRadioProps {
   options: string[]
   rows: string[]
   name: string
+  error?: boolean
 }
 
-const MatrixRadio = ({ questionLabel, questionText, options, rows, name }: MatrixRadioProps) => {
+const MatrixRadio = ({
+  questionLabel,
+  questionText,
+  options,
+  rows,
+  name,
+  error,
+}: MatrixRadioProps) => {
   const { saveResponse, surveyData } = useSurvey()
   const [localState, setLocalState] = useState<Record<string, string>>({})
 
@@ -198,8 +206,12 @@ const MatrixRadio = ({ questionLabel, questionText, options, rows, name }: Matri
   }
 
   return (
-    <div className="mb-10 border-b border-gray-700 pb-6">
-      <h3 className="mb-2 text-lg font-semibold text-white">{questionLabel}</h3>
+    <div
+      className={`mb-10 border-b pb-6 ${error ? 'rounded-lg border-2 border-red-500 p-4' : 'border-gray-700'}`}
+    >
+      <h3 className={`mb-2 text-lg font-semibold ${error ? 'text-red-500' : 'text-white'}`}>
+        {questionLabel}
+      </h3>
       <p className="mb-8 text-base text-gray-400">{questionText}</p>
 
       {/* Desktop table */}
@@ -310,6 +322,7 @@ interface MatrixSliderProps {
   suffix?: string
   actualValues?: number[]
   note?: string
+  error?: boolean
 }
 
 const MatrixSlider = ({
@@ -320,6 +333,7 @@ const MatrixSlider = ({
   suffix = '%',
   actualValues,
   note,
+  error,
 }: MatrixSliderProps) => {
   const { saveResponse, surveyData } = useSurvey()
   const [values, setValues] = useState<Record<number, number>>(() =>
@@ -363,8 +377,12 @@ const MatrixSlider = ({
   const allTouched = rows.every((_, idx) => touched[idx])
 
   return (
-    <div className="mb-10 border-b border-gray-700 pb-6">
-      <h3 className="mb-2 text-lg font-semibold text-white">{questionLabel}</h3>
+    <div
+      className={`mb-10 border-b pb-6 ${error ? 'rounded-lg border-2 border-red-500 p-4' : 'border-gray-700'}`}
+    >
+      <h3 className={`mb-2 text-lg font-semibold ${error ? 'text-red-500' : 'text-white'}`}>
+        {questionLabel}
+      </h3>
       <p className="mb-8 text-base text-gray-400">{questionText}</p>
       <div className="space-y-6">
         {rows.map((row, idx) => {
@@ -478,9 +496,10 @@ interface CheckboxesProps {
   questionText: string
   options: CheckboxOption[]
   name: string
+  error?: boolean
 }
 
-const Checkboxes = ({ questionLabel, questionText, options, name }: CheckboxesProps) => {
+const Checkboxes = ({ questionLabel, questionText, options, name, error }: CheckboxesProps) => {
   const { saveResponse, surveyData } = useSurvey()
   const [activeDescription, setActiveDescription] = useState<string | null>(null)
 
@@ -489,8 +508,12 @@ const Checkboxes = ({ questionLabel, questionText, options, name }: CheckboxesPr
   }
 
   return (
-    <div className="mb-10 border-b border-gray-700 pb-6">
-      <h3 className="mb-2 text-lg font-semibold text-white">{questionLabel}</h3>
+    <div
+      className={`mb-10 border-b pb-6 ${error ? 'rounded-lg border-2 border-red-500 p-4' : 'border-gray-700'}`}
+    >
+      <h3 className={`mb-2 text-lg font-semibold ${error ? 'text-red-500' : 'text-white'}`}>
+        {questionLabel}
+      </h3>
       <p className="mb-8 text-base text-gray-400">{questionText}</p>
       <div className="space-y-4">
         {options.map((option, idx) => (
@@ -540,6 +563,7 @@ interface MatrixRatingProps {
   rows: string[]
   name: string
   scale?: number
+  error?: boolean
 }
 
 const MatrixRating = ({
@@ -548,6 +572,7 @@ const MatrixRating = ({
   rows,
   name,
   scale = 10,
+  error,
 }: MatrixRatingProps) => {
   const { saveResponse, surveyData } = useSurvey()
   const [localState, setLocalState] = useState<Record<string, string>>({})
@@ -588,8 +613,12 @@ const MatrixRating = ({
   }
 
   return (
-    <div className="mb-10 border-b border-gray-700 pb-6">
-      <h3 className="mb-2 text-lg font-semibold text-white">{questionLabel}</h3>
+    <div
+      className={`mb-10 border-b pb-6 ${error ? 'rounded-lg border-2 border-red-500 p-4' : 'border-gray-700'}`}
+    >
+      <h3 className={`mb-2 text-lg font-semibold ${error ? 'text-red-500' : 'text-white'}`}>
+        {questionLabel}
+      </h3>
       <p className="mb-8 text-base text-gray-400">{questionText}</p>
 
       {/* Desktop table */}
@@ -709,7 +738,7 @@ const MatrixRating = ({
   )
 }
 
-const ChildrenTable = () => {
+const ChildrenTable = ({ validationErrors }: { validationErrors: Set<string> }) => {
   const { saveResponse, surveyData } = useSurvey()
   const [rows, setRows] = useState([1, 2, 3, 4, 5])
 
@@ -738,7 +767,7 @@ const ChildrenTable = () => {
                   name={`child-${r}-age`}
                   defaultValue={surveyData[`child-${r}-age`] as string}
                   onBlur={(e) => saveResponse(`child-${r}-age`, e.target.value)}
-                  className="focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-base text-white placeholder-gray-400"
+                  className={`focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border bg-gray-700 p-2.5 text-base text-white placeholder-gray-400 ${validationErrors.has(`child-${r}-age`) ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-600'}`}
                 />
               </td>
               <td className="px-6 py-4">
@@ -746,7 +775,7 @@ const ChildrenTable = () => {
                   name={`child-${r}-gender`}
                   defaultValue={(surveyData[`child-${r}-gender`] as string) || ''}
                   onChange={(e) => saveResponse(`child-${r}-gender`, e.target.value)}
-                  className="focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-base text-white placeholder-gray-400"
+                  className={`focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border bg-gray-700 p-2.5 text-base text-white placeholder-gray-400 ${validationErrors.has(`child-${r}-gender`) ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-600'}`}
                 >
                   <option value="">Select...</option>
                   <option value="Male">Male</option>
@@ -779,6 +808,99 @@ export default function SurveyForm() {
   const [surveyData, setSurveyData] = useState<Record<string, SurveyValue>>({})
   const surveyDataRef = React.useRef<Record<string, SurveyValue>>({})
   const [isLoading, setIsLoading] = useState(!!userId)
+  const [validationErrors, setValidationErrors] = useState<Set<string>>(new Set())
+
+  const validateStep = (step: number) => {
+    const errors = new Set<string>()
+
+    if (step === 1) {
+      for (let i = 0; i < 5; i++)
+        if (surveyData[`tech_knowledge-${i}`] === undefined) errors.add('tech_knowledge')
+      for (let i = 0; i < 7; i++)
+        if (surveyData[`privacy_attitude-${i}`] === undefined) errors.add('privacy_attitude')
+
+      let hasChecked = false
+      for (let i = 0; i < 10; i++) if (surveyData[`tools_usage-${i}`] === true) hasChecked = true
+      if (!hasChecked) errors.add('tools_usage')
+    }
+
+    if (step === 2) {
+      for (let i = 0; i < 7; i++)
+        if (surveyData[`trends_8_12-${i}`] === undefined) errors.add('trends_8_12')
+      for (let i = 0; i < 7; i++)
+        if (surveyData[`trends_12_15-${i}`] === undefined) errors.add('trends_12_15')
+
+      let hasPv = false
+      for (let i = 0; i < 7; i++) if (surveyData[`privacy_violations-${i}`] === true) hasPv = true
+      if (!hasPv) errors.add('privacy_violations')
+
+      let hasEr = false
+      for (let i = 0; i < 7; i++) if (surveyData[`edu_resources-${i}`] === true) hasEr = true
+      if (!hasEr) errors.add('edu_resources')
+    }
+
+    if (step === 3) {
+      for (let i = 0; i < 11; i++)
+        if (surveyData[`safety_concerns-${i}`] === undefined) errors.add('safety_concerns')
+      for (let i = 0; i < 7; i++)
+        if (surveyData[`tech_attitude-${i}`] === undefined) errors.add('tech_attitude')
+      for (let i = 0; i < 5; i++)
+        if (surveyData[`controls-${i}`] === undefined) errors.add('controls')
+    }
+
+    if (step === 4) {
+      for (let i = 0; i < 5; i++)
+        if (surveyData[`expert_opinions-${i}`] === undefined) errors.add('expert_opinions')
+      for (let i = 0; i < 6; i++)
+        if (surveyData[`skills_importance-${i}`] === undefined) errors.add('skills_importance')
+      for (let i = 0; i < 3; i++)
+        if (surveyData[`edu_opinion-${i}`] === undefined) errors.add('edu_opinion')
+    }
+
+    if (step === 5) {
+      if (!surveyData['role']) errors.add('role')
+      if (!surveyData['children-count']) errors.add('children-count')
+
+      const count = parseInt((surveyData['children-count'] as string) || '0', 10)
+      if (count > 0) {
+        for (let i = 1; i <= count; i++) {
+          if (!surveyData[`child-${i}-age`]) errors.add(`child-${i}-age`)
+          if (!surveyData[`child-${i}-gender`]) errors.add(`child-${i}-gender`)
+        }
+      }
+    }
+
+    setValidationErrors(errors)
+    return errors.size === 0
+  }
+
+  const handleNextStep = () => {
+    if (validateStep(currentStep)) {
+      nextStep()
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }
+
+  const handleSetStep = (step: number) => {
+    // Allow going back without validation, but restrict going forward?
+    // User requirement: "go to another section... without completing... warning"
+    // So any navigation out of an incomplete section triggers warning.
+    // Even going back? Usually no.
+    // I will enforce validation if step > currentStep.
+    // Actually, prompt says "go to another section". It could mean any.
+    // If I didn't finish S2, and go to S1, S2 remains incomplete.
+    // But if I want to just save and come back?
+    // I'll assume standard wizard: Validation on Next.
+
+    if (step > currentStep) {
+      if (!validateStep(currentStep)) {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+        return
+      }
+    }
+    setCurrentStep(step)
+  }
 
   useEffect(() => {
     if (userId) {
@@ -857,9 +979,27 @@ export default function SurveyForm() {
   return (
     <SurveyContext.Provider value={{ saveResponse, surveyData }}>
       <div className="space-y-8">
-        <ProgressBar currentStep={currentStep} setStep={setCurrentStep} />
+        <ProgressBar currentStep={currentStep} setStep={handleSetStep} />
 
-        <form className="space-y-12">
+        {validationErrors.size > 0 && (
+          <div className="mx-auto max-w-2xl rounded-lg border border-red-500 bg-red-900/20 p-4 text-center text-red-400">
+            Please complete all questions in this section before proceeding.
+          </div>
+        )}
+
+        <form
+          className="space-y-12"
+          onSubmit={(e) => {
+            e.preventDefault()
+            if (!validateStep(5)) {
+              window.scrollTo({ top: 0, behavior: 'smooth' })
+            } else {
+              // Proceed with submission (e.g. redirect or show success message)
+              console.log('Survey Submitted')
+              // Typically redirect to a Thank You page
+            }
+          }}
+        >
           {/* SECTION 1 */}
           <div className={currentStep === 1 ? 'block' : 'hidden'}>
             <h2 className="mb-6 pb-2 text-center text-2xl font-bold text-white">
@@ -883,6 +1023,7 @@ export default function SurveyForm() {
             <div className="border-t border-gray-700 pt-8">
               <MatrixRadio
                 name="tech_knowledge"
+                error={validationErrors.has('tech_knowledge')}
                 questionLabel="Q.1 Your own technical knowledge"
                 questionText="Select how strongly you agree or disagree with the following statements about your technical knowledge."
                 options={['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree']}
@@ -898,6 +1039,7 @@ export default function SurveyForm() {
 
             <MatrixRadio
               name="privacy_attitude"
+              error={validationErrors.has('privacy_attitude')}
               questionLabel="Q.2 Attitude to cybersecurity"
               questionText="Select how strongly you agree or disagree with the following statements on privacy and cybersecurity."
               options={['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree']}
@@ -914,6 +1056,7 @@ export default function SurveyForm() {
 
             <Checkboxes
               name="tools_usage"
+              error={validationErrors.has('tools_usage')}
               questionLabel="Q.3 Cybersecurity practices"
               questionText="Select all of the following privacy and cybersecurity tools that you currently use."
               options={[
@@ -967,7 +1110,7 @@ export default function SurveyForm() {
                 },
               ]}
             />
-            <NavButtons next={nextStep} nextLabel="Go to Section 2" />
+            <NavButtons next={handleNextStep} nextLabel="Go to Section 2" />
           </div>
 
           {/* SECTION 2 */}
@@ -996,6 +1139,7 @@ export default function SurveyForm() {
             <div className="border-t border-gray-700 pt-8">
               <MatrixSlider
                 name="trends_8_12"
+                error={validationErrors.has('trends_8_12')}
                 questionLabel="Q.4 Current tech trends for 8-12 year olds"
                 questionText="Estimate the percentage of 8-12 year olds in Ireland who..."
                 rows={[
@@ -1014,6 +1158,7 @@ export default function SurveyForm() {
 
             <MatrixSlider
               name="trends_12_15"
+              error={validationErrors.has('trends_12_15')}
               questionLabel="Q.5 Current tech trends for 12-15 year olds"
               questionText="Estimate the percentage of 12-15 year olds in Ireland who..."
               rows={[
@@ -1030,6 +1175,7 @@ export default function SurveyForm() {
 
             <Checkboxes
               name="privacy_violations"
+              error={validationErrors.has('privacy_violations')}
               questionLabel="Q.6 Privacy violations relating to children"
               questionText="Below is a list of fines imposed on tech firms for privacy violations specifically relating to children. Please check those that you are aware of."
               options={[
@@ -1076,6 +1222,7 @@ export default function SurveyForm() {
 
             <Checkboxes
               name="edu_resources"
+              error={validationErrors.has('edu_resources')}
               questionLabel="Q.7 Available educational resources"
               questionText="Below is a list of resources for educating children in Ireland on online safety and cybersecurity. Please check those that you are familiar with."
               options={[
@@ -1117,7 +1264,7 @@ export default function SurveyForm() {
             <NavButtons
               prev={prevStep}
               prevLabel="Go to Section 1"
-              next={nextStep}
+              next={handleNextStep}
               nextLabel="Go to Section 3"
             />
           </div>
@@ -1131,6 +1278,7 @@ export default function SurveyForm() {
             <div className="border-t border-gray-700 pt-8">
               <MatrixRating
                 name="safety_concerns"
+                error={validationErrors.has('safety_concerns')}
                 questionLabel="Q.8 Online safety concerns for children"
                 questionText="Rank the following concerns you have for your own child/children from 1 - Not concerned at all, to 10 - Extremely concerned."
                 rows={[
@@ -1151,6 +1299,7 @@ export default function SurveyForm() {
 
             <MatrixRadio
               name="tech_attitude"
+              error={validationErrors.has('tech_attitude')}
               questionLabel="Q.9 Attitude to child/children's use of technology"
               questionText="Select how strongly you agree or disagree with the following statements on children's use of phones/internet."
               options={['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree']}
@@ -1167,6 +1316,7 @@ export default function SurveyForm() {
 
             <MatrixRadio
               name="controls"
+              error={validationErrors.has('controls')}
               questionLabel="Q.10 Cybersecurity controls you use or intend to use for your child/children"
               questionText="Which of the following services/controls for aiding with child smartphone safety do you currently use, or intend to use?"
               options={['Do not/Will not use', 'Unsure', 'Use/Will use', "Don't know"]}
@@ -1181,7 +1331,7 @@ export default function SurveyForm() {
             <NavButtons
               prev={prevStep}
               prevLabel="Go to Section 2"
-              next={nextStep}
+              next={handleNextStep}
               nextLabel="Go to Section 4"
             />
           </div>
@@ -1195,6 +1345,7 @@ export default function SurveyForm() {
             <div className="border-t border-gray-700 pt-8">
               <MatrixRadio
                 name="expert_opinions"
+                error={validationErrors.has('expert_opinions')}
                 questionLabel="Q.11 Opinions of experts and children"
                 questionText="Select how strongly you agree or disagree with the following statements."
                 options={['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree']}
@@ -1266,6 +1417,7 @@ export default function SurveyForm() {
 
             <MatrixRadio
               name="skills_importance"
+              error={validationErrors.has('skills_importance')}
               questionLabel="Q.12 Aspirations for your own child/children's education"
               questionText="How important are the following skills for your child to learn?"
               options={[
@@ -1287,6 +1439,7 @@ export default function SurveyForm() {
 
             <MatrixRadio
               name="edu_opinion"
+              error={validationErrors.has('edu_opinion')}
               questionLabel="Q.13 Your opinion on your child/children's tech & cybersecurity education"
               questionText="Select how strongly you agree or disagree with the following statements on online safety and tech education."
               options={['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree']}
@@ -1299,7 +1452,7 @@ export default function SurveyForm() {
             <NavButtons
               prev={prevStep}
               prevLabel="Go to Section 3"
-              next={nextStep}
+              next={handleNextStep}
               nextLabel="Go to Section 5"
             />
           </div>
@@ -1320,7 +1473,7 @@ export default function SurveyForm() {
                     id="role"
                     defaultValue={surveyData['role'] as string}
                     onChange={(e) => saveResponse('role', e.target.value)}
-                    className="focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-base text-white placeholder-gray-400"
+                    className={`focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border bg-gray-700 p-2.5 text-base text-white placeholder-gray-400 ${validationErrors.has('role') ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-600'}`}
                   >
                     <option>Father</option>
                     <option>Mother</option>
@@ -1338,7 +1491,7 @@ export default function SurveyForm() {
                     id="children-count"
                     defaultValue={surveyData['children-count'] as string}
                     onChange={(e) => saveResponse('children-count', e.target.value)}
-                    className="focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-base text-white placeholder-gray-400"
+                    className={`focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border bg-gray-700 p-2.5 text-base text-white placeholder-gray-400 ${validationErrors.has('children-count') ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-600'}`}
                   >
                     <option>1</option>
                     <option>2</option>
@@ -1349,7 +1502,7 @@ export default function SurveyForm() {
               </div>
             </div>
 
-            <ChildrenTable />
+            <ChildrenTable validationErrors={validationErrors} />
           </div>
 
           {/* FINAL */}
