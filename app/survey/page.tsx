@@ -1,4 +1,4 @@
-import Link from '@/components/Link'
+import StartSurveyButton from '@/components/StartSurveyButton'
 import { PageSEO } from '@/components/SEO'
 import siteMetadata from '@/data/siteMetadata'
 import { genPageMetadata } from 'app/seo'
@@ -65,12 +65,7 @@ export default function SurveyPage() {
                 children on tech and cybersecurity before possessing an internet-enabled device.
               </p>
             </div>
-            <Link
-              href="/survey/2026?id"
-              className="bg-primary-800 hover:bg-primary-900 focus:ring-primary-600 rounded-md px-8 py-4 text-xl font-medium text-white ring-offset-black focus:ring-2 focus:ring-offset-2 focus:outline-none"
-            >
-              Start Survey
-            </Link>
+            <StartSurveyButton />
           </div>
         </div>
       </div>
