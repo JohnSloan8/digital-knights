@@ -2,7 +2,7 @@ const headerNavLinks = [
   { href: '/', title: 'Home' },
   { href: '/blog', title: 'Blog' },
   { href: '/survey', title: 'Survey' },
-  { href: '/projects', title: 'Projects' },
+  { href: '/faq', title: 'FAQ' },
   { href: '/syllabus', title: 'Syllabus' },
   { href: '/about', title: 'About' },
 ]

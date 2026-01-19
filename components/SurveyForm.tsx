@@ -83,7 +83,6 @@ const ProgressBar = ({ currentStep, setStep }: ProgressBarProps) => {
             <button
               type="button"
               onClick={() => {
-                window.scrollTo({ top: 0, behavior: 'smooth' })
                 setStep(step)
               }}
               className={`flex h-10 w-10 cursor-pointer items-center justify-center rounded-full text-base font-bold transition-all duration-200 ${
@@ -809,68 +808,73 @@ export default function SurveyForm() {
   const surveyDataRef = React.useRef<Record<string, SurveyValue>>({})
   const [isLoading, setIsLoading] = useState(!!userId)
   const [validationErrors, setValidationErrors] = useState<Set<string>>(new Set())
+  const [showErrorSummary, setShowErrorSummary] = useState(false)
 
-  const validateStep = (step: number) => {
+  const getValidationErrors = (step: number, data: Record<string, SurveyValue>) => {
     const errors = new Set<string>()
 
     if (step === 1) {
       for (let i = 0; i < 5; i++)
-        if (surveyData[`tech_knowledge-${i}`] === undefined) errors.add('tech_knowledge')
+        if (data[`tech_knowledge-${i}`] === undefined) errors.add('tech_knowledge')
       for (let i = 0; i < 7; i++)
-        if (surveyData[`privacy_attitude-${i}`] === undefined) errors.add('privacy_attitude')
+        if (data[`privacy_attitude-${i}`] === undefined) errors.add('privacy_attitude')
 
       let hasChecked = false
-      for (let i = 0; i < 10; i++) if (surveyData[`tools_usage-${i}`] === true) hasChecked = true
+      for (let i = 0; i < 10; i++) if (data[`tools_usage-${i}`] === true) hasChecked = true
       if (!hasChecked) errors.add('tools_usage')
     }
 
     if (step === 2) {
       for (let i = 0; i < 7; i++)
-        if (surveyData[`trends_8_12-${i}`] === undefined) errors.add('trends_8_12')
+        if (data[`trends_8_12-${i}`] === undefined) errors.add('trends_8_12')
       for (let i = 0; i < 7; i++)
-        if (surveyData[`trends_12_15-${i}`] === undefined) errors.add('trends_12_15')
+        if (data[`trends_12_15-${i}`] === undefined) errors.add('trends_12_15')
 
       let hasPv = false
-      for (let i = 0; i < 7; i++) if (surveyData[`privacy_violations-${i}`] === true) hasPv = true
+      for (let i = 0; i < 7; i++) if (data[`privacy_violations-${i}`] === true) hasPv = true
       if (!hasPv) errors.add('privacy_violations')
 
       let hasEr = false
-      for (let i = 0; i < 7; i++) if (surveyData[`edu_resources-${i}`] === true) hasEr = true
+      for (let i = 0; i < 7; i++) if (data[`edu_resources-${i}`] === true) hasEr = true
       if (!hasEr) errors.add('edu_resources')
     }
 
     if (step === 3) {
       for (let i = 0; i < 11; i++)
-        if (surveyData[`safety_concerns-${i}`] === undefined) errors.add('safety_concerns')
+        if (data[`safety_concerns-${i}`] === undefined) errors.add('safety_concerns')
       for (let i = 0; i < 7; i++)
-        if (surveyData[`tech_attitude-${i}`] === undefined) errors.add('tech_attitude')
-      for (let i = 0; i < 5; i++)
-        if (surveyData[`controls-${i}`] === undefined) errors.add('controls')
+        if (data[`tech_attitude-${i}`] === undefined) errors.add('tech_attitude')
+      for (let i = 0; i < 5; i++) if (data[`controls-${i}`] === undefined) errors.add('controls')
     }
 
     if (step === 4) {
       for (let i = 0; i < 5; i++)
-        if (surveyData[`expert_opinions-${i}`] === undefined) errors.add('expert_opinions')
+        if (data[`expert_opinions-${i}`] === undefined) errors.add('expert_opinions')
       for (let i = 0; i < 6; i++)
-        if (surveyData[`skills_importance-${i}`] === undefined) errors.add('skills_importance')
+        if (data[`skills_importance-${i}`] === undefined) errors.add('skills_importance')
       for (let i = 0; i < 3; i++)
-        if (surveyData[`edu_opinion-${i}`] === undefined) errors.add('edu_opinion')
+        if (data[`edu_opinion-${i}`] === undefined) errors.add('edu_opinion')
     }
 
     if (step === 5) {
-      if (!surveyData['role']) errors.add('role')
-      if (!surveyData['children-count']) errors.add('children-count')
+      if (!data['role']) errors.add('role')
+      if (!data['children-count']) errors.add('children-count')
 
-      const count = parseInt((surveyData['children-count'] as string) || '0', 10)
+      const count = parseInt((data['children-count'] as string) || '0', 10)
       if (count > 0) {
         for (let i = 1; i <= count; i++) {
-          if (!surveyData[`child-${i}-age`]) errors.add(`child-${i}-age`)
-          if (!surveyData[`child-${i}-gender`]) errors.add(`child-${i}-gender`)
+          if (!data[`child-${i}-age`]) errors.add(`child-${i}-age`)
+          if (!data[`child-${i}-gender`]) errors.add(`child-${i}-gender`)
         }
       }
     }
+    return errors
+  }
 
+  const validateStep = (step: number) => {
+    const errors = getValidationErrors(step, surveyData)
     setValidationErrors(errors)
+    setShowErrorSummary(errors.size > 0)
     return errors.size === 0
   }
 
@@ -899,6 +903,7 @@ export default function SurveyForm() {
         return
       }
     }
+    window.scrollTo({ top: 0, behavior: 'instant' })
     setCurrentStep(step)
   }
 
@@ -939,6 +944,11 @@ export default function SurveyForm() {
     surveyDataRef.current = newResponses
     setSurveyData(newResponses)
 
+    const currentErrors = getValidationErrors(currentStep, newResponses)
+    setValidationErrors(currentErrors)
+
+    if (showErrorSummary) setShowErrorSummary(false)
+
     if (!userId) return
 
     // 3. Update Database in background (Fire and forget, or log error)
@@ -960,11 +970,11 @@ export default function SurveyForm() {
   }
 
   const nextStep = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    window.scrollTo({ top: 0, behavior: 'instant' })
     setCurrentStep((prev) => Math.min(prev + 1, 5))
   }
   const prevStep = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    window.scrollTo({ top: 0, behavior: 'instant' })
     setCurrentStep((prev) => Math.max(prev - 1, 1))
   }
 
@@ -981,7 +991,7 @@ export default function SurveyForm() {
       <div className="space-y-8">
         <ProgressBar currentStep={currentStep} setStep={handleSetStep} />
 
-        {validationErrors.size > 0 && (
+        {showErrorSummary && validationErrors.size > 0 && (
           <div className="mx-auto max-w-2xl rounded-lg border border-red-500 bg-red-900/20 p-4 text-center text-red-400">
             Please complete all questions in this section before proceeding.
           </div>
@@ -1274,7 +1284,23 @@ export default function SurveyForm() {
             <h2 className="mb-6 pb-2 text-center text-2xl font-bold text-white">
               Section 3: Concerns
             </h2>
-
+            <p className="mb-4 text-gray-400">
+              Questions on your awareness of trends in children's use of technology, risks with
+              using currently popular devices/websites/apps, and currently available educational
+              resources.
+            </p>
+            <h3 className="mb-2 text-lg font-semibold text-white">
+              Why are these questions being asked?
+            </h3>
+            <p className="mb-6 text-gray-400">
+              Awareness of current trends of technology use, the risks involved, and the tools
+              available to combat these risks, are important factors in a parent's approach to their
+              child/children's online safety.
+            </p>
+            <h3 className="mb-2 text-lg font-semibold text-white">
+              How many questions in this section?
+            </h3>
+            <p className="mb-6 text-gray-400">3</p>
             <div className="border-t border-gray-700 pt-8">
               <MatrixRating
                 name="safety_concerns"
@@ -1341,7 +1367,23 @@ export default function SurveyForm() {
             <h2 className="mb-6 pb-2 text-center text-2xl font-bold text-white">
               Section 4: Education
             </h2>
-
+            <p className="mb-4 text-gray-400">
+              Questions on your awareness of trends in children's use of technology, risks with
+              using currently popular devices/websites/apps, and currently available educational
+              resources.
+            </p>
+            <h3 className="mb-2 text-lg font-semibold text-white">
+              Why are these questions being asked?
+            </h3>
+            <p className="mb-6 text-gray-400">
+              Awareness of current trends of technology use, the risks involved, and the tools
+              available to combat these risks, are important factors in a parent's approach to their
+              child/children's online safety.
+            </p>
+            <h3 className="mb-2 text-lg font-semibold text-white">
+              How many questions in this section?
+            </h3>
+            <p className="mb-6 text-gray-400">3</p>
             <div className="border-t border-gray-700 pt-8">
               <MatrixRadio
                 name="expert_opinions"
@@ -1462,7 +1504,23 @@ export default function SurveyForm() {
             <h2 className="mb-6 pb-2 text-center text-2xl font-bold text-white">
               Section 5: Basic Demographics
             </h2>
-
+            <p className="mb-4 text-gray-400">
+              Questions on your awareness of trends in children's use of technology, risks with
+              using currently popular devices/websites/apps, and currently available educational
+              resources.
+            </p>
+            <h3 className="mb-2 text-lg font-semibold text-white">
+              Why are these questions being asked?
+            </h3>
+            <p className="mb-6 text-gray-400">
+              Awareness of current trends of technology use, the risks involved, and the tools
+              available to combat these risks, are important factors in a parent's approach to their
+              child/children's online safety.
+            </p>
+            <h3 className="mb-2 text-lg font-semibold text-white">
+              How many questions in this section?
+            </h3>
+            <p className="mb-6 text-gray-400">3</p>
             <div className="border-t border-gray-700 pt-8">
               <div className="mb-8 grid grid-cols-1 gap-6 md:grid-cols-2">
                 <div>

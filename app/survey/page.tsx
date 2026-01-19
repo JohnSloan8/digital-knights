@@ -12,7 +12,7 @@ export default function SurveyPage() {
       <div className="divide-y divide-gray-700">
         <PageHeader
           title="Parents' Cybersecurity Survey 2026"
-          description="Parents' awareness, knowledge and opinions on tech and cybersecurity issues related to their children."
+          description="Understanding the parents' persective"
         />
         <div className="py-12">
           <div className="flex flex-col items-center justify-center space-y-4">
@@ -20,11 +20,14 @@ export default function SurveyPage() {
               <h3>What is the purpose of this survey?</h3>
               <p>
                 To inform the development of an independent tech and cybersecurity curriculum for
-                primary-school age children in Ireland.
+                children in Ireland.
               </p>
 
               <h3>Who is this survey for?</h3>
-              <p>Parents/Guardians of children under 13 years old in Ireland.</p>
+              <p>
+                Parents/Guardians of children in Ireland who are interested in tech and
+                cybersecurity education for their children.
+              </p>
 
               <h3>How many questions are there?</h3>
               <p>16.</p>
@@ -55,14 +58,14 @@ export default function SurveyPage() {
               <h3>Why are you asking these questions?</h3>
               <p>
                 Parents' experience and opinions on tech and cybersecurity have a significant impact
-                on their child/children's interaction with the digital world. Understand the
-                parent's position is crucial for designing a curriculum.
+                on their child/children's interaction with the digital world. Understanding this
+                persepective is important for designing a curriculum.
               </p>
 
               <h3>What will happen with the results of the survey?</h3>
               <p>
                 The results will be used to inform the development of a curriculum for educating
-                children on tech and cybersecurity before possessing an internet-enabled device.
+                children on tech and cybersecurity.
               </p>
             </div>
             <StartSurveyButton />
