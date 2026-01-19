@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { useSearchParams } from 'next/navigation'
+import { useSearchParams, useRouter } from 'next/navigation'
 import { supabase } from '@/utils/supabase/client'
 
 type SurveyValue = string | number | boolean | null
@@ -206,6 +206,7 @@ const MatrixRadio = ({
 
   return (
     <div
+      id={name}
       className={`mb-10 border-b pb-6 ${error ? 'rounded-lg border-2 border-red-500 p-4' : 'border-gray-700'}`}
     >
       <h3 className={`mb-2 text-lg font-semibold ${error ? 'text-red-500' : 'text-white'}`}>
@@ -377,6 +378,7 @@ const MatrixSlider = ({
 
   return (
     <div
+      id={name}
       className={`mb-10 border-b pb-6 ${error ? 'rounded-lg border-2 border-red-500 p-4' : 'border-gray-700'}`}
     >
       <h3 className={`mb-2 text-lg font-semibold ${error ? 'text-red-500' : 'text-white'}`}>
@@ -508,6 +510,7 @@ const Checkboxes = ({ questionLabel, questionText, options, name, error }: Check
 
   return (
     <div
+      id={name}
       className={`mb-10 border-b pb-6 ${error ? 'rounded-lg border-2 border-red-500 p-4' : 'border-gray-700'}`}
     >
       <h3 className={`mb-2 text-lg font-semibold ${error ? 'text-red-500' : 'text-white'}`}>
@@ -613,6 +616,7 @@ const MatrixRating = ({
 
   return (
     <div
+      id={name}
       className={`mb-10 border-b pb-6 ${error ? 'rounded-lg border-2 border-red-500 p-4' : 'border-gray-700'}`}
     >
       <h3 className={`mb-2 text-lg font-semibold ${error ? 'text-red-500' : 'text-white'}`}>
@@ -739,68 +743,98 @@ const MatrixRating = ({
 
 const ChildrenTable = ({ validationErrors }: { validationErrors: Set<string> }) => {
   const { saveResponse, surveyData } = useSurvey()
-  const [rows, setRows] = useState([1, 2, 3, 4, 5])
+  const [rows, setRows] = useState<number[]>([1])
+
+  // Sync rows with children-count from surveyData
+  useEffect(() => {
+    const rawVal = surveyData['children-count'] as string
+    const count = rawVal ? parseInt(rawVal, 10) : 0
+
+    setRows((prev) => {
+      // If no valid count is selected, default to 1 row
+      if (!count || isNaN(count)) {
+        return prev.length === 1 ? prev : [1]
+      }
+      if (prev.length === count) return prev
+      return Array.from({ length: count }, (_, i) => i + 1)
+    })
+  }, [surveyData['children-count']])
 
   return (
-    <div className="mb-8 overflow-x-auto">
-      <h3 className="mb-4 text-lg font-semibold text-gray-400">
-        Input the age of each child, gender, and whether they currently possess their own
+    <div className="mb-8 overflow-hidden">
+      <h3 className="mb-2 text-lg font-semibold text-white">
+        Q.16 For each of your child, gender, and whether they currently possess their own
         smartphone.
       </h3>
-      <table className="min-w-full text-left text-base text-gray-400">
-        <thead className="bg-gray-700 text-sm text-gray-400 uppercase">
-          <tr>
-            <th className="px-6 py-3">#</th>
-            <th className="px-6 py-3">Age</th>
-            <th className="px-6 py-3">Gender</th>
-            <th className="px-6 py-3">Has Own Smartphone?</th>
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((r) => (
-            <tr key={r} className="border-b border-gray-700 bg-gray-800">
-              <td className="px-6 py-4">{r}</td>
-              <td className="px-6 py-4">
-                <input
-                  type="number"
-                  name={`child-${r}-age`}
-                  defaultValue={surveyData[`child-${r}-age`] as string}
-                  onBlur={(e) => saveResponse(`child-${r}-age`, e.target.value)}
-                  className={`focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border bg-gray-700 p-2.5 text-base text-white placeholder-gray-400 ${validationErrors.has(`child-${r}-age`) ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-600'}`}
-                />
-              </td>
-              <td className="px-6 py-4">
-                <select
-                  name={`child-${r}-gender`}
-                  defaultValue={(surveyData[`child-${r}-gender`] as string) || ''}
-                  onChange={(e) => saveResponse(`child-${r}-gender`, e.target.value)}
-                  className={`focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border bg-gray-700 p-2.5 text-base text-white placeholder-gray-400 ${validationErrors.has(`child-${r}-gender`) ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-600'}`}
-                >
-                  <option value="">Select...</option>
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                  <option value="Other">Other</option>
-                  <option value="Prefer not to say">Prefer not to say</option>
-                </select>
-              </td>
-              <td className="px-6 py-4 text-center">
-                <input
-                  type="checkbox"
-                  name={`child-${r}-smartphone`}
-                  checked={surveyData[`child-${r}-smartphone`] === true}
-                  onChange={(e) => saveResponse(`child-${r}-smartphone`, e.target.checked)}
-                  className="focus:ring-primary-600 text-primary-600 h-4 w-4 rounded border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-2"
-                />
-              </td>
+      <div className="overflow-x-auto">
+        <table className="min-w-full text-left text-base text-gray-400">
+          <thead className="bg-gray-700 text-sm text-gray-400 uppercase">
+            <tr>
+              <th className="px-6 py-3">#</th>
+              <th className="px-6 py-3">Age</th>
+              <th className="px-6 py-3">Gender</th>
+              <th className="px-6 py-3">Has Own Smartphone?</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {rows.map((r) => (
+              <tr
+                key={r}
+                className="animate-in fade-in slide-in-from-top-4 border-b border-gray-700 bg-gray-800 duration-500 ease-out"
+              >
+                <td className="px-6 py-4">{r}</td>
+                <td className="px-6 py-4">
+                  <select
+                    id={`child-${r}-age`}
+                    name={`child-${r}-age`}
+                    defaultValue={(surveyData[`child-${r}-age`] as string) || ''}
+                    onChange={(e) => saveResponse(`child-${r}-age`, e.target.value)}
+                    className={`focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border bg-gray-700 p-2.5 text-base text-white placeholder-gray-400 ${validationErrors.has(`child-${r}-age`) ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-600'}`}
+                  >
+                    <option value="">Select...</option>
+                    {Array.from({ length: 19 }, (_, i) => i).map((age) => (
+                      <option key={age} value={age === 18 ? '18+' : age.toString()}>
+                        {age === 18 ? '18+' : age}
+                      </option>
+                    ))}
+                  </select>
+                </td>
+                <td className="px-6 py-4">
+                  <select
+                    id={`child-${r}-gender`}
+                    name={`child-${r}-gender`}
+                    defaultValue={(surveyData[`child-${r}-gender`] as string) || ''}
+                    onChange={(e) => saveResponse(`child-${r}-gender`, e.target.value)}
+                    className={`focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border bg-gray-700 p-2.5 text-base text-white placeholder-gray-400 ${validationErrors.has(`child-${r}-gender`) ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-600'}`}
+                  >
+                    <option value="">Select...</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                    <option value="Prefer not to say">Prefer not to say</option>
+                  </select>
+                </td>
+                <td className="px-6 py-4 text-center">
+                  <input
+                    type="checkbox"
+                    id={`child-${r}-smartphone`}
+                    name={`child-${r}-smartphone`}
+                    checked={surveyData[`child-${r}-smartphone`] === true}
+                    onChange={(e) => saveResponse(`child-${r}-smartphone`, e.target.checked)}
+                    className="focus:ring-primary-600 text-primary-600 h-4 w-4 rounded border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-2"
+                  />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   )
 }
 
 export default function SurveyForm() {
+  const router = useRouter()
   const [currentStep, setCurrentStep] = useState(1)
   const searchParams = useSearchParams()
   const userId = searchParams.get('id')
@@ -878,28 +912,72 @@ export default function SurveyForm() {
     return errors.size === 0
   }
 
-  const handleNextStep = () => {
-    if (validateStep(currentStep)) {
-      nextStep()
+  const getFieldOrder = (step: number) => {
+    let fieldOrder: string[] = []
+
+    if (step === 1) fieldOrder = ['tech_knowledge', 'privacy_attitude', 'tools_usage']
+    if (step === 2)
+      fieldOrder = ['trends_8_12', 'trends_12_15', 'privacy_violations', 'edu_resources']
+    if (step === 3) fieldOrder = ['safety_concerns', 'tech_attitude', 'controls']
+    if (step === 4) fieldOrder = ['expert_opinions', 'skills_importance', 'edu_opinion']
+    if (step === 5) {
+      fieldOrder = ['role', 'children-count']
+      // We check up to 5 children as that's the max rows in ChildrenTable
+      for (let i = 1; i <= 5; i++) {
+        fieldOrder.push(`child-${i}-age`)
+        fieldOrder.push(`child-${i}-gender`)
+      }
+    }
+    return fieldOrder
+  }
+
+  const validatedFieldOrder = React.useMemo(() => getFieldOrder(currentStep), [currentStep])
+
+  const firstError = React.useMemo(() => {
+    if (!showErrorSummary) return null
+    return validatedFieldOrder.find((field) => validationErrors.has(field))
+  }, [showErrorSummary, validationErrors, validatedFieldOrder])
+
+  const scrollToFirstError = (step: number, errors: Set<string>) => {
+    const order = getFieldOrder(step)
+    const first = order.find((field) => errors.has(field))
+    if (first) {
+      const element = document.getElementById(first)
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      }
     } else {
       window.scrollTo({ top: 0, behavior: 'smooth' })
     }
   }
 
-  const handleSetStep = (step: number) => {
-    // Allow going back without validation, but restrict going forward?
-    // User requirement: "go to another section... without completing... warning"
-    // So any navigation out of an incomplete section triggers warning.
-    // Even going back? Usually no.
-    // I will enforce validation if step > currentStep.
-    // Actually, prompt says "go to another section". It could mean any.
-    // If I didn't finish S2, and go to S1, S2 remains incomplete.
-    // But if I want to just save and come back?
-    // I'll assume standard wizard: Validation on Next.
+  const ErrorBanner = () => (
+    <div className="mb-6 rounded-lg border border-red-500 bg-red-900/20 p-4 text-center text-red-400">
+      Please complete all questions in this section before proceeding.
+    </div>
+  )
 
+  const handleNextStep = () => {
+    const errors = getValidationErrors(currentStep, surveyData)
+    setValidationErrors(errors)
+    setShowErrorSummary(errors.size > 0)
+
+    if (errors.size === 0) {
+      nextStep()
+    } else {
+      scrollToFirstError(currentStep, errors)
+    }
+  }
+
+  const handleSetStep = (step: number) => {
     if (step > currentStep) {
-      if (!validateStep(currentStep)) {
-        window.scrollTo({ top: 0, behavior: 'smooth' })
+      const errors = getValidationErrors(currentStep, surveyData)
+      setValidationErrors(errors)
+      setShowErrorSummary(errors.size > 0)
+      if (errors.size > 0) {
+        scrollToFirstError(currentStep, errors)
         return
       }
     }
@@ -920,6 +998,22 @@ export default function SurveyForm() {
           if (data?.responses) {
             setSurveyData(data.responses)
             surveyDataRef.current = data.responses
+
+            // Determine the last completed step to resume progress
+            let resumeStep = 1
+            for (let i = 1; i <= 4; i++) {
+              // Check if step 'i' is complete
+              const errors = getValidationErrors(i, data.responses)
+              if (errors.size === 0) {
+                // If step is complete, we can at least be on the next step
+                resumeStep = i + 1
+              } else {
+                // If step is incomplete, we must stop here
+                resumeStep = i
+                break
+              }
+            }
+            setCurrentStep(Math.min(resumeStep, 5))
           }
         } catch (error) {
           console.error('Error fetching data:', error)
@@ -944,8 +1038,10 @@ export default function SurveyForm() {
     surveyDataRef.current = newResponses
     setSurveyData(newResponses)
 
-    const currentErrors = getValidationErrors(currentStep, newResponses)
-    setValidationErrors(currentErrors)
+    if (validationErrors.size > 0) {
+      const currentErrors = getValidationErrors(currentStep, newResponses)
+      setValidationErrors(currentErrors)
+    }
 
     if (showErrorSummary) setShowErrorSummary(false)
 
@@ -991,22 +1087,29 @@ export default function SurveyForm() {
       <div className="space-y-8">
         <ProgressBar currentStep={currentStep} setStep={handleSetStep} />
 
-        {showErrorSummary && validationErrors.size > 0 && (
-          <div className="mx-auto max-w-2xl rounded-lg border border-red-500 bg-red-900/20 p-4 text-center text-red-400">
-            Please complete all questions in this section before proceeding.
-          </div>
-        )}
-
         <form
           className="space-y-12"
-          onSubmit={(e) => {
+          onSubmit={async (e) => {
             e.preventDefault()
-            if (!validateStep(5)) {
-              window.scrollTo({ top: 0, behavior: 'smooth' })
+            const errors = getValidationErrors(5, surveyData)
+            setValidationErrors(errors)
+            setShowErrorSummary(errors.size > 0)
+
+            if (errors.size > 0) {
+              scrollToFirstError(5, errors)
             } else {
-              // Proceed with submission (e.g. redirect or show success message)
-              console.log('Survey Submitted')
-              // Typically redirect to a Thank You page
+              // Mark as complete in DB
+              if (userId) {
+                await supabase
+                  .from('survey_responses')
+                  .update({
+                    survey_complete: true,
+                    updated_at: new Date().toISOString(),
+                  })
+                  .eq('user_id', userId)
+              }
+              // Proceed with submission
+              router.push('/survey/complete')
             }
           }}
         >
@@ -1031,6 +1134,7 @@ export default function SurveyForm() {
             </h3>
             <p className="mb-6 text-gray-400">3</p>
             <div className="border-t border-gray-700 pt-8">
+              {firstError === 'tech_knowledge' && <ErrorBanner />}
               <MatrixRadio
                 name="tech_knowledge"
                 error={validationErrors.has('tech_knowledge')}
@@ -1047,6 +1151,7 @@ export default function SurveyForm() {
               />
             </div>
 
+            {firstError === 'privacy_attitude' && <ErrorBanner />}
             <MatrixRadio
               name="privacy_attitude"
               error={validationErrors.has('privacy_attitude')}
@@ -1064,6 +1169,7 @@ export default function SurveyForm() {
               ]}
             />
 
+            {firstError === 'tools_usage' && <ErrorBanner />}
             <Checkboxes
               name="tools_usage"
               error={validationErrors.has('tools_usage')}
@@ -1128,6 +1234,7 @@ export default function SurveyForm() {
             <h2 className="mb-6 pb-2 text-center text-2xl font-bold text-white">
               Section 2: Awareness
             </h2>
+            {/* Same content ... */}
             <p className="mb-4 text-gray-400">
               Questions on your awareness of trends in children's use of technology, risks with
               using currently popular devices/websites/apps, and currently available educational
@@ -1144,9 +1251,10 @@ export default function SurveyForm() {
             <h3 className="mb-2 text-lg font-semibold text-white">
               How many questions in this section?
             </h3>
-            <p className="mb-6 text-gray-400">3</p>
+            <p className="mb-6 text-gray-400">4</p>
 
             <div className="border-t border-gray-700 pt-8">
+              {firstError === 'trends_8_12' && <ErrorBanner />}
               <MatrixSlider
                 name="trends_8_12"
                 error={validationErrors.has('trends_8_12')}
@@ -1166,6 +1274,7 @@ export default function SurveyForm() {
               />
             </div>
 
+            {firstError === 'trends_12_15' && <ErrorBanner />}
             <MatrixSlider
               name="trends_12_15"
               error={validationErrors.has('trends_12_15')}
@@ -1183,6 +1292,7 @@ export default function SurveyForm() {
               actualValues={[99, 99, 34, 52, 41, 36, 34]}
             />
 
+            {firstError === 'privacy_violations' && <ErrorBanner />}
             <Checkboxes
               name="privacy_violations"
               error={validationErrors.has('privacy_violations')}
@@ -1191,7 +1301,7 @@ export default function SurveyForm() {
               options={[
                 {
                   label:
-                    "Epic Games/Fortnite (2022): Unauthorised collection of children's data - $520 million",
+                    "Epic Games/Fortnite (2022): Unauthorised collection of children's data - 20 million",
                   description:
                     'The US Federal Trade Commission fined Epic for collecting personal data from children under 13 without parental consent and for using dark patterns that tricked players into paying. Epic also enabled live voice and text chat by default, exposing kids to adult strangers. The settlement forced Epic to adopt new privacy defaults.',
                 },
@@ -1208,21 +1318,21 @@ export default function SurveyForm() {
                 },
                 {
                   label:
-                    "Google/YouTube (2019 & 2025): Repeated, unauthorised collection of children's data for targetted ads - $170 Million & $30 million",
+                    "Google/YouTube (2019 & 2025): Repeated, unauthorised collection of children's data for targetted ads - 70 Million & 0 million",
                   description:
-                    'US regulators said YouTube knowingly tracked viewing habits on kid-focused channels to sell ads, violating COPPA. Google promised to treat all kid content as child-directed and limit personalization, yet faced another $30m penalty in 2025 for allowing similar tracking on the YouTube Kids app.',
+                    'US regulators said YouTube knowingly tracked viewing habits on kid-focused channels to sell ads, violating COPPA. Google promised to treat all kid content as child-directed and limit personalization, yet faced another 0m penalty in 2025 for allowing similar tracking on the YouTube Kids app.',
                 },
                 {
                   label:
-                    "Amazon/Alexa (2023): - Recording and not deleting children's voices - $25 Million",
+                    "Amazon/Alexa (2023): - Recording and not deleting children's voices - 5 Million",
                   description:
                     'Amazon retained voice recordings and location data from Alexa devices used by children even after parents tried to delete them. Regulators argued the company kept the data to refine its voice model, contradicting privacy promises. Amazon must now purge inactive child profiles.',
                 },
                 {
                   label:
-                    "Microsoft/Xbox (2023): - Unauthorised collection and retention of children's data - $20 Million",
+                    "Microsoft/Xbox (2023): - Unauthorised collection and retention of children's data - 0 Million",
                   description:
-                    'Microsoft collected children’s names, emails, and phone numbers during Xbox sign-up without timely parental consent and stored the data even when families abandoned the process. The FTC said this violated COPPA’s data minimization rules, resulting in a $20m fine.',
+                    'Microsoft collected children’s names, emails, and phone numbers during Xbox sign-up without timely parental consent and stored the data even when families abandoned the process. The FTC said this violated COPPA’s data minimization rules, resulting in a 0m fine.',
                 },
                 {
                   label: 'None of the above',
@@ -1230,6 +1340,7 @@ export default function SurveyForm() {
               ]}
             />
 
+            {firstError === 'edu_resources' && <ErrorBanner />}
             <Checkboxes
               name="edu_resources"
               error={validationErrors.has('edu_resources')}
@@ -1285,23 +1396,23 @@ export default function SurveyForm() {
               Section 3: Concerns
             </h2>
             <p className="mb-4 text-gray-400">
-              Questions on your awareness of trends in children's use of technology, risks with
-              using currently popular devices/websites/apps, and currently available educational
-              resources.
+              The questions focus on your own concerns for your child/children regarding use of
+              technology and online safety.
             </p>
             <h3 className="mb-2 text-lg font-semibold text-white">
               Why are these questions being asked?
             </h3>
             <p className="mb-6 text-gray-400">
-              Awareness of current trends of technology use, the risks involved, and the tools
-              available to combat these risks, are important factors in a parent's approach to their
-              child/children's online safety.
+              There may be significant differences in the issues of concern from parent to parent.
+              It is important to understand the nature of these concerns when designing educational
+              resources for their children.
             </p>
             <h3 className="mb-2 text-lg font-semibold text-white">
               How many questions in this section?
             </h3>
             <p className="mb-6 text-gray-400">3</p>
             <div className="border-t border-gray-700 pt-8">
+              {firstError === 'safety_concerns' && <ErrorBanner />}
               <MatrixRating
                 name="safety_concerns"
                 error={validationErrors.has('safety_concerns')}
@@ -1323,6 +1434,7 @@ export default function SurveyForm() {
               />
             </div>
 
+            {firstError === 'tech_attitude' && <ErrorBanner />}
             <MatrixRadio
               name="tech_attitude"
               error={validationErrors.has('tech_attitude')}
@@ -1340,6 +1452,7 @@ export default function SurveyForm() {
               ]}
             />
 
+            {firstError === 'controls' && <ErrorBanner />}
             <MatrixRadio
               name="controls"
               error={validationErrors.has('controls')}
@@ -1368,23 +1481,24 @@ export default function SurveyForm() {
               Section 4: Education
             </h2>
             <p className="mb-4 text-gray-400">
-              Questions on your awareness of trends in children's use of technology, risks with
-              using currently popular devices/websites/apps, and currently available educational
-              resources.
+              These questions focus on your opinion of the current state of technical and online
+              safety education for children in Ireland, and wishes for your own child/children's
+              education.
             </p>
             <h3 className="mb-2 text-lg font-semibold text-white">
               Why are these questions being asked?
             </h3>
             <p className="mb-6 text-gray-400">
-              Awareness of current trends of technology use, the risks involved, and the tools
-              available to combat these risks, are important factors in a parent's approach to their
-              child/children's online safety.
+              There have been numerous recent calls by experts for more and earlier tech and
+              cybersecurity education in Ireland. It is important to understand if this sentiment is
+              echoed by current parents.
             </p>
             <h3 className="mb-2 text-lg font-semibold text-white">
               How many questions in this section?
             </h3>
             <p className="mb-6 text-gray-400">3</p>
             <div className="border-t border-gray-700 pt-8">
+              {firstError === 'expert_opinions' && <ErrorBanner />}
               <MatrixRadio
                 name="expert_opinions"
                 error={validationErrors.has('expert_opinions')}
@@ -1457,6 +1571,7 @@ export default function SurveyForm() {
               </ol>
             </div>
 
+            {firstError === 'skills_importance' && <ErrorBanner />}
             <MatrixRadio
               name="skills_importance"
               error={validationErrors.has('skills_importance')}
@@ -1479,6 +1594,7 @@ export default function SurveyForm() {
               ]}
             />
 
+            {firstError === 'edu_opinion' && <ErrorBanner />}
             <MatrixRadio
               name="edu_opinion"
               error={validationErrors.has('edu_opinion')}
@@ -1524,8 +1640,9 @@ export default function SurveyForm() {
             <div className="border-t border-gray-700 pt-8">
               <div className="mb-8 grid grid-cols-1 gap-6 md:grid-cols-2">
                 <div>
-                  <label htmlFor="role" className="mb-2 block text-base font-medium text-white">
-                    What is your role?
+                  {firstError === 'role' && <ErrorBanner />}
+                  <label htmlFor="role" className="mb-2 block text-lg font-semibold text-white">
+                    Q.14 What is your role?
                   </label>
                   <select
                     id="role"
@@ -1533,17 +1650,19 @@ export default function SurveyForm() {
                     onChange={(e) => saveResponse('role', e.target.value)}
                     className={`focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border bg-gray-700 p-2.5 text-base text-white placeholder-gray-400 ${validationErrors.has('role') ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-600'}`}
                   >
+                    <option value="">Select...</option>
                     <option>Father</option>
                     <option>Mother</option>
                     <option>Guardian</option>
                   </select>
                 </div>
                 <div>
+                  {firstError === 'children-count' && <ErrorBanner />}
                   <label
                     htmlFor="children-count"
-                    className="mb-2 block text-base font-medium text-white"
+                    className="mb-2 block text-lg font-semibold text-white"
                   >
-                    How many children do you have?
+                    Q.15 How many children do you have?
                   </label>
                   <select
                     id="children-count"
@@ -1551,15 +1670,18 @@ export default function SurveyForm() {
                     onChange={(e) => saveResponse('children-count', e.target.value)}
                     className={`focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border bg-gray-700 p-2.5 text-base text-white placeholder-gray-400 ${validationErrors.has('children-count') ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-600'}`}
                   >
+                    <option value="">Select...</option>
                     <option>1</option>
                     <option>2</option>
                     <option>3</option>
-                    <option>4+</option>
+                    <option>4</option>
+                    <option>5</option>
                   </select>
                 </div>
               </div>
             </div>
 
+            {firstError && firstError.startsWith('child-') && <ErrorBanner />}
             <ChildrenTable validationErrors={validationErrors} />
           </div>
 
@@ -1624,7 +1746,7 @@ export default function SurveyForm() {
               </button>
               <button
                 type="submit"
-                className="bg-primary-600 hover:bg-primary-700 focus:ring-primary-800 w-full cursor-pointer rounded-lg px-5 py-2.5 text-center text-base font-medium text-white focus:ring-4 focus:outline-none sm:w-auto"
+                className="bg-primary-800 hover:bg-primary-900 focus:ring-primary-600 w-full cursor-pointer rounded-md px-5 py-2.5 text-base font-medium text-white ring-offset-black focus:ring-2 focus:ring-offset-2 focus:outline-none sm:w-auto"
               >
                 Submit Survey
               </button>

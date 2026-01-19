@@ -1,12 +1,20 @@
 import StartSurveyButton from '@/components/StartSurveyButton'
-import { PageSEO } from '@/components/SEO'
 import siteMetadata from '@/data/siteMetadata'
 import { genPageMetadata } from 'app/seo'
 import PageHeader from '@/components/PageHeader'
+import { redirect } from 'next/navigation'
 
 export const metadata = genPageMetadata({ title: "Parents' Cybersecurity Survey 2026" })
 
-export default function SurveyPage() {
+export default async function SurveyPage(props: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+}) {
+  const searchParams = await props.searchParams
+
+  if (searchParams && searchParams.id) {
+    redirect(`/survey/2026?id=${searchParams.id}`)
+  }
+
   return (
     <>
       <div className="divide-y divide-gray-700">

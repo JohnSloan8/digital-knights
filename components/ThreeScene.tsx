@@ -35,7 +35,8 @@ function Lightning({
   end: THREE.Vector3
   delay?: number
 }) {
-  const lineRef = useRef<Line2Impl>(null)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const lineRef = useRef<any>(null)
   const age = useRef(0)
   const pointsCount = 8
 
