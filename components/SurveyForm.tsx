@@ -877,6 +877,10 @@ export default function SurveyForm() {
       for (let i = 0; i < 7; i++)
         if (data[`trends_12_15-${i}`] === undefined) errors.add('trends_12_15')
 
+      let hasRm = false
+      for (let i = 0; i < 7; i++) if (data[`recent_media-${i}`] === true) hasRm = true
+      if (!hasRm) errors.add('recent_media')
+
       let hasPv = false
       for (let i = 0; i < 7; i++) if (data[`privacy_violations-${i}`] === true) hasPv = true
       if (!hasPv) errors.add('privacy_violations')
@@ -930,7 +934,13 @@ export default function SurveyForm() {
 
     if (step === 1) fieldOrder = ['tech_knowledge', 'privacy_attitude', 'tools_usage']
     if (step === 2)
-      fieldOrder = ['trends_8_12', 'trends_12_15', 'privacy_violations', 'edu_resources']
+      fieldOrder = [
+        'trends_8_12',
+        'trends_12_15',
+        'recent_media',
+        'privacy_violations',
+        'edu_resources',
+      ]
     if (step === 3) fieldOrder = ['safety_concerns', 'tech_attitude', 'controls']
     if (step === 4) fieldOrder = ['expert_opinions', 'skills_importance', 'edu_opinion']
     if (step === 5) {
@@ -1264,7 +1274,7 @@ export default function SurveyForm() {
             <h3 className="mb-2 text-lg font-semibold text-white">
               How many questions in this section?
             </h3>
-            <p className="mb-6 text-gray-400">4</p>
+            <p className="mb-6 text-gray-400">5</p>
 
             <div className="border-t border-gray-700 pt-8">
               {firstError === 'trends_8_12' && <ErrorBanner />}
@@ -1305,11 +1315,86 @@ export default function SurveyForm() {
               actualValues={[99, 99, 34, 52, 41, 36, 34]}
             />
 
+            {firstError === 'recent_media' && <ErrorBanner />}
+            <Checkboxes
+              name="recent_media"
+              error={validationErrors.has('recent_media')}
+              questionLabel="Q.6 Recent Media"
+              questionText="Below are some examples of coverage of cybersecurity issues relating to children in the media. Select all that you have encountered."
+              options={[
+                {
+                  label: 'Report: Grok AI making child sexual imagery',
+                  description:
+                    'Users utilized Grok AI on X (formerly Twitter) to generate non-consensual sexual imagery, including child sexual abuse material (CSAM). This highlights the lack of robust safety guardrails in some generative AI models compared to others.',
+                  links: [
+                    {
+                      url: 'https://www.bbc.com/news/articles/cvg1mzlryxeo',
+                    },
+                  ],
+                },
+                {
+                  label:
+                    'TV Programme: Prime Time - Real time location tracking of 64,000 Irish phones',
+                  description:
+                    'A Prime Time investigation exposed the sale of real time location data for thousands of Irish smart phones (including children) from sellers in digital marketing and advertising.',
+                  links: [
+                    {
+                      url: 'https://www.rte.ie/news/primetime/2025/0922/1534716-gra-raco-and-womens-aid-call-for-end-to-sale-of-location-data/',
+                    },
+                  ],
+                },
+                {
+                  label: "Report: Australia's social media ban for under 16s",
+                  description:
+                    'Australia has introduced legislation to ban children under 16 from using social media platforms. The law places the onus on tech companies to enforce age verification or face significant fines.',
+                  links: [
+                    {
+                      url: 'https://www.digitalidsystem.gov.au/news/social-media-minimum-age-verification-law-and-digital-id',
+                    },
+                  ],
+                },
+                {
+                  label: 'TV Series: Adolescence',
+                  description:
+                    'A 2025 psychological crime drama television series centred on a 13-year-old schoolboy who is arrested after the murder of a girl in his school.',
+                  links: [
+                    {
+                      url: 'https://www.rte.ie/news/analysis-and-comment/2025/0326/1504004-adolescence-five-talking-points/',
+                    },
+                  ],
+                },
+                {
+                  label: 'Report: Children tempted to gamble online by celebrity endorsements',
+                  description:
+                    'A recent study found that children as young as 11 are being influenced to try online betting due to the prevalence of celebrity endorsements and aggressive marketing in sports and social media.',
+                  links: [
+                    {
+                      url: 'https://www.theguardian.com/society/2025/sep/02/children-as-young-as-11-tempted-to-try-betting-after-being-flooded-by-celebrity-endorsement',
+                    },
+                  ],
+                },
+
+                {
+                  label: 'Documentary: The Social Dilemma',
+                  description:
+                    'A 2020 docudrama that explores the dangerous human impact of social networking, with tech experts sounding the alarm on their own creations, highlighting how algorithms manipulate users and addict children.',
+                  links: [
+                    {
+                      url: 'https://en.wikipedia.org/wiki/The_Social_Dilemma',
+                    },
+                  ],
+                },
+                {
+                  label: 'None of the above',
+                },
+              ]}
+            />
+
             {firstError === 'privacy_violations' && <ErrorBanner />}
             <Checkboxes
               name="privacy_violations"
               error={validationErrors.has('privacy_violations')}
-              questionLabel="Q.6 Privacy violations relating to children"
+              questionLabel="Q.7 Privacy violations relating to children"
               questionText="Below is a list of fines imposed on tech firms for privacy violations specifically relating to children. Please check those that you are aware of."
               options={[
                 {
@@ -1393,7 +1478,7 @@ export default function SurveyForm() {
             <Checkboxes
               name="edu_resources"
               error={validationErrors.has('edu_resources')}
-              questionLabel="Q.7 Available educational resources"
+              questionLabel="Q.8 Available educational resources"
               questionText="Below is a list of resources for educating children in Ireland on online safety and cybersecurity. Please check those that you are familiar with."
               options={[
                 {
@@ -1509,7 +1594,6 @@ export default function SurveyForm() {
                 'Mobile phones should be banned for users under a certain age',
                 'Age verification should be introduced to all social media platforms',
                 "I am happy for my child/children's browsing data to be tracked and used to provide them with a 'personalised' experience.",
-                'A Google/Apple account is necessary for using an ordinary Android/Apple device - I am happy for my child to sign up to either service when they get their own phone.',
                 "I am happy for my child/children's to share their photos/videos online",
                 'I am happy for the photos/videos my child/children take to be stored in the cloud.',
               ]}
