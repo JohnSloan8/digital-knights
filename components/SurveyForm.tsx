@@ -490,6 +490,7 @@ const MatrixSlider = ({
 interface CheckboxOption {
   label: string
   description?: string
+  links?: { url: string; label?: string }[]
 }
 
 interface CheckboxesProps {
@@ -548,9 +549,21 @@ const Checkboxes = ({ questionLabel, questionText, options, name, error }: Check
               )}
             </div>
             {option.description && activeDescription === option.label && (
-              <p className="ml-10 rounded-lg border border-gray-700 bg-gray-900/70 p-3 text-sm text-gray-300">
-                {option.description}
-              </p>
+              <div className="ml-10 rounded-lg border border-gray-700 bg-gray-900/70 p-3 text-sm text-gray-300">
+                <p>{option.description}</p>
+                {option.links &&
+                  option.links.map((linkItem, linkIdx) => (
+                    <a
+                      key={linkIdx}
+                      href={linkItem.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary-500 hover:text-primary-400 mt-2 block break-all hover:underline"
+                    >
+                      {(linkItem.label || linkItem.url).replace(/https?:\/\//g, '')}
+                    </a>
+                  ))}
+              </div>
             )}
           </div>
         ))}
@@ -1304,35 +1317,71 @@ export default function SurveyForm() {
                     "Epic Games/Fortnite (2022): Unauthorised collection of children's data - 20 million",
                   description:
                     'The US Federal Trade Commission fined Epic for collecting personal data from children under 13 without parental consent and for using dark patterns that tricked players into paying. Epic also enabled live voice and text chat by default, exposing kids to adult strangers. The settlement forced Epic to adopt new privacy defaults.',
+                  links: [
+                    {
+                      url: 'https://www.ftc.gov/news-events/news/press-releases/2022/12/fortnite-video-game-maker-epic-games-pay-more-half-billion-dollars-over-ftc-allegations',
+                    },
+                  ],
                 },
                 {
                   label:
                     "Meta/Instagram (2022): Children's accounts default to public - €405 million",
                   description:
                     'Ireland’s Data Protection Commission ruled that Instagram exposed minors’ email addresses and phone numbers by defaulting accounts to public business profiles. Investigators also found under-18 analytics dashboards showing follower data. Meta was ordered to rework teen privacy settings and pay €405m.',
+                  links: [
+                    {
+                      url: 'https://www.dataprotection.ie/en/news-media/press-releases/data-protection-commission-announces-decision-instagram-inquiry',
+                    },
+                  ],
                 },
                 {
                   label: "TikTok (2023): Unauthorised access to children's accounts - €345 million",
                   description:
                     'TikTok was fined after regulators discovered default public profiles for teens, weak age verification, and a “Family Pairing” feature that allowed adults to read private messages without proof of guardianship. The ruling emphasized TikTok’s failure to explain privacy risks to young users.',
+                  links: [
+                    {
+                      url: 'https://www.dataprotection.ie/en/news-media/press-releases/DPC-announces-345-million-euro-fine-of-TikTok',
+                    },
+                  ],
                 },
                 {
                   label:
                     "Google/YouTube (2019 & 2025): Repeated, unauthorised collection of children's data for targetted ads - 70 Million & 0 million",
                   description:
                     'US regulators said YouTube knowingly tracked viewing habits on kid-focused channels to sell ads, violating COPPA. Google promised to treat all kid content as child-directed and limit personalization, yet faced another 0m penalty in 2025 for allowing similar tracking on the YouTube Kids app.',
+                  links: [
+                    {
+                      url: 'https://www.bbc.com/news/technology-49578971',
+                      label: '2019: https://www.bbc.com/news/technology-49578971',
+                    },
+                    {
+                      url: 'https://cybernews.com/privacy/google-settles-youtube-childrens-privacy-lawsuit-30m/',
+                      label:
+                        '2025: https://cybernews.com/privacy/google-settles-youtube-childrens-privacy-lawsuit-30m/',
+                    },
+                  ],
                 },
                 {
                   label:
                     "Amazon/Alexa (2023): - Recording and not deleting children's voices - 5 Million",
                   description:
                     'Amazon retained voice recordings and location data from Alexa devices used by children even after parents tried to delete them. Regulators argued the company kept the data to refine its voice model, contradicting privacy promises. Amazon must now purge inactive child profiles.',
+                  links: [
+                    {
+                      url: 'https://www.justice.gov/archives/opa/pr/amazon-agrees-injunctive-relief-and-25-million-civil-penalty-alleged-violations-childrens',
+                    },
+                  ],
                 },
                 {
                   label:
                     "Microsoft/Xbox (2023): - Unauthorised collection and retention of children's data - 0 Million",
                   description:
                     'Microsoft collected children’s names, emails, and phone numbers during Xbox sign-up without timely parental consent and stored the data even when families abandoned the process. The FTC said this violated COPPA’s data minimization rules, resulting in a 0m fine.',
+                  links: [
+                    {
+                      url: 'https://www.ftc.gov/news-events/news/press-releases/2023/06/ftc-will-require-microsoft-pay-20-million-over-charges-it-illegally-collected-personal-information',
+                    },
+                  ],
                 },
                 {
                   label: 'None of the above',
@@ -1351,31 +1400,45 @@ export default function SurveyForm() {
                   label: 'CyberSafeKids',
                   description:
                     'CyberSafeKids is an Irish non-profit that delivers classroom workshops, parent nights, and research on young peoples’ digital habits. Their guides cover cyberbullying, gaming, privacy settings, and include downloadable lesson plans. Examples: (Primary school workshops, Annual Trends & Usage Report).',
+                  links: [{ url: 'https://www.cybersafekids.ie' }],
                 },
                 {
                   label: 'TUSLA - Online Safety',
                   description:
                     'TUSLA—the Child and Family Agency—publishes safeguarding guidance for carers, foster parents, and social workers on topics like inappropriate contact, grooming, and image-based abuse. Their online safety hub links to reporting pathways and age-appropriate conversation starters.',
+                  links: [{ url: 'https://www.tusla.ie/children-first/online-safety/' }],
                 },
                 {
                   label: 'Webwise',
                   description:
                     "Webwise is Ireland's Safer Internet Centre for schools, offering SPHE-aligned lesson packs, teenager peer-leader programs, and parent advice helplines. Their 'Connected' and 'MySelfie' resources combine videos with classroom activities.",
+                  links: [{ url: 'https://www.webwise.ie/' }],
                 },
                 {
                   label: 'National Parents Council - Internet Safety Training',
                   description:
                     'The NPC runs free webinars and in-person sessions that teach parents how to configure devices, spot red flags, and support children after online incidents. Sessions typically include live demos of safety settings plus Q&A.',
+                  links: [
+                    {
+                      url: 'https://www.npc.ie/training-and-resources/training-we-offer/internet-safety-in-your-school',
+                    },
+                  ],
                 },
                 {
                   label: 'ISPCC - Digital Ready Hub',
                   description:
                     'The ISPCC’s Digital Ready Hub combines articles, printable checklists, and youth stories that focus on resilience and coping strategies. It also signposts to the Childline listening service for kids who experience online harm.',
+                  links: [{ url: 'https://www.ispcc.ie/ispcc-digital-ready-hub/' }],
                 },
                 {
                   label: 'Comisiún na Meán - Keeping Safe Online',
                   description:
                     'Comisiún na Meán (Ireland’s media regulator) curates Keeping Safe Online guidance that explains video-sharing code rules, complaint routes, and media literacy tips. The material helps families understand how Irish and EU regulations protect young audiences.',
+                  links: [
+                    {
+                      url: 'https://www.cnam.ie/general-public/children-young-people/keeping-safe-online/',
+                    },
+                  ],
                 },
                 {
                   label: 'None of the above',

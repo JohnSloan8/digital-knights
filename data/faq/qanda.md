@@ -11,7 +11,7 @@ If you are reading this page, you.
 
 ### What will they learn?
 
-FUll information can be found on the [syllabus](/app/syllabus/page.tsx) page.
+Full information can be found on the [syllabus](/app/syllabus/page.tsx) page.
 
 ### Why not leave this education to schools?
 
