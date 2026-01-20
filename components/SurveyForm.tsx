@@ -156,11 +156,16 @@ const NavButtons = ({
   </div>
 )
 
+interface MatrixRowWithLink {
+  text: string
+  link?: string
+}
+
 interface MatrixRadioProps {
   questionLabel: string
   questionText: string
   options: string[]
-  rows: string[]
+  rows: (string | MatrixRowWithLink)[]
   name: string
   error?: boolean
 }
@@ -204,6 +209,11 @@ const MatrixRadio = ({
     }, 0)
   }
 
+  const getRowContent = (row: string | MatrixRowWithLink) => {
+    if (typeof row === 'string') return { text: row, link: undefined }
+    return row
+  }
+
   return (
     <div
       id={name}
@@ -237,10 +247,23 @@ const MatrixRadio = ({
           </thead>
           <tbody>
             {rows.map((row, rowIdx) => {
-              const displayRow = formatSubQuestion(row, rowIdx)
+              const { text, link } = getRowContent(row)
+              const displayRow = formatSubQuestion(text, rowIdx)
               return (
                 <tr key={rowIdx} className="border-b border-gray-700 bg-gray-800">
-                  <td className="px-6 py-4 text-white">{displayRow}</td>
+                  <td className="px-6 py-4 text-white">
+                    {displayRow}
+                    {link && (
+                      <a
+                        href={link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-primary-500 hover:text-primary-400 mt-1 block text-sm hover:underline"
+                      >
+                        {link.replace(/https?:\/\//g, '')}
+                      </a>
+                    )}
+                  </td>
                   {options.map((option, optIdx) => {
                     const inputId = `${name}-${rowIdx}-${optIdx}`
                     return (
@@ -282,10 +305,23 @@ const MatrixRadio = ({
       {/* Mobile stacked layout */}
       <div className="space-y-4 md:hidden">
         {rows.map((row, rowIdx) => {
-          const displayRow = formatSubQuestion(row, rowIdx)
+          const { text, link } = getRowContent(row)
+          const displayRow = formatSubQuestion(text, rowIdx)
           return (
             <div key={rowIdx} className="rounded-lg border border-gray-700 bg-gray-800 p-4">
-              <p className="mb-3 text-base text-white">{displayRow}</p>
+              <p className="mb-3 text-base text-white">
+                {displayRow}
+                {link && (
+                  <a
+                    href={link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary-500 hover:text-primary-400 mt-1 block text-sm break-all hover:underline"
+                  >
+                    {link.replace(/https?:\/\//g, '')}
+                  </a>
+                )}
+              </p>
               <div className="grid grid-cols-5 gap-2">
                 {options.map((option, optIdx) => (
                   <label
@@ -1569,13 +1605,13 @@ export default function SurveyForm() {
                 rows={[
                   'Cyberbullying',
                   'Phone/Internet/Gaming addiction',
-                  'Organisations tracking activity (browsing behaviour, location etc.)',
+                  'Organisations tracking activity e.g. browsing behaviour, location etc.',
                   'Access to unsuitable/harmful content',
-                  'Negative mental health impact, e.g. body image, masculinity',
+                  'Negative mental health impact, e.g. body image, toxic masculinity',
                   'Online predators and grooming',
                   'Digital Footprint, e.g. all online actions stored permanently.',
                   'Recommender algorithms pushing extreme/polarising content.',
-                  'Financial risks, e.g. in-app purchases.',
+                  'Financial risks, e.g. gambling, in-app purchases.',
                   'Sexting or Image based abuse',
                   'Relationships with AI chatbots.',
                 ]}
@@ -1596,6 +1632,7 @@ export default function SurveyForm() {
                 "I am happy for my child/children's browsing data to be tracked and used to provide them with a 'personalised' experience.",
                 "I am happy for my child/children's to share their photos/videos online",
                 'I am happy for the photos/videos my child/children take to be stored in the cloud.',
+                'I am happy for my child/children to use LLMs (ChatGPT, Gemini etc.) to assist with daily tasks, e.g. homework, finding information, creating stories etc.',
               ]}
             />
 
@@ -1653,69 +1690,28 @@ export default function SurveyForm() {
                 questionText="Select how strongly you agree or disagree with the following statements."
                 options={['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree']}
                 rows={[
-                  'Mobile phones should be banned at schools - Minister for Education Norma Foley (2024) [1]',
-                  "Blanket bans for phones in schools is not in the best interest of children - Ombudsman for Children's Office (OCO) (2025) [2]",
-                  'Starting digital media and literacy education at secondary level is simply too late - CyberSafeKids Trends and Usage Report (2025) [3]',
-                  'We need to Invest more in resources for digital education - OCO Youth Advisory Panel (2025) [4]',
-                  "Parents should be the ones to introduce their children to the internet - Webwise A Parent's Guide to a Better Internet [5]",
+                  {
+                    text: 'Mobile phones should be banned at schools - Minister for Education Norma Foley',
+                    link: 'https://www.rte.ie/news/education/2024/0821/1466075-schools-mobile-phones/',
+                  },
+                  {
+                    text: "Blanket bans for phones in schools is not in the best interest of children - Ombudsman for Children's Office (OCO)",
+                    link: 'https://www.rte.ie/news/ireland/2025/0910/1532761-phone-bans-ireland/',
+                  },
+                  {
+                    text: 'Starting digital media and literacy education at secondary level is simply too late - CyberSafeKids Trends and Usage Report',
+                    link: 'https://www.cybersafekids.ie/report2025/',
+                  },
+                  {
+                    text: 'We need to Invest more in resources for digital education - OCO Youth Advisory Panel',
+                    link: 'https://www.oco.ie/app/uploads/2025/09/OCO-Smartphone-Ban-Child-Friendly-Report.pdf',
+                  },
+                  {
+                    text: "Parents should be the ones to introduce their children to the internet - Webwise A Parent's Guide to a Better Internet",
+                    link: 'https://www.webwise.ie/parents/',
+                  },
                 ]}
               />
-            </div>
-
-            <div className="mb-8 text-base text-gray-400">
-              <p className="mb-1 font-semibold">References:</p>
-              <ol className="list-decimal space-y-1 pl-5">
-                <li>
-                  <a
-                    href="https://www.rte.ie/news/education/2024/0821/1466075-schools-mobile-phones/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-primary-400 hover:underline"
-                  >
-                    RTE: Schools mobile phones (2024)
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://www.rte.ie/news/ireland/2025/0910/1532761-phone-bans-ireland/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-primary-400 hover:underline"
-                  >
-                    RTE: Phone bans Ireland (2025)
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://www.cybersafekids.ie/report2025/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-primary-400 hover:underline"
-                  >
-                    CyberSafeKids Report (2025)
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://www.oco.ie/app/uploads/2025/09/OCO-Smartphone-Ban-Child-Friendly-Report.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-primary-400 hover:underline"
-                  >
-                    OCO Smartphone Ban Child Friendly Report (2025)
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://www.webwise.ie/parents/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-primary-400 hover:underline"
-                  >
-                    Webwise: Parents Guide
-                  </a>
-                </li>
-              </ol>
             </div>
 
             {firstError === 'skills_importance' && <ErrorBanner />}
@@ -1737,7 +1733,7 @@ export default function SurveyForm() {
                 'Coding e.g. learning a programming language like Python, Javascript',
                 'How to minimise their online digital footprint, e.g. browse the internet/use apps without being tracked',
                 'How to store and backup personal photos/videos/documents independently, i.e. not with large tech companies',
-                'Cryptography, e.g. logic behind passwords & encryption',
+                'Cryptography, e.g. how to store and transmit data securely.',
               ]}
             />
 
@@ -1776,14 +1772,14 @@ export default function SurveyForm() {
               Why are these questions being asked?
             </h3>
             <p className="mb-6 text-gray-400">
-              Awareness of current trends of technology use, the risks involved, and the tools
-              available to combat these risks, are important factors in a parent's approach to their
-              child/children's online safety.
+              The answers to these questions will be used to determine whether there are patterns in
+              attitudes to cybersecurity and mobile phones depending on factors such as parental
+              gender, child age and gender, siblings already possessing a smartphone etc.
             </p>
             <h3 className="mb-2 text-lg font-semibold text-white">
               How many questions in this section?
             </h3>
-            <p className="mb-6 text-gray-400">3</p>
+            <p className="mb-6 text-gray-400">4</p>
             <div className="border-t border-gray-700 pt-8">
               <div className="mb-8 grid grid-cols-1 gap-6 md:grid-cols-2">
                 <div>
