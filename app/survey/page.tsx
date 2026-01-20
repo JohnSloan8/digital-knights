@@ -19,8 +19,8 @@ export default async function SurveyPage(props: {
     <>
       <div className="divide-y divide-gray-700">
         <PageHeader
-          title="Parents' Cybersecurity Survey 2026"
-          description="Understanding the parents' persective"
+          title="Parents' Cybersecurity Survey"
+          description="Understanding the parents' persective in 2026"
         />
         <div className="py-12">
           <div className="flex flex-col items-center justify-center space-y-4">

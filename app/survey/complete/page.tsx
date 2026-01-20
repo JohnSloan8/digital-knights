@@ -12,13 +12,13 @@ export default function SurveyCompletePage() {
           Thank you for completing the survey! Your responses have been recorded.
         </p>
 
-        <p className="mb-4 text-xl font-semibold text-white">Further information:</p>
+        <p className="mb-4 text-xl font-semibold text-white">Useful Links:</p>
 
         <ul className="list-none space-y-4 text-gray-400">
           <li>
-            Read answers to common questions about the project:{' '}
-            <Link href="/faq" className="text-primary-500 hover:text-primary-400 underline">
-              FAQ
+            Register your interest for future classes:{' '}
+            <Link href="/waitlist" className="text-primary-500 hover:text-primary-400 underline">
+              Waitlist
             </Link>
           </li>
           <li>
@@ -27,6 +27,13 @@ export default function SurveyCompletePage() {
               Curriculum
             </Link>
           </li>
+          <li>
+            Read answers to common questions about the project:{' '}
+            <Link href="/faq" className="text-primary-500 hover:text-primary-400 underline">
+              FAQ
+            </Link>
+          </li>
+
           <li>
             Learn more about the team and goals behind Digital Knights:{' '}
             <Link href="/about" className="text-primary-500 hover:text-primary-400 underline">

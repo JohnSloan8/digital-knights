@@ -956,6 +956,8 @@ const ChildrenTable = ({ validationErrors }: { validationErrors: Set<string> }) 
   )
 }
 
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
 export default function SurveyForm() {
   const router = useRouter()
   const [currentStep, setCurrentStep] = useState(1)
@@ -1028,6 +1030,12 @@ export default function SurveyForm() {
           if (!data[`child-${i}-gender`]) errors.add(`child-${i}-gender`)
         }
       }
+
+      const email = data['email'] as string
+      // If email is provided, it must be valid. If it's empty, that's allowed.
+      if (email && !emailRegex.test(email)) {
+        errors.add('email')
+      }
     }
     return errors
   }
@@ -1060,6 +1068,8 @@ export default function SurveyForm() {
         fieldOrder.push(`child-${i}-age`)
         fieldOrder.push(`child-${i}-gender`)
       }
+      // email is optional, but if entered incorrectly, it will be validated
+      fieldOrder.push('email')
     }
     return fieldOrder
   }
@@ -1916,12 +1926,19 @@ export default function SurveyForm() {
               please leave your email in the box below.
             </p>
 
-            <div className="mb-6">
-              <label htmlFor="email" className="mb-2 block text-base font-medium text-white">
-                Your Email address
+            <div
+              id="email"
+              className={`mb-6 ${validationErrors.has('email') ? 'rounded-lg border-2 border-red-500 p-4' : ''}`}
+            >
+              {firstError === 'email' && <ErrorBanner />}
+              <label
+                htmlFor="email-input"
+                className={`mb-2 block text-base font-medium ${validationErrors.has('email') ? 'text-red-500' : 'text-white'}`}
+              >
+                Your Email address (Optional)
               </label>
               <input
-                id="email"
+                id="email-input"
                 type="email"
                 defaultValue={surveyData['email'] as string}
                 onBlur={(e) => saveResponse('email', e.target.value)}

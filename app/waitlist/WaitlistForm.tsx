@@ -60,12 +60,15 @@ type ChildData = {
   gender: string
 }
 
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
 export default function WaitlistForm() {
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [email, setEmail] = useState('')
   const [location, setLocation] = useState('')
   const [children, setChildren] = useState<ChildData[]>([{ birthYear: '', gender: '' }])
   const [otherInfo, setOtherInfo] = useState('')
+  const [errors, setErrors] = useState<Set<string>>(new Set())
 
   const handleAddChild = () => {
     setChildren([...children, { birthYear: '', gender: '' }])
@@ -77,18 +80,61 @@ export default function WaitlistForm() {
     setChildren(newChildren)
   }
 
+  const validateForm = () => {
+    const newErrors = new Set<string>()
+    if (!email || !emailRegex.test(email)) {
+      newErrors.add('email')
+    }
+
+    if (!location) {
+      newErrors.add('location')
+    }
+
+    // Check if first child has details
+    if (!children[0].birthYear || !children[0].gender) {
+      newErrors.add('children-0')
+    }
+
+    setErrors(newErrors)
+
+    if (newErrors.size > 0) {
+      const firstError = Array.from(newErrors)[0]
+      const elementId = firstError === 'children-0' ? 'child-section-0' : firstError
+      const element = document.getElementById(elementId)
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      }
+      return false
+    }
+    return true
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
+    if (!validateForm()) {
+      return
+    }
+
+    const payload = {
+      email,
+      location,
+      children,
+      other_info: otherInfo,
+      created_at: new Date().toISOString(),
+    }
+    console.log('Submitting payload:', payload)
+
     try {
-      await supabase.from('waitlist').insert({
-        email,
-        child_info: JSON.stringify({ location, children, otherInfo }),
-        created_at: new Date().toISOString(),
-      })
-    } catch (error) {
+      const { error } = await supabase.from('waitlist').insert(payload)
+      if (error) throw error
+    } catch (err: unknown) {
+      const error = err as { message?: string; error_description?: string }
       console.error('Error submitting form:', error)
-      // Ideally show an error state here, but for now we proceed to success message
+      alert(
+        'Error submitting form: ' + (error.message || error.error_description || 'Unknown error')
+      )
+      return // Stop execution if there is an error
     }
 
     setIsSubmitted(true)
@@ -99,8 +145,8 @@ export default function WaitlistForm() {
       <div className="rounded-lg bg-gray-800 p-8 text-center">
         <h3 className="mb-4 text-2xl font-bold text-white">Thank You!</h3>
         <p className="text-lg text-gray-400">
-          Thank you for expressing an interest in future classes. I will get back to you by the end
-          of the week.
+          Thank you for expressing an interest in future classes. I will be in contact soon to you
+          soon.
         </p>
       </div>
     )
@@ -109,8 +155,11 @@ export default function WaitlistForm() {
   return (
     <div className="rounded-lg bg-gray-800 p-4 sm:p-8">
       <form onSubmit={handleSubmit} className="space-y-10">
-        <div>
-          <label htmlFor="email" className="mb-2 block text-base font-medium text-white">
+        <div className={`${errors.has('email') ? 'rounded-lg border-2 border-red-500 p-4' : ''}`}>
+          <label
+            htmlFor="email"
+            className={`mb-2 block text-base font-medium ${errors.has('email') ? 'text-red-500' : 'text-white'}`}
+          >
             Your Email address
           </label>
           <input
@@ -121,17 +170,25 @@ export default function WaitlistForm() {
             required
             className="focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-base text-white placeholder-gray-400"
           />
+          {errors.has('email') && (
+            <p className="mt-2 text-sm text-red-500">Please enter a valid email address.</p>
+          )}
         </div>
 
-        <div>
-          <label htmlFor="location" className="mb-2 block text-base font-medium text-white">
+        <div
+          className={`${errors.has('location') ? 'rounded-lg border-2 border-red-500 p-4' : ''}`}
+        >
+          <label
+            htmlFor="location"
+            className={`mb-2 block text-base font-medium ${errors.has('location') ? 'text-red-500' : 'text-white'}`}
+          >
             Your Location
           </label>
           <select
             id="location"
             value={location}
             onChange={(e) => setLocation(e.target.value)}
-            className="focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-base text-white placeholder-gray-400"
+            className="focus:border-primary-500 focus:ring-primary-500 block w-full cursor-pointer rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-base text-white placeholder-gray-400"
           >
             <option value="">Select Location...</option>
             {LOCATIONS.map((loc) => (
@@ -140,57 +197,76 @@ export default function WaitlistForm() {
               </option>
             ))}
           </select>
+          {errors.has('location') && (
+            <p className="mt-2 text-sm text-red-500">Please select your location.</p>
+          )}
         </div>
 
         <div className="space-y-6">
-          {children.map((child, index) => (
-            <div key={index} className="animate-in fade-in slide-in-from-top-4 duration-300">
-              <h4 className="mb-4 text-base font-medium text-white uppercase">Child {index + 1}</h4>
-              <div className="grid gap-4 sm:grid-cols-2">
-                <div>
-                  <label
-                    htmlFor={`child-birthYear-${index}`}
-                    className="mb-2 block text-sm font-medium text-gray-300"
-                  >
-                    Birth Year
-                  </label>
-                  <select
-                    id={`child-birthYear-${index}`}
-                    value={child.birthYear}
-                    onChange={(e) => handleChildChange(index, 'birthYear', e.target.value)}
-                    className="focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-base text-white placeholder-gray-400"
-                  >
-                    <option value="">Select Birth Year...</option>
-                    {Array.from({ length: 2026 - 2008 + 1 }, (_, i) => 2026 - i).map((year) => (
-                      <option key={year} value={year.toString()}>
-                        {year}
-                      </option>
-                    ))}
-                  </select>
+          {children.map((child, index) => {
+            const isError = index === 0 && errors.has('children-0')
+            return (
+              <div
+                key={index}
+                id={`child-section-${index}`}
+                className={`animate-in fade-in slide-in-from-top-4 duration-300 ${isError ? 'rounded-lg border-2 border-red-500 p-4' : ''}`}
+              >
+                <h4
+                  className={`mb-4 text-base font-medium uppercase ${isError ? 'text-red-500' : 'text-white'}`}
+                >
+                  Child {index + 1}
+                </h4>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <div>
+                    <label
+                      htmlFor={`child-birthYear-${index}`}
+                      className="mb-2 block text-sm font-medium text-gray-300"
+                    >
+                      Birth Year
+                    </label>
+                    <select
+                      id={`child-birthYear-${index}`}
+                      value={child.birthYear}
+                      onChange={(e) => handleChildChange(index, 'birthYear', e.target.value)}
+                      className="focus:border-primary-500 focus:ring-primary-500 block w-full cursor-pointer rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-base text-white placeholder-gray-400"
+                    >
+                      <option value="">Select Birth Year...</option>
+                      {Array.from({ length: 2026 - 2008 + 1 }, (_, i) => 2026 - i).map((year) => (
+                        <option key={year} value={year.toString()}>
+                          {year}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <div>
+                    <label
+                      htmlFor={`child-gender-${index}`}
+                      className="mb-2 block text-sm font-medium text-gray-300"
+                    >
+                      Gender
+                    </label>
+                    <select
+                      id={`child-gender-${index}`}
+                      value={child.gender}
+                      onChange={(e) => handleChildChange(index, 'gender', e.target.value)}
+                      className="focus:border-primary-500 focus:ring-primary-500 block w-full cursor-pointer rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-base text-white placeholder-gray-400"
+                    >
+                      <option value="">Select Gender...</option>
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+                      <option value="Other">Other</option>
+                      <option value="Prefer not to say">Prefer not to say</option>
+                    </select>
+                  </div>
                 </div>
-                <div>
-                  <label
-                    htmlFor={`child-gender-${index}`}
-                    className="mb-2 block text-sm font-medium text-gray-300"
-                  >
-                    Gender
-                  </label>
-                  <select
-                    id={`child-gender-${index}`}
-                    value={child.gender}
-                    onChange={(e) => handleChildChange(index, 'gender', e.target.value)}
-                    className="focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-base text-white placeholder-gray-400"
-                  >
-                    <option value="">Select Gender...</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    <option value="Other">Other</option>
-                    <option value="Prefer not to say">Prefer not to say</option>
-                  </select>
-                </div>
+                {isError && (
+                  <p className="mt-2 text-sm text-red-500">
+                    Please provide details for at least one child.
+                  </p>
+                )}
               </div>
-            </div>
-          ))}
+            )
+          })}
 
           <button
             type="button"

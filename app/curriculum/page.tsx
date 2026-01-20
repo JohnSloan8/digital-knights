@@ -3,7 +3,7 @@ import Image from '@/components/Image'
 import Link from '@/components/Link'
 import PageHeader from '@/components/PageHeader'
 
-export const metadata = genPageMetadata({ title: 'Syllabus' })
+export const metadata = genPageMetadata({ title: 'Curriculum' })
 
 const levels = [
   {

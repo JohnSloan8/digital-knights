@@ -25,16 +25,18 @@ export default function WaitlistPage() {
             <table className="min-w-full text-left text-sm text-gray-300">
               <thead className="bg-gray-800 text-xs font-semibold text-gray-200 uppercase">
                 <tr>
-                  <th className="px-6 py-4">Date</th>
-                  <th className="px-6 py-4">Event</th>
-                  <th className="px-6 py-4">Further Information</th>
+                  <th className="w-1 px-2 py-4 whitespace-nowrap sm:px-6">Date</th>
+                  <th className="px-2 py-4 sm:px-6">Event</th>
+                  <th className="px-2 py-4 sm:px-6">Further Information</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-700 border-t border-gray-700">
                 <tr>
-                  <td className="px-6 py-4 font-medium whitespace-nowrap text-white">May 2026</td>
-                  <td className="px-6 py-4">Details on curriculum Published</td>
-                  <td className="px-6 py-4">
+                  <td className="px-2 py-4 font-medium whitespace-nowrap text-white sm:px-6">
+                    May 2026
+                  </td>
+                  <td className="px-2 py-4 sm:px-6">Publish curriculum</td>
+                  <td className="px-2 py-4 sm:px-6">
                     High-level outline available{' '}
                     <Link href="/curriculum" className="text-primary-500 hover:text-primary-400">
                       here
@@ -47,18 +49,20 @@ export default function WaitlistPage() {
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-6 py-4 font-medium whitespace-nowrap text-white">July 2026</td>
-                  <td className="px-6 py-4">Location of academy confirmed</td>
-                  <td className="px-6 py-4">
-                    Likely Rathfarnham area, but depends on demand and available facilities
+                  <td className="px-2 py-4 font-medium whitespace-nowrap text-white sm:px-6">
+                    Jul 2026
+                  </td>
+                  <td className="px-2 py-4 sm:px-6">Confirm location of academy</td>
+                  <td className="px-2 py-4 sm:px-6">
+                    Likely D14/D16, but depends on demand and available facilities
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-6 py-4 font-medium whitespace-nowrap text-white">
-                    September 2026
+                  <td className="px-2 py-4 font-medium whitespace-nowrap text-white sm:px-6">
+                    Sep 2026
                   </td>
-                  <td className="px-6 py-4">Classes for all ages are scheduled to begin</td>
-                  <td className="px-6 py-4">
+                  <td className="px-2 py-4 sm:px-6">Begin classes</td>
+                  <td className="px-2 py-4 sm:px-6">
                     Depending on acquiring necessary approvals, insurance and resources
                   </td>
                 </tr>
