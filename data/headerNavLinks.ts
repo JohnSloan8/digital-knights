@@ -3,7 +3,8 @@ const headerNavLinks = [
   { href: '/blog', title: 'Blog' },
   { href: '/survey', title: 'Survey' },
   { href: '/faq', title: 'FAQ' },
-  { href: '/syllabus', title: 'Syllabus' },
+  { href: '/curriculum', title: 'Curriculum' },
+  { href: '/waitlist', title: 'Waitlist' },
   { href: '/about', title: 'About' },
 ]
 

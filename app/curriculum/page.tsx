@@ -111,7 +111,7 @@ export default function Syllabus() {
                 </ul>
                 <div className="mt-4">
                   <Link
-                    href={`/syllabus/${level.title.toLowerCase().replace(' ', '-')}`}
+                    href={`/curriculum/${level.title.toLowerCase().replace(' ', '-')}`}
                     className="text-primary-500 hover:text-primary-400"
                     aria-label={`Learn more about ${level.title}`}
                   >

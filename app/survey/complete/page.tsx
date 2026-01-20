@@ -23,8 +23,8 @@ export default function SurveyCompletePage() {
           </li>
           <li>
             View the proposed cybersecurity curriculum structure:{' '}
-            <Link href="/syllabus" className="text-primary-500 hover:text-primary-400 underline">
-              Syllabus
+            <Link href="/curriculum" className="text-primary-500 hover:text-primary-400 underline">
+              Curriculum
             </Link>
           </li>
           <li>

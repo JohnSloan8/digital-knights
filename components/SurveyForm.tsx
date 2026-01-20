@@ -812,10 +812,10 @@ const ChildrenTable = ({ validationErrors }: { validationErrors: Set<string> }) 
   return (
     <div className="mb-8 overflow-hidden">
       <h3 className="mb-2 text-lg font-semibold text-white">
-        Q.16 For each of your child, gender, and whether they currently possess their own
-        smartphone.
+        Q.16 For each of your children, please provide their age, gender, and whether they currently
+        possess their own smartphone.
       </h3>
-      <div className="overflow-x-auto">
+      <div className="hidden overflow-x-auto md:block">
         <table className="min-w-full text-left text-base text-gray-400">
           <thead className="bg-gray-700 text-sm text-gray-400 uppercase">
             <tr>
@@ -877,6 +877,80 @@ const ChildrenTable = ({ validationErrors }: { validationErrors: Set<string> }) 
             ))}
           </tbody>
         </table>
+      </div>
+
+      <div className="space-y-4 md:hidden">
+        {rows.map((r) => (
+          <div
+            key={r}
+            className="animate-in fade-in slide-in-from-top-4 rounded-lg border border-gray-700 bg-gray-800 p-4 duration-500 ease-out"
+          >
+            <h4 className="mb-4 text-base font-semibold text-white">Child {r}</h4>
+            <div className="space-y-4">
+              <div>
+                <label
+                  htmlFor={`child-${r}-age-mobile`}
+                  className="mb-2 block text-sm font-medium text-gray-300"
+                >
+                  Age
+                </label>
+                <select
+                  id={`child-${r}-age-mobile`}
+                  name={`child-${r}-age`}
+                  defaultValue={(surveyData[`child-${r}-age`] as string) || ''}
+                  onChange={(e) => saveResponse(`child-${r}-age`, e.target.value)}
+                  className={`focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border bg-gray-700 p-2.5 text-base text-white placeholder-gray-400 ${validationErrors.has(`child-${r}-age`) ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-600'}`}
+                >
+                  <option value="">Select...</option>
+                  {Array.from({ length: 19 }, (_, i) => i).map((age) => (
+                    <option key={age} value={age === 18 ? '18+' : age.toString()}>
+                      {age === 18 ? '18+' : age}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div>
+                <label
+                  htmlFor={`child-${r}-gender-mobile`}
+                  className="mb-2 block text-sm font-medium text-gray-300"
+                >
+                  Gender
+                </label>
+                <select
+                  id={`child-${r}-gender-mobile`}
+                  name={`child-${r}-gender`}
+                  defaultValue={(surveyData[`child-${r}-gender`] as string) || ''}
+                  onChange={(e) => saveResponse(`child-${r}-gender`, e.target.value)}
+                  className={`focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border bg-gray-700 p-2.5 text-base text-white placeholder-gray-400 ${validationErrors.has(`child-${r}-gender`) ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-600'}`}
+                >
+                  <option value="">Select...</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Other">Other</option>
+                  <option value="Prefer not to say">Prefer not to say</option>
+                </select>
+              </div>
+
+              <div className="flex items-center justify-between rounded-lg border border-gray-700 bg-gray-700/50 p-3">
+                <label
+                  htmlFor={`child-${r}-smartphone-mobile`}
+                  className="text-sm font-medium text-gray-300"
+                >
+                  Has Own Smartphone?
+                </label>
+                <input
+                  type="checkbox"
+                  id={`child-${r}-smartphone-mobile`}
+                  name={`child-${r}-smartphone`}
+                  checked={surveyData[`child-${r}-smartphone`] === true}
+                  onChange={(e) => saveResponse(`child-${r}-smartphone`, e.target.checked)}
+                  className="focus:ring-primary-600 text-primary-600 h-5 w-5 rounded border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-2"
+                />
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   )
@@ -1829,7 +1903,9 @@ export default function SurveyForm() {
           </div>
 
           {/* FINAL */}
-          <div className={`rounded-lg bg-gray-800 p-8 ${currentStep === 5 ? 'block' : 'hidden'}`}>
+          <div
+            className={`rounded-lg bg-gray-800 p-4 sm:p-8 ${currentStep === 5 ? 'block' : 'hidden'}`}
+          >
             <h3 className="mb-4 text-xl font-bold text-white">Finally</h3>
             <p className="mb-6 text-gray-400">
               Thank you for completing the survey! Your responses will be a great help in informing
@@ -1842,7 +1918,7 @@ export default function SurveyForm() {
 
             <div className="mb-6">
               <label htmlFor="email" className="mb-2 block text-base font-medium text-white">
-                Email address
+                Your Email address
               </label>
               <input
                 id="email"

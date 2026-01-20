@@ -11,7 +11,7 @@ If you are reading this page, you.
 
 ### What will they learn?
 
-Full information can be found on the [syllabus](/app/syllabus/page.tsx) page.
+Full information can be found on the [curriculum](/curriculum) page.
 
 ### Why not leave this education to schools?
 
@@ -27,7 +27,7 @@ My experience...
 
 ### Will there be education for parents?
 
-Yes. In parallel to the syllabus, there will be information sessions for parents. If parents also want to learn more, parent specific classes will be made available.
+Yes. In parallel to the curriculum, there will be information sessions for parents. If parents also want to learn more, parent specific classes will be made available.
 
 ### When is the ideal time to enroll?
 
@@ -35,7 +35,7 @@ Yes. In parallel to the syllabus, there will be information sessions for parents
 
 ### What is my child already has a smartphone?
 
-I am currently working on a seperate syllabus for those with established online behaviours and an existing digital footprint.
+I am currently working on a seperate curriculum for those with established online behaviours and an existing digital footprint.
 
 ### What if my child uses the tech skills they learn to get around my parental controls etc.?
 
