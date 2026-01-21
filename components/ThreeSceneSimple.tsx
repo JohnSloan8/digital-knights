@@ -1,7 +1,13 @@
 'use client'
 
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
-import { OrbitControls, useGLTF, useAnimations, ContactShadows } from '@react-three/drei'
+import {
+  OrbitControls,
+  useGLTF,
+  useAnimations,
+  ContactShadows,
+  useTexture,
+} from '@react-three/drei'
 import { useEffect, useMemo, useRef } from 'react'
 import * as THREE from 'three'
 import { SkeletonUtils } from 'three-stdlib'
@@ -296,12 +302,38 @@ function CyclingAnimatedCharacter({
   )
 }
 
+function SignPost({
+  position = [0, 0, 0],
+  rotation = [0, 0, 0],
+}: {
+  position?: [number, number, number]
+  rotation?: [number, number, number]
+}) {
+  const texture = useTexture('/static/animation-files/textures/gemini-wait-here-sign-min.png')
+  return (
+    <group position={position} rotation={rotation}>
+      {/* Post */}
+      <mesh position={[0, 0.625, 0]} castShadow receiveShadow>
+        <boxGeometry args={[0.075, 1.25, 0.075]} />
+        <meshStandardMaterial color="#5C4033" />
+      </mesh>
+      {/* Signboard */}
+      <mesh position={[0, 1, 0.04]} castShadow receiveShadow>
+        <boxGeometry args={[0.65, 0.65, 0.05]} />
+        <meshStandardMaterial map={texture} />
+      </mesh>
+    </group>
+  )
+}
+
 export default function ThreeSceneSimple({ className }: { className?: string }) {
   return (
     <div className={className || 'relative h-[500px] w-full'}>
-      <Canvas shadows gl={{ alpha: true }} camera={{ position: [-5, 2, 4], fov: 40 }}>
+      <Canvas shadows gl={{ alpha: true }} camera={{ position: [-6, 2, 3], fov: 40 }}>
         <ambientLight intensity={1.5} />
         <directionalLight position={[3, 5, 5]} castShadow intensity={5} />
+
+        <SignPost position={[1, 0, 1.75]} rotation={[0, -Math.PI / 2, 0]} />
 
         <AnimatedCharacter
           modelPath="/static/animation-files/knights-no-weapons/Male.B.happy-idle.glb"
@@ -326,7 +358,7 @@ export default function ThreeSceneSimple({ className }: { className?: string }) 
         />
         <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]} receiveShadow>
           <planeGeometry args={[10, 10]} />
-          <meshStandardMaterial color="#141a1e" />
+          <shadowMaterial transparent opacity={0.7} />
         </mesh>
         <ContactShadows
           resolution={512}
@@ -336,7 +368,7 @@ export default function ThreeSceneSimple({ className }: { className?: string }) 
           far={10}
           color="#000000"
         />
-        <OrbitControls target={[0, 0.1, 0]} />
+        <OrbitControls target={[0, 1.1, 0]} />
       </Canvas>
     </div>
   )
