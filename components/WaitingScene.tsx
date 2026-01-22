@@ -7,8 +7,9 @@ import {
   useAnimations,
   ContactShadows,
   useTexture,
+  useProgress,
 } from '@react-three/drei'
-import { useEffect, useMemo, useRef } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import * as THREE from 'three'
 import { SkeletonUtils } from 'three-stdlib'
 
@@ -326,7 +327,37 @@ function SignPost({
   )
 }
 
-export default function ThreeSceneSimple({ className }: { className?: string }) {
+function LoadingScreen() {
+  const { progress } = useProgress()
+  const [finished, setFinished] = useState(false)
+
+  useEffect(() => {
+    if (progress === 100) {
+      const timer = setTimeout(() => setFinished(true), 500)
+      return () => clearTimeout(timer)
+    }
+  }, [progress])
+
+  return (
+    <div
+      className={`pointer-events-none absolute inset-0 z-50 flex items-center justify-center bg-black transition-opacity duration-1000 ${
+        finished ? 'opacity-0' : 'opacity-100'
+      }`}
+    >
+      <div className="relative z-60 flex flex-col items-center gap-4">
+        <div className="font-mono text-xl text-[#00f0ff]">LOADING...</div>
+        <div className="h-8 w-64 border-4 border-[#00f0ff] p-1">
+          <div
+            className="h-full bg-[#00f0ff] transition-all duration-200"
+            style={{ width: `${progress}%` }}
+          />
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default function WaitingScene({ className }: { className?: string }) {
   return (
     <div className={className || 'relative h-[500px] w-full'}>
       <Canvas shadows gl={{ alpha: true }} camera={{ position: [-6, 2, 3], fov: 40 }}>
@@ -370,6 +401,7 @@ export default function ThreeSceneSimple({ className }: { className?: string }) 
         />
         <OrbitControls target={[0, 1.1, 0]} />
       </Canvas>
+      <LoadingScreen />
     </div>
   )
 }
