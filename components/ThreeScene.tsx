@@ -623,8 +623,8 @@ function Knight({
 function Floor() {
   const texture = useTexture('/static/images/circuit-background-path-lines.webp')
   return (
-    <mesh rotation={[-0.125 + -Math.PI / 2, 0, -0.85]} position={[2.4, 0, 0]} receiveShadow>
-      <planeGeometry args={[36, 12]} />
+    <mesh rotation={[-Math.PI / 2, 0, -0.375]} position={[3.5, 0, 2]} receiveShadow>
+      <planeGeometry args={[50, 8]} />
       <meshStandardMaterial map={texture} transparent />
     </mesh>
   )
@@ -651,7 +651,7 @@ function LoadingScreen() {
 
   return (
     <div
-      className={`pointer-events-none absolute inset-0 z-50 flex items-center justify-center ${
+      className={`pointer-events-none absolute inset-0 z-50 flex items-center justify-center overflow-hidden ${
         finished ? 'bg-transparent' : 'bg-black'
       }`}
     >
@@ -730,7 +730,7 @@ export default function ThreeScene({ className }: { className?: string }) {
 
   return (
     <div className={className || 'relative h-[500px] w-full'}>
-      <div className="absolute top-0 left-0 -z-10 w-screen">
+      <div className="absolute top-0 left-0 -z-10 w-full">
         <Image
           src="/static/images/mountains-background.webp"
           alt="Background"
@@ -793,8 +793,9 @@ export default function ThreeScene({ className }: { className?: string }) {
         {/* <OrbitControls target={[0, 1, 0]} /> */}
       </Canvas>
       <div
+        id="logo-text"
         className="absolute bottom-0 left-0 z-40 w-full pt-32 pb-4 text-center"
-        style={{ background: 'linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0))' }}
+        style={{ background: 'linear-gradient(to top, rgba(20, 26, 30, 1), rgba(20, 26, 30, 0))' }}
       >
         <div className="flex justify-center pb-4">
           <Image
@@ -811,14 +812,33 @@ export default function ThreeScene({ className }: { className?: string }) {
             <path d="M0 6 H15 M15 1 V11 M15 6 H60" stroke="currentColor" strokeWidth="2" />
           </svg>
           <p className="text-lg leading-7 font-medium text-gray-300 md:text-2xl">
-            Cybersecurity for kids, teens and parents
+            Cybersecurity for kids and parents
           </p>
           <svg width="60" height="12" viewBox="0 0 60 12" className="rotate-180 text-gray-400">
             <path d="M0 6 H45 M45 1 V11 M45 6 H60" stroke="currentColor" strokeWidth="2" />
           </svg>
         </div>
+        <button
+          onClick={() => window.scrollBy({ top: window.innerHeight, behavior: 'smooth' })}
+          className="mx-auto mt-4 block cursor-pointer p-2 text-gray-400 transition-colors hover:text-white"
+          aria-label="Scroll down"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+        </button>
       </div>
-      <div className="absolute bottom-60 left-1/2 z-41 flex -translate-x-1/2 transform flex-col items-center justify-center">
+      <div className="absolute bottom-70 left-1/2 z-41 flex -translate-x-1/2 transform flex-col items-center justify-center">
         {showThreatText && !buttonVisible && (
           <div className="absolute top-1/2 left-1/2 w-max -translate-x-1/2 -translate-y-1/2">
             <div
