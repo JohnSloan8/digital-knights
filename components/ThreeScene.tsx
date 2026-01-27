@@ -623,8 +623,8 @@ function Knight({
 function Floor() {
   const texture = useTexture('/static/images/circuit-background-path-lines.webp')
   return (
-    <mesh rotation={[-Math.PI / 2, 0, -0.4]} position={[1.4, 0, 0]} receiveShadow>
-      <planeGeometry args={[25, 8]} />
+    <mesh rotation={[-0.125 + -Math.PI / 2, 0, -0.85]} position={[2.4, 0, 0]} receiveShadow>
+      <planeGeometry args={[36, 12]} />
       <meshStandardMaterial map={texture} transparent />
     </mesh>
   )
@@ -633,7 +633,7 @@ function Floor() {
 function CameraHandler() {
   const { camera } = useThree()
   useEffect(() => {
-    camera.lookAt(0, 0.67, 0)
+    camera.lookAt(0, 0.3, 0)
   }, [camera])
   return null
 }
@@ -736,7 +736,7 @@ export default function ThreeScene({ className }: { className?: string }) {
           alt="Background"
           width={1920}
           height={1080}
-          className="h-113 w-full object-cover"
+          className="h-94 w-full object-cover"
           priority
         />
       </div>
