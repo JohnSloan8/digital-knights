@@ -35,7 +35,15 @@ function ThankfulCharacter({
     leftArm?: THREE.Bone
   }>({})
 
+  // State machine for speed control
+  // phases: 'normal' -> 'rampDown' -> 'paused' -> 'rampUp' -> 'finishedMiddle'
+  const animState = useRef({
+    phase: 'normal',
+    timer: 0,
+  })
+
   useEffect(() => {
+    let timeout: NodeJS.Timeout
     // Play the first animation found, if any
     if (animations.length > 0) {
       const firstAnim = animations[0]
@@ -45,9 +53,22 @@ function ThankfulCharacter({
         action.reset().fadeIn(0.5).setLoop(THREE.LoopOnce, 1)
         action.clampWhenFinished = true
         action.play()
+
+        const onFinished = (e: { action: THREE.AnimationAction }) => {
+          if (e.action === action) {
+            timeout = setTimeout(() => {
+              action.reset().play()
+            }, 5000)
+          }
+        }
+        mixer.addEventListener('finished', onFinished)
+        return () => {
+          mixer.removeEventListener('finished', onFinished)
+          clearTimeout(timeout)
+        }
       }
     }
-  }, [actions, animations])
+  }, [actions, animations, mixer])
 
   useEffect(() => {
     clone.traverse((child) => {
@@ -65,7 +86,7 @@ function ThankfulCharacter({
     })
   }, [clone])
 
-  useFrame(() => {
+  useFrame((state, delta) => {
     if (armRotationX !== undefined) {
       const rad = THREE.MathUtils.degToRad(armRotationX)
       if (bones.current.rightArm) {
@@ -82,32 +103,58 @@ function ThankfulCharacter({
       const action = actions[firstAnim.name]
       if (action) {
         const d = action.getClip().duration
-        const t = action.time % d
+        const t = action.time
 
-        // 1. Middle Slowdown Profile (Middle 0.5s + 0.25s ramps)
-        let midSpeed = 1.0
-        const mid = d / 2
-        const midSlowStart = mid - 0.25
-        const midSlowEnd = mid + 0.25
-        const midRampDownStart = mid - 0.5
-        const midRampUpEnd = mid + 0.5
-
-        if (t >= midRampDownStart && t < midRampUpEnd) {
-          if (t < midSlowStart) {
-            // Ramp Down 1.0 -> 0.0
-            const p = (t - midRampDownStart) / (midSlowStart - midRampDownStart)
-            midSpeed = 1.0 - 1.0 * p
-          } else if (t < midSlowEnd) {
-            // Hold 0.0
-            midSpeed = 0.0
-          } else {
-            // Ramp Up 0.0 -> 1.0
-            const p = (t - midSlowEnd) / (midRampUpEnd - midSlowEnd)
-            midSpeed = 0.0 + 1.0 * p
-          }
+        // Reset logic if we loop back
+        if (t < 0.2 && animState.current.phase === 'finishedMiddle') {
+          animState.current.phase = 'normal'
+          animState.current.timer = 0
         }
 
-        action.setEffectiveTimeScale(midSpeed)
+        const mid = d / 2
+        // Start ramping down slightly before middle
+        const rampDownPoint = mid - 0.25
+
+        if (animState.current.phase === 'normal') {
+          action.setEffectiveTimeScale(1.0)
+          if (t >= rampDownPoint) {
+            animState.current.phase = 'rampDown'
+            animState.current.timer = 0
+          }
+        } else if (animState.current.phase === 'rampDown') {
+          animState.current.timer += delta
+          // Ramp 1.0 -> 0.0 over 0.25s
+          const duration = 0.25
+          const p = Math.min(animState.current.timer / duration, 1.0)
+          action.setEffectiveTimeScale(1.0 - p)
+
+          if (animState.current.timer >= duration) {
+            action.setEffectiveTimeScale(0.0)
+            animState.current.phase = 'paused'
+            animState.current.timer = 0
+          }
+        } else if (animState.current.phase === 'paused') {
+          action.setEffectiveTimeScale(0.0)
+          animState.current.timer += delta
+          // Pause for 0.5s
+          if (animState.current.timer >= 0.5) {
+            animState.current.phase = 'rampUp'
+            animState.current.timer = 0
+          }
+        } else if (animState.current.phase === 'rampUp') {
+          animState.current.timer += delta
+          // Ramp 0.0 -> 1.0 over 0.25s
+          const duration = 0.25
+          const p = Math.min(animState.current.timer / duration, 1.0)
+          action.setEffectiveTimeScale(p)
+
+          if (animState.current.timer >= duration) {
+            action.setEffectiveTimeScale(1.0)
+            animState.current.phase = 'finishedMiddle'
+          }
+        } else if (animState.current.phase === 'finishedMiddle') {
+          action.setEffectiveTimeScale(1.0)
+        }
       }
     }
   })
