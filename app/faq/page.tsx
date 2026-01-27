@@ -4,6 +4,7 @@ import { MDXLayoutRenderer } from 'pliny/mdx-components'
 import { genPageMetadata } from 'app/seo'
 import PageHeader from '@/components/PageHeader'
 import FaqSubmissionForm from '@/components/FaqSubmissionForm'
+import QuestionScene from '@/components/QuestionScene'
 
 export const metadata = genPageMetadata({ title: 'FAQ' })
 
@@ -24,6 +25,7 @@ export default function FaqPage() {
       <PageHeader title={faq.title} description={faq.summary} />
       <div className="py-12">
         <div className="max-w-none">
+          <QuestionScene className="relative mb-8 h-[300px] w-full md:float-right md:mb-4 md:ml-8 md:h-[500px] md:w-1/2" />
           <MDXLayoutRenderer code={faq.body.code} components={components} />
         </div>
         <FaqSubmissionForm />

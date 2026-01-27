@@ -1,6 +1,6 @@
 'use client'
 
-import { Canvas, useFrame } from '@react-three/fiber'
+import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import {
   OrbitControls,
   useGLTF,
@@ -42,7 +42,9 @@ function ThankfulCharacter({
       const action = actions[firstAnim.name]
       if (action) {
         // Ensure it loops
-        action.reset().fadeIn(0.5).setLoop(THREE.LoopRepeat, Infinity).play()
+        action.reset().fadeIn(0.5).setLoop(THREE.LoopOnce, 1)
+        action.clampWhenFinished = true
+        action.play()
       }
     }
   }, [actions, animations])
@@ -71,6 +73,41 @@ function ThankfulCharacter({
       }
       if (bones.current.leftArm) {
         bones.current.leftArm.rotation.x = rad
+      }
+    }
+
+    // Speed modulation
+    if (animations.length > 0) {
+      const firstAnim = animations[0]
+      const action = actions[firstAnim.name]
+      if (action) {
+        const d = action.getClip().duration
+        const t = action.time % d
+
+        // 1. Middle Slowdown Profile (Middle 0.5s + 0.25s ramps)
+        let midSpeed = 1.0
+        const mid = d / 2
+        const midSlowStart = mid - 0.25
+        const midSlowEnd = mid + 0.25
+        const midRampDownStart = mid - 0.5
+        const midRampUpEnd = mid + 0.5
+
+        if (t >= midRampDownStart && t < midRampUpEnd) {
+          if (t < midSlowStart) {
+            // Ramp Down 1.0 -> 0.0
+            const p = (t - midRampDownStart) / (midSlowStart - midRampDownStart)
+            midSpeed = 1.0 - 1.0 * p
+          } else if (t < midSlowEnd) {
+            // Hold 0.0
+            midSpeed = 0.0
+          } else {
+            // Ramp Up 0.0 -> 1.0
+            const p = (t - midSlowEnd) / (midRampUpEnd - midSlowEnd)
+            midSpeed = 0.0 + 1.0 * p
+          }
+        }
+
+        action.setEffectiveTimeScale(midSpeed)
       }
     }
   })
@@ -110,12 +147,20 @@ function LoadingScreen() {
   )
 }
 
+function CameraHandler() {
+  const { camera } = useThree()
+  useEffect(() => {
+    camera.lookAt(0, 1, 0)
+  }, [camera])
+  return null
+}
+
 export default function QuestionScene({ className }: { className?: string }) {
   return (
     <div className={className || 'relative h-[500px] w-full'}>
-      <Canvas shadows gl={{ alpha: true }} camera={{ position: [0, 1.5, 3.5], fov: 40 }}>
+      <Canvas shadows gl={{ alpha: true }} camera={{ position: [0, 1.5, 3], fov: 41 }}>
         <ambientLight intensity={1.5} />
-        <directionalLight position={[3, 5, 5]} castShadow intensity={5} />
+        <directionalLight position={[1, 5, 4]} castShadow intensity={5} />
 
         <ThankfulCharacter
           modelPath="/static/animation-files/knights-no-weapons/Female.A.hand-raising.glb"
@@ -135,9 +180,10 @@ export default function QuestionScene({ className }: { className?: string }) {
           far={10}
           color="#000000"
         />
-        <OrbitControls target={[0, 1, 0]} />
+        <CameraHandler />
+        {/* <OrbitControls target={[0, 1, 0]} /> */}
       </Canvas>
-      <LoadingScreen />
+      {/* <LoadingScreen /> */}
     </div>
   )
 }
