@@ -1,6 +1,6 @@
 'use client'
 
-import { Canvas, useFrame } from '@react-three/fiber'
+import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import {
   OrbitControls,
   useGLTF,
@@ -43,7 +43,8 @@ function ThankfulCharacter({
       const action = actions[firstAnim.name]
       if (action) {
         // Ensure it loops
-        action.reset().fadeIn(0.5).setLoop(THREE.LoopRepeat, Infinity).play()
+        // action.reset().fadeIn(0.5).setLoop(THREE.LoopRepeat, Infinity).play()
+        action.reset().setLoop(THREE.LoopRepeat, Infinity).play()
       }
     }
   }, [actions, animations])
@@ -140,21 +141,19 @@ function LoadingScreen() {
 
   return (
     <div
-      className={`pointer-events-none absolute inset-0 z-50 flex items-center justify-center bg-black transition-opacity duration-1000 ${
+      className={`bg-background pointer-events-none absolute inset-0 z-50 transition-opacity duration-1000 ${
         finished ? 'opacity-0' : 'opacity-100'
       }`}
-    >
-      <div className="relative z-60 flex flex-col items-center gap-4">
-        <div className="font-mono text-xl text-[#00f0ff]">LOADING...</div>
-        <div className="h-8 w-64 border-4 border-[#00f0ff] p-1">
-          <div
-            className="h-full bg-[#00f0ff] transition-all duration-200"
-            style={{ width: `${progress}%` }}
-          />
-        </div>
-      </div>
-    </div>
+    />
   )
+}
+
+function CameraHandler() {
+  const { camera } = useThree()
+  useEffect(() => {
+    camera.lookAt(0, 0.6, 0.4)
+  }, [camera])
+  return null
 }
 
 export default function SurveyScene({ className }: { className?: string }) {
@@ -184,7 +183,8 @@ export default function SurveyScene({ className }: { className?: string }) {
           far={10}
           color="#000000"
         />
-        <OrbitControls target={[0, 0.6, 0.4]} />
+        <CameraHandler />
+        {/* <OrbitControls target={[0, 0.6, 0.4]} /> */}
       </Canvas>
       <LoadingScreen />
     </div>

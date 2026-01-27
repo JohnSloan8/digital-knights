@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { supabase } from '@/utils/supabase/client'
 
 const DUBLIN_POSTCODES = [
@@ -64,11 +64,22 @@ const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 export default function WaitlistForm() {
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [showThankYou, setShowThankYou] = useState(false)
   const [email, setEmail] = useState('')
+  const [phone, setPhone] = useState('')
   const [location, setLocation] = useState('')
   const [children, setChildren] = useState<ChildData[]>([{ birthYear: '', gender: '' }])
   const [otherInfo, setOtherInfo] = useState('')
   const [errors, setErrors] = useState<Set<string>>(new Set())
+
+  useEffect(() => {
+    if (isSubmitted) {
+      const timer = setTimeout(() => {
+        setShowThankYou(true)
+      }, 4000)
+      return () => clearTimeout(timer)
+    }
+  }, [isSubmitted])
 
   const handleAddChild = () => {
     setChildren([...children, { birthYear: '', gender: '' }])
@@ -84,6 +95,14 @@ export default function WaitlistForm() {
     const newErrors = new Set<string>()
     if (!email || !emailRegex.test(email)) {
       newErrors.add('email')
+    }
+
+    if (phone) {
+      // Check if phone starts with optional + and has at least 10 digits
+      // This regex allows optional + at start, then requires at least 10 digits
+      if (!/^\+?[0-9]{10,}$/.test(phone.replace(/[\s-]/g, ''))) {
+        newErrors.add('phone')
+      }
     }
 
     if (!location) {
@@ -118,6 +137,7 @@ export default function WaitlistForm() {
 
     const payload = {
       email,
+      phone,
       location,
       children,
       other_info: otherInfo,
@@ -137,23 +157,54 @@ export default function WaitlistForm() {
       return // Stop execution if there is an error
     }
 
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new Event('addToWaitlist'))
+    }
+
     setIsSubmitted(true)
   }
 
   if (isSubmitted) {
     return (
-      <div className="rounded-lg bg-gray-800 p-8 text-center">
-        <h3 className="mb-4 text-2xl font-bold text-white">Thank You!</h3>
-        <p className="text-lg text-gray-400">
-          Thank you for expressing an interest in future classes. I will be in contact soon to you
-          soon.
-        </p>
+      <div className="relative flex min-h-[200px] items-center justify-center text-center">
+        <div
+          className={`absolute transition-opacity duration-1000 ${
+            showThankYou ? 'opacity-0' : 'opacity-100'
+          }`}
+        >
+          <h3 className="flex items-baseline justify-center text-2xl font-bold text-white">
+            Adding to waitlist
+            <span className="ml-2 animate-pulse text-4xl" style={{ animationDelay: '0ms' }}>
+              .
+            </span>
+            <span className="ml-2 animate-pulse text-4xl" style={{ animationDelay: '200ms' }}>
+              .
+            </span>
+            <span className="ml-2 animate-pulse text-4xl" style={{ animationDelay: '400ms' }}>
+              .
+            </span>
+          </h3>
+        </div>
+
+        <div
+          className={`transition-opacity duration-1000 ${
+            showThankYou ? 'opacity-100 delay-1000' : 'opacity-0'
+          }`}
+        >
+          <h3 className="mb-4 text-2xl font-bold text-white">Successfully added to waitlist!</h3>
+          <p className="text-lg text-gray-400">
+            Thank you for expressing an interest in future classes. I will be in contact soon.
+          </p>
+        </div>
       </div>
     )
   }
 
   return (
     <div className="rounded-lg bg-gray-800 p-4 sm:p-8">
+      <h2 className="mt-0 mb-6 text-center text-2xl leading-8 font-bold tracking-tight text-gray-100">
+        Waitlist Application Form
+      </h2>
       <form onSubmit={handleSubmit} className="space-y-10">
         <div className={`${errors.has('email') ? 'rounded-lg border-2 border-red-500 p-4' : ''}`}>
           <label
@@ -172,6 +223,28 @@ export default function WaitlistForm() {
           />
           {errors.has('email') && (
             <p className="mt-2 text-sm text-red-500">Please enter a valid email address.</p>
+          )}
+        </div>
+
+        <div className={`${errors.has('phone') ? 'rounded-lg border-2 border-red-500 p-4' : ''}`}>
+          <label
+            htmlFor="phone"
+            className={`mb-2 block text-base font-medium ${errors.has('phone') ? 'text-red-500' : 'text-white'}`}
+          >
+            Phone Number{' '}
+            <span className={`text-sm ${errors.has('phone') ? 'text-red-500' : 'text-gray-400'}`}>
+              (Optional)
+            </span>
+          </label>
+          <input
+            id="phone"
+            type="tel"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+            className="focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-base text-white placeholder-gray-400"
+          />
+          {errors.has('phone') && (
+            <p className="mt-2 text-sm text-red-500">Please enter a valid phone number.</p>
           )}
         </div>
 

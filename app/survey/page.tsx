@@ -3,6 +3,7 @@ import siteMetadata from '@/data/siteMetadata'
 import { genPageMetadata } from 'app/seo'
 import PageHeader from '@/components/PageHeader'
 import { redirect } from 'next/navigation'
+import SurveyScene from '@/components/SurveyScene'
 
 export const metadata = genPageMetadata({ title: "Parents' Cybersecurity Survey 2026" })
 
@@ -25,6 +26,7 @@ export default async function SurveyPage(props: {
         <div className="py-12">
           <div className="flex flex-col items-center justify-center space-y-4">
             <div className="prose prose-invert max-w-none pb-8">
+              <SurveyScene className="relative mb-8 h-[300px] w-full md:float-left md:mr-8 md:mb-4 md:h-[500px] md:w-1/2" />
               <h3>What is the purpose of this survey?</h3>
               <p>
                 To inform the development of an independent tech and cybersecurity curriculum for

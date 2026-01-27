@@ -1,6 +1,6 @@
 'use client'
 
-import { Canvas, useFrame } from '@react-three/fiber'
+import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import {
   OrbitControls,
   useGLTF,
@@ -93,36 +93,32 @@ function LoadingScreen() {
 
   return (
     <div
-      className={`pointer-events-none absolute inset-0 z-50 flex items-center justify-center bg-black transition-opacity duration-1000 ${
+      className={`bg-background pointer-events-none absolute inset-0 z-50 transition-opacity duration-1000 ${
         finished ? 'opacity-0' : 'opacity-100'
       }`}
-    >
-      <div className="relative z-60 flex flex-col items-center gap-4">
-        <div className="font-mono text-xl text-[#00f0ff]">LOADING...</div>
-        <div className="h-8 w-64 border-4 border-[#00f0ff] p-1">
-          <div
-            className="h-full bg-[#00f0ff] transition-all duration-200"
-            style={{ width: `${progress}%` }}
-          />
-        </div>
-      </div>
-    </div>
+    />
   )
+}
+
+function CameraHandler() {
+  const { camera } = useThree()
+  useEffect(() => {
+    camera.lookAt(0, 0.875, 0)
+  }, [camera])
+  return null
 }
 
 export default function ThanksScene({ className }: { className?: string }) {
   return (
     <div className={className || 'relative h-[500px] w-full'}>
-      <Canvas shadows gl={{ alpha: true }} camera={{ position: [0, 1.5, 3.5], fov: 40 }}>
+      <Canvas shadows gl={{ alpha: true }} camera={{ position: [0, 1.75, 2.4], fov: 40 }}>
         <ambientLight intensity={1.5} />
         <directionalLight position={[3, 5, 5]} castShadow intensity={5} />
-
         <ThankfulCharacter
           modelPath="/static/animation-files/knights-no-weapons/Female.C.quick-formal-bow.glb"
           position={[0, 0, 0]}
           armRotationX={40}
         />
-
         <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]} receiveShadow>
           <planeGeometry args={[10, 10]} />
           <shadowMaterial transparent opacity={0.7} />
@@ -134,8 +130,8 @@ export default function ThanksScene({ className }: { className?: string }) {
           opacity={0.5}
           far={10}
           color="#000000"
-        />
-        <OrbitControls target={[0, 1, 0]} />
+        />{' '}
+        <CameraHandler /> {/* <OrbitControls target={[0, 1, 0]} /> */}
       </Canvas>
       <LoadingScreen />
     </div>

@@ -50,7 +50,7 @@ function ThankfulCharacter({
       const action = actions[firstAnim.name]
       if (action) {
         // Ensure it loops
-        action.reset().fadeIn(0.5).setLoop(THREE.LoopOnce, 1)
+        action.reset().setLoop(THREE.LoopOnce, 1)
         action.clampWhenFinished = true
         action.play()
 
@@ -177,20 +177,10 @@ function LoadingScreen() {
 
   return (
     <div
-      className={`pointer-events-none absolute inset-0 z-50 flex items-center justify-center bg-black transition-opacity duration-1000 ${
+      className={`bg-background pointer-events-none absolute inset-0 z-50 transition-opacity duration-1000 ${
         finished ? 'opacity-0' : 'opacity-100'
       }`}
-    >
-      <div className="relative z-60 flex flex-col items-center gap-4">
-        <div className="font-mono text-xl text-[#00f0ff]">LOADING...</div>
-        <div className="h-8 w-64 border-4 border-[#00f0ff] p-1">
-          <div
-            className="h-full bg-[#00f0ff] transition-all duration-200"
-            style={{ width: `${progress}%` }}
-          />
-        </div>
-      </div>
-    </div>
+    />
   )
 }
 
@@ -234,3 +224,4 @@ export default function QuestionScene({ className }: { className?: string }) {
     </div>
   )
 }
+;<LoadingScreen />

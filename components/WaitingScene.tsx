@@ -109,6 +109,9 @@ function SequencedAnimatedCharacter({
     duration: 0,
   })
 
+  // Start invisible
+  const [isVisible, setIsVisible] = useState(false)
+
   useEffect(() => {
     if (animations.length >= 4) {
       // Explicitly find animations by name (sequence: Run -> Fist Pump -> Look Behind -> IdleWait02)
@@ -126,14 +129,17 @@ function SequencedAnimatedCharacter({
       const idleWait = actions[idleWaitClip.name]
 
       if (run && fistPump && lookBehind && idleWait) {
-        // 1. Run (5 times)
-        run.reset().fadeIn(0.1).setLoop(THREE.LoopRepeat, 5).play()
-        run.clampWhenFinished = true
+        const startSequence = () => {
+          setIsVisible(true)
+          // 1. Run (5 times)
+          run.reset().fadeIn(0.1).setLoop(THREE.LoopRepeat, 5).play()
+          run.clampWhenFinished = true
 
-        // Start movement
-        runState.current.startTime = clock.elapsedTime
-        runState.current.duration = runClip.duration * 5
-        if (ref.current) ref.current.position.z = -20
+          // Start movement
+          runState.current.startTime = clock.elapsedTime
+          runState.current.duration = runClip.duration * 5
+          if (ref.current) ref.current.position.z = -20
+        }
 
         const onFinished = (e: { action: THREE.AnimationAction }) => {
           if (e.action === run) {
@@ -164,7 +170,16 @@ function SequencedAnimatedCharacter({
         }
 
         mixer.addEventListener('finished', onFinished)
-        return () => mixer.removeEventListener('finished', onFinished)
+
+        const handleEvent = () => startSequence()
+        window.addEventListener('addToWaitlist', handleEvent)
+        ;(window as unknown as { addToWaitlist: () => void }).addToWaitlist = () =>
+          window.dispatchEvent(new Event('addToWaitlist'))
+
+        return () => {
+          mixer.removeEventListener('finished', onFinished)
+          window.removeEventListener('addToWaitlist', handleEvent)
+        }
       }
     }
   }, [actions, animations, mixer, clock])
@@ -218,7 +233,14 @@ function SequencedAnimatedCharacter({
   })
 
   return (
-    <primitive object={clone} ref={ref} position={position} rotation={rotation} scale={[1, 1, 1]} />
+    <primitive
+      object={clone}
+      ref={ref}
+      position={position}
+      rotation={rotation}
+      scale={[1, 1, 1]}
+      visible={isVisible}
+    />
   )
 }
 
@@ -340,27 +362,26 @@ function LoadingScreen() {
 
   return (
     <div
-      className={`pointer-events-none absolute inset-0 z-50 flex items-center justify-center bg-black transition-opacity duration-1000 ${
+      className={`bg-background pointer-events-none absolute inset-0 z-50 transition-opacity duration-1000 ${
         finished ? 'opacity-0' : 'opacity-100'
       }`}
-    >
-      <div className="relative z-60 flex flex-col items-center gap-4">
-        <div className="font-mono text-xl text-[#00f0ff]">LOADING...</div>
-        <div className="h-8 w-64 border-4 border-[#00f0ff] p-1">
-          <div
-            className="h-full bg-[#00f0ff] transition-all duration-200"
-            style={{ width: `${progress}%` }}
-          />
-        </div>
-      </div>
-    </div>
+    />
   )
+}
+
+function CameraHandler() {
+  const { camera } = useThree()
+  useEffect(() => {
+    camera.lookAt(0, 1, -0.5)
+  }, [camera])
+  return null
 }
 
 export default function WaitingScene({ className }: { className?: string }) {
   return (
     <div className={className || 'relative h-[500px] w-full'}>
-      <Canvas shadows gl={{ alpha: true }} camera={{ position: [-6, 2, 3], fov: 40 }}>
+      <Canvas shadows gl={{ alpha: true }} camera={{ position: [-4.5, 2, 0.5], fov: 40 }}>
+        <CameraHandler />
         <ambientLight intensity={1.5} />
         <directionalLight position={[3, 5, 5]} castShadow intensity={5} />
 
@@ -399,7 +420,7 @@ export default function WaitingScene({ className }: { className?: string }) {
           far={10}
           color="#000000"
         />
-        <OrbitControls target={[0, 1.1, 0]} />
+        {/* <OrbitControls target={[0, 1.1, 0]} /> */}
       </Canvas>
       <LoadingScreen />
     </div>
