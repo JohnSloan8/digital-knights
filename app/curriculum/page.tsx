@@ -17,6 +17,10 @@ const levels = [
       'Digital Safety Awareness',
     ],
     imgSrc: '/static/images/levels-cartoons/page.png',
+    cardBg: 'bg-yellow-950/30',
+    cardBorder: 'border-yellow-500/50',
+    borderColor: 'border-yellow-500',
+    dotColor: 'bg-yellow-500',
   },
   {
     title: 'Squire',
@@ -29,6 +33,10 @@ const levels = [
       'Internet Etiquette',
     ],
     imgSrc: '/static/images/levels-cartoons/squire.png',
+    cardBg: 'bg-emerald-950/30',
+    cardBorder: 'border-emerald-500/50',
+    borderColor: 'border-emerald-500',
+    dotColor: 'bg-emerald-500',
   },
   {
     title: 'Knight 1',
@@ -41,6 +49,10 @@ const levels = [
       'Basic Computer Architecture',
     ],
     imgSrc: '/static/images/levels-cartoons/knight-01.png',
+    cardBg: 'bg-blue-950/30',
+    cardBorder: 'border-blue-500/50',
+    borderColor: 'border-blue-500',
+    dotColor: 'bg-blue-500',
   },
   {
     title: 'Knight 2',
@@ -53,6 +65,10 @@ const levels = [
       'Ethical Hacking Concepts',
     ],
     imgSrc: '/static/images/levels-cartoons/knight-02.png',
+    cardBg: 'bg-slate-300/10',
+    cardBorder: 'border-slate-300/50',
+    borderColor: 'border-slate-300',
+    dotColor: 'bg-slate-300',
   },
   {
     title: 'Knight 3',
@@ -65,62 +81,104 @@ const levels = [
       'Security Policy & Ethics',
     ],
     imgSrc: '/static/images/levels-cartoons/knight-03.png',
+    cardBg: 'bg-yellow-600/10',
+    cardBorder: 'border-yellow-400/50',
+    borderColor: 'border-yellow-400',
+    dotColor: 'bg-yellow-400',
   },
 ]
 
-export default function Syllabus() {
+export default function Curriculum() {
   return (
     <>
       <div className="divide-y divide-gray-700">
         <PageHeader
-          title="Syllabus"
+          title="Curriculum"
           description="Our curriculum is designed to take students on a journey from beginners to digital guardians. Students will be taught in 5 levels, beginning with a gentle and fun introduction to computational thinking, building up knowledge, technical and cyber security skills."
         />
-        <div className="space-y-24 py-12">
-          {levels.map((level, index) => (
-            <div
-              key={level.title}
-              className={`flex flex-col gap-8 ${
-                index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-              } items-center`}
-            >
-              <div
-                className={`flex w-full justify-center md:w-auto ${index % 2 === 0 ? 'md:justify-start' : 'md:justify-end'}`}
-              >
-                <div className="relative h-60 w-80 overflow-hidden rounded-xl border-4 border-gray-500 bg-gray-900/50 shadow-[0_0_15px_rgba(0,240,255,0.5)] md:h-72 md:w-96">
-                  <Image
-                    alt={level.title}
-                    src={level.imgSrc}
-                    className="object-contain object-center pt-4"
-                    fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
+        <div className="relative py-12">
+          <div className="flex flex-col">
+            {levels.map((level, index) => (
+              <div key={level.title} className="relative pb-24 last:pb-0">
+                {/* Connecting Line */}
+                {index < levels.length - 1 && (
+                  <div className="absolute -bottom-0 left-1/2 z-0 -ml-1 flex h-24 w-2 flex-col items-center">
+                    <div className={`w-full flex-1 ${level.dotColor}`}></div>
+                    <div
+                      className={`h-0 w-0 border-t-[16px] border-r-[8px] border-l-[8px] border-r-transparent border-l-transparent ${level.dotColor.replace(
+                        'bg-',
+                        'border-t-'
+                      )}`}
+                    ></div>
+                  </div>
+                )}
+
+                {/* Content Card with Image overlapping */}
+                <div
+                  className={`relative z-10 rounded-xl border ${level.cardBorder} ${level.cardBg} p-6`}
+                >
+                  <div className="flex flex-col gap-6">
+                    {/* Title Row */}
+                    <div className="flex items-center gap-3">
+                      <span
+                        className={`inline-block h-3 w-3 rounded-full ${level.dotColor}`}
+                      ></span>
+                      <h2 className="text-2xl leading-8 font-bold tracking-tight text-gray-100">
+                        Level {index + 1}: {level.title}
+                      </h2>
+                    </div>
+
+                    {/* Image and Skills Row */}
+                    <div className="flex flex-col gap-6 md:flex-row md:items-start">
+                      {/* Image Box */}
+                      <div
+                        className={`flex h-20 w-28 flex-shrink-0 items-center justify-center overflow-hidden rounded-xl border bg-gray-900 ${level.borderColor} md:h-24 md:w-36`}
+                      >
+                        <div className="relative h-full w-full">
+                          <Image
+                            alt={level.title}
+                            src={level.imgSrc}
+                            className="object-contain"
+                            fill
+                            sizes="(max-width: 768px) 112px, 144px"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Skills */}
+                      <div className="flex-1">
+                        <h3 className="mb-2 font-semibold text-gray-200">Skills:</h3>
+                        <div className="flex flex-wrap gap-2">
+                          {level.skills.map((skill) => (
+                            <span
+                              key={skill}
+                              className="inline-flex items-center rounded-md bg-gray-800/50 px-2 py-1 text-sm font-medium text-gray-300 ring-1 ring-gray-700/50 ring-inset"
+                            >
+                              {skill}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Description and Link */}
+                    <div>
+                      <p className="mb-4 text-lg text-gray-300">{level.description}</p>
+                      <div className="mt-2">
+                        <Link
+                          href={`/curriculum/${level.title.toLowerCase().replace(' ', '-')}`}
+                          className={`text-sm font-semibold tracking-wider uppercase ${level.dotColor.replace('bg-', 'text-')} hover:opacity-80`}
+                          aria-label={`Learn more about ${level.title}`}
+                        >
+                          More Details &rarr;
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div className="w-full md:flex-1">
-                <h2 className="mb-4 text-2xl leading-8 font-bold tracking-tight text-gray-100">
-                  {level.title}
-                </h2>
-                <p className="mb-4 text-gray-400">{level.description}</p>
-                <ul className="list-disc pl-5 text-gray-400">
-                  {level.skills.map((skill) => (
-                    <li key={skill} className="mb-1">
-                      {skill}
-                    </li>
-                  ))}
-                </ul>
-                <div className="mt-4">
-                  <Link
-                    href={`/curriculum/${level.title.toLowerCase().replace(' ', '-')}`}
-                    className="text-primary-500 hover:text-primary-400"
-                    aria-label={`Learn more about ${level.title}`}
-                  >
-                    Learn more &rarr;
-                  </Link>
-                </div>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </>
