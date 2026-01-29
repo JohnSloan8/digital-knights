@@ -1,0 +1,141 @@
+[
+  {
+    "title": "Page",
+    "ages": "8-10",
+    "duration": "1 year",
+    "description": "A gentle and fun introduction to computational thinking. Students start their journey by learning the fundamental concepts of logic and problem-solving without the need for complex code.",
+    "skills": [
+      {
+        "name": "Computational Thinking",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      },
+      {
+        "name": "Pattern Recognition",
+        "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+      },
+      {
+        "name": "Basic Logic & Sequencing",
+        "description": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+      },
+      {
+        "name": "Digital Safety Awareness",
+        "description": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+      }
+    ],
+    "tools": [
+      {
+        "name": "Games",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      },
+      {
+        "name": "Robotics",
+        "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+      }
+    ],
+    "imgSrc": "/static/images/levels-cartoons/page.png",
+    "cardBg": "bg-yellow-950/30",
+    "cardBorder": "border-yellow-500/50",
+    "borderColor": "border-yellow-500",
+    "dotColor": "bg-yellow-500",
+    "galleryImages": [
+      "/static/images/levels-pics/01-01-mastermind.webp",
+      "/static/images/levels-pics/01-02-lets-go-code.webp",
+      "/static/images/levels-pics/01-03-mbotneo.webp"
+    ],
+    "learningOutcomes": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  },
+  {
+    "title": "Squire",
+    "ages": "9-12",
+    "duration": "2 years",
+    "description": "Building up knowledge and confidence. As students progress, they begin to apply their computational thinking skills to more structured problems and basic programming concepts.",
+    "skills": [
+      {
+        "name": "Algorithm Design",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      },
+      {
+        "name": "Block-based Programming",
+        "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+      },
+      {
+        "name": "Debugging Simple Programs",
+        "description": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+      },
+      {
+        "name": "Internet Etiquette",
+        "description": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+      }
+    ],
+    "tools": [
+      {
+        "name": "Raspberry Pi",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      },
+      {
+        "name": "Sensors",
+        "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+      },
+      {
+        "name": "Actuators",
+        "description": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+      }
+    ],
+    "imgSrc": "/static/images/levels-cartoons/squire.png",
+    "cardBg": "bg-emerald-950/30",
+    "cardBorder": "border-emerald-500/50",
+    "borderColor": "border-emerald-500",
+    "dotColor": "bg-emerald-500",
+    "galleryImages": [
+      "/static/images/levels-pics/02-01-raspberry-pi.webp",
+      "/static/images/levels-pics/02-02-leds.webp",
+      "/static/images/levels-pics/02-03-python.webp"
+    ],
+    "learningOutcomes": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  },
+  {
+    "title": "Knight",
+    "ages": "12-15",
+    "duration": "2 years",
+    "description": "Developing technical skills. Students transition into text-based programming and start exploring the inner workings of computer systems.",
+    "skills": [
+      {
+        "name": "Introduction to Python",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      },
+      {
+        "name": "Variables & Data Types",
+        "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+      },
+      {
+        "name": "Control Structures (Loops & Conditionals)",
+        "description": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+      },
+      {
+        "name": "Basic Computer Architecture",
+        "description": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+      }
+    ],
+    "tools": [
+      {
+        "name": "Phone",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      },
+      {
+        "name": "Servers",
+        "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+      }
+    ],
+    "imgSrc": "/static/images/levels-cartoons/knight-01.png",
+    "cardBg": "bg-blue-950/30",
+    "cardBorder": "border-blue-500/50",
+    "borderColor": "border-blue-500",
+    "dotColor": "bg-blue-500",
+    "galleryImages": [
+      "/static/images/levels-pics/03-01-phone.webp",
+      "/static/images/levels-pics/03-02-homelab.webp",
+      "/static/images/levels-pics/03-03-home-network.webp"
+    ],
+    "learningOutcomes": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  }
+]

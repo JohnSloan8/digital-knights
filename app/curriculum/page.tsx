@@ -1,92 +1,16 @@
 import { genPageMetadata } from 'app/seo'
+import CalligraphyArrow from '@/components/CalligraphyArrow'
 import Image from '@/components/Image'
 import Link from '@/components/Link'
 import PageHeader from '@/components/PageHeader'
+import TechLine from '@/components/TechLine'
+import levels from '@/data/curriculum.json'
+
+// Safelist for dynamic gradient classes
+// from-yellow-500 from-emerald-500 from-blue-500
+// to-yellow-500 to-emerald-500 to-blue-500
 
 export const metadata = genPageMetadata({ title: 'Curriculum' })
-
-const levels = [
-  {
-    title: 'Page',
-    description:
-      'A gentle and fun introduction to computational thinking. Students start their journey by learning the fundamental concepts of logic and problem-solving without the need for complex code.',
-    skills: [
-      'Computational Thinking',
-      'Pattern Recognition',
-      'Basic Logic & Sequencing',
-      'Digital Safety Awareness',
-    ],
-    imgSrc: '/static/images/levels-cartoons/page.png',
-    cardBg: 'bg-yellow-950/30',
-    cardBorder: 'border-yellow-500/50',
-    borderColor: 'border-yellow-500',
-    dotColor: 'bg-yellow-500',
-  },
-  {
-    title: 'Squire',
-    description:
-      'Building up knowledge and confidence. As students progress, they begin to apply their computational thinking skills to more structured problems and basic programming concepts.',
-    skills: [
-      'Algorithm Design',
-      'Block-based Programming',
-      'Debugging Simple Programs',
-      'Internet Etiquette',
-    ],
-    imgSrc: '/static/images/levels-cartoons/squire.png',
-    cardBg: 'bg-emerald-950/30',
-    cardBorder: 'border-emerald-500/50',
-    borderColor: 'border-emerald-500',
-    dotColor: 'bg-emerald-500',
-  },
-  {
-    title: 'Knight 1',
-    description:
-      'Developing technical skills. Students transition into text-based programming and start exploring the inner workings of computer systems.',
-    skills: [
-      'Introduction to Python',
-      'Variables & Data Types',
-      'Control Structures (Loops & Conditionals)',
-      'Basic Computer Architecture',
-    ],
-    imgSrc: '/static/images/levels-cartoons/knight-01.png',
-    cardBg: 'bg-blue-950/30',
-    cardBorder: 'border-blue-500/50',
-    borderColor: 'border-blue-500',
-    dotColor: 'bg-blue-500',
-  },
-  {
-    title: 'Knight 2',
-    description:
-      'Advancing into cyber security concepts. The focus shifts towards understanding how systems can be vulnerable and how to protect them.',
-    skills: [
-      'Network Fundamentals',
-      'Cryptography Basics',
-      'Web Security Principles',
-      'Ethical Hacking Concepts',
-    ],
-    imgSrc: '/static/images/levels-cartoons/knight-02.png',
-    cardBg: 'bg-slate-300/10',
-    cardBorder: 'border-slate-300/50',
-    borderColor: 'border-slate-300',
-    dotColor: 'bg-slate-300',
-  },
-  {
-    title: 'Knight 3',
-    description:
-      'Mastering complex challenges. At the highest level, students tackle advanced security scenarios and develop robust defense strategies.',
-    skills: [
-      'Advanced Penetration Testing',
-      'System Hardening',
-      'Incident Response',
-      'Security Policy & Ethics',
-    ],
-    imgSrc: '/static/images/levels-cartoons/knight-03.png',
-    cardBg: 'bg-yellow-600/10',
-    cardBorder: 'border-yellow-400/50',
-    borderColor: 'border-yellow-400',
-    dotColor: 'bg-yellow-400',
-  },
-]
 
 export default function Curriculum() {
   return (
@@ -100,39 +24,34 @@ export default function Curriculum() {
           <div className="flex flex-col">
             {levels.map((level, index) => (
               <div key={level.title} className="relative pb-24 last:pb-0">
-                {/* Connecting Line */}
-                {index < levels.length - 1 && (
-                  <div className="absolute -bottom-0 left-1/2 z-0 -ml-1 flex h-24 w-2 flex-col items-center">
-                    <div className={`w-full flex-1 ${level.dotColor}`}></div>
-                    <div
-                      className={`h-0 w-0 border-t-[16px] border-r-[8px] border-l-[8px] border-r-transparent border-l-transparent ${level.dotColor.replace(
-                        'bg-',
-                        'border-t-'
-                      )}`}
-                    ></div>
-                  </div>
-                )}
-
                 {/* Content Card with Image overlapping */}
                 <div
-                  className={`relative z-10 rounded-xl border ${level.cardBorder} ${level.cardBg} p-6`}
+                  className={`relative z-10 rounded-xl border ${level.borderColor} ${level.cardBg} p-6`}
                 >
+                  <div className="absolute top-6 left-6">
+                    <div
+                      className={`flex items-center justify-center rounded-lg px-3 py-1 text-sm font-bold tracking-wider text-white shadow-sm ${level.dotColor}`}
+                    >
+                      LEVEL {index + 1}
+                    </div>
+                  </div>
                   <div className="flex flex-col gap-6">
-                    {/* Title Row */}
-                    <div className="flex items-center gap-3">
-                      <span
-                        className={`inline-block h-3 w-3 rounded-full ${level.dotColor}`}
-                      ></span>
-                      <h2 className="text-2xl leading-8 font-bold tracking-tight text-gray-100">
-                        Level {index + 1}: {level.title}
-                      </h2>
+                    {/* Title Row - Centered Full Width */}
+                    <div className="relative flex flex-col items-center justify-center gap-4 py-2 md:flex-row md:gap-0">
+                      <div className="flex items-center gap-3">
+                        <TechLine side="left" className="text-gray-400" />
+                        <h2 className="font-medieval text-4xl leading-8 tracking-widest text-gray-100">
+                          {level.title}
+                        </h2>
+                        <TechLine side="right" className="text-gray-400" />
+                      </div>
                     </div>
 
-                    {/* Image and Skills Row */}
+                    {/* Content Row: Image + Data */}
                     <div className="flex flex-col gap-6 md:flex-row md:items-start">
                       {/* Image Box */}
                       <div
-                        className={`flex h-20 w-28 flex-shrink-0 items-center justify-center overflow-hidden rounded-xl border bg-gray-900 ${level.borderColor} md:h-24 md:w-36`}
+                        className={`flex h-24 w-32 flex-shrink-0 items-center justify-center overflow-hidden rounded-xl border bg-gray-900 ${level.cardBorder} md:h-32 md:w-48`}
                       >
                         <div className="relative h-full w-full">
                           <Image
@@ -140,24 +59,54 @@ export default function Curriculum() {
                             src={level.imgSrc}
                             className="object-contain"
                             fill
-                            sizes="(max-width: 768px) 112px, 144px"
+                            sizes="(max-width: 768px) 128px, 192px"
                           />
                         </div>
                       </div>
 
-                      {/* Skills */}
-                      <div className="flex-1">
-                        <h3 className="mb-2 font-semibold text-gray-200">Skills:</h3>
-                        <div className="flex flex-wrap gap-2">
-                          {level.skills.map((skill) => (
-                            <span
-                              key={skill}
-                              className="inline-flex items-center rounded-md bg-gray-800/50 px-2 py-1 text-sm font-medium text-gray-300 ring-1 ring-gray-700/50 ring-inset"
-                            >
-                              {skill}
+                      {/* Right Data: Age/Duration/Tools/Skills */}
+                      <div className="flex flex-1 flex-col gap-4">
+                        <div className="flex flex-col gap-2">
+                          <div className="flex items-center gap-2">
+                            <span className="font-semibold text-gray-200">AGE:</span>
+                            <span className="text-gray-300">{level.ages}</span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <span className="font-semibold text-gray-200">DURATION:</span>
+                            <span className="text-gray-300">{level.duration}</span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <span className="font-semibold text-gray-200">PREREQUISITES:</span>
+                            <span className="text-gray-300">
+                              {index === 0 ? 'None' : `Completed Level ${index}`}
                             </span>
-                          ))}
+                          </div>
+
+                          {/* Tools */}
+                          {level.tools && level.tools.length > 0 && (
+                            <div className="flex items-start gap-2">
+                              <span className="font-semibold text-gray-200">TOOLS:</span>
+                              <span className="text-gray-300">
+                                {level.tools.map((t) => t.name).join(', ')}
+                              </span>
+                            </div>
+                          )}
                         </div>
+                      </div>
+                    </div>
+
+                    {/* Skills Div - Full Width */}
+                    <div>
+                      <h3 className="mb-2 font-semibold text-gray-200">SKILLS:</h3>
+                      <div className="flex flex-wrap gap-2">
+                        {level.skills.map((skill) => (
+                          <span
+                            key={skill.name}
+                            className="inline-flex items-center rounded-md bg-gray-800/50 px-2 py-1 text-sm font-medium text-gray-300 ring-1 ring-gray-700/50 ring-inset"
+                          >
+                            {skill.name}
+                          </span>
+                        ))}
                       </div>
                     </div>
 
@@ -176,8 +125,34 @@ export default function Curriculum() {
                     </div>
                   </div>
                 </div>
+
+                {/* Arrow connecting to next level */}
+                {index < levels.length - 1 && (
+                  <div className="absolute -bottom-0 left-1/2 flex h-24 w-12 -translate-x-1/2 transform items-center justify-center pb-0">
+                    <CalligraphyArrow
+                      fromClass={level.dotColor}
+                      toClass={levels[index + 1].dotColor}
+                      className="h-full w-full"
+                    />
+                  </div>
+                )}
               </div>
             ))}
+          </div>
+        </div>
+        <div className="py-12">
+          <h2 className="mb-8 text-2xl leading-8 font-bold tracking-tight text-gray-100 sm:text-3xl md:text-4xl">
+            Towards Junior and Leaving Cert
+          </h2>
+          <div className="text-lg leading-7 text-gray-300">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+              dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+              Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+              mollit anim id est laborum.
+            </p>
           </div>
         </div>
       </div>
