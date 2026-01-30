@@ -16,10 +16,35 @@ export default function Curriculum() {
   return (
     <>
       <div className="divide-y divide-gray-700">
-        <PageHeader
-          title="Curriculum"
-          description="Our curriculum is designed to take students on a journey from beginners to digital guardians. Students will be taught in 5 levels, beginning with a gentle and fun introduction to computational thinking, building up knowledge, technical and cyber security skills."
-        />
+        <PageHeader title="Curriculum" description="Novice to Master in 3 levels." />
+        <div className="max-w-none pt-8 pb-8 text-gray-300">
+          <p>
+            The main goal of the Digital Knights curriculum is to make each child sufficiently
+            technically proficient to be able to navigate the digital world confidently, securely,
+            and privately. These skills should be acquired before the child possesses an internet
+            enabled device.
+          </p>
+          <p>
+            The curriculum was designed based on the National Council for Curriculum and Assessment
+            (NCAA)'s existing{' '}
+            <Link href="https://www.curriculumonline.ie/getmedia/70081350-c004-4773-8948-f70b0d4ef554/Primary-STE-and-MATHS-Spec-ENG.pdf">
+              'Science, Technology, Engineering and Mathematics (STEM) Education Specification'
+            </Link>{' '}
+            for primary and special schools. While the content significantly differs - specifically
+            going into much more detail on technical skills for digital citizenship - the structure
+            and progression of skills is broadly aligned with the NCAA's guidelines. Of particular
+            importance is harnessing childrens' natural curiosity and interest in tech to foster
+            their creativity and problem-solving skills.
+          </p>
+          <p>
+            Level 1 is designed for children aged 7-9 (2nd to 4th class). The focus is on laying the
+            foundations for computational thinking and creativity, while ensuring the learning
+            experience is enjoyable. Level 2 is for ages 9-12 (4th to 6th class). This is where we
+            introduce real control over hardware and software. and Level 3 is for ages 11-13 (1st
+            and 2nd year). Each level builds on the previous one, ensuring a gradual increase in
+            complexity and depth of knowledge.
+          </p>
+        </div>
         <div className="relative py-12">
           <div className="flex flex-col">
             {levels.map((level, index) => (

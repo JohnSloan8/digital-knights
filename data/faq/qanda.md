@@ -5,9 +5,14 @@ summary: 'Curated list of frequently asked questions.'
 layout: 'FaqLayout'
 ---
 
-### Why Digital Knights?
+### What is Digital Knights?
 
 If you are reading this page, you.
+
+### Who is this for?
+
+- Parents who want their children to have more/earlier education on technology and cybersecurity than is available in the standard school curriculum for STEM.
+- Parents who believe the teaching of tech and cybersecurity is better taught by experts.
 
 ### What will they learn?
 
