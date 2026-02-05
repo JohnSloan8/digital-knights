@@ -7,48 +7,80 @@ layout: 'FaqLayout'
 
 ### What is Digital Knights?
 
-If you are reading this page, you.
+Digital Knights is a new after-school academy in South Dublin to teach kids aged 8-16 tech and cybersecurity skills prior to, and during, first posession of a device with online capabilities. Opening is planned for September 2026.
 
-### Who is this for?
+### Why an after-school academy?
 
-- Parents who want their children to have more/earlier education on technology and cybersecurity than is available in the standard school curriculum for STEM.
-- Parents who believe the teaching of tech and cybersecurity is better taught by experts.
+Becoming a parent changed my relationship with technology. While I love all things tech, my concerns about how our personal data is being gathered and used by companies and governments have grown. While my background means I can protect my own devices, data and digital footprint, doing so for my children will require education - an education that is not currently covered in the curricula for primary or secondary schools. In putting together an draft of what I intend for my own kids to learn (see: [curriculum](/curriculum) ), I felt other parents who share my concerns may be interested in a similar program for their own children.
 
-### What will they learn?
+### What are these concerns about tech?
 
-Full information can be found on the [curriculum](/curriculum) page.
+There are many - from cyberbullying to viewing inappropriate or disturbing content. However, my primary concern is the collection of data for profiling and targeting content. I don't want my child getting a stream of content related to plastic surgery because they once searched for 'nose job' out of curiousity. I don't want my child getting alerts about the latest deals on a product when they happen to be in the proximity of a particular location. And, I particularly don't want my kids getting a deluge of polarising political content carefully crafted to sway the opinions of young minds.
+
+### What will kids learn in Digital Knights?
+
+The core learning outcome for a child attending Digital Knights is to become a technologically self-sufficient digital citizen - one who is in control of their own devices, data and digital footprint. They can use technology in creative ways to solve real-world problems to benefit the communities in which they are a part. The curriculum is currently under developemnt - full information can be found on the [curriculum](/curriculum) page.
+
+### Why the medieval theme?
+
+It can be beneficial to relate the learning of a new and unfamiliar topic to one a student already has knowledge of and a positive attitude towards. A lot of the concepts around computing, networking and online safety can be captured well in an analogy to elements from populare medieval fairytales, e.g. inside the castle walls is safe (home network), while outside (internet) can be dangerous. The castle wall is a firewall, drawbridges are ports, secret tunnels are encrypted connections, anonymity is putting on a helmet etc.
+
+### Who will teach?
+
+[Me](/about).
+
+### Why you?
+
+I have spent over two decades in the fields of technology and education, designing and delivering courses for children and college students. On the tech side I hold a PhD in Computer Science from UCD and the CISSP cybersecurity certification from ISC2. On the education side, I spent 5 years developing and delivering a curriculum for primary school ESL students, 4 years as a Teaching Assistant for UCD Computer Science, and most recently, 2 years designing courses and lecturing at Trinity College Dublin in Speech and Language Technologies. I believe I have the necessary skils and experience to create and deliver a tech and cybersecurity curriculum for children.
 
 ### Why not leave this education to schools?
 
-I agree with the results of the cybersecurekids analysis that tech skills should become a fourth pillar. I am not confident that a comprehensive, up to date and impactful currculum will bein place when my own children (under 2 at the time of writing) are in primary school. So, I am making one myself. I also believe teachers have enough on their plate without being expected to become experts in programming and cybersecurity as well.
+I believe this topic needs to be taught by experts in the field who actively keep up to date with what is going on. Teachers, particularly in primary school, have enough on their plates without being expected to become highly proficient in tech and cybersecurity as well.
 
 ### Why not leave this education to parents?
 
-I believe these topics should be taught to kids by experts. If a parent has sufficient understanding, time and ability to educate their children on this subject, then that is fantastic.
+If a parent has sufficient knowledge, time and ability to educate their children on this subject, then they should go right ahead.
 
-### Why should parents trust this education to you?
+### Won't the upcoming smartphone and social media bans for kids solve the problems you mention?
 
-My experience...
+No. See [article](/article)
+
+### How does Digital Knights differ from other coding classes for kids?
+
+From a review of the websites for other technology and computer related classes currently available for children in Dublin, the focus is primarily on teaching coding as a useful skill for future success. Digital Knights differes in both content and focus. The content includes a broader range of technical skills at an earlier age, while the main goal is to ensure safety and privacy when the child possesses an internet enabled device of their own.
+
+### Who might be interested in these classes?
+
+The classes are for children aged 7-15, but the interested party is likely to be parents. These are probably parents who:
+
+- share the concerns I outlined above in regards to tracking and profiling.
+- want their children to have more/earlier education on technology and cybersecurity than is available in the standard school curriculum for STEM.
+- believe the teaching of tech and cybersecurity is better taught by experts.
+- want to provide a solid foundation for Junior and Leaving Cert. Technology and Computer Science.
+
+### Will there be classes focussed on Junior and leaving Cert subjects?
+
+Not at the moment. Possibly in the future if there is demand.
 
 ### Will there be education for parents?
 
-Yes. In parallel to the curriculum, there will be information sessions for parents. If parents also want to learn more, parent specific classes will be made available.
+Yes. In parallel to the curriculum, there will be [articles]('/articles') published on this website and information sessions provided for parents. If parents also want to learn more, specific classes could also be provided.
 
 ### When is the ideal time to enroll?
 
-3 years prior to possessing their first mobile phone (8-10 years old).
+Three years prior to possessing their first mobile phone, beginning at 7-10 years old. This will allow them to follow the standard [curriculum]('/curriculum') schedule.
 
 ### What is my child already has a smartphone?
 
-I am currently working on a seperate curriculum for those with established online behaviours and an existing digital footprint.
+They can still follow the curriculum. However, unless their phone is compatible with the privacy focussed Operating System used in the course (currently Graphene OS running on Google Pixel), they will be need to change phones upon entering level 3. Additionally, any existing email accounts, logins, passwords, browser etc. will also likely require changing.
 
 ### What if my child uses the tech skills they learn to get around my parental controls etc.?
 
-Digital Knights has a code of conduct for both parents and children that must be signed before classes start. Behaviour is one of the 3 core concepts that frame the whole curriculum. Parents will be involved throughout the classes....
+Digital Knights will introduce a code of conduct for children that must be agreed upon before classes start. However, individual levels of parental monitoring are a family matter.
 
 ### When will classes be held?
 
-Plan is for one class per week of 50 minutes.
+Starting September 2026, classes to be held after school during term time. Each class will last 50 minutes.
 
 ### How many students per class?
 
@@ -56,4 +88,4 @@ Max 8-10.
 
 ### Where are you based?
 
-In Rathfarnham. No location for the academy selected yet. If there is sufficient interest, a location wil be selected that is convenient to the majority of the students.
+In Rathfarnham. No physical location for the academy selected yet. If there is sufficient interest, a location wil be selected that is convenient to the majority of the students. If you wish to express an interest for your child/children to join these classes in September 2026, please fill in the [waitlist application form]('/waitlist'). This data will be used to decide on a location.

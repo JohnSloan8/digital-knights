@@ -34,26 +34,22 @@ export default function CalligraphyArrow({ fromClass, toClass, className }: Call
       xmlns="http://www.w3.org/2000/svg"
     >
       <defs>
-        <linearGradient id={id} x1="0" x2="0" y1="0" y2="1">
+        <linearGradient id={id} x1="0" x2="0" y1="0" y2="120" gradientUnits="userSpaceOnUse">
           <stop offset="0%" stopColor={c1} />
           <stop offset="100%" stopColor={c2} />
         </linearGradient>
       </defs>
-      {/* 
-        Stylized medieval calligraphy arrow path.
-        Wider at base, tapering to a narrow neck before the arrowhead.
-      */}
-      <path
-        d="M 10 0 
-           Q 18 40 23 75 
-           L 5 80 
-           Q 25 120 25 120 
-           Q 25 120 45 80 
-           L 27 75 
-           Q 32 40 40 0 
-           Z"
-        fill={`url(#${id})`}
-      />
+      <g stroke={`url(#${id})`} fill="none" strokeLinecap="round" strokeLinejoin="round">
+        {/* Main Shaft - straight */}
+        <path d="M 25 0 L 25 115" strokeWidth="1.5" />
+
+        {/* Arrowhead */}
+        <path d="M 16 100 C 16 100, 25 115, 25 115 C 25 115, 34 100, 34 100" strokeWidth="1.5" />
+
+        {/* Decorative flourishes - larger and curlier */}
+        <path d="M 25 30 C 0 30, 0 60, 15 55 S 20 40, 18 38" strokeWidth="1" opacity="0.9" />
+        <path d="M 25 80 C 50 80, 50 50, 35 55 S 30 70, 32 72" strokeWidth="1" opacity="0.9" />
+      </g>
     </svg>
   )
 }

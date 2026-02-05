@@ -3,15 +3,11 @@
     "title": "Page",
     "ages": "8-10",
     "duration": "1 year",
-    "description": "A gentle and fun introduction to computational thinking. Students start their journey by learning the fundamental concepts of logic and problem-solving without the need for complex code.",
+    "description": "A gentle and fun introduction to computational thinking, creativity and cybersecurity principles. Students learn the fundamental concepts of logic and problem-solving through a variety of games, puzzles and practical hands on experience with simple robotics. Awareness of online safety is also introduced.",
     "skills": [
       {
-        "name": "Computational Thinking",
+        "name": "Computational Thinking & Creativity",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-      },
-      {
-        "name": "Pattern Recognition",
-        "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
       },
       {
         "name": "Basic Logic & Sequencing",
@@ -25,6 +21,10 @@
     "tools": [
       {
         "name": "Games",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      },
+      {
+        "name": "Puzzles",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
       },
       {
@@ -48,28 +48,28 @@
     "title": "Squire",
     "ages": "9-12",
     "duration": "2 years",
-    "description": "Building up knowledge and confidence. As students progress, they begin to apply their computational thinking skills to more structured problems and basic programming concepts.",
+    "description": "Practical computing and networking fundamentals are introduced using a small Single Board Computer (Raspberry Pi). The programming language Python is used to control sensors, LEDs, and motors, and a simple website is designed, built and hosted. Students learn how computers and websites like these connect to the internet and the means through which data is sent and received. This forms the foundation for understanding data privacy and security concepts in the next stage.",
     "skills": [
       {
-        "name": "Algorithm Design",
+        "name": "Programming (Python)",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
       },
       {
-        "name": "Block-based Programming",
+        "name": "Physical Computing",
+        "description": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+      },
+      {
+        "name": "Networking",
         "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
       },
       {
-        "name": "Debugging Simple Programs",
+        "name": "Web Development",
         "description": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
-      },
-      {
-        "name": "Internet Etiquette",
-        "description": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
       }
     ],
     "tools": [
       {
-        "name": "Raspberry Pi",
+        "name": "Single Board Computer (e.g. Raspberry Pi)",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
       },
       {
@@ -77,7 +77,7 @@
         "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
       },
       {
-        "name": "Actuators",
+        "name": "Actuators (LEDs, motors)",
         "description": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
       }
     ],
@@ -97,23 +97,27 @@
     "title": "Knight",
     "ages": "12-15",
     "duration": "2 years",
-    "description": "Developing technical skills. Students transition into text-based programming and start exploring the inner workings of computer systems.",
+    "description": "The mobile phone and computer are introduced. Students are taught how to set up and use their own devices to ensure privacy and safety while accessing the internet. This includes managing their own home network and small homelab for hosting useful services (photo & document storage, passwords, media etc.) and backing up data. Cloud computing, AI and virtualization technologies extend the homelab, providing students with a solid understanding of modern computing infrastructure and security principles underpinned by cryptography.",
     "skills": [
       {
-        "name": "Introduction to Python",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-      },
-      {
-        "name": "Variables & Data Types",
-        "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-      },
-      {
-        "name": "Control Structures (Loops & Conditionals)",
+        "name": "Operating Systems",
         "description": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
       },
       {
-        "name": "Basic Computer Architecture",
+        "name": "Cryptography",
         "description": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+      },
+      {
+        "name": "Self Hosting",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      },
+      {
+        "name": "Cloud Computing",
+        "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+      },
+      {
+        "name": "Containers & Virtualisation",
+        "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
       }
     ],
     "tools": [
@@ -122,7 +126,11 @@
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
       },
       {
-        "name": "Servers",
+        "name": "Desktop/Laptop Computer",
+        "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+      },
+      {
+        "name": "Cloud Server",
         "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
       }
     ],

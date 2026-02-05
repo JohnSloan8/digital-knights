@@ -5,6 +5,7 @@ import Link from '@/components/Link'
 import PageHeader from '@/components/PageHeader'
 import TechLine from '@/components/TechLine'
 import levels from '@/data/curriculum.json'
+import CurriculumModal from '@/components/CurriculumModal'
 
 // Safelist for dynamic gradient classes
 // from-yellow-500 from-emerald-500 from-blue-500
@@ -16,37 +17,67 @@ export default function Curriculum() {
   return (
     <>
       <div className="divide-y divide-gray-700">
-        <PageHeader title="Curriculum" description="Novice to Master in 3 levels." />
-        <div className="max-w-none pt-8 pb-8 text-gray-300">
-          <p>
-            The main goal of the Digital Knights curriculum is to make each child sufficiently
-            technically proficient to be able to navigate the digital world confidently, securely,
-            and privately. These skills should be acquired before the child possesses an internet
-            enabled device.
-          </p>
-          <p>
-            The curriculum was designed based on the National Council for Curriculum and Assessment
-            (NCAA)'s existing{' '}
-            <Link href="https://www.curriculumonline.ie/getmedia/70081350-c004-4773-8948-f70b0d4ef554/Primary-STE-and-MATHS-Spec-ENG.pdf">
-              'Science, Technology, Engineering and Mathematics (STEM) Education Specification'
-            </Link>{' '}
-            for primary and special schools. While the content significantly differs - specifically
-            going into much more detail on technical skills for digital citizenship - the structure
-            and progression of skills is broadly aligned with the NCAA's guidelines. Of particular
-            importance is harnessing childrens' natural curiosity and interest in tech to foster
-            their creativity and problem-solving skills.
-          </p>
-          <p>
-            Level 1 is designed for children aged 7-9 (2nd to 4th class). The focus is on laying the
-            foundations for computational thinking and creativity, while ensuring the learning
-            experience is enjoyable. Level 2 is for ages 9-12 (4th to 6th class). This is where we
-            introduce real control over hardware and software. and Level 3 is for ages 11-13 (1st
-            and 2nd year). Each level builds on the previous one, ensuring a gradual increase in
-            complexity and depth of knowledge.
-          </p>
+        <PageHeader
+          title="Curriculum"
+          description="Preparing children for the digital world in 3 structured levels."
+        />
+        <div className="my-8 flex rounded-lg border-l-4 border-blue-500 bg-blue-500/10 p-4">
+          <div className="mr-4 flex-shrink-0">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              className="h-6 w-6 text-blue-500"
+            >
+              <path
+                fillRule="evenodd"
+                d="M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 2-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.5-2.598-4.5L9.4 3.003zM12 8.25a.75.75 0 01.75.75v3.75a.75.75 0 01-1.5 0V9a.75.75 0 01.75-.75zm0 8.25a.75.75 0 100-1.5.75.75 0 000 1.5z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </div>
+          <div className="flex-1">
+            <h5 className="mb-2 font-bold text-blue-500">Under Development</h5>
+            <div className="space-y-2 text-gray-300">
+              <p>The Digital Knights curriculum is currently under development.</p>
+
+              <p>
+                Parental input is actively being sought through a survey{' '}
+                <Link href={'/survey'}>here</Link> and follow-up discussions.
+              </p>
+            </div>
+          </div>
         </div>
-        <div className="relative py-12">
-          <div className="flex flex-col">
+        <div className="relative py-12 pt-0">
+          <div className="space-y-4">
+            <p>
+              The Digital Knights curriculum is being designed to structure a learning pathway for
+              children, starting from 7-10 years old, to technologically proficient individuals who
+              control their data, devices and digital footprint at 15 years old. The curriculum is
+              designed to be taught in-person, once a week for 1 hour. Class sizes are limited to
+              small groups (8-10), and will be taught by an experienced teacher and expert in
+              computer science and cybersecurity.
+            </p>
+            <p>
+              There are 3 stages to the curriculum, each building upon the previous to develop the
+              necessary skills for students to navigate technology and the online world confidently,
+              safely and responsibly. A secondary aim is to complement the National Council for
+              Curriculum and Assessment's STEM{' '}
+              <Link href="https://www.curriculumonline.ie/getmedia/70081350-c004-4773-8948-f70b0d4ef554/Primary-STE-and-MATHS-Spec-ENG.pdf">
+                Education Specification
+              </Link>
+              , which will prepare solid foundations for Junior Cycle{' '}
+              <Link href="https://curriculumonline.ie/getmedia/934299b8-d2d8-461e-8d80-cca9d96e656b/JCSEC27_technology_syllabus.pdf">
+                Technology
+              </Link>{' '}
+              and Leaving Certificate{' '}
+              <Link href="https://curriculumonline.ie/getmedia/cff6eb86-9ff8-4e68-abf9-e42ca637492d/LC-Computer-Science-specification-updated.pdf">
+                Computer Science
+              </Link>
+              .
+            </p>
+          </div>
+          <div className="flex flex-col pt-6">
             {levels.map((level, index) => (
               <div key={level.title} className="relative pb-24 last:pb-0">
                 {/* Content Card with Image overlapping */}
@@ -100,38 +131,25 @@ export default function Curriculum() {
                             <span className="font-semibold text-gray-200">DURATION:</span>
                             <span className="text-gray-300">{level.duration}</span>
                           </div>
-                          <div className="flex items-center gap-2">
-                            <span className="font-semibold text-gray-200">PREREQUISITES:</span>
-                            <span className="text-gray-300">
-                              {index === 0 ? 'None' : `Completed Level ${index}`}
-                            </span>
-                          </div>
 
-                          {/* Tools */}
+                          {/* Equipment */}
                           {level.tools && level.tools.length > 0 && (
                             <div className="flex items-start gap-2">
-                              <span className="font-semibold text-gray-200">TOOLS:</span>
+                              <span className="font-semibold text-gray-200">EQUIPMENT:</span>
                               <span className="text-gray-300">
                                 {level.tools.map((t) => t.name).join(', ')}
                               </span>
                             </div>
                           )}
-                        </div>
-                      </div>
-                    </div>
 
-                    {/* Skills Div - Full Width */}
-                    <div>
-                      <h3 className="mb-2 font-semibold text-gray-200">SKILLS:</h3>
-                      <div className="flex flex-wrap gap-2">
-                        {level.skills.map((skill) => (
-                          <span
-                            key={skill.name}
-                            className="inline-flex items-center rounded-md bg-gray-800/50 px-2 py-1 text-sm font-medium text-gray-300 ring-1 ring-gray-700/50 ring-inset"
-                          >
-                            {skill.name}
-                          </span>
-                        ))}
+                          {/* Skills */}
+                          <div className="flex items-start gap-2">
+                            <span className="font-semibold text-gray-200">SKILLS:</span>
+                            <span className="text-gray-300">
+                              {level.skills.map((skill) => skill.name).join(', ')}
+                            </span>
+                          </div>
+                        </div>
                       </div>
                     </div>
 
@@ -139,13 +157,9 @@ export default function Curriculum() {
                     <div>
                       <p className="mb-4 text-lg text-gray-300">{level.description}</p>
                       <div className="mt-2">
-                        <Link
-                          href={`/curriculum/${level.title.toLowerCase().replace(' ', '-')}`}
-                          className={`text-sm font-semibold tracking-wider uppercase ${level.dotColor.replace('bg-', 'text-')} hover:opacity-80`}
-                          aria-label={`Learn more about ${level.title}`}
-                        >
-                          More Details &rarr;
-                        </Link>
+                        <CurriculumModal
+                          className={`cursor-pointer text-sm font-semibold tracking-wider uppercase ${level.dotColor.replace('bg-', 'text-')} hover:opacity-80`}
+                        />
                       </div>
                     </div>
                   </div>
@@ -171,12 +185,11 @@ export default function Curriculum() {
           </h2>
           <div className="text-lg leading-7 text-gray-300">
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-              dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-              Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-              mollit anim id est laborum.
+              At the conclusion of Level 3, students will have the skills to enter the digital world
+              with full control over their own devices, data and digital footprint. In addition,
+              they will have acquired a strong foundation in digital skills and computational
+              thinking which will feed into the Junior Cycle Technology, and Leaving Certificate
+              Computer Science curricula.
             </p>
           </div>
         </div>
