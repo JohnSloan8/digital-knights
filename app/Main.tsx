@@ -24,30 +24,162 @@ export default function Home({ posts }) {
         <ThreeScene className="absolute top-0 left-0 h-screen w-full" />
       </div>
       <div className="relative z-10 mx-auto mt-[100vh] w-full">
-        <div className="divide-y divide-gray-700">
-          <div className="pt-6 pb-8">
+        <div className="border-primary-500 bg-primary-500/10 mb-8 flex flex-col items-center justify-between gap-4 rounded-lg border p-6 text-center shadow-lg md:flex-row md:text-left">
+          <h2 className="text-primary-200 text-lg font-bold">
+            New academy opening in South Dublin - September 2026!
+          </h2>
+          <Link
+            href="/waitlist"
+            className="bg-primary-800 hover:bg-primary-900 focus:ring-primary-600 rounded-md px-5 py-2.5 text-base font-medium whitespace-nowrap !text-white !no-underline ring-offset-black transition-colors focus:ring-2 focus:ring-offset-2 focus:outline-none"
+          >
+            Join waitlist
+          </Link>
+        </div>
+        <div className="">
+          <div className="space-y-6 pt-6 pb-8">
             <p className="text-lg leading-7 text-gray-300">
-              Digital Knights is a comprehensive cybersecurity education platform designed for kids,
-              teens, and parents. Our mission is to transform beginners into digital guardians
-              through a structured curriculum that covers computational thinking, programming, and
-              advanced security concepts. Join us to build a safer digital future.
+              Digital Knights is an upcoming after-school academy in South Dublin for educating
+              children in tech and cybersecurity skills to prepare them for entry into the digital
+              world.
+            </p>
+            <p className="text-lg leading-7 text-gray-300">
+              Led by father, Computer Science PhD, Trinity College Assistant Professor and CISSP
+              Cybersecurity expert,{' '}
+              <Link
+                href="/about#about-me"
+                className="text-primary-500 hover:text-primary-400 !no-underline"
+              >
+                John Sloan
+              </Link>
+              , Digital Knights aims to develop and deliver a{' '}
+              <Link
+                href="/about#about-me"
+                className="text-primary-500 hover:text-primary-400 !no-underline"
+              >
+                curriculum
+              </Link>{' '}
+              for children <i>before and during</i> first possession of an internet enabled device.
+            </p>
+            <p className="text-lg leading-7 text-gray-300">
+              Students will learn to become technically self-sufficient digital citizens who
+              understand how to control their devices, data and digital footprint.
             </p>
           </div>
-          {headerNavLinks
-            .filter((link) => link.href !== '/')
-            .map((link) => (
-              <div key={link.title} className="py-8">
-                <div className="flex flex-col space-y-2">
-                  <Link
-                    href={link.href}
-                    className="text-primary-500 hover:text-primary-400 text-xl font-bold"
-                  >
-                    {link.title}
-                  </Link>
-                  <p className="text-gray-400">{descriptions[link.title] || 'Learn more'}</p>
-                </div>
+          <p className="mb-8 text-lg text-gray-300">
+            Please note the following proposed timeline of events:
+          </p>
+          <div className="overflow-x-auto rounded-lg border border-gray-700">
+            <table className="min-w-full text-left text-sm text-gray-300">
+              <thead className="bg-gray-800 text-xs font-semibold text-gray-200 uppercase">
+                <tr>
+                  <th className="w-1 px-2 py-4 whitespace-nowrap sm:px-6">Date</th>
+                  <th className="px-2 py-4 sm:px-6">Event</th>
+                  <th className="px-2 py-4 sm:px-6">Further Information</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-700 border-t border-gray-700">
+                <tr>
+                  <td className="px-2 py-4 font-medium whitespace-nowrap text-white sm:px-6">
+                    May 2026
+                  </td>
+                  <td className="px-2 py-4 sm:px-6">Publish curriculum</td>
+                  <td className="px-2 py-4 sm:px-6">
+                    High-level outline available{' '}
+                    <Link href="/curriculum" className="text-primary-500 hover:text-primary-400">
+                      here
+                    </Link>
+                    . Details will be informed by results from{' '}
+                    <Link href="/survey" className="text-primary-500 hover:text-primary-400">
+                      survey
+                    </Link>{' '}
+                    & discussions with parents
+                  </td>
+                </tr>
+                <tr>
+                  <td className="px-2 py-4 font-medium whitespace-nowrap text-white sm:px-6">
+                    Jul 2026
+                  </td>
+                  <td className="px-2 py-4 sm:px-6">Confirm location of academy</td>
+                  <td className="px-2 py-4 sm:px-6">
+                    Likely D14/D16, but depends on demand and available facilities
+                  </td>
+                </tr>
+                <tr>
+                  <td className="px-2 py-4 font-medium whitespace-nowrap text-white sm:px-6">
+                    Sep 2026
+                  </td>
+                  <td className="px-2 py-4 sm:px-6">Begin classes</td>
+                  <td className="px-2 py-4 sm:px-6">
+                    Depending on acquiring necessary approvals, insurance and resources
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div className="space-y-8 pt-10 text-lg leading-8 text-gray-300">
+            <div>
+              <p className="mb-2">For more information, see:</p>
+              <div className="flex flex-col space-y-1">
+                <Link
+                  href="/about"
+                  className="text-primary-500 hover:text-primary-400 font-bold !no-underline"
+                >
+                  About <span aria-hidden="true">&rarr;</span>
+                </Link>
+                <Link
+                  href="/faq"
+                  className="text-primary-500 hover:text-primary-400 font-bold !no-underline"
+                >
+                  FAQ <span aria-hidden="true">&rarr;</span>
+                </Link>
+                <Link
+                  href="/curriculum"
+                  className="text-primary-500 hover:text-primary-400 font-bold !no-underline"
+                >
+                  Curriculum <span aria-hidden="true">&rarr;</span>
+                </Link>
               </div>
-            ))}
+            </div>
+
+            <div>
+              <p className="mb-2">Help with the curriculum development by providing your input:</p>
+              <div className="flex flex-col space-y-1">
+                <Link
+                  href="/survey"
+                  className="text-primary-500 hover:text-primary-400 font-bold !no-underline"
+                >
+                  Survey <span aria-hidden="true">&rarr;</span>
+                </Link>
+              </div>
+            </div>
+
+            <div>
+              <p className="mb-2">If interested in your child/children joining a class:</p>
+              <div className="flex flex-col space-y-1">
+                <Link
+                  href="/waitlist"
+                  className="text-primary-500 hover:text-primary-400 font-bold !no-underline"
+                >
+                  Waitlist <span aria-hidden="true">&rarr;</span>
+                </Link>
+              </div>
+            </div>
+
+            <div>
+              <p className="mb-2">
+                In the coming months, I will be posting educational content for parents on relevant
+                topics in:
+              </p>
+              <div className="flex flex-col space-y-1">
+                <Link
+                  href="/blog"
+                  className="text-primary-500 hover:text-primary-400 font-bold !no-underline"
+                >
+                  Articles <span aria-hidden="true">&rarr;</span>
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </>

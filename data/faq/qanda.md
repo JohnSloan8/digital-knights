@@ -43,7 +43,7 @@ If a parent has sufficient knowledge, time and ability to educate their children
 
 ### Won't the upcoming smartphone and social media bans for kids solve the problems you mention?
 
-No. See [article](/article)
+No. See [article](/article).
 
 ### How does Digital Knights differ from other coding classes for kids?
 
@@ -57,6 +57,7 @@ The classes are for children aged 7-15, but the interested party is likely to be
 - want their children to have more/earlier education on technology and cybersecurity than is available in the standard school curriculum for STEM.
 - believe the teaching of tech and cybersecurity is better taught by experts.
 - want to provide a solid foundation for Junior and Leaving Cert. Technology and Computer Science.
+- wish to give their children a skill which will be useful for the rest of their lives, no matter which career they choose.
 
 ### Will there be classes focussed on Junior and leaving Cert subjects?
 
@@ -85,6 +86,10 @@ Starting September 2026, classes to be held after school during term time. Each 
 ### How many students per class?
 
 Max 8-10.
+
+### What will it cost?
+
+TBD - pricing will aim to be similar to other after school educational academies.
 
 ### Where are you based?
 

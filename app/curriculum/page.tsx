@@ -48,25 +48,25 @@ export default function Curriculum() {
             </div>
           </div>
         </div>
-        <div className="relative py-12 pt-0">
-          <div className="space-y-4">
+        <div className="relative space-y-8 py-12 pt-0">
+          <div className="space-y-4 text-lg leading-7 text-gray-300">
             <p>
-              The Digital Knights curriculum is being designed to structure a learning pathway for
-              children, starting from 7-10 years old, to technologically proficient individuals who
-              control their data, devices and digital footprint at 15 years old. The curriculum is
-              designed to be taught in-person, once a week for 1 hour. Class sizes are limited to
-              small groups (8-10), and will be taught by an experienced teacher and expert in
-              computer science and cybersecurity.
+              The Digital Knights curriculum will structure a learning pathway for children,
+              starting from 7-10 years old, to technologically proficient individuals at 15 who
+              control their data, devices and digital footprint. The curriculum is designed to be
+              taught in-person, once a week for 1 hour. Class sizes are limited to small groups
+              (8-10), and will be taught by an experienced teacher and expert in computer science
+              and cybersecurity.
             </p>
             <p>
-              There are 3 stages to the curriculum, each building upon the previous to develop the
-              necessary skills for students to navigate technology and the online world confidently,
-              safely and responsibly. A secondary aim is to complement the National Council for
+              There are <strong>3 levels</strong> to the curriculum - Page, Squire and Knight. Each
+              level builds upon the previous to develop the necessary skills with respect to the age
+              and ability of the children. A secondary aim is to complement the National Council for
               Curriculum and Assessment's STEM{' '}
               <Link href="https://www.curriculumonline.ie/getmedia/70081350-c004-4773-8948-f70b0d4ef554/Primary-STE-and-MATHS-Spec-ENG.pdf">
                 Education Specification
-              </Link>
-              , which will prepare solid foundations for Junior Cycle{' '}
+              </Link>{' '}
+              to prepare solid foundations for Junior Cycle{' '}
               <Link href="https://curriculumonline.ie/getmedia/934299b8-d2d8-461e-8d80-cca9d96e656b/JCSEC27_technology_syllabus.pdf">
                 Technology
               </Link>{' '}
