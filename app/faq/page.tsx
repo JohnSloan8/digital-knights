@@ -20,7 +20,7 @@ export default function FaqPage() {
     <div className="divide-y divide-gray-700">
       <PageHeader title={faq.title} description={faq.summary} />
       <div className="py-12">
-        <div className="prose prose-invert max-w-none text-gray-300">
+        <div className="prose prose-invert max-w-none text-gray-300 md:text-lg">
           <QuestionScene className="relative mb-8 h-[300px] w-full md:float-right md:mb-4 md:ml-8 md:h-[500px] md:w-1/2" />
           <MDXLayoutRenderer code={faq.body.code} components={components} />
         </div>

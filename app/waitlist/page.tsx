@@ -15,9 +15,12 @@ export default function WaitlistPage() {
           description="Add your child/children to the waitlist for future classes"
         />
         <div className="py-12">
-          <p className="mb-8 text-lg text-gray-300">
-            If you are interested in your child/children joining a Digital Knights class in the
-            future, please complete the form below to be added to the waitlist.
+          <p className="mb-8 text-gray-300 md:text-lg">
+            If you would like to express an interest in your child/children joining a Digital
+            Knights class in the future, please complete the form below to be added to the waitlist.
+          </p>
+          <p className="mb-8 text-gray-300 md:text-lg">
+            Places will be assigned on a first-come-first-served basis
           </p>
 
           <WaitingScene className="relative z-[-1] -mt-[80px] mb-0 h-[300px] w-full md:h-[500px]" />

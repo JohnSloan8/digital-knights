@@ -7,15 +7,15 @@ layout: 'FaqLayout'
 
 ### What is Digital Knights?
 
-Digital Knights is a new after-school academy in South Dublin to teach kids aged 8-16 tech and cybersecurity skills prior to, and during, first posession of a device with online capabilities. Opening is planned for September 2026.
+Digital Knights is a new after-school academy in South Dublin to teach kids aged 7-15 tech and cybersecurity skills prior to, and during, first posession of a device with online capabilities. Opening is planned for September 2026.
 
 ### Why an after-school academy?
 
-Becoming a parent changed my relationship with technology. While I love all things tech, my concerns about how our personal data is being gathered and used by companies and governments have grown. While my background means I can protect my own devices, data and digital footprint, doing so for my children will require education - an education that is not currently covered in the curricula for primary or secondary schools. In putting together an draft of what I intend for my own kids to learn (see: [curriculum](/curriculum) ), I felt other parents who share my concerns may be interested in a similar program for their own children.
+Becoming a parent changed my relationship with technology. While I love all things tech, my concerns about how our personal data is being gathered and used by companies and governments have grown. While my background means I can protect my own devices, data and digital footprint, doing so for my children will require education - one that is not currently covered in the curricula for primary or secondary schools. In putting together an draft of what I intend for my own kids to learn (see: [curriculum](/curriculum) ), I felt other parents who share my concerns may be interested in a similar program for their own children.
 
 ### What are these concerns about tech?
 
-There are many - from cyberbullying to viewing inappropriate or disturbing content. However, my primary concern is the collection of data for profiling and targeting content. I don't want my child getting a stream of content related to plastic surgery because they once searched for 'nose job' out of curiousity. I don't want my child getting alerts about the latest deals on a product when they happen to be in the proximity of a particular location. And, I particularly don't want my kids getting a deluge of polarising political content carefully crafted to sway the opinions of young minds.
+There are many - from cyberbullying to viewing inappropriate or disturbing content. However, my primary concern is the collection of data for profiling and targeting content. I don't want my child getting a stream of content related to plastic surgery because they once searched for 'nose job' out of curiousity. I don't want my child getting alerts about the latest deals on a product when they happen to be in the proximity of a particular location. And, I particularly don't want my kids getting a deluge of polarising political content, specifically crafted to sway the opinions of young people.
 
 ### What will kids learn in Digital Knights?
 
@@ -31,11 +31,11 @@ It can be beneficial to relate the learning of a new and unfamiliar topic to one
 
 ### Why you?
 
-I have spent over two decades in the fields of technology and education, designing and delivering courses for children and college students. On the tech side I hold a PhD in Computer Science from UCD and the CISSP cybersecurity certification from ISC2. On the education side, I spent 5 years developing and delivering a curriculum for primary school ESL students, 4 years as a Teaching Assistant for UCD Computer Science, and most recently, 2 years designing courses and lecturing at Trinity College Dublin in Speech and Language Technologies. I believe I have the necessary skils and experience to create and deliver a tech and cybersecurity curriculum for children.
+I have spent over two decades in the fields of technology and education, designing and delivering courses for children and college students. I hold a PhD in Computer Science from UCD and the CISSP cybersecurity certification from ISC2. I spent 5 years developing and delivering a curriculum for primary school ESL students, 4 years as a Teaching Assistant for UCD Computer Science, and most recently, 2 years designing courses and lecturing at Trinity College Dublin in Speech and Language Technologies. I am confident I have the necessary skils and experience to create and deliver a tech and cybersecurity curriculum for children.
 
 ### Why not leave this education to schools?
 
-I believe this topic needs to be taught by experts in the field who actively keep up to date with what is going on. Teachers, particularly in primary school, have enough on their plates without being expected to become highly proficient in tech and cybersecurity as well.
+I believe this topic is best taught by experts in the field who actively keep up to date with what is going on. Teachers, particularly in primary school, have enough on their plates without being expected to become highly proficient in tech and cybersecurity as well.
 
 ### Why not leave this education to parents?
 
@@ -43,7 +43,7 @@ If a parent has sufficient knowledge, time and ability to educate their children
 
 ### Won't the upcoming smartphone and social media bans for kids solve the problems you mention?
 
-No. See [article](/article).
+No. (See upcoming [article](/blog)).
 
 ### How does Digital Knights differ from other coding classes for kids?
 

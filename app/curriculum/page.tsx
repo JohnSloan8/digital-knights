@@ -49,7 +49,7 @@ export default function Curriculum() {
           </div>
         </div>
         <div className="relative space-y-8 py-12 pt-0">
-          <div className="space-y-4 text-lg leading-7 text-gray-300">
+          <div className="space-y-4 text-gray-300 md:text-lg md:leading-7">
             <p>
               The Digital Knights curriculum will structure a learning pathway for children,
               starting from 7-10 years old, to technologically proficient individuals at 15 who
@@ -155,7 +155,7 @@ export default function Curriculum() {
 
                     {/* Description and Link */}
                     <div>
-                      <p className="mb-4 text-lg text-gray-300">{level.description}</p>
+                      <p className="mb-4 text-gray-300 md:text-lg">{level.description}</p>
                       <div className="mt-2">
                         <CurriculumModal
                           className={`cursor-pointer text-sm font-semibold tracking-wider uppercase ${level.dotColor.replace('bg-', 'text-')} hover:opacity-80`}
@@ -183,7 +183,7 @@ export default function Curriculum() {
           <h2 className="mb-8 text-2xl leading-8 font-bold tracking-tight text-gray-100 sm:text-3xl md:text-4xl">
             Towards Junior and Leaving Cert
           </h2>
-          <div className="text-lg leading-7 text-gray-300">
+          <div className="text-gray-300 md:text-lg md:leading-7">
             <p>
               At the conclusion of Level 3, students will have the skills to enter the digital world
               with full control over their own devices, data and digital footprint. In addition,
