@@ -203,20 +203,27 @@ function Debris({
 }
 
 function FloatingText({ position, text }: { position: THREE.Vector3; text: string }) {
-  return (
-    <group position={[position.x, position.y + 0.5, position.z]}>
-      <Html position={[0, 0, 0]} center zIndexRange={[100, 0]}>
-        <div
-          className="pointer-events-none font-bold text-[#00f0ff] select-none"
-          style={{
-            fontSize: '24px',
-            textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000',
-            animation: 'floatUp 1.5s ease-out forwards',
-            whiteSpace: 'nowrap',
-          }}
-        >
-          {text}
-          <style>{`
+  const [isSmall, setIsSmall] = useState(false)
+
+  useEffect(() => {
+    const checkSize = () => setIsSmall(window.innerWidth < 768)
+    checkSize()
+    window.addEventListener('resize', checkSize)
+    return () => window.removeEventListener('resize', checkSize)
+  }, [])
+
+  const content = (
+    <div
+      className="pointer-events-none font-bold text-[#00f0ff] select-none"
+      style={{
+        fontSize: '24px',
+        textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000',
+        animation: 'floatUp 1.5s ease-out forwards',
+        whiteSpace: 'nowrap',
+      }}
+    >
+      {text}
+      <style>{`
             @keyframes floatUp {
               0% {
                 opacity: 1;
@@ -228,7 +235,23 @@ function FloatingText({ position, text }: { position: THREE.Vector3; text: strin
               }
             }
           `}</style>
+    </div>
+  )
+
+  if (isSmall) {
+    return (
+      <Html fullscreen zIndexRange={[100, 0]}>
+        <div className="flex h-full w-full items-start justify-center pt-64 md:items-center md:pt-0">
+          {content}
         </div>
+      </Html>
+    )
+  }
+
+  return (
+    <group position={[position.x, position.y + 0.5, position.z]}>
+      <Html position={[0, 0, 0]} center zIndexRange={[100, 0]}>
+        {content}
       </Html>
     </group>
   )
@@ -361,7 +384,7 @@ function OrbitingCubes({
     '/static/animation-files/sprites/hacker.png',
     '/static/animation-files/sprites/facial-recognition.png',
     '/static/animation-files/sprites/cookies.png',
-    '/static/animation-files/sprites/cyberbullying.png',
+    '/static/animation-files/sprites/ads.png',
     '/static/animation-files/sprites/password-breach.png',
   ]
   const textures = useTexture(texturePaths)
@@ -414,7 +437,7 @@ function OrbitingCubes({
                 'hacker.png': 'hacker neutralised!',
                 'password-breach.png': 'password breach avoided!',
                 'location-tracking.png': 'location tracking blocked!',
-                'cyberbullying.png': 'cyberbullying stopped!',
+                'ads.png': 'ads removed!',
                 'cookies.png': 'cookies blocked!',
               }
 
@@ -632,6 +655,25 @@ function Floor() {
 
 function CameraHandler() {
   const { camera } = useThree()
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (camera instanceof THREE.PerspectiveCamera) {
+        // Medium screens start at 768px in Tailwind
+        const isSmall = window.innerWidth < 768
+        const targetFov = isSmall ? 60 : 40
+        if (camera.fov !== targetFov) {
+          camera.fov = targetFov
+          camera.updateProjectionMatrix()
+        }
+      }
+    }
+
+    handleResize()
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [camera])
+
   useEffect(() => {
     camera.lookAt(0, 0.3, 0)
   }, [camera])
@@ -820,7 +862,9 @@ export default function ThreeScene({ className }: { className?: string }) {
         </div>
         <button
           onClick={() => window.scrollBy({ top: window.innerHeight, behavior: 'smooth' })}
-          className="mx-auto mt-4 block cursor-pointer p-2 text-gray-400 transition-colors hover:text-white"
+          className={`mx-auto mt-4 block cursor-pointer p-2 text-gray-400 transition-colors hover:text-white ${
+            showEnterSite ? 'animate-bounce' : ''
+          }`}
           aria-label="Scroll down"
         >
           <svg
@@ -861,26 +905,13 @@ export default function ThreeScene({ className }: { className?: string }) {
             </div>
           </div>
         )}
-        {showEnterSite && (
-          <div className="absolute top-1/2 left-1/2 w-max -translate-x-1/2 -translate-y-1/2">
-            <Link
-              href="/about"
-              className="pointer-events-auto text-lg font-bold text-[#00f0ff] underline transition-colors duration-300 select-none hover:text-white md:text-2xl"
-              style={{
-                textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000',
-              }}
-            >
-              ENTER SITE
-            </Link>
-          </div>
-        )}
         <button
           disabled={!buttonVisible || animation !== 'idle' || gameOverRef.current}
           onClick={() => {
             setAnimation('slash')
             setSlashTrigger(Date.now())
           }}
-          className={`flex items-center gap-3 rounded-full border-2 bg-black/50 px-4 py-2 text-xl font-bold ${
+          className={`flex items-center gap-2 rounded-full border-2 bg-black/50 px-3 py-1.5 text-lg font-bold md:gap-3 md:px-4 md:py-2 md:text-xl ${
             !buttonVisible || animation !== 'idle' || gameOverRef.current
               ? 'pointer-events-none cursor-not-allowed border-gray-500 text-gray-500 opacity-0'
               : 'cursor-pointer border-[#00f0ff] text-[#00f0ff] opacity-100 hover:bg-black/70'
@@ -889,14 +920,13 @@ export default function ThreeScene({ className }: { className?: string }) {
           Use Sword
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="32"
-            height="32"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
+            className="h-6 w-6 md:h-8 md:w-8"
           >
             <polyline points="14.5 17.5 3 6 3 3 6 3 17.5 14.5" />
             <line x1="13" y1="19" x2="19" y2="13" />

@@ -21,34 +21,36 @@ export default function Curriculum() {
           title="Curriculum"
           description="Preparing children for the digital world in 3 structured levels."
         />
-        <div className="my-8 flex rounded-lg border-l-4 border-blue-500 bg-blue-500/10 p-4">
-          <div className="mr-4 flex-shrink-0">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              className="h-6 w-6 text-blue-500"
-            >
-              <path
-                fillRule="evenodd"
-                d="M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 2-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.5-2.598-4.5L9.4 3.003zM12 8.25a.75.75 0 01.75.75v3.75a.75.75 0 01-1.5 0V9a.75.75 0 01.75-.75zm0 8.25a.75.75 0 100-1.5.75.75 0 000 1.5z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </div>
-          <div className="flex-1">
-            <h5 className="mb-2 font-bold text-blue-500">Under Development</h5>
-            <div className="space-y-2 text-gray-300">
-              <p>The Digital Knights curriculum is currently under development.</p>
+        <div className="py-12">
+          <div className="relative space-y-8 py-12 pt-0">
+            <div className="flex rounded-lg border-l-4 border-blue-500 bg-blue-500/10 p-4">
+              <div className="mr-4 flex-shrink-0">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  className="h-6 w-6 text-blue-500"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 2-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.5-2.598-4.5L9.4 3.003zM12 8.25a.75.75 0 01.75.75v3.75a.75.75 0 01-1.5 0V9a.75.75 0 01.75-.75zm0 8.25a.75.75 0 100-1.5.75.75 0 000 1.5z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </div>
+              <div className="flex-1">
+                <h5 className="mb-2 font-bold text-blue-500">Under Development</h5>
+                <div className="space-y-2 text-gray-300">
+                  <p>The Digital Knights curriculum is currently under development.</p>
 
-              <p>
-                Parental input is actively being sought through a survey{' '}
-                <Link href={'/survey'}>here</Link> and follow-up discussions.
-              </p>
+                  <p>
+                    Parental input is actively being sought through a survey{' '}
+                    <Link href={'/survey'}>here</Link> and follow-up discussions.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="relative space-y-8 py-12 pt-0">
           <div className="space-y-4 text-gray-300 md:text-lg md:leading-7">
             <p>
               The Digital Knights curriculum will structure a learning pathway for children,
@@ -77,7 +79,7 @@ export default function Curriculum() {
               .
             </p>
           </div>
-          <div className="flex flex-col pt-6">
+          <div className="flex flex-col pt-12">
             {levels.map((level, index) => (
               <div key={level.title} className="relative pb-24 last:pb-0">
                 {/* Content Card with Image overlapping */}

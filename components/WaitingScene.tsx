@@ -371,6 +371,25 @@ function LoadingScreen() {
 
 function CameraHandler() {
   const { camera } = useThree()
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (camera instanceof THREE.PerspectiveCamera) {
+        // Medium screens start at 768px in Tailwind
+        const isSmall = window.innerWidth < 768
+        const targetFov = isSmall ? 50 : 35
+        if (camera.fov !== targetFov) {
+          camera.fov = targetFov
+          camera.updateProjectionMatrix()
+        }
+      }
+    }
+
+    handleResize()
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [camera])
+
   useEffect(() => {
     camera.lookAt(0, 1, -0.5)
   }, [camera])
@@ -380,7 +399,7 @@ function CameraHandler() {
 export default function WaitingScene({ className }: { className?: string }) {
   return (
     <div className={className || 'relative h-[500px] w-full'}>
-      <Canvas shadows gl={{ alpha: true }} camera={{ position: [-4.5, 2, 0.5], fov: 40 }}>
+      <Canvas shadows gl={{ alpha: true }} camera={{ position: [-4.5, 2, 0.5], fov: 50 }}>
         <CameraHandler />
         <ambientLight intensity={1.5} />
         <directionalLight position={[3, 5, 5]} castShadow intensity={5} />

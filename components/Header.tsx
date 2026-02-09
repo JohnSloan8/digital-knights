@@ -45,7 +45,7 @@ const Header = () => {
                 </Link>
               ))}
           </div>
-          <SearchButton />
+          {/* <SearchButton /> */}
           <MobileNav />
         </div>
       </div>

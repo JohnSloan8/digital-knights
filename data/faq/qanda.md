@@ -41,31 +41,31 @@ I believe this topic is best taught by experts in the field who actively keep up
 
 If a parent has sufficient knowledge, time and ability to educate their children on this subject, then they should go right ahead.
 
-### Won't the upcoming smartphone and social media bans for kids solve the problems you mention?
+### Won't the upcoming smartphone and social media bans for kids solve the problems you have indetified?
 
-No. (See upcoming [article](/blog)).
+No. (See upcoming [article](/blog/bans)).
 
 ### How does Digital Knights differ from other coding classes for kids?
 
-From a review of the websites for other technology and computer related classes currently available for children in Dublin, the focus is primarily on teaching coding as a useful skill for future success. Digital Knights differes in both content and focus. The content includes a broader range of technical skills at an earlier age, while the main goal is to ensure safety and privacy when the child possesses an internet enabled device of their own.
+From a review of the publicly available information on other technology and computer related classes currently available for children in Dublin, the focus appears to primarily be on teaching coding as a useful skill for future success. Digital Knights differes in both content and focus. The content includes a broader range of technical skills at an earlier age, with the main focus on building technical self-sufficiency to ensure safety and privacy when the child possesses an internet enabled device of their own.
 
 ### Who might be interested in these classes?
 
-The classes are for children aged 7-15, but the interested party is likely to be parents. These are probably parents who:
+If you are reading this page, it is likely you are a parent who has an interest in this subject matter. You probably fall into one or more of the following groups:
 
-- share the concerns I outlined above in regards to tracking and profiling.
-- want their children to have more/earlier education on technology and cybersecurity than is available in the standard school curriculum for STEM.
-- believe the teaching of tech and cybersecurity is better taught by experts.
-- want to provide a solid foundation for Junior and Leaving Cert. Technology and Computer Science.
-- wish to give their children a skill which will be useful for the rest of their lives, no matter which career they choose.
+- Share the concerns I outlined above in regards to tracking and profiling.
+- Want your children to have more/earlier education on technology and cybersecurity than is available in the standard school curriculum for STEM.
+- Believe the teaching of tech and cybersecurity is better carried out by those with expertise in these fields.
+- Want to provide a solid foundation for Junior and Leaving Cert Technology and Computer Science options.
+- Wish to give you children a skill which will be useful for the rest of their lives, no matter which career they choose.
 
-### Will there be classes focussed on Junior and leaving Cert subjects?
+### Will there be classes/grinds for these Junior and leaving Cert subjects?
 
 Not at the moment. Possibly in the future if there is demand.
 
 ### Will there be education for parents?
 
-Yes. In parallel to the curriculum, there will be [articles]('/articles') published on this website and information sessions provided for parents. If parents also want to learn more, specific classes could also be provided.
+Yes. In parallel to the curriculum, there will be [articles]('/articles') published on this website and information sessions provided for parents if there is demand.
 
 ### When is the ideal time to enroll?
 
@@ -73,11 +73,11 @@ Three years prior to possessing their first mobile phone, beginning at 7-10 year
 
 ### What is my child already has a smartphone?
 
-They can still follow the curriculum. However, unless their phone is compatible with the privacy focussed Operating System used in the course (currently Graphene OS running on Google Pixel), they will be need to change phones upon entering level 3. Additionally, any existing email accounts, logins, passwords, browser etc. will also likely require changing.
+They can still follow the curriculum. However, unless their phone is compatible with the privacy focussed Operating System used in the course (currently Graphene OS running on Google Pixel), they will need to change phones upon entering level 3. Additionally, any existing email accounts, logins, passwords, browser etc. will also likely require an overhaul.
 
 ### What if my child uses the tech skills they learn to get around my parental controls etc.?
 
-Digital Knights will introduce a code of conduct for children that must be agreed upon before classes start. However, individual levels of parental monitoring are a family matter.
+Digital Knights will introduce a code of conduct for children that must be agreed upon before classes start. However, individual levels of parental monitoring are a family matter. Options for parental monitoring is a topic that could be covered in a parents information session.
 
 ### When will classes be held?
 
@@ -85,12 +85,12 @@ Starting September 2026, classes to be held after school during term time. Each 
 
 ### How many students per class?
 
-Max 8-10.
+Maximum 8. Small class sizes are required to give sufficient attention to each student.
 
 ### What will it cost?
 
-TBD - pricing will aim to be similar to other after school educational academies.
+TBD - pricing will aim to be similar to other similar after school educational academies.
 
 ### Where are you based?
 
-In Rathfarnham. No physical location for the academy selected yet. If there is sufficient interest, a location wil be selected that is convenient to the majority of the students. If you wish to express an interest for your child/children to join these classes in September 2026, please fill in the [waitlist application form]('/waitlist'). This data will be used to decide on a location.
+A location for the academy has not been selected yet. If there is sufficient interest (based on numbers registered on the [waitlist]('/waitlist')), a location wil be chosen that is convenient to the majority (applicants are asked to include their county/postcode area). This data will be used to decide on a location. If you wish to express an interest for your own child/children to join these classes in September 2026, please fill in the [waitlist application form]('/waitlist').

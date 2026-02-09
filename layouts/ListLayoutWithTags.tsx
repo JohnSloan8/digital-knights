@@ -83,10 +83,10 @@ export default function ListLayoutWithTags({
 
   return (
     <>
-      <div>
-        <PageHeader title={title} />
+      <div className="py-6">
+        {/* <PageHeader title={title} /> */}
         <div className="flex sm:space-x-24">
-          <div className="hidden h-full max-h-screen max-w-[280px] min-w-[280px] flex-wrap overflow-auto rounded-sm bg-gray-900/70 pt-5 shadow-md shadow-gray-800/40 sm:flex">
+          {/* <div className="hidden h-full max-h-screen max-w-[280px] min-w-[280px] flex-wrap overflow-auto rounded-sm bg-gray-900/70 pt-5 shadow-md shadow-gray-800/40 sm:flex">
             <div className="px-6 py-4">
               {pathname.startsWith('/blog') ? (
                 <h3 className="text-primary-500 font-bold uppercase">All Posts</h3>
@@ -120,7 +120,7 @@ export default function ListLayoutWithTags({
                 })}
               </ul>
             </div>
-          </div>
+          </div> */}
           <div>
             <ul>
               {displayPosts.map((post) => {

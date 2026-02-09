@@ -4,6 +4,7 @@ import AuthorLayout from '@/layouts/AuthorLayout'
 import { coreContent } from 'pliny/utils/contentlayer'
 import { genPageMetadata } from 'app/seo'
 import { components } from '@/components/MDXComponents'
+import PageHeader from '@/components/PageHeader'
 
 export const metadata = genPageMetadata({ title: 'About' })
 
@@ -13,9 +14,12 @@ export default function Page() {
 
   return (
     <>
-      <AuthorLayout content={mainContent}>
-        <MDXLayoutRenderer code={author.body.code} components={components} />
-      </AuthorLayout>
+      <div className="divide-y divide-gray-700">
+        <PageHeader title="About" description="Information about the Digital Knights project." />
+        <AuthorLayout content={mainContent}>
+          <MDXLayoutRenderer code={author.body.code} components={components} />
+        </AuthorLayout>
+      </div>
     </>
   )
 }

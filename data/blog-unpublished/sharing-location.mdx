@@ -1,0 +1,73 @@
+---
+title: 'What Are We Sharing? - Location'
+date: '2025-08-15'
+lastmod: '2023-08-16'
+tags: ['sharing', 'location']
+draft: false
+layout: PostSimple
+summary: WHat data do we share regarding our location, where is it stored, for how long, and how is it used?
+---
+
+_This article is part of a series on what information we are sharing and how it is used._
+
+As I write these words, information on my current whereabouts is being transmitted over the internet and stored in real time on a database. Here I am, sitting in the 'Study Room' of Ballyroan library, and in my pocket my phone is silently pinging off information that looks something like the following:
+
+```
+{
+  "userID": "117761053924729173482"
+  "latitude": 53.290750,
+  "longitude": -6.298965,
+  "altitude": 58.5,
+  "accuracy": 5,
+  "timestamp": "2025-08-19T14:30:00Z",
+  "speed": 0.2,
+  "direction": 192
+}
+```
+
+This puts me here on the map, moving slowly in a South-South-Westerly direction at 2:30pm. This, I can only guess, must be one of the numerous trips to the bathroom after 4 cups of coffee to counteract another sleepless night with two kids under 2.
+
+![My current location](../../../media/location-Ballyroan-library-map.png)
+
+Now, I said the information is being stored on a database, but in reality, it is being stored on many different databases in the ever-more-massive and energy-hungry data centers popping up around this country and others. These databases are not ones I own, operate, or even have access to myself. Although I do store a lot of things digitally (photos, notes, recipes etc.) I have never once had the desire to keep a record of my exact whereabouts at all times. If an individual did this for themselves, we might, at best, consider it a character quirk; and at worst, wonder about their mental health. If someone was tracking and storing the location of another person in this manner, we would probably hope they end up in jail for stalking.
+
+So, why is my location being transmitted and stored like this? Well, this data collection occurs for two main legitimate reasons: first, to ensure a reliable connection to a service provider so you can connect to a network; and second, to provide apps with location permissions that they use to function. Lets look at both of these cases in a little more detail, and then investigate the dangers that arise from this form of data collection.
+
+## Connecting to a Network
+
+Your phone communicates wirelessly with nearby mobile phone masts to make calls, send texts, and use data.
+
+Your phone periodically searches for the strongest available signal from nearby masts. The interval generally ranges from multiple times a second to a few seconds.
+
+Your phone 'registers' with the nearest tower/strongest signal (depending on other factors, e.g. congestion). To register, the phone sends data including its IMSI (International Mobile Subscriber Identity), a unique identifier linked to the SIM card, and a unique device identifier, such as the IMEI (International Mobile Equipment Identity) which identifies the specific handset on the network. It also sends a area code for the area you are in. This data allows the network to recognize your subscription and authorize access.
+
+### References
+
+[2018-NYTimes](https://www.nytimes.com/interactive/2018/12/10/business/location-data-privacy-apps.html)
+
+_"The mobile location industry began as a way to customize apps and target ads for nearby businesses, but it has morphed into a data collection and analysis machine."_
+
+# Location
+
+Data on your whereabouts is collected thorugh
+
+## GPS Tracking
+
+Your phone uses GPS to determine your exact location using signals from satellites. Here are common scenarios when GPS is activated:
+
+- **Navigation and Maps:** When you use map apps like Google Maps or Apple Maps for driving, walking, or transit directions, GPS is used to provide precise, real-time location tracking.
+- **Location-Based Services and Apps:** Many apps—such as ride-sharing, weather, fitness trackers, and social media—use GPS to provide location-specific features and data.
+- **Emergency Services:** When you make an emergency call (e.g., 999 in the UK), your phone may use GPS to help emergency responders locate you quickly.
+- **Geotagging Media:** Your phone can use GPS to tag photos or videos with the location where they were captured.
+- **Location Sharing:** If you choose to share your location with friends or family via apps, GPS may be used to provide accurate positioning.
+- **Background Location Tracking:** Some apps may use GPS in the background if you have granted them permission, which can affect battery life.
+
+GPS is typically activated when apps request location data and you have granted necessary permissions. Otherwise, your phone relies on less precise methods like Wi-Fi or cell tower triangulation to estimate your location, which are less battery-intensive and less exact.
+
+##
+
+### Problem
+
+- Dark Patterns in Permissions.
+- Our own Complacency with Permissions.
+- Ease of use. popup every time maps want to use my location, ah come on, I can't be expected to tap an ok button every time I use maps, I have better things to be doing.

@@ -1,34 +1,52 @@
+'use client'
+
 import Link from './Link'
 import siteMetadata from '@/data/siteMetadata'
 import SocialIcon from '@/components/social-icons'
+import { useState } from 'react'
 
 export default function Footer() {
+  const [showCookiePopup, setShowCookiePopup] = useState(false)
+
   return (
     <footer>
+      {showCookiePopup && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4">
+          <div className="border-primary-500 relative w-full max-w-sm rounded-lg border bg-gray-900 p-6 shadow-xl">
+            <h3 className="mb-2 text-xl font-bold text-white">Cookies Policy</h3>
+            <p className="mb-6 text-gray-300">Cookies are not used on this site.</p>
+            <button
+              onClick={() => setShowCookiePopup(false)}
+              className="bg-primary-600 hover:bg-primary-700 w-full rounded-md px-4 py-2 text-sm font-medium text-white transition-colors"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
       <div className="mt-16 flex flex-col items-center">
-        <div className="mb-3 flex space-x-4">
-          <SocialIcon kind="mail" href={`mailto:${siteMetadata.email}`} size={6} />
-          <SocialIcon kind="github" href={siteMetadata.github} size={6} />
-          <SocialIcon kind="facebook" href={siteMetadata.facebook} size={6} />
-          <SocialIcon kind="youtube" href={siteMetadata.youtube} size={6} />
-          <SocialIcon kind="linkedin" href={siteMetadata.linkedin} size={6} />
-          <SocialIcon kind="twitter" href={siteMetadata.twitter} size={6} />
-          <SocialIcon kind="bluesky" href={siteMetadata.bluesky} size={6} />
-          <SocialIcon kind="x" href={siteMetadata.x} size={6} />
-          <SocialIcon kind="instagram" href={siteMetadata.instagram} size={6} />
-          <SocialIcon kind="threads" href={siteMetadata.threads} size={6} />
-          <SocialIcon kind="medium" href={siteMetadata.medium} size={6} />
-        </div>
-        <div className="mb-2 flex space-x-2 text-sm text-gray-400">
-          <div>{siteMetadata.author}</div>
+        <div className="mb-2 flex space-x-2 text-sm text-gray-500">
+          <div>{`© ${siteMetadata.title} ${new Date().getFullYear()}`}</div>
           <div>{` • `}</div>
-          <div>{`© ${new Date().getFullYear()}`}</div>
+          <Link
+            href="/privacy"
+            className="!cursor-pointer !text-gray-500 !no-underline hover:!text-gray-400"
+          >
+            Privacy Policy
+          </Link>
           <div>{` • `}</div>
-          <Link href="/">{siteMetadata.title}</Link>
-        </div>
-        <div className="mb-8 text-sm text-gray-400">
-          <Link href="https://github.com/timlrx/tailwind-nextjs-starter-blog">
-            Tailwind Nextjs Theme
+          <button
+            onClick={() => setShowCookiePopup(true)}
+            className="cursor-pointer text-gray-500 hover:text-gray-400"
+          >
+            Cookies
+          </button>
+          <div>{` • `}</div>
+          <Link
+            href="/contact"
+            className="!cursor-pointer !text-gray-500 !no-underline hover:!text-gray-400"
+          >
+            Contact
           </Link>
         </div>
       </div>

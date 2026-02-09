@@ -36,7 +36,7 @@ export default function Home({ posts }) {
           </Link>
         </div> */}
         <div className="">
-          <div className="space-y-6 pt-0 pb-8">
+          <div className="space-y-6">
             <h2 className="mb-4 text-2xl leading-8 font-bold tracking-tight text-gray-100">
               Introduction
             </h2>
@@ -46,13 +46,17 @@ export default function Home({ posts }) {
               world.
             </p>
             <p className="text-gray-300 md:text-lg md:leading-7">
-              Students from 7-15 will learn to become technically self-sufficient digital citizens
+              Students aged 7-15 will learn to become technically self-sufficient digital citizens
               who understand how to manage their devices, data and digital footprint in order to
               navigate online spaces safely and privately.
             </p>
             <p className="text-gray-300 md:text-lg md:leading-7">
-              Digital Knights is was set up by father, Computer Science PhD, Trinity College
-              Assistant Professor and CISSP Cybersecurity expert,{' '}
+              They will also develop a strong foundation in computer science and cybersecurity
+              principles to give them a head start in secondary school and beyond.
+            </p>
+            <p className="text-gray-300 md:text-lg md:leading-7">
+              Digital Knights was set up by father, Computer Science PhD, Trinity College Assistant
+              Professor and CISSP Cybersecurity expert,{' '}
               <Link
                 href="/about#about-me"
                 className="text-primary-500 hover:text-primary-400 !no-underline"
@@ -70,7 +74,7 @@ export default function Home({ posts }) {
           </h2>
           <div className="space-y-8 text-gray-300 md:text-lg md:leading-8">
             <div>
-              <p className="mb-2">For more information, see:</p>
+              <p className="mb-2">For more information about Digital Knights:</p>
               <div className="flex flex-col space-y-1">
                 <Link
                   href="/about"
@@ -119,8 +123,7 @@ export default function Home({ posts }) {
 
             <div>
               <p className="mb-2">
-                In the coming months, I will be posting educational content for parents on relevant
-                topics in:
+                Content for parents on relevant topics will be posted regularly:
               </p>
               <div className="flex flex-col space-y-1">
                 <Link
@@ -167,9 +170,9 @@ export default function Home({ posts }) {
                   <td className="px-2 py-4 font-medium whitespace-nowrap text-white sm:px-6">
                     Jul 2026
                   </td>
-                  <td className="px-2 py-4 sm:px-6">Confirm location of academy</td>
+                  <td className="px-2 py-4 sm:px-6">Confirm location of academy and pricing</td>
                   <td className="px-2 py-4 sm:px-6">
-                    Likely D14/D16, but depends on demand and available facilities
+                    Location likely D14/D16, but depends on cost, demand and available facilities.
                   </td>
                 </tr>
                 <tr>

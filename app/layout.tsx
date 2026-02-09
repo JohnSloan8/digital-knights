@@ -104,11 +104,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="bg-background font-sans text-white antialiased" suppressHydrationWarning>
         <Analytics analyticsConfig={siteMetadata.analytics as AnalyticsConfig} />
         <SearchProvider searchConfig={siteMetadata.search as SearchConfig}>
-          <Header />
-          <MainContentWrapper>
-            <main className="mb-auto pb-24">{children}</main>
-            {/* <Footer /> */}
-          </MainContentWrapper>
+          <div className="flex min-h-screen flex-col">
+            <Header />
+            <MainContentWrapper>
+              <main className="mb-auto pb-24">{children}</main>
+              <Footer />
+            </MainContentWrapper>
+          </div>
         </SearchProvider>
       </body>
     </html>

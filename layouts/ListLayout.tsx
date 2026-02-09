@@ -86,7 +86,7 @@ export default function ListLayout({
   return (
     <>
       <div className="divide-y divide-gray-700">
-        <PageHeader title={title} />
+        {/* <PageHeader title={title} /> */}
         <div className="space-y-2 pb-8 md:space-y-5">
           <div className="relative max-w-lg">
             <label>
