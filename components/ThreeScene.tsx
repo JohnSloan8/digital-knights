@@ -109,7 +109,7 @@ function Lightning({
 }
 
 function ElectricEffect({ position }: { position: [number, number, number] }) {
-  const node1 = useMemo(() => new THREE.Vector3(-0.3, 0, 0), [])
+  const node1 = useMemo(() => new THREE.Vector3(0, 0, 0), [])
   const node2 = useMemo(() => new THREE.Vector3(0.3, 0, 0), [])
 
   return (
@@ -240,8 +240,8 @@ function FloatingText({ position, text }: { position: THREE.Vector3; text: strin
 
   if (isSmall) {
     return (
-      <Html fullscreen zIndexRange={[100, 0]}>
-        <div className="flex h-full w-full items-start justify-center pt-64 md:items-center md:pt-0">
+      <Html fullscreen zIndexRange={[100, 0]} style={{ pointerEvents: 'none' }}>
+        <div className="flex h-full w-full items-start justify-center pt-48 md:items-center md:pt-0">
           {content}
         </div>
       </Html>
@@ -250,7 +250,7 @@ function FloatingText({ position, text }: { position: THREE.Vector3; text: strin
 
   return (
     <group position={[position.x, position.y + 0.5, position.z]}>
-      <Html position={[0, 0, 0]} center zIndexRange={[100, 0]}>
+      <Html position={[0, 0, 0]} center zIndexRange={[100, 0]} style={{ pointerEvents: 'none' }}>
         {content}
       </Html>
     </group>
@@ -666,6 +666,7 @@ function CameraHandler() {
           camera.fov = targetFov
           camera.updateProjectionMatrix()
         }
+        camera.lookAt(0, isSmall ? -0.3 : 0.3, 0)
       }
     }
 
@@ -674,9 +675,6 @@ function CameraHandler() {
     return () => window.removeEventListener('resize', handleResize)
   }, [camera])
 
-  useEffect(() => {
-    camera.lookAt(0, 0.3, 0)
-  }, [camera])
   return null
 }
 
@@ -836,10 +834,10 @@ export default function ThreeScene({ className }: { className?: string }) {
       </Canvas>
       <div
         id="logo-text"
-        className="absolute bottom-0 left-0 z-40 w-full pt-32 pb-4 text-center"
+        className="absolute bottom-0 left-0 z-40 w-full pt-32 pb-2 text-center"
         style={{ background: 'linear-gradient(to top, rgba(20, 26, 30, 1), rgba(20, 26, 30, 0))' }}
       >
-        <div className="flex justify-center pb-4">
+        <div className="flex justify-center pb-2">
           <Image
             src="/static/images/DK-logo-full-text-blue.webp"
             alt="Digital Knights"
@@ -849,20 +847,31 @@ export default function ThreeScene({ className }: { className?: string }) {
             priority
           />
         </div>
-        <div className="flex items-center justify-center gap-4">
-          <svg width="60" height="12" viewBox="0 0 60 12" className="rotate-180 text-gray-400">
+        <div className="flex items-center justify-center gap-2 md:gap-4">
+          <svg
+            width="60"
+            height="12"
+            viewBox="0 0 60 12"
+            className="h-auto w-[30px] rotate-180 text-gray-400 md:w-[60px]"
+          >
             <path d="M0 6 H15 M15 1 V11 M15 6 H60" stroke="currentColor" strokeWidth="2" />
           </svg>
-          <p className="text-lg leading-7 font-medium text-gray-300 md:text-2xl">
-            Tech & Cybersecurity education for kids and parents
+          <p className="text-center text-base leading-7 font-medium text-gray-300 md:text-xl">
+            <span className="inline-block">Tech & Cybersecurity education</span>{' '}
+            <span className="inline-block">for kids and parents</span>
           </p>
-          <svg width="60" height="12" viewBox="0 0 60 12" className="rotate-180 text-gray-400">
+          <svg
+            width="60"
+            height="12"
+            viewBox="0 0 60 12"
+            className="h-auto w-[30px] rotate-180 text-gray-400 md:w-[60px]"
+          >
             <path d="M0 6 H45 M45 1 V11 M45 6 H60" stroke="currentColor" strokeWidth="2" />
           </svg>
         </div>
         <button
           onClick={() => window.scrollBy({ top: window.innerHeight, behavior: 'smooth' })}
-          className={`mx-auto mt-4 block cursor-pointer p-2 text-gray-400 transition-colors hover:text-white ${
+          className={`mx-auto mt-2 block cursor-pointer p-2 text-gray-400 transition-colors hover:text-white ${
             showEnterSite ? 'animate-bounce' : ''
           }`}
           aria-label="Scroll down"
@@ -882,7 +891,7 @@ export default function ThreeScene({ className }: { className?: string }) {
           </svg>
         </button>
       </div>
-      <div className="absolute bottom-70 left-1/2 z-41 flex -translate-x-1/2 transform flex-col items-center justify-center">
+      <div className="absolute bottom-64 left-1/2 z-[100] flex -translate-x-1/2 transform flex-col items-center justify-center">
         {showThreatText && !buttonVisible && (
           <div className="absolute top-1/2 left-1/2 w-max -translate-x-1/2 -translate-y-1/2">
             <div

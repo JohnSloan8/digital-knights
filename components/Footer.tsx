@@ -25,7 +25,7 @@ export default function Footer() {
         </div>
       )}
       <div className="mt-16 flex flex-col items-center">
-        <div className="mb-2 flex space-x-2 text-sm text-gray-500">
+        <div className="mb-2 flex items-center space-x-2 text-sm text-gray-500">
           <div>{`© ${siteMetadata.title} ${new Date().getFullYear()}`}</div>
           <div>{` • `}</div>
           <Link

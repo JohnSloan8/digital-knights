@@ -21,9 +21,9 @@ export default function Home({ posts }) {
   return (
     <>
       <div id="react-three-fibre-container">
-        <ThreeScene className="absolute top-0 left-0 h-screen w-full" />
+        <ThreeScene className="absolute top-0 left-0 h-[100svh] w-full" />
       </div>
-      <div className="relative z-10 mx-auto mt-[calc(100vh-64px)] w-full md:mt-[calc(100vh-96px)]">
+      <div className="relative z-10 mx-auto mt-[calc(100svh-64px)] w-full md:mt-[calc(100svh-96px)]">
         {/* <div className="border-primary-500 bg-primary-500/10 mb-8 flex flex-col items-center justify-between gap-4 rounded-lg border p-6 text-center shadow-lg md:flex-row md:text-left">
           <h2 className="text-primary-200 text-lg font-bold">
             New academy opening in South Dublin - September 2026!
