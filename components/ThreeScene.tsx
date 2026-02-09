@@ -670,7 +670,7 @@ function CameraHandler() {
       if (camera instanceof THREE.PerspectiveCamera) {
         // Medium screens start at 768px in Tailwind
         const isSmall = window.innerWidth < 768
-        const targetFov = isSmall ? 65 : 40
+        const targetFov = isSmall ? 60 : 40
         if (camera.fov !== targetFov) {
           camera.fov = targetFov
           camera.updateProjectionMatrix()
