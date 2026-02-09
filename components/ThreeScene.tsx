@@ -240,7 +240,7 @@ function FloatingText({ position, text }: { position: THREE.Vector3; text: strin
 
   if (isSmall) {
     return (
-      <Html fullscreen zIndexRange={[100, 0]} style={{ pointerEvents: 'none' }}>
+      <Html fullscreen zIndexRange={[30, 0]} style={{ pointerEvents: 'none' }}>
         <div className="flex h-full w-full items-start justify-center pt-48 md:items-center md:pt-0">
           {content}
         </div>
@@ -250,7 +250,7 @@ function FloatingText({ position, text }: { position: THREE.Vector3; text: strin
 
   return (
     <group position={[position.x, position.y + 0.5, position.z]}>
-      <Html position={[0, 0, 0]} center zIndexRange={[100, 0]} style={{ pointerEvents: 'none' }}>
+      <Html position={[0, 0, 0]} center zIndexRange={[30, 0]} style={{ pointerEvents: 'none' }}>
         {content}
       </Html>
     </group>
@@ -496,7 +496,16 @@ function OrbitingCubes({
     }
   })
 
-  const radius = 2
+  const [isSmall, setIsSmall] = useState(false)
+
+  useEffect(() => {
+    const checkSize = () => setIsSmall(window.innerWidth < 768)
+    checkSize()
+    window.addEventListener('resize', checkSize)
+    return () => window.removeEventListener('resize', checkSize)
+  }, [])
+
+  const radius = isSmall ? 1.7 : 2
   const yPos = 0.9
 
   return (
@@ -661,7 +670,7 @@ function CameraHandler() {
       if (camera instanceof THREE.PerspectiveCamera) {
         // Medium screens start at 768px in Tailwind
         const isSmall = window.innerWidth < 768
-        const targetFov = isSmall ? 60 : 40
+        const targetFov = isSmall ? 65 : 40
         if (camera.fov !== targetFov) {
           camera.fov = targetFov
           camera.updateProjectionMatrix()
@@ -891,7 +900,7 @@ export default function ThreeScene({ className }: { className?: string }) {
           </svg>
         </button>
       </div>
-      <div className="absolute bottom-64 left-1/2 z-[100] flex -translate-x-1/2 transform flex-col items-center justify-center">
+      <div className="absolute bottom-64 left-1/2 z-40 flex -translate-x-1/2 transform flex-col items-center justify-center">
         {showThreatText && !buttonVisible && (
           <div className="absolute top-1/2 left-1/2 w-max -translate-x-1/2 -translate-y-1/2">
             <div
