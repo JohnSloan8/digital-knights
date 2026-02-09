@@ -55,6 +55,10 @@ export default function Home({ posts }) {
               principles to give them a head start in secondary school and beyond.
             </p>
             <p className="text-gray-300 md:text-lg md:leading-7">
+              Parents will be included in the learning journey with regular updates and resources to
+              support their children at home, and content on relevant topics to help stay informed.
+            </p>
+            <p className="text-gray-300 md:text-lg md:leading-7">
               Digital Knights was set up by father, Computer Science PhD, Trinity College Assistant
               Professor and CISSP Cybersecurity expert,{' '}
               <Link
