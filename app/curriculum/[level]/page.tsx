@@ -1,7 +1,7 @@
 import { genPageMetadata } from 'app/seo'
 import Image from '@/components/Image'
 import PageHeader from '@/components/PageHeader'
-import levels from '@/data/curriculum.json'
+import levels from '../../data/curriculum.json'
 
 export async function generateMetadata(props: { params: Promise<{ level: string }> }) {
   const params = await props.params

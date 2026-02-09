@@ -4,7 +4,7 @@ import Image from '@/components/Image'
 import Link from '@/components/Link'
 import PageHeader from '@/components/PageHeader'
 import TechLine from '@/components/TechLine'
-import levels from '@/data/curriculum.json'
+import levels from '../data/curriculum.json'
 import CurriculumModal from '@/components/CurriculumModal'
 
 // Safelist for dynamic gradient classes
