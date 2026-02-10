@@ -47,7 +47,7 @@ No. (See upcoming [article](/blog/bans)).
 
 ### How does Digital Knights differ from other coding classes for kids?
 
-From a review of the publicly available information on other technology and computer related classes currently available for children in Dublin, the focus appears to primarily be on teaching coding as a useful skill for future success. Digital Knights differes in both content and focus. The content includes a broader range of technical skills at an earlier age, with the main focus on building technical self-sufficiency to ensure safety and privacy when the child possesses an internet enabled device of their own.
+From a review of the publicly available information on other technology and computer related classes currently available for children in Dublin, the focus appears to primarily be on coding as a useful skill for future success. Digital Knights covers a broader range of technical skills, as the main focus on building general technical self-sufficiency to ensure safety and privacy when the child possesses an internet enabled device of their own.
 
 ### Who might be interested in these classes?
 
@@ -58,6 +58,10 @@ If you are reading this page, it is likely you are a parent who has an interest 
 - Believe the teaching of tech and cybersecurity is better carried out by those with expertise in these fields.
 - Want to provide a solid foundation for Junior and Leaving Cert Technology and Computer Science options.
 - Wish to give you children a skill which will be useful for the rest of their lives, no matter which career they choose.
+
+### What if my cild is not the 'techy' type?
+
+It is not that long ago that computer and tech related skills were only learned by a small subset of the population who had a special interest or aptitude for the subject. Today, these skills need to be learned by everyone, not just the 'techy' type. It is the responsibility of those who design and deliver education (including myself) to make sure it is accessible to everyone.
 
 ### Will there be classes/grinds for these Junior and leaving Cert subjects?
 
@@ -93,4 +97,4 @@ TBD - pricing will aim to be similar to other similar after school educational a
 
 ### Where are you based?
 
-A location for the academy has not been selected yet. If there is sufficient interest (based on numbers registered on the [waitlist]('/waitlist')), a location wil be chosen that is convenient to the majority (applicants are asked to include their county/postcode area). This data will be used to decide on a location. If you wish to express an interest for your own child/children to join these classes in September 2026, please fill in the [waitlist application form]('/waitlist').
+A location for the academy has not been selected yet. If there is sufficient interest, a location wil be chosen that is convenient to the majority on the waitlist. If you wish to express an interest for your own child/children to join these classes in September 2026, please fill in the [waitlist application form]('/waitlist').
