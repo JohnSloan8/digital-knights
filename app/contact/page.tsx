@@ -46,7 +46,7 @@ export default function Contact() {
   }
 
   return (
-    <div className="mx-auto max-w-3xl px-4 sm:px-6 xl:max-w-5xl xl:px-0">
+    <div className="mx-auto max-w-3xl xl:max-w-5xl">
       <div className="divide-y divide-gray-700">
         <PageHeader
           title="Contact"
@@ -152,13 +152,15 @@ export default function Contact() {
                   </div>
                 )}
 
-                <button
-                  type="submit"
-                  disabled={status === 'submitting'}
-                  className="bg-primary-800 hover:bg-primary-900 focus:ring-primary-600 w-full cursor-pointer rounded-md px-5 py-2.5 text-base font-medium text-white ring-offset-black focus:ring-2 focus:ring-offset-2 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
-                >
-                  {status === 'submitting' ? 'Sending...' : 'Send Message'}
-                </button>
+                <div className="flex justify-center">
+                  <button
+                    type="submit"
+                    disabled={status === 'submitting'}
+                    className="bg-primary-800 hover:bg-primary-900 focus:ring-primary-600 w-full cursor-pointer rounded-md px-5 py-2.5 text-base font-medium text-white ring-offset-black focus:ring-2 focus:ring-offset-2 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
+                  >
+                    {status === 'submitting' ? 'Sending...' : 'Send Message'}
+                  </button>
+                </div>
               </form>
             </div>
           )}

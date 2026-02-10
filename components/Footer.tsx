@@ -25,29 +25,31 @@ export default function Footer() {
         </div>
       )}
       <div className="mt-16 flex flex-col items-center">
-        <div className="mb-2 flex items-center space-x-2 text-sm text-gray-500">
+        <div className="mb-8 flex flex-col-reverse items-center gap-2 text-center text-sm text-gray-500 sm:flex-row sm:gap-0 sm:space-x-2">
           <div>{`© ${siteMetadata.title} ${new Date().getFullYear()}`}</div>
-          <div>{` • `}</div>
-          <Link
-            href="/privacy"
-            className="!cursor-pointer !text-gray-500 !no-underline hover:!text-gray-400"
-          >
-            Privacy Policy
-          </Link>
-          <div>{` • `}</div>
-          <button
-            onClick={() => setShowCookiePopup(true)}
-            className="cursor-pointer text-gray-500 hover:text-gray-400"
-          >
-            Cookies
-          </button>
-          <div>{` • `}</div>
-          <Link
-            href="/contact"
-            className="!cursor-pointer !text-gray-500 !no-underline hover:!text-gray-400"
-          >
-            Contact
-          </Link>
+          <div className="hidden sm:block">{` • `}</div>
+          <div className="flex items-center space-x-2">
+            <Link
+              href="/privacy"
+              className="!cursor-pointer !text-gray-500 !no-underline hover:!text-gray-400"
+            >
+              Privacy Policy
+            </Link>
+            <div>{` • `}</div>
+            <button
+              onClick={() => setShowCookiePopup(true)}
+              className="cursor-pointer text-gray-500 hover:text-gray-400"
+            >
+              Cookies
+            </button>
+            <div>{` • `}</div>
+            <Link
+              href="/contact"
+              className="!cursor-pointer !text-gray-500 !no-underline hover:!text-gray-400"
+            >
+              Contact
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

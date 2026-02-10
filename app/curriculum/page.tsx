@@ -23,31 +23,31 @@ export default function Curriculum() {
         />
         <div className="py-12">
           <div className="relative space-y-8 py-12 pt-0">
-            <div className="flex rounded-lg border-l-4 border-blue-500 bg-blue-500/10 p-4">
-              <div className="mr-4 flex-shrink-0">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  className="h-6 w-6 text-blue-500"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 2-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.5-2.598-4.5L9.4 3.003zM12 8.25a.75.75 0 01.75.75v3.75a.75.75 0 01-1.5 0V9a.75.75 0 01.75-.75zm0 8.25a.75.75 0 100-1.5.75.75 0 000 1.5z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </div>
-              <div className="flex-1">
-                <h5 className="mb-2 font-bold text-blue-500">Under Development</h5>
-                <div className="space-y-2 text-gray-300">
-                  <p>The Digital Knights curriculum is currently under development.</p>
-
-                  <p>
-                    Parental input is actively being sought through a survey{' '}
-                    <Link href={'/survey'}>here</Link> and follow-up discussions.
-                  </p>
+            <div className="rounded-lg border-l-4 border-blue-500 bg-blue-500/10 p-4 md:p-6">
+              <div className="mb-2 flex items-center">
+                <div className="mr-4 flex-shrink-0">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    className="h-6 w-6 text-blue-500"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 2-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.5-2.598-4.5L9.4 3.003zM12 8.25a.75.75 0 01.75.75v3.75a.75.75 0 01-1.5 0V9a.75.75 0 01.75-.75zm0 8.25a.75.75 0 100-1.5.75.75 0 000 1.5z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
                 </div>
+                <h5 className="font-bold text-blue-500">Under Development</h5>
+              </div>
+              <div className="space-y-2 text-gray-300 md:ml-10">
+                <p>The Digital Knights curriculum is currently under development.</p>
+
+                <p>
+                  Parental input is actively being sought through a survey{' '}
+                  <Link href={'/survey'}>here</Link> and follow-up discussions.
+                </p>
               </div>
             </div>
           </div>
@@ -84,9 +84,9 @@ export default function Curriculum() {
               <div key={level.title} className="relative pb-24 last:pb-0">
                 {/* Content Card with Image overlapping */}
                 <div
-                  className={`relative z-10 rounded-xl border ${level.borderColor} ${level.cardBg} p-6`}
+                  className={`relative z-10 rounded-xl border ${level.borderColor} ${level.cardBg} p-3 md:p-6`}
                 >
-                  <div className="absolute top-6 left-6">
+                  <div className="mb-4 flex justify-center md:absolute md:top-6 md:left-6 md:mb-0">
                     <div
                       className={`flex items-center justify-center rounded-lg px-3 py-1 text-sm font-bold tracking-wider text-white shadow-sm ${level.dotColor}`}
                     >
@@ -109,7 +109,7 @@ export default function Curriculum() {
                     <div className="flex flex-col gap-6 md:flex-row md:items-start">
                       {/* Image Box */}
                       <div
-                        className={`flex h-24 w-32 flex-shrink-0 items-center justify-center overflow-hidden rounded-xl border bg-gray-900 ${level.cardBorder} md:h-32 md:w-48`}
+                        className={`mx-auto flex h-32 w-48 flex-shrink-0 items-center justify-center overflow-hidden rounded-xl border bg-gray-900 ${level.cardBorder} md:mx-0`}
                       >
                         <div className="relative h-full w-full">
                           <Image
@@ -117,26 +117,26 @@ export default function Curriculum() {
                             src={level.imgSrc}
                             className="object-contain"
                             fill
-                            sizes="(max-width: 768px) 128px, 192px"
+                            sizes="(max-width: 768px) 192px, 192px"
                           />
                         </div>
                       </div>
 
                       {/* Right Data: Age/Duration/Tools/Skills */}
                       <div className="flex flex-1 flex-col gap-4">
-                        <div className="flex flex-col gap-2">
-                          <div className="flex items-center gap-2">
+                        <div className="flex flex-col gap-4 md:gap-2">
+                          <div className="flex flex-col gap-1 md:flex-row md:items-center md:gap-2">
                             <span className="font-semibold text-gray-200">AGE:</span>
                             <span className="text-gray-300">{level.ages}</span>
                           </div>
-                          <div className="flex items-center gap-2">
+                          <div className="flex flex-col gap-1 md:flex-row md:items-center md:gap-2">
                             <span className="font-semibold text-gray-200">DURATION:</span>
                             <span className="text-gray-300">{level.duration}</span>
                           </div>
 
                           {/* Equipment */}
                           {level.tools && level.tools.length > 0 && (
-                            <div className="flex items-start gap-2">
+                            <div className="flex flex-col gap-1 md:flex-row md:items-start md:gap-2">
                               <span className="font-semibold text-gray-200">EQUIPMENT:</span>
                               <span className="text-gray-300">
                                 {level.tools.map((t) => t.name).join(', ')}
@@ -145,7 +145,7 @@ export default function Curriculum() {
                           )}
 
                           {/* Skills */}
-                          <div className="flex items-start gap-2">
+                          <div className="flex flex-col gap-1 md:flex-row md:items-start md:gap-2">
                             <span className="font-semibold text-gray-200">SKILLS:</span>
                             <span className="text-gray-300">
                               {level.skills.map((skill) => skill.name).join(', ')}
