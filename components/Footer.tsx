@@ -3,6 +3,7 @@
 import Link from './Link'
 import siteMetadata from '@/data/siteMetadata'
 import SocialIcon from '@/components/social-icons'
+import headerNavLinks from '@/data/headerNavLinks'
 import { useState } from 'react'
 
 export default function Footer() {
@@ -25,6 +26,13 @@ export default function Footer() {
         </div>
       )}
       <div className="mt-16 flex flex-col items-center">
+        <div className="mb-4 flex flex-wrap justify-center space-x-6">
+          {headerNavLinks.map((link) => (
+            <Link key={link.title} href={link.href} className="text-gray-400 hover:text-gray-300">
+              {link.title}
+            </Link>
+          ))}
+        </div>
         <div className="mb-8 flex flex-col-reverse items-center gap-2 text-center text-sm text-gray-500 sm:flex-row sm:gap-0 sm:space-x-2">
           <div>{`© ${siteMetadata.title} ${new Date().getFullYear()}`}</div>
           <div className="hidden sm:block">{` • `}</div>
