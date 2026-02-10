@@ -40,7 +40,7 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
           </header>
           <div className="grid-rows-[auto_1fr] divide-y divide-gray-700 pb-8 xl:divide-y-0">
             <div className="divide-y divide-gray-700 xl:col-span-3 xl:row-span-2 xl:pb-0">
-              <div className="prose prose-invert max-w-none pt-10 pb-8">{children}</div>
+              <div className="prose prose-invert md:prose-lg max-w-none pt-10 pb-8">{children}</div>
             </div>
             <footer>
               <div className="flex flex-col text-sm font-medium sm:flex-row sm:justify-between sm:text-base">
