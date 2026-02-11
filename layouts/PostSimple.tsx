@@ -3,7 +3,6 @@ import { formatDate } from 'pliny/utils/formatDate'
 import { CoreContent } from 'pliny/utils/contentlayer'
 import type { Blog } from 'contentlayer/generated'
 import Link from '@/components/Link'
-import PageTitle from '@/components/PageTitle'
 import SectionContainer from '@/components/SectionContainer'
 import siteMetadata from '@/data/siteMetadata'
 import ScrollTop from '@/components/ScrollTop'
@@ -25,6 +24,11 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
         <div>
           <header>
             <div className="space-y-1 border-b border-gray-700 pb-10 text-center">
+              <div>
+                <h1 className="text-2xl leading-9 font-extrabold tracking-tight text-gray-100 sm:text-3xl sm:leading-10 md:text-4xl md:leading-14">
+                  {title}
+                </h1>
+              </div>
               <dl>
                 <div>
                   <dt className="sr-only">Published on</dt>
@@ -33,9 +37,6 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
                   </dd>
                 </div>
               </dl>
-              <div>
-                <PageTitle>{title}</PageTitle>
-              </div>
             </div>
           </header>
           <div className="grid-rows-[auto_1fr] divide-y divide-gray-700 pb-8 xl:divide-y-0">
