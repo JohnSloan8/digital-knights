@@ -23,7 +23,7 @@ The core learning outcome for a child attending Digital Knights is to become a t
 
 ### Why the medieval theme?
 
-It can be beneficial to relate the learning of a new and unfamiliar topic to one a student already has knowledge of and a positive attitude towards. A lot of the concepts around computing, networking and online safety can be captured well in an analogy to elements from populare medieval fairytales, e.g. inside the castle walls is safe (home network), while outside (internet) can be dangerous. The castle wall is a firewall, drawbridges are ports, secret tunnels are encrypted connections, anonymity is putting on a helmet etc.
+It can be beneficial to relate the learning of a new and unfamiliar topic to one a student already has knowledge of and a positive attitude towards. A lot of the concepts around computing, networking and online safety can be captured well in an analogy to elements from popular medieval fairytales, e.g. inside the castle walls is safe (home network), while outside (internet) can be dangerous. The castle wall is a firewall, drawbridges are ports, secret tunnels are encrypted connections, anonymity is putting on a helmet etc.
 
 ### Who will teach?
 
@@ -39,15 +39,15 @@ I believe this topic is best taught by experts in the field who actively keep up
 
 ### Why not leave this education to parents?
 
-If a parent has sufficient knowledge, time and ability to educate their children on this subject, then they should go right ahead.
+If a parent has the knowledge and time to educate their children on this subject, then they are ideally placed to
 
 ### Won't the upcoming smartphone and social media bans for kids solve the problems you have indetified?
 
-No. (See upcoming [article](/blog/bans)).
+No. See [article](/blog/bans).
 
 ### How does Digital Knights differ from other coding classes for kids?
 
-From a review of the publicly available information on other technology and computer related classes currently available for children in Dublin, the focus appears to primarily be on coding as a useful skill for future success. Digital Knights covers a broader range of technical skills, as the main focus on building general technical self-sufficiency to ensure safety and privacy when the child possesses an internet enabled device of their own.
+From a review of the publicly available information on other technology and computer related classes currently available for children in Ireland, the focus appears to primarily be on coding as a useful skill for future success. Digital Knights covers a broader range of technical skills, as the primary focus on building general technical self-sufficiency to ensure safety and privacy when the child possesses an internet enabled device of their own.
 
 ### Who might be interested in these classes?
 
@@ -59,9 +59,9 @@ If you are reading this page, it is likely you are a parent who has an interest 
 - Want to provide a solid foundation for Junior and Leaving Cert Technology and Computer Science options.
 - Wish to give you children a skill which will be useful for the rest of their lives, no matter which career they choose.
 
-### What if my cild is not the 'techy' type?
+### What if my child is not the 'techy' type?
 
-It is not that long ago that computer and tech related skills were only learned by a small subset of the population who had a special interest or aptitude for the subject. Today, these skills need to be learned by everyone, not just the 'techy' type. It is the responsibility of those who design and deliver education (including myself) to make sure it is accessible to everyone.
+It is not that long ago that computer and tech related skills were only learned by a small subset of the population who had a special interest or aptitude for the subject. Today, these skills need to be learned by everyone, not just the 'techy' types. It is the responsibility of those who design and deliver education in this field (including myself) to make sure it is accessible to everyone.
 
 ### Will there be classes/grinds for these Junior and leaving Cert subjects?
 
@@ -95,6 +95,10 @@ Maximum 8. Small class sizes are required to give sufficient attention to each s
 
 TBD - pricing will aim to be similar to other similar after school educational academies.
 
+### Will I be required to purchase any of the hardware listed in the [syllabus]('/syllabus')
+
+The phone in level 3 is the only hardware that you will be required to buy. There will be a range of options for this phone, costing roughly 200-400. In level 2, the Raspberry Pis and associated hardware will be provided in class. If your child is interested in experimenting at home, a kit can be bought for less than 100. Level 1 requires no additional purchases.
+
 ### Where are you based?
 
-A location for the academy has not been selected yet. If there is sufficient interest, a location wil be chosen that is convenient to the majority on the waitlist. If you wish to express an interest for your own child/children to join these classes in September 2026, please fill in the [waitlist application form]('/waitlist').
+A location for the academy has not been selected yet. It will be chosen in June 2026 based on the area most convenient to the majority on the waitlist. If you wish to express an interest for your own child/children to join these classes in September 2026, please fill in the [waitlist application form]('/waitlist'), and add your own location (postcode area, e.g. D16).

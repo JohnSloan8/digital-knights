@@ -41,7 +41,7 @@ export default function Home({ posts }) {
               Introduction
             </h2>
             <p className="text-gray-300 md:text-lg md:leading-7">
-              Digital Knights is an upcoming after-school academy in South Dublin for teaching
+              Digital Knights is a new after-school academy in South Dublin, dedicated to teaching
               children tech and cybersecurity skills to prepare them for entry into the digital
               world.
             </p>
@@ -56,10 +56,10 @@ export default function Home({ posts }) {
             </p>
             <p className="text-gray-300 md:text-lg md:leading-7">
               Parents will be included in the learning journey with regular updates and resources to
-              support their children at home, and content on relevant topics to help stay informed.
+              support their children..
             </p>
             <p className="text-gray-300 md:text-lg md:leading-7">
-              Digital Knights was set up by father, Computer Science PhD, Trinity College Assistant
+              Digital Knights was founded by father, Computer Science PhD, Trinity College Assistant
               Professor and CISSP Cybersecurity expert,{' '}
               <Link
                 href="/about#about-me"
