@@ -6,7 +6,7 @@ import PageHeader from '@/components/PageHeader'
 
 const POSTS_PER_PAGE = 5
 
-export const metadata = genPageMetadata({ title: 'Activities' })
+export const metadata = genPageMetadata({ title: 'Articles' })
 
 export default async function BlogPage(props: { searchParams: Promise<{ page: string }> }) {
   const posts = allCoreContent(sortPosts(allBlogs))

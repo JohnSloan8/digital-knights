@@ -5,7 +5,7 @@ import PageHeader from '@/components/PageHeader'
 import { redirect } from 'next/navigation'
 import SurveyScene from '@/components/SurveyScene'
 
-export const metadata = genPageMetadata({ title: "Parents' Cybersecurity Survey 2026" })
+export const metadata = genPageMetadata({ title: 'Survey' })
 
 export default async function SurveyPage(props: {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
@@ -20,7 +20,7 @@ export default async function SurveyPage(props: {
     <>
       <div className="divide-y divide-gray-700">
         <PageHeader
-          title="Parents' Cybersecurity Survey"
+          title="Cybersecurity Survey"
           description="Understanding the parents' persective in 2026"
         />
         <div className="py-4">
