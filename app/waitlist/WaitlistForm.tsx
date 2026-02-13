@@ -98,9 +98,9 @@ export default function WaitlistForm() {
     }
 
     if (phone) {
-      // Check if phone starts with optional + and has at least 10 digits
-      // This regex allows optional + at start, then requires at least 10 digits
-      if (!/^\+?[0-9]{10,}$/.test(phone.replace(/[\s-]/g, ''))) {
+      // Check if phone starts with optional + and has between 9 and 13 digits
+      // This regex allows optional + at start, then requires 9-13 digits
+      if (!/^\+?[0-9]{9,13}$/.test(phone.replace(/[\s-]/g, ''))) {
         newErrors.add('phone')
       }
     }

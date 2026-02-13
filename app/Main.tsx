@@ -141,7 +141,7 @@ export default function Home({ posts }) {
             Timeline
           </h2>
           <div className="overflow-x-auto rounded-lg border border-gray-700">
-            <table className="min-w-full text-left text-sm text-gray-300">
+            <table className="min-w-full text-left text-sm text-gray-300 md:text-lg">
               <thead className="bg-gray-800 text-xs font-semibold text-gray-200 uppercase">
                 <tr>
                   <th className="w-1 px-2 py-4 whitespace-nowrap sm:px-6">Date</th>

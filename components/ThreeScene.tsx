@@ -16,6 +16,7 @@ import Link from 'next/link'
 import * as THREE from 'three'
 import { SkeletonUtils } from 'three-stdlib'
 import spriteColors from '../public/static/animation-files/sprites/color_analysis.json'
+import { isWebGLAvailable } from '@/utils/checkWebGL'
 
 type Line2Impl = THREE.Mesh & {
   geometry: THREE.BufferGeometry & {
@@ -700,7 +701,7 @@ function LoadingScreen() {
 
   return (
     <div
-      className={`pointer-events-none absolute inset-0 z-50 flex items-center justify-center overflow-hidden ${
+      className={`pointer-events-none absolute inset-0 z-49 flex items-center justify-center overflow-hidden ${
         finished ? 'bg-transparent' : 'bg-black'
       }`}
     >
@@ -746,6 +747,7 @@ export default function ThreeScene({ className }: { className?: string }) {
   const [isPulsing, setIsPulsing] = useState(true)
   const [showEnterSite, setShowEnterSite] = useState(false)
   const [fadeOutThreat, setFadeOutThreat] = useState(false)
+  const [webGLAvailable, setWebGLAvailable] = useState(true)
   const gameOverRef = useRef(false)
 
   const handleAnimationEnd = useCallback(() => {
@@ -763,6 +765,10 @@ export default function ThreeScene({ className }: { className?: string }) {
   }, [])
 
   useEffect(() => {
+    setWebGLAvailable(isWebGLAvailable())
+  }, [])
+
+  useEffect(() => {
     const timer = setTimeout(() => {
       setAnimation((prev) => (prev === 'idle-still' ? 'idle' : prev))
     }, 5000)
@@ -776,6 +782,31 @@ export default function ThreeScene({ className }: { className?: string }) {
       clearTimeout(threatTimer)
     }
   }, [])
+
+  if (!webGLAvailable) {
+    return (
+      <div className={className || 'relative h-[500px] w-full'}>
+        <div className="absolute top-0 left-0 -z-10 w-full">
+          <Image
+            src="/static/images/mountains-background.webp"
+            alt="Background"
+            width={1920}
+            height={1080}
+            className="h-94 w-full object-cover"
+            priority
+          />
+        </div>
+        <div className="absolute inset-0 flex items-center justify-center bg-black/50">
+          <div className="rounded-lg border border-red-500 bg-gray-900/90 p-6 text-center shadow-lg">
+            <h3 className="mb-2 text-xl font-bold text-red-500">WebGL not detected</h3>
+            <p className="text-gray-300">
+              Animation cannot be played because WebGL is not detected in your browser.
+            </p>
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className={className || 'relative h-[500px] w-full'}>

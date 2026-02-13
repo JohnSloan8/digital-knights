@@ -553,7 +553,12 @@ const Checkboxes = ({ questionLabel, questionText, options, name, error }: Check
       <h3 className={`mb-2 text-lg font-semibold ${error ? 'text-red-500' : 'text-white'}`}>
         {questionLabel}
       </h3>
-      <p className="mb-8 text-base text-gray-400">{questionText}</p>
+      <p className="mb-4 text-base text-gray-400">{questionText}</p>
+      {options.some((o) => o.description) && (
+        <p className="mb-8 text-sm text-gray-500 italic">
+          (Click the &apos;?&apos; for further information and links)
+        </p>
+      )}
       <div className="space-y-4">
         {options.map((option, idx) => (
           <div key={idx} className="space-y-2">

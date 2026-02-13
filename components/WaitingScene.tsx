@@ -12,6 +12,7 @@ import {
 import { useEffect, useMemo, useRef, useState } from 'react'
 import * as THREE from 'three'
 import { SkeletonUtils } from 'three-stdlib'
+import { isWebGLAvailable } from '@/utils/checkWebGL'
 
 interface AnimatedCharacterProps {
   modelPath: string
@@ -397,6 +398,27 @@ function CameraHandler() {
 }
 
 export default function WaitingScene({ className }: { className?: string }) {
+  const [webGLAvailable, setWebGLAvailable] = useState(true)
+
+  useEffect(() => {
+    setWebGLAvailable(isWebGLAvailable())
+  }, [])
+
+  if (!webGLAvailable) {
+    return (
+      <div className={className || 'relative h-[500px] w-full'}>
+        <div className="absolute inset-0 flex items-center justify-center bg-gray-900/50">
+          <div className="rounded-lg border border-red-500 bg-gray-900/90 p-6 text-center shadow-lg">
+            <h3 className="mb-2 text-xl font-bold text-red-500">WebGL not detected</h3>
+            <p className="text-gray-300">
+              Animation cannot be played because WebGL is not detected in your browser.
+            </p>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className={className || 'relative h-[500px] w-full'}>
       <Canvas shadows gl={{ alpha: true }} camera={{ position: [-4.5, 2, 0.5], fov: 50 }}>
