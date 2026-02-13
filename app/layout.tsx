@@ -2,8 +2,9 @@ import 'css/tailwind.css'
 import 'pliny/search/algolia.css'
 import 'remark-github-blockquote-alert/alert.css'
 
+import { Analytics } from '@vercel/analytics/next'
 import { Space_Grotesk, MedievalSharp } from 'next/font/google'
-import { Analytics, AnalyticsConfig } from 'pliny/analytics'
+// import { Analytics, AnalyticsConfig } from 'pliny/analytics'
 import { SearchProvider, SearchConfig } from 'pliny/search'
 import Header from '@/components/Header'
 import SectionContainer from '@/components/SectionContainer'
@@ -102,7 +103,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <link rel="alternate" type="application/rss+xml" href={`${basePath}/feed.xml`} />
       {/* <body className="bg-[radial-gradient(ellipse_at_center,_#172554_30%,_#000000_100%)] bg-fixed pl-[calc(100vw-100%)] font-sans text-white antialiased"> */}
       <body className="bg-background font-sans text-white antialiased" suppressHydrationWarning>
-        <Analytics analyticsConfig={siteMetadata.analytics as AnalyticsConfig} />
+        {/* <Analytics analyticsConfig={siteMetadata.analytics as AnalyticsConfig} /> */}
+        <Analytics />
         <SearchProvider searchConfig={siteMetadata.search as SearchConfig}>
           <div className="flex min-h-screen flex-col">
             <Header />
