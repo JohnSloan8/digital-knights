@@ -5,8 +5,6 @@ import PageHeader from '@/components/PageHeader'
 import { redirect } from 'next/navigation'
 import SurveyScene from '@/components/SurveyScene'
 
-export const runtime = 'edge'
-
 export const metadata = genPageMetadata({ title: 'Survey' })
 
 export default async function SurveyPage(props: {
