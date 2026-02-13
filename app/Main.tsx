@@ -36,29 +36,27 @@ export default function Home({ posts }) {
           </Link>
         </div> */}
         <div className="">
-          <div className="space-y-6">
-            <h2 className="mb-4 text-2xl leading-8 font-bold tracking-tight text-gray-100">
-              Introduction
-            </h2>
-            <p className="text-gray-300 md:text-lg md:leading-7">
+          <div className="prose prose-invert w-full max-w-none md:text-lg">
+            <h2>Introduction</h2>
+            <p>
               Digital Knights is a new after-school academy in South Dublin, dedicated to teaching
               children tech and cybersecurity skills to prepare them for entry into the digital
               world.
             </p>
-            <p className="text-gray-300 md:text-lg md:leading-7">
+            <p>
               Students aged 7-15 will learn to become technically self-sufficient digital citizens
               who understand how to manage their devices, data and digital footprint in order to
               navigate online spaces safely and privately.
             </p>
-            <p className="text-gray-300 md:text-lg md:leading-7">
+            <p>
               They will also develop a strong foundation in computer science and cybersecurity
               principles to give them a head start in secondary school and beyond.
             </p>
-            <p className="text-gray-300 md:text-lg md:leading-7">
+            <p>
               Parents will be included in the learning journey with regular updates and resources to
               support their children..
             </p>
-            <p className="text-gray-300 md:text-lg md:leading-7">
+            <p>
               Digital Knights was founded by father, Computer Science PhD, Trinity College Assistant
               Professor and CISSP Cybersecurity expert,{' '}
               <Link

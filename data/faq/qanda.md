@@ -7,7 +7,7 @@ layout: 'FaqLayout'
 
 ### What is Digital Knights?
 
-Digital Knights is a new after-school academy in South Dublin to teach kids aged 7-15 tech and cybersecurity skills prior to, and during, first posession of a device with online capabilities. Opening is planned for September 2026.
+Digital Knights is a new after-school academy in South Dublin to teach children aged 7-15 tech and cybersecurity skills prior to, and during, first posession of a device with online capabilities. Opening is planned for September 2026.
 
 ### Why an after-school academy?
 
@@ -39,7 +39,7 @@ I believe this topic is best taught by experts in the field who actively keep up
 
 ### Why not leave this education to parents?
 
-If a parent has the knowledge and time to educate their children on this subject, then they are ideally placed to
+If a parent has the knowledge and time to educate their children on this subject, then of course they are ideally placed to do so.
 
 ### Won't the upcoming smartphone and social media bans for kids solve the problems you have indetified?
 
@@ -69,11 +69,11 @@ Not at the moment. Possibly in the future if there is demand.
 
 ### Will there be education for parents?
 
-Yes. In parallel to the curriculum, there will be [articles]('/articles') published on this website and information sessions provided for parents if there is demand.
+Yes. In parallel to the curriculum, there will be [articles](/articles) published on this website and information sessions provided for parents if there is demand.
 
 ### When is the ideal time to enroll?
 
-Three years prior to possessing their first mobile phone, beginning at 7-10 years old. This will allow them to follow the standard [curriculum]('/curriculum') schedule.
+Three years prior to possessing their first mobile phone, beginning at 7-10 years old. This will allow them to follow the standard [curriculum](/curriculum)schedule.
 
 ### What is my child already has a smartphone?
 
@@ -95,10 +95,10 @@ Maximum 8. Small class sizes are required to give sufficient attention to each s
 
 TBD - pricing will aim to be similar to other similar after school educational academies.
 
-### Will I be required to purchase any of the hardware listed in the [syllabus]('/syllabus')
+### Will I be required to purchase any of the hardware listed in the [syllabus](/syllabus)
 
-The phone in level 3 is the only hardware that you will be required to buy. There will be a range of options for this phone, costing roughly 200-400. In level 2, the Raspberry Pis and associated hardware will be provided in class. If your child is interested in experimenting at home, a kit can be bought for less than 100. Level 1 requires no additional purchases.
+The phone in level 3 is the only hardware that you will be required to buy. There will be a range of options for this phone, costing roughly €200-€400. In level 2, the Raspberry Pis and associated hardware will be provided in class. If your child is interested in experimenting at home, a kit can be bought for less than 100. Level 1 requires no additional purchases.
 
 ### Where are you based?
 
-A location for the academy has not been selected yet. It will be chosen in June 2026 based on the area most convenient to the majority on the waitlist. If you wish to express an interest for your own child/children to join these classes in September 2026, please fill in the [waitlist application form]('/waitlist'), and add your own location (postcode area, e.g. D16).
+A location for the academy has not been selected yet. It will be chosen in June 2026 based on the area most convenient to the majority on the waitlist. If you wish to express an interest for your own child/children to join these classes in September 2026, please fill in the [waitlist application form](/waitlist), and add your own location (postcode area, e.g. D16).

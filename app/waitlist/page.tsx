@@ -15,13 +15,14 @@ export default function WaitlistPage() {
           description="Add your child/children to the waitlist for future classes"
         />
         <div className="py-12">
-          <p className="mb-8 text-gray-300 md:text-lg">
-            If you would like to express an interest in your child/children joining a Digital
-            Knights class in the future, please complete the form below to be added to the waitlist.
-          </p>
-          <p className="mb-8 text-gray-300 md:text-lg">
-            Places will be assigned on a first-come-first-served basis
-          </p>
+          <div className="prose prose-invert mb-8 w-full max-w-none md:text-lg">
+            <p>
+              If you would like to express an interest in your child/children joining a Digital
+              Knights class in the future, please complete the form below to be added to the
+              waitlist.
+            </p>
+            <p>Places will be assigned on a first-come-first-served basis</p>
+          </div>
 
           <WaitingScene className="relative z-[-1] -mt-[80px] mb-0 h-[300px] w-full md:h-[500px]" />
 

@@ -1521,7 +1521,7 @@ export default function SurveyForm() {
                   label:
                     "Epic Games/Fortnite (2022): Unauthorised collection of children's data - 20 million",
                   description:
-                    'The US Federal Trade Commission fined Epic for collecting personal data from children under 13 without parental consent and for using dark patterns that tricked players into paying. Epic also enabled live voice and text chat by default, exposing kids to adult strangers. The settlement forced Epic to adopt new privacy defaults.',
+                    'The US Federal Trade Commission fined Epic for collecting personal data from children under 13 without parental consent and for using dark patterns that tricked players into paying. Epic also enabled live voice and text chat by default, exposing children to adult strangers. The settlement forced Epic to adopt new privacy defaults.',
                   links: [
                     {
                       url: 'https://www.ftc.gov/news-events/news/press-releases/2022/12/fortnite-video-game-maker-epic-games-pay-more-half-billion-dollars-over-ftc-allegations',
@@ -1632,7 +1632,7 @@ export default function SurveyForm() {
                 {
                   label: 'ISPCC - Digital Ready Hub',
                   description:
-                    'The ISPCC’s Digital Ready Hub combines articles, printable checklists, and youth stories that focus on resilience and coping strategies. It also signposts to the Childline listening service for kids who experience online harm.',
+                    'The ISPCC’s Digital Ready Hub combines articles, printable checklists, and youth stories that focus on resilience and coping strategies. It also signposts to the Childline listening service for children who experience online harm.',
                   links: [{ url: 'https://www.ispcc.ie/ispcc-digital-ready-hub/' }],
                 },
                 {

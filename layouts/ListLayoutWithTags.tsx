@@ -10,6 +10,7 @@ import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import tagData from 'app/tag-data.json'
 import PageHeader from '@/components/PageHeader'
+import ClockIcon from '@/components/ClockIcon'
 
 interface PaginationProps {
   totalPages: number
@@ -124,16 +125,21 @@ export default function ListLayoutWithTags({
           <div>
             <ul>
               {displayPosts.map((post) => {
-                const { path, date, title, summary, tags } = post
+                const { path, date, title, summary, tags, readingTime } = post
                 return (
                   <li key={path} className="py-5">
                     <article className="flex flex-col space-y-2 xl:space-y-0">
                       <dl>
                         <dt className="sr-only">Published on</dt>
-                        <dd className="text-base leading-6 font-medium text-gray-400">
+                        <dd className="flex items-center text-base leading-6 font-medium text-gray-400">
                           <time dateTime={date} suppressHydrationWarning>
                             {formatDate(date, siteMetadata.locale)}
                           </time>
+                          <span className="mx-2">•</span>
+                          <span className="flex items-center">
+                            <ClockIcon className="mr-1 h-4 w-4" />
+                            {readingTime.text}
+                          </span>
                         </dd>
                       </dl>
                       <div className="space-y-3">

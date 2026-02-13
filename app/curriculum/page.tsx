@@ -51,7 +51,7 @@ export default function Curriculum() {
               </div>
             </div>
           </div>
-          <div className="space-y-4 text-gray-300 md:text-lg md:leading-7">
+          <div className="prose prose-invert w-full max-w-none md:text-lg">
             <p>
               The Digital Knights curriculum will structure a learning pathway for children,
               starting from 7-10 years old, to technologically proficient individuals at 15 who

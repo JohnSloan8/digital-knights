@@ -3,6 +3,8 @@ import Image from '@/components/Image'
 import PageHeader from '@/components/PageHeader'
 import levels from '../../data/curriculum.json'
 
+export const runtime = 'edge'
+
 export async function generateMetadata(props: { params: Promise<{ level: string }> }) {
   const params = await props.params
   const levelTitle = decodeURI(params.level)
