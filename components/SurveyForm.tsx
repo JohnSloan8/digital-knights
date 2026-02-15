@@ -1845,6 +1845,7 @@ export default function SurveyForm() {
               options={['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree']}
               rows={[
                 'I am confident I can personally teach my child/children how to stay safe online.',
+                'I would like to learn more about how to teach my child/children how to stay safe online.',
                 'I am confident that my child/children (will) receive sufficient education in school to keep them safe online.',
                 'I am confident that the technical education my child/children (will) receive at school is sufficient for the world they will enter as adults.',
               ]}
