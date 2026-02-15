@@ -36,7 +36,7 @@ const formatSubQuestion = (text: string, index: number): React.ReactNode => {
   const label = `${getAlphabetLabel(index)})`
   return (
     <>
-      <span className="mr-2 font-normal text-gray-400">{label}</span>
+      <span className="mr-2 font-normal text-gray-300">{label}</span>
       <span>{text}</span>
     </>
   )
@@ -85,12 +85,12 @@ const ProgressBar = ({ currentStep, setStep }: ProgressBarProps) => {
               onClick={() => {
                 setStep(step)
               }}
-              className={`flex h-10 w-10 cursor-pointer items-center justify-center rounded-full text-base font-bold transition-all duration-200 ${
+              className={`flex h-10 w-10 cursor-pointer items-center justify-center rounded-full text-base font-bold transition-all duration-200 md:text-xl ${
                 step === currentStep
                   ? 'bg-primary-500 ring-primary-500/30 text-white ring-4'
                   : step < currentStep
                     ? 'bg-primary-500 text-white'
-                    : 'bg-gray-700 text-gray-400 hover:bg-gray-600'
+                    : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
               }`}
             >
               {step}
@@ -120,7 +120,7 @@ const NavButtons = ({
       <button
         type="button"
         onClick={prev}
-        className="group text-primary-500 hover:text-primary-400 flex cursor-pointer items-center text-base font-medium transition-colors duration-200"
+        className="group text-primary-500 hover:text-primary-400 flex cursor-pointer items-center text-base font-medium transition-colors duration-200 md:text-xl"
       >
         <svg
           className="mr-2 h-5 w-5 transform transition-transform group-hover:-translate-x-1"
@@ -140,7 +140,7 @@ const NavButtons = ({
       <button
         type="button"
         onClick={next}
-        className="group text-primary-500 hover:text-primary-400 flex cursor-pointer items-center text-base font-medium transition-colors duration-200"
+        className="group text-primary-500 hover:text-primary-400 flex cursor-pointer items-center text-base font-medium transition-colors duration-200 md:text-xl"
       >
         {nextLabel}
         <svg
@@ -219,21 +219,23 @@ const MatrixRadio = ({
       id={name}
       className={`mb-10 border-b pb-6 ${error ? 'rounded-lg border-2 border-red-500 p-4' : 'border-gray-700'}`}
     >
-      <h3 className={`mb-2 text-lg font-semibold ${error ? 'text-red-500' : 'text-white'}`}>
+      <h3
+        className={`mb-2 text-lg font-semibold md:text-xl ${error ? 'text-red-500' : 'text-white'}`}
+      >
         {questionLabel}
       </h3>
-      <p className="mb-8 text-base text-gray-400">{questionText}</p>
+      <p className="mb-8 text-base text-gray-300 md:text-xl">{questionText}</p>
 
       {/* Desktop table */}
       <div className="hidden overflow-x-auto md:block">
-        <table className="min-w-full table-fixed text-left text-base text-gray-400">
+        <table className="min-w-full table-fixed text-left text-base text-gray-300 md:text-xl">
           <colgroup>
             <col style={{ width: '50%' }} />
             {options.map((_, idx) => (
               <col key={idx} style={{ width: `${50 / options.length}%` }} />
             ))}
           </colgroup>
-          <thead className="bg-gray-700 text-sm text-white uppercase">
+          <thead className="bg-gray-700 text-sm text-white uppercase md:text-lg">
             <tr>
               <th scope="col" className="px-4 py-3">
                 Statement
@@ -258,7 +260,7 @@ const MatrixRadio = ({
                         href={link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-primary-500 hover:text-primary-400 mt-1 block text-sm hover:underline"
+                        className="text-primary-500 hover:text-primary-400 mt-1 block text-sm hover:underline md:text-lg"
                       >
                         {link.replace(/https?:\/\//g, '')}
                       </a>
@@ -309,14 +311,14 @@ const MatrixRadio = ({
           const displayRow = formatSubQuestion(text, rowIdx)
           return (
             <div key={rowIdx} className="rounded-lg border border-gray-700 bg-gray-800 p-4">
-              <p className="mb-3 text-base text-white">
+              <p className="mb-3 text-base text-white md:text-xl">
                 {displayRow}
                 {link && (
                   <a
                     href={link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-primary-500 hover:text-primary-400 mt-1 block text-sm break-all hover:underline"
+                    className="text-primary-500 hover:text-primary-400 mt-1 block text-sm break-all hover:underline md:text-lg"
                   >
                     {link.replace(/https?:\/\//g, '')}
                   </a>
@@ -417,10 +419,12 @@ const MatrixSlider = ({
       id={name}
       className={`mb-10 border-b pb-6 ${error ? 'rounded-lg border-2 border-red-500 p-4' : 'border-gray-700'}`}
     >
-      <h3 className={`mb-2 text-lg font-semibold ${error ? 'text-red-500' : 'text-white'}`}>
+      <h3
+        className={`mb-2 text-lg font-semibold md:text-xl ${error ? 'text-red-500' : 'text-white'}`}
+      >
         {questionLabel}
       </h3>
-      <p className="mb-8 text-base text-gray-400">{questionText}</p>
+      <p className="mb-8 text-base text-gray-300 md:text-xl">{questionText}</p>
       <div className="space-y-6">
         {rows.map((row, idx) => {
           const displayRow = formatSubQuestion(row, idx)
@@ -438,7 +442,7 @@ const MatrixSlider = ({
               className="rounded-lg border border-gray-700 bg-gray-800 p-4 md:border-0 md:bg-transparent md:p-0"
             >
               <div className="flex flex-col space-y-2">
-                <label className="text-base text-white">{displayRow}</label>
+                <label className="text-base text-white md:text-xl">{displayRow}</label>
                 <div className="flex items-center space-x-4">
                   <input
                     type="range"
@@ -461,7 +465,7 @@ const MatrixSlider = ({
                     }}
                     className={`h-2 w-full cursor-pointer appearance-none rounded-lg [&::-moz-range-thumb]:rounded-full [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full ${thumbClasses} ${showActuals ? 'cursor-not-allowed opacity-60' : ''}`}
                   />
-                  <span className="w-12 text-base text-white">
+                  <span className="w-12 text-base text-white md:text-xl">
                     {val}
                     {suffix}
                   </span>
@@ -489,7 +493,7 @@ const MatrixSlider = ({
                       }}
                       className="h-2 w-full appearance-none rounded-lg [&::-moz-range-thumb]:hidden [&::-webkit-slider-thumb]:hidden"
                     />
-                    <span className="w-12 text-base font-bold text-green-400">
+                    <span className="w-12 text-base font-bold text-green-400 md:text-xl">
                       {actualVal}
                       {suffix}
                     </span>
@@ -504,19 +508,21 @@ const MatrixSlider = ({
       {actualValues && !showActuals && (
         <div className="mt-8 flex flex-col items-center justify-center space-y-3">
           {showError && (
-            <p className="text-sm text-red-400">
+            <p className="text-sm text-red-400 md:text-lg">
               Please make a guess for each question before revealing actual figures
             </p>
           )}
           <button
             type="button"
             onClick={handleShowActuals}
-            className={`cursor-pointer rounded-lg border border-green-600 bg-green-900/30 px-6 py-2.5 text-sm font-semibold text-green-400 transition-colors hover:bg-green-900/50 focus:ring-4 focus:ring-green-900/50 focus:outline-none ${!allTouched ? 'opacity-50' : ''}`}
+            className={`cursor-pointer rounded-lg border border-green-600 bg-green-900/30 px-6 py-2.5 text-sm font-semibold text-green-400 transition-colors hover:bg-green-900/50 focus:ring-4 focus:ring-green-900/50 focus:outline-none md:text-lg ${!allTouched ? 'opacity-50' : ''}`}
           >
             Show Actual Figures*
           </button>
 
-          {note && <p className="mt-4 max-w-3xl text-center text-sm text-green-400">{note}</p>}
+          {note && (
+            <p className="mt-4 max-w-3xl text-center text-sm text-green-400 md:text-lg">{note}</p>
+          )}
         </div>
       )}
     </div>
@@ -550,12 +556,14 @@ const Checkboxes = ({ questionLabel, questionText, options, name, error }: Check
       id={name}
       className={`mb-10 border-b pb-6 ${error ? 'rounded-lg border-2 border-red-500 p-4' : 'border-gray-700'}`}
     >
-      <h3 className={`mb-2 text-lg font-semibold ${error ? 'text-red-500' : 'text-white'}`}>
+      <h3
+        className={`mb-2 text-lg font-semibold md:text-xl ${error ? 'text-red-500' : 'text-white'}`}
+      >
         {questionLabel}
       </h3>
-      <p className="mb-4 text-base text-gray-400">{questionText}</p>
+      <p className="mb-4 text-base text-gray-300 md:text-xl">{questionText}</p>
       {options.some((o) => o.description) && (
-        <p className="mb-8 text-sm text-gray-500 italic">
+        <p className="mb-8 text-sm text-gray-500 italic md:text-lg">
           (Click the &apos;?&apos; for further information and links)
         </p>
       )}
@@ -574,7 +582,7 @@ const Checkboxes = ({ questionLabel, questionText, options, name, error }: Check
               />
               <label
                 htmlFor={`${name}-${idx}`}
-                className="ml-2 cursor-pointer text-base text-white"
+                className="ml-2 cursor-pointer text-base text-white md:text-xl"
               >
                 {option.label}
               </label>
@@ -582,7 +590,7 @@ const Checkboxes = ({ questionLabel, questionText, options, name, error }: Check
                 <button
                   type="button"
                   onClick={() => toggleDescription(option.label)}
-                  className="focus:ring-primary-600 ml-3 flex h-6 w-6 cursor-pointer items-center justify-center rounded-full border border-gray-600 text-sm text-white hover:bg-gray-700 focus:ring-2 focus:outline-none"
+                  className="focus:ring-primary-600 ml-3 flex h-6 w-6 cursor-pointer items-center justify-center rounded-full border border-gray-600 text-sm text-white hover:bg-gray-700 focus:ring-2 focus:outline-none md:text-lg"
                   aria-label={`Learn more about ${option.label}`}
                 >
                   ?
@@ -590,7 +598,7 @@ const Checkboxes = ({ questionLabel, questionText, options, name, error }: Check
               )}
             </div>
             {option.description && activeDescription === option.label && (
-              <div className="ml-10 rounded-lg border border-gray-700 bg-gray-900/70 p-3 text-sm text-gray-300">
+              <div className="ml-10 rounded-lg border border-gray-700 bg-gray-900/70 p-3 text-sm text-gray-300 md:text-lg">
                 <p>{option.description}</p>
                 {option.links &&
                   option.links.map((linkItem, linkIdx) => (
@@ -673,14 +681,16 @@ const MatrixRating = ({
       id={name}
       className={`mb-10 border-b pb-6 ${error ? 'rounded-lg border-2 border-red-500 p-4' : 'border-gray-700'}`}
     >
-      <h3 className={`mb-2 text-lg font-semibold ${error ? 'text-red-500' : 'text-white'}`}>
+      <h3
+        className={`mb-2 text-lg font-semibold md:text-xl ${error ? 'text-red-500' : 'text-white'}`}
+      >
         {questionLabel}
       </h3>
-      <p className="mb-8 text-base text-gray-400">{questionText}</p>
+      <p className="mb-8 text-base text-gray-300 md:text-xl">{questionText}</p>
 
       {/* Desktop table */}
       <div className="hidden overflow-x-auto md:block">
-        <table className="min-w-full border-separate border-spacing-y-2 text-left text-base text-gray-400">
+        <table className="min-w-full border-separate border-spacing-y-2 text-left text-base text-gray-300 md:text-xl">
           <colgroup>
             <col style={{ width: '30%' }} />
             {scaleArr.map((_, idx) => (
@@ -696,7 +706,7 @@ const MatrixRating = ({
                 <th
                   key={s}
                   scope="col"
-                  className="px-0 py-3 text-center text-sm font-medium text-gray-500"
+                  className="px-0 py-3 text-center text-sm font-medium text-gray-500 md:text-lg"
                 >
                   {s}
                 </th>
@@ -757,7 +767,7 @@ const MatrixRating = ({
 
           return (
             <div key={rowIdx} className="rounded-lg border border-gray-700 bg-gray-800 p-4">
-              <p className="mb-4 text-base font-medium text-white">{displayRow}</p>
+              <p className="mb-4 text-base font-medium text-white md:text-xl">{displayRow}</p>
 
               <div className="flex w-full">
                 {scaleArr.map((s) => {
@@ -765,7 +775,7 @@ const MatrixRating = ({
                   return (
                     <label
                       key={s}
-                      className={`flex h-10 flex-1 cursor-pointer flex-col items-center justify-center text-xs font-bold transition-colors ${isActive ? 'text-white' : 'bg-gray-700 text-gray-400 hover:bg-gray-600'} `}
+                      className={`flex h-10 flex-1 cursor-pointer flex-col items-center justify-center text-xs font-bold transition-colors ${isActive ? 'text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'} `}
                       style={{
                         backgroundColor: isActive ? getStepColor(s) : undefined,
                       }}
@@ -816,13 +826,13 @@ const ChildrenTable = ({ validationErrors }: { validationErrors: Set<string> }) 
 
   return (
     <div className="mb-8 overflow-hidden">
-      <h3 className="mb-2 text-lg font-semibold text-white">
+      <h3 className="mb-2 text-lg font-semibold text-white md:text-xl">
         Q.16 For each of your children, please provide their age, gender, and whether they currently
         possess their own smartphone.
       </h3>
       <div className="hidden overflow-x-auto md:block">
-        <table className="min-w-full text-left text-base text-gray-400">
-          <thead className="bg-gray-700 text-sm text-gray-400 uppercase">
+        <table className="min-w-full text-left text-base text-gray-300 md:text-xl">
+          <thead className="bg-gray-700 text-sm text-gray-300 uppercase md:text-lg">
             <tr>
               <th className="px-6 py-3">#</th>
               <th className="px-6 py-3">Age</th>
@@ -843,7 +853,7 @@ const ChildrenTable = ({ validationErrors }: { validationErrors: Set<string> }) 
                     name={`child-${r}-age`}
                     defaultValue={(surveyData[`child-${r}-age`] as string) || ''}
                     onChange={(e) => saveResponse(`child-${r}-age`, e.target.value)}
-                    className={`focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border bg-gray-700 p-2.5 text-base text-white placeholder-gray-400 ${validationErrors.has(`child-${r}-age`) ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-600'}`}
+                    className={`focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border bg-gray-700 p-2.5 text-base text-white placeholder-gray-400 md:text-xl ${validationErrors.has(`child-${r}-age`) ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-600'}`}
                   >
                     <option value="">Select...</option>
                     {Array.from({ length: 19 }, (_, i) => i).map((age) => (
@@ -859,7 +869,7 @@ const ChildrenTable = ({ validationErrors }: { validationErrors: Set<string> }) 
                     name={`child-${r}-gender`}
                     defaultValue={(surveyData[`child-${r}-gender`] as string) || ''}
                     onChange={(e) => saveResponse(`child-${r}-gender`, e.target.value)}
-                    className={`focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border bg-gray-700 p-2.5 text-base text-white placeholder-gray-400 ${validationErrors.has(`child-${r}-gender`) ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-600'}`}
+                    className={`focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border bg-gray-700 p-2.5 text-base text-white placeholder-gray-400 md:text-xl ${validationErrors.has(`child-${r}-gender`) ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-600'}`}
                   >
                     <option value="">Select...</option>
                     <option value="Male">Male</option>
@@ -890,12 +900,12 @@ const ChildrenTable = ({ validationErrors }: { validationErrors: Set<string> }) 
             key={r}
             className="animate-in fade-in slide-in-from-top-4 rounded-lg border border-gray-700 bg-gray-800 p-4 duration-500 ease-out"
           >
-            <h4 className="mb-4 text-base font-semibold text-white">Child {r}</h4>
+            <h4 className="mb-4 text-base font-semibold text-white md:text-xl">Child {r}</h4>
             <div className="space-y-4">
               <div>
                 <label
                   htmlFor={`child-${r}-age-mobile`}
-                  className="mb-2 block text-sm font-medium text-gray-300"
+                  className="mb-2 block text-sm font-medium text-gray-300 md:text-lg"
                 >
                   Age
                 </label>
@@ -904,7 +914,7 @@ const ChildrenTable = ({ validationErrors }: { validationErrors: Set<string> }) 
                   name={`child-${r}-age`}
                   defaultValue={(surveyData[`child-${r}-age`] as string) || ''}
                   onChange={(e) => saveResponse(`child-${r}-age`, e.target.value)}
-                  className={`focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border bg-gray-700 p-2.5 text-base text-white placeholder-gray-400 ${validationErrors.has(`child-${r}-age`) ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-600'}`}
+                  className={`focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border bg-gray-700 p-2.5 text-base text-white placeholder-gray-400 md:text-xl ${validationErrors.has(`child-${r}-age`) ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-600'}`}
                 >
                   <option value="">Select...</option>
                   {Array.from({ length: 19 }, (_, i) => i).map((age) => (
@@ -918,7 +928,7 @@ const ChildrenTable = ({ validationErrors }: { validationErrors: Set<string> }) 
               <div>
                 <label
                   htmlFor={`child-${r}-gender-mobile`}
-                  className="mb-2 block text-sm font-medium text-gray-300"
+                  className="mb-2 block text-sm font-medium text-gray-300 md:text-lg"
                 >
                   Gender
                 </label>
@@ -927,7 +937,7 @@ const ChildrenTable = ({ validationErrors }: { validationErrors: Set<string> }) 
                   name={`child-${r}-gender`}
                   defaultValue={(surveyData[`child-${r}-gender`] as string) || ''}
                   onChange={(e) => saveResponse(`child-${r}-gender`, e.target.value)}
-                  className={`focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border bg-gray-700 p-2.5 text-base text-white placeholder-gray-400 ${validationErrors.has(`child-${r}-gender`) ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-600'}`}
+                  className={`focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border bg-gray-700 p-2.5 text-base text-white placeholder-gray-400 md:text-xl ${validationErrors.has(`child-${r}-gender`) ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-600'}`}
                 >
                   <option value="">Select...</option>
                   <option value="Male">Male</option>
@@ -940,7 +950,7 @@ const ChildrenTable = ({ validationErrors }: { validationErrors: Set<string> }) 
               <div className="flex items-center justify-between rounded-lg border border-gray-700 bg-gray-700/50 p-3">
                 <label
                   htmlFor={`child-${r}-smartphone-mobile`}
-                  className="text-sm font-medium text-gray-300"
+                  className="text-sm font-medium text-gray-300 md:text-lg"
                 >
                   Has Own Smartphone?
                 </label>
@@ -1225,7 +1235,7 @@ export default function SurveyForm() {
   if (isLoading) {
     return (
       <div className="flex h-64 items-center justify-center">
-        <div className="text-xl text-white">Loading your survey...</div>
+        <div className="text-xl text-white md:text-2xl">Loading your survey...</div>
       </div>
     )
   }
@@ -1263,24 +1273,24 @@ export default function SurveyForm() {
         >
           {/* SECTION 1 */}
           <div className={currentStep === 1 ? 'block' : 'hidden'}>
-            <h2 className="mb-6 pb-2 text-center text-2xl font-bold text-white">
+            <h2 className="mb-6 pb-2 text-center text-2xl font-bold text-white md:text-3xl">
               Section 1: Competency
             </h2>
-            <p className="mb-4 text-gray-400">
+            <p className="mb-4 text-gray-300">
               Questions relating to your technical ability, attitude to cybersecurity, and
               cybersecurity practices.
             </p>
-            <h3 className="mb-2 text-lg font-semibold text-white">
+            <h3 className="mb-2 text-lg font-semibold text-white md:text-xl">
               Why are these questions being asked?
             </h3>
-            <p className="mb-6 text-gray-400">
+            <p className="mb-6 text-gray-300">
               A parent's competency in technology and cybersecurity may exert a strong influence on
               how their children interact online.
             </p>
-            <h3 className="mb-2 text-lg font-semibold text-white">
+            <h3 className="mb-2 text-lg font-semibold text-white md:text-xl">
               How many questions in this section?
             </h3>
-            <p className="mb-6 text-gray-400">3</p>
+            <p className="mb-6 text-gray-300">3</p>
             <div className="border-t border-gray-700 pt-8">
               {firstError === 'tech_knowledge' && <ErrorBanner />}
               <MatrixRadio
@@ -1327,47 +1337,47 @@ export default function SurveyForm() {
                 {
                   label: 'VPN',
                   description:
-                    'A virtual private network encrypts your internet traffic and routes it through a remote server so your ISP or a public Wi-Fi operator cannot see which sites you visit. It also masks your IP address to make tracking more difficult. Examples: (NordVPN, Mullvad).',
+                    'A virtual private network encrypts your internet traffic and routes it through a remote server so your ISP or a public Wi-Fi operator cannot see which sites you visit. It also masks your IP address to make tracking more difficult. Examples: NordVPN, Mullvad.',
                 },
                 {
                   label: 'Private Email',
                   description:
-                    'Private email providers focus on end-to-end encryption, minimal data retention, and strong spam protections instead of advertising. They help keep subject lines, contacts, and attachments away from large ad networks. Examples: (Proton Mail, Tutanota).',
+                    'Private email providers focus on end-to-end encryption, minimal data retention, and strong spam protections instead of advertising. They help keep subject lines, contacts, and attachments away from large ad networks. Examples: Proton Mail, Tutanota.',
                 },
                 {
                   label: 'Ad and Tracker Blocker',
                   description:
-                    'Ad and tracker blockers are browser tools that strip out advertising scripts, pop-ups, and invisible tracking pixels before pages load. They reduce bandwidth usage and make cross-site profiling harder. Examples: (uBlock Origin, Ghostery).',
+                    'Ad and tracker blockers are browser tools that strip out advertising scripts, pop-ups, and invisible tracking pixels before pages load. They reduce bandwidth usage and make cross-site profiling harder. Examples: uBlock Origin, Ghostery.',
                 },
                 {
                   label: 'Password Manager',
                   description:
-                    'Password managers store long, unique passwords in an encrypted vault and autofill them only on the correct site. Many also scan for breached credentials and support secure note storage. Examples: (1Password, Bitwarden).',
+                    'Password managers store long, unique passwords in an encrypted vault and autofill them only on the correct site. Many also scan for breached credentials and support secure note storage. Examples: 1Password, Bitwarden.',
                 },
                 {
                   label: 'Email Aliases',
                   description:
-                    'Alias services let you create throwaway addresses that forward to your main inbox, so you can disable them if spam starts. They help compartmentalize logins without revealing your real email. Examples: (SimpleLogin, Firefox Relay).',
+                    'Alias services let you create throwaway addresses that forward to your main inbox, so you can disable them if spam starts. They help compartmentalize logins without revealing your real email. Examples: SimpleLogin, Firefox Relay.',
                 },
                 {
                   label: 'Private DNS',
                   description:
-                    'A privacy-focused DNS resolver hides your website lookups from your ISP and can filter trackers or malware domains. Many offer encrypted DNS-over-HTTPS connections and custom blocklists. Examples: (NextDNS, Control D).',
+                    'A privacy-focused DNS resolver hides your website lookups from your ISP and can filter trackers or malware domains. Many offer encrypted DNS-over-HTTPS connections and custom blocklists. Examples: NextDNS, Control D.',
                 },
                 {
                   label: 'Encrypted Messaging',
                   description:
-                    'Encrypted messaging apps apply end-to-end encryption so only you and the recipient can read the conversation. They often include disappearing messages and safety numbers to verify contacts. Examples: (Signal, Threema).',
+                    'Encrypted messaging apps apply end-to-end encryption so only you and the recipient can read the conversation. They often include disappearing messages and safety numbers to verify contacts. Examples: Signal, Threema.',
                 },
                 {
                   label: 'Private Search Engine',
                   description:
-                    'Private search engines avoid storing your queries or linking them to advertising profiles, and they strip out many trackers from search results. Some proxy image or map requests through their own servers. Examples: (DuckDuckGo, Startpage).',
+                    'Private search engines avoid storing your queries or linking them to advertising profiles, and they strip out many trackers from search results. Some proxy image or map requests through their own servers. Examples: DuckDuckGo, Startpage.',
                 },
                 {
                   label: 'Privacy Enhanced Browser',
                   description:
-                    'Privacy browsers block third-party cookies, fingerprinting scripts, and autoplay media by default, while routing lookups through privacy-friendly services. Many ship with built-in Tor or VPN-style relays. Examples: (Brave, Mullvad Browser).',
+                    'Privacy browsers block third-party cookies, fingerprinting scripts, and autoplay media by default, while routing lookups through privacy-friendly services. Many ship with built-in Tor or VPN-style relays. Examples: Brave, Mullvad Browser.',
                 },
                 {
                   label: 'None of the Above',
@@ -1379,27 +1389,27 @@ export default function SurveyForm() {
 
           {/* SECTION 2 */}
           <div className={currentStep === 2 ? 'block' : 'hidden'}>
-            <h2 className="mb-6 pb-2 text-center text-2xl font-bold text-white">
+            <h2 className="mb-6 pb-2 text-center text-2xl font-bold text-white md:text-3xl">
               Section 2: Awareness
             </h2>
             {/* Same content ... */}
-            <p className="mb-4 text-gray-400">
+            <p className="mb-4 text-gray-300">
               Questions on your awareness of trends in children's use of technology, risks with
               using currently popular devices/websites/apps, and currently available educational
               resources.
             </p>
-            <h3 className="mb-2 text-lg font-semibold text-white">
+            <h3 className="mb-2 text-lg font-semibold text-white md:text-xl">
               Why are these questions being asked?
             </h3>
-            <p className="mb-6 text-gray-400">
+            <p className="mb-6 text-gray-300">
               Awareness of current trends of technology use, the risks involved, and the tools
               available to combat these risks, are important factors in a parent's approach to their
               child/children's online safety.
             </p>
-            <h3 className="mb-2 text-lg font-semibold text-white">
+            <h3 className="mb-2 text-lg font-semibold text-white md:text-xl">
               How many questions in this section?
             </h3>
-            <p className="mb-6 text-gray-400">5</p>
+            <p className="mb-6 text-gray-300">5</p>
 
             <div className="border-t border-gray-700 pt-8">
               {firstError === 'trends_8_12' && <ErrorBanner />}
@@ -1609,7 +1619,7 @@ export default function SurveyForm() {
                 {
                   label: 'CyberSafeKids',
                   description:
-                    'CyberSafeKids is an Irish non-profit that delivers classroom workshops, parent nights, and research on young peoples’ digital habits. Their guides cover cyberbullying, gaming, privacy settings, and include downloadable lesson plans. Examples: (Primary school workshops, Annual Trends & Usage Report).',
+                    'CyberSafeKids is an Irish non-profit that delivers classroom workshops, parent nights, and research on young peoples’ digital habits. Their guides cover cyberbullying, gaming, privacy settings, and include downloadable lesson plans. Examples: Primary school workshops, Annual Trends & Usage Report.',
                   links: [{ url: 'https://www.cybersafekids.ie' }],
                 },
                 {
@@ -1665,25 +1675,25 @@ export default function SurveyForm() {
 
           {/* SECTION 3 */}
           <div className={currentStep === 3 ? 'block' : 'hidden'}>
-            <h2 className="mb-6 pb-2 text-center text-2xl font-bold text-white">
+            <h2 className="mb-6 pb-2 text-center text-2xl font-bold text-white md:text-3xl">
               Section 3: Concerns
             </h2>
-            <p className="mb-4 text-gray-400">
+            <p className="mb-4 text-gray-300">
               The questions focus on your own concerns for your child/children regarding use of
               technology and online safety.
             </p>
-            <h3 className="mb-2 text-lg font-semibold text-white">
+            <h3 className="mb-2 text-lg font-semibold text-white md:text-xl">
               Why are these questions being asked?
             </h3>
-            <p className="mb-6 text-gray-400">
+            <p className="mb-6 text-gray-300">
               There may be significant differences in the issues of concern from parent to parent.
               It is important to understand the nature of these concerns when designing educational
               resources for their children.
             </p>
-            <h3 className="mb-2 text-lg font-semibold text-white">
+            <h3 className="mb-2 text-lg font-semibold text-white md:text-xl">
               How many questions in this section?
             </h3>
-            <p className="mb-6 text-gray-400">3</p>
+            <p className="mb-6 text-gray-300">3</p>
             <div className="border-t border-gray-700 pt-8">
               {firstError === 'safety_concerns' && <ErrorBanner />}
               <MatrixRating
@@ -1750,26 +1760,26 @@ export default function SurveyForm() {
 
           {/* SECTION 4 */}
           <div className={currentStep === 4 ? 'block' : 'hidden'}>
-            <h2 className="mb-6 pb-2 text-center text-2xl font-bold text-white">
+            <h2 className="mb-6 pb-2 text-center text-2xl font-bold text-white md:text-3xl">
               Section 4: Education
             </h2>
-            <p className="mb-4 text-gray-400">
+            <p className="mb-4 text-gray-300">
               These questions focus on your opinion of the current state of technical and online
               safety education for children in Ireland, and wishes for your own child/children's
               education.
             </p>
-            <h3 className="mb-2 text-lg font-semibold text-white">
+            <h3 className="mb-2 text-lg font-semibold text-white md:text-xl">
               Why are these questions being asked?
             </h3>
-            <p className="mb-6 text-gray-400">
+            <p className="mb-6 text-gray-300">
               There have been numerous recent calls by experts for more and earlier tech and
               cybersecurity education in Ireland. It is important to understand if this sentiment is
               echoed by current parents.
             </p>
-            <h3 className="mb-2 text-lg font-semibold text-white">
+            <h3 className="mb-2 text-lg font-semibold text-white md:text-xl">
               How many questions in this section?
             </h3>
-            <p className="mb-6 text-gray-400">3</p>
+            <p className="mb-6 text-gray-300">3</p>
             <div className="border-t border-gray-700 pt-8">
               {firstError === 'expert_opinions' && <ErrorBanner />}
               <MatrixRadio
@@ -1849,38 +1859,41 @@ export default function SurveyForm() {
 
           {/* SECTION 5 */}
           <div className={currentStep === 5 ? 'block' : 'hidden'}>
-            <h2 className="mb-6 pb-2 text-center text-2xl font-bold text-white">
+            <h2 className="mb-6 pb-2 text-center text-2xl font-bold text-white md:text-3xl">
               Section 5: Basic Demographics
             </h2>
-            <p className="mb-4 text-gray-400">
+            <p className="mb-4 text-gray-300 md:text-lg">
               Questions on your awareness of trends in children's use of technology, risks with
               using currently popular devices/websites/apps, and currently available educational
               resources.
             </p>
-            <h3 className="mb-2 text-lg font-semibold text-white">
+            <h3 className="mb-2 text-lg font-semibold text-white md:text-xl">
               Why are these questions being asked?
             </h3>
-            <p className="mb-6 text-gray-400">
+            <p className="mb-6 text-gray-300 md:text-lg">
               The answers to these questions will be used to determine whether there are patterns in
               attitudes to cybersecurity and mobile phones depending on factors such as parental
               gender, child age and gender, siblings already possessing a smartphone etc.
             </p>
-            <h3 className="mb-2 text-lg font-semibold text-white">
+            <h3 className="mb-2 text-lg font-semibold text-white md:text-xl">
               How many questions in this section?
             </h3>
-            <p className="mb-6 text-gray-400">4</p>
+            <p className="mb-6 text-gray-300 md:text-lg">4</p>
             <div className="border-t border-gray-700 pt-8">
               <div className="mb-8 grid grid-cols-1 gap-6 md:grid-cols-2">
                 <div>
                   {firstError === 'role' && <ErrorBanner />}
-                  <label htmlFor="role" className="mb-2 block text-lg font-semibold text-white">
+                  <label
+                    htmlFor="role"
+                    className="mb-2 block text-lg font-semibold text-white md:text-xl"
+                  >
                     Q.14 What is your role?
                   </label>
                   <select
                     id="role"
                     defaultValue={surveyData['role'] as string}
                     onChange={(e) => saveResponse('role', e.target.value)}
-                    className={`focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border bg-gray-700 p-2.5 text-base text-white placeholder-gray-400 ${validationErrors.has('role') ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-600'}`}
+                    className={`focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border bg-gray-700 p-2.5 text-base text-white placeholder-gray-400 md:text-xl ${validationErrors.has('role') ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-600'}`}
                   >
                     <option value="">Select...</option>
                     <option>Father</option>
@@ -1892,7 +1905,7 @@ export default function SurveyForm() {
                   {firstError === 'children-count' && <ErrorBanner />}
                   <label
                     htmlFor="children-count"
-                    className="mb-2 block text-lg font-semibold text-white"
+                    className="mb-2 block text-lg font-semibold text-white md:text-xl"
                   >
                     Q.15 How many children do you have?
                   </label>
@@ -1900,7 +1913,7 @@ export default function SurveyForm() {
                     id="children-count"
                     defaultValue={surveyData['children-count'] as string}
                     onChange={(e) => saveResponse('children-count', e.target.value)}
-                    className={`focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border bg-gray-700 p-2.5 text-base text-white placeholder-gray-400 ${validationErrors.has('children-count') ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-600'}`}
+                    className={`focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border bg-gray-700 p-2.5 text-base text-white placeholder-gray-400 md:text-xl ${validationErrors.has('children-count') ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-600'}`}
                   >
                     <option value="">Select...</option>
                     <option>1</option>
@@ -1921,14 +1934,14 @@ export default function SurveyForm() {
           <div
             className={`rounded-lg bg-gray-800 p-4 sm:p-8 ${currentStep === 5 ? 'block' : 'hidden'}`}
           >
-            <h3 className="mb-4 text-xl font-bold text-white">Finally</h3>
-            <p className="mb-6 text-gray-400">
+            <h3 className="mb-4 text-xl font-bold text-white md:text-2xl">Finally</h3>
+            <p className="mb-6 text-gray-300 md:text-lg">
               Thank you for completing the survey! Your responses will be a great help in informing
               the development of a new tech and cybersecurity curriculum.
-              <br className="mb-2" />
-              If you are interested in a more comprehensive tech and cybersecurity education for
-              your own child/children, or would like to further discuss the issues in this survey,
-              please leave your email in the box below.
+            </p>
+            <p className="mb-6 text-gray-300 md:text-lg">
+              If you would like to stay informed about the results of this survey, please provide
+              your email address below.
             </p>
 
             <div
@@ -1938,21 +1951,24 @@ export default function SurveyForm() {
               {firstError === 'email' && <ErrorBanner />}
               <label
                 htmlFor="email-input"
-                className={`mb-2 block text-base font-medium ${validationErrors.has('email') ? 'text-red-500' : 'text-white'}`}
+                className={`mb-2 block text-base font-medium md:text-xl ${validationErrors.has('email') ? 'text-red-500' : 'text-white'}`}
               >
-                Your Email address (Optional)
+                Your Email address (optional)
               </label>
               <input
                 id="email-input"
                 type="email"
                 defaultValue={surveyData['email'] as string}
                 onBlur={(e) => saveResponse('email', e.target.value)}
-                className="focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-base text-white placeholder-gray-400"
+                className="focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-base text-white placeholder-gray-400 md:text-xl"
               />
             </div>
 
             <div className="mb-6">
-              <label htmlFor="comments" className="mb-2 block text-base font-medium text-white">
+              <label
+                htmlFor="comments"
+                className="mb-2 block text-base font-medium text-white md:text-xl"
+              >
                 Any further comments or questions:
               </label>
               <textarea
@@ -1960,7 +1976,7 @@ export default function SurveyForm() {
                 rows={4}
                 defaultValue={surveyData['comments'] as string}
                 onBlur={(e) => saveResponse('comments', e.target.value)}
-                className="focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-base text-white placeholder-gray-400"
+                className="focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-base text-white placeholder-gray-400 md:text-xl"
               ></textarea>
             </div>
 
@@ -1968,7 +1984,7 @@ export default function SurveyForm() {
               <button
                 type="button"
                 onClick={prevStep}
-                className="group text-primary-500 hover:text-primary-400 flex cursor-pointer items-center text-base font-medium transition-colors duration-200"
+                className="group text-primary-500 hover:text-primary-400 flex cursor-pointer items-center text-base font-medium transition-colors duration-200 md:text-xl"
               >
                 <svg
                   className="mr-2 h-5 w-5 transform transition-transform group-hover:-translate-x-1"
@@ -1987,7 +2003,7 @@ export default function SurveyForm() {
               </button>
               <button
                 type="submit"
-                className="bg-primary-800 hover:bg-primary-900 focus:ring-primary-600 w-full cursor-pointer rounded-md px-5 py-2.5 text-base font-medium text-white ring-offset-black focus:ring-2 focus:ring-offset-2 focus:outline-none sm:w-auto"
+                className="bg-primary-800 hover:bg-primary-900 focus:ring-primary-600 w-full cursor-pointer rounded-md px-5 py-2.5 text-base font-medium text-white ring-offset-black focus:ring-2 focus:ring-offset-2 focus:outline-none sm:w-auto md:text-xl"
               >
                 Submit Survey
               </button>

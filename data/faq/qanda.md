@@ -27,7 +27,7 @@ It can be beneficial to relate the learning of a new and unfamiliar topic to one
 
 ### Who will teach?
 
-[Me](/about#about-me).
+I will (for more information, see the [about](/about#about-me) section).
 
 ### Why you?
 

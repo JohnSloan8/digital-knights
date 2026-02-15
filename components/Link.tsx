@@ -6,40 +6,34 @@ import type { LinkProps } from 'next/link'
 import { AnchorHTMLAttributes, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 
-const InternalLink = ({
-  href,
-  className,
-  ...rest
-}: LinkProps & AnchorHTMLAttributes<HTMLAnchorElement>) => {
+type CustomLinkProps = LinkProps & AnchorHTMLAttributes<HTMLAnchorElement> & { noStyle?: boolean }
+
+const InternalLink = ({ href, className, noStyle, ...rest }: CustomLinkProps) => {
   const searchParams = useSearchParams()
   const id = searchParams?.get('id')
   let finalHref = href.toString()
   if (id && !finalHref.includes('id=')) {
     finalHref = `${finalHref}${finalHref.includes('?') ? '&' : '?'}id=${id}`
   }
-  return (
-    <Link
-      className={`break-words text-blue-400 underline hover:cursor-pointer hover:text-blue-500 ${className || ''}`}
-      href={finalHref}
-      {...rest}
-    />
-  )
+  const defaultClasses =
+    'break-words text-blue-400 underline hover:cursor-pointer hover:text-blue-500'
+  const finalClass = noStyle ? className || '' : `${defaultClasses} ${className || ''}`
+
+  return <Link className={finalClass} href={finalHref} {...rest} />
 }
 
-const CustomLink = ({
-  href,
-  className,
-  ...rest
-}: LinkProps & AnchorHTMLAttributes<HTMLAnchorElement>) => {
+const CustomLink = ({ href, className, noStyle, ...rest }: CustomLinkProps) => {
   const isInternalLink = href && typeof href === 'string' && href.startsWith('/')
   const isAnchorLink = href && typeof href === 'string' && href.startsWith('#')
 
-  const combinedClassName = `break-words text-blue-400 underline hover:cursor-pointer hover:text-blue-500 ${className || ''}`
+  const defaultClasses =
+    'break-words text-blue-400 underline hover:cursor-pointer hover:text-blue-500'
+  const combinedClassName = noStyle ? className || '' : `${defaultClasses} ${className || ''}`
 
   if (isInternalLink) {
     return (
       <Suspense fallback={<Link className={combinedClassName} href={href} {...rest} />}>
-        <InternalLink href={href} className={className} {...rest} />
+        <InternalLink href={href} className={className} noStyle={noStyle} {...rest} />
       </Suspense>
     )
   }
