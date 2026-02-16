@@ -7,11 +7,11 @@ layout: 'FaqLayout'
 
 ### What is Digital Knights?
 
-Digital Knights is a new academy in South Dublin for teaching children (and parents) tech and cybersecurity skills prior to, and during, first posession of a device with online capabilities. Opening is planned for September 2026.
+Digital Knights is a new educational intiative in South Dublin for teaching children (and parents) tech and cybersecurity skills prior to, and during, first posession of a device with online capabilities. An fter school academy for children is planned for September 2026, depending on demand.
 
-### Why an academy?
+### Why is there a need for this?
 
-Becoming a parent changed my relationship with technology. While I love all things tech, my concerns about how our personal data is being gathered and used by companies and governments have grown. While my background means I can protect my own devices, data and digital footprint, doing so for my children will require education - one that is not currently covered in the curricula for primary or secondary schools. In putting together an draft of what I intend for my own kids to learn (see: [curriculum](/curriculum) ), I felt other parents who share my concerns may be interested in a similar program for their own children.
+Becoming a parent changed my relationship with technology. My concerns about how our personal data is being gathered and used by companies and governments have grown. While my background means I can protect my own devices, data and digital footprint, doing so for my children will require teaching them an important set of skills. These skills are not currently covered in the curricula for primary or secondary schools. In putting together an draft of what I intend for my own kids to learn (see: [curriculum](/curriculum) ), I felt other parents who share my concerns may be interested in a similar program for their own children.
 
 ### What are these concerns about tech?
 
@@ -31,7 +31,7 @@ I will (for more information, see the [about](/about#about-me) section).
 
 ### Why you?
 
-I have spent over two decades in the fields of technology and education, designing and delivering courses for children and college students. I hold a PhD in Computer Science from UCD and the CISSP cybersecurity certification from ISC2. I spent 5 years developing and delivering a curriculum for primary school ESL students, 4 years as a Teaching Assistant for UCD Computer Science, and most recently, 2 years designing courses and lecturing at Trinity College Dublin in Speech and Language Technologies. I am confident I have the necessary skils and experience to create and deliver a tech and cybersecurity curriculum for children.
+I have spent over two decades in the fields of technology and education, designing and delivering courses for children and college students. I hold a PhD in Computer Science from UCD and the CISSP cybersecurity certification from ISC2. I spent 5 years developing and delivering a curriculum for primary school ESL students, 4 years as a Teaching Assistant for UCD Computer Science, and most recently, 2 years designing courses and lecturing at Trinity College Dublin in Speech and Language Technologies. I am confident I have the necessary skills and experience to create and deliver a tech and cybersecurity curriculum for children.
 
 ### Why not leave this education to schools?
 
@@ -85,7 +85,7 @@ Digital Knights will introduce a code of conduct for children that must be agree
 
 ### When will classes be held?
 
-Starting September 2026, classes to be held after school during term time. Each class will last 50 minutes.
+The current plan is to start in September 2026. This will, of course, depend on demand. Classes would be held after school during term time, for 50 minutes.
 
 ### How many students per class?
 
@@ -101,4 +101,4 @@ The phone in level 3 is the only hardware that you will be required to buy. Ther
 
 ### Where are you based?
 
-I live in Rathfarnham. A location for the academy has not been selected yet. It will be chosen in June 2026 based on the area most convenient to the majority on the waitlist. If you wish to express an interest for your own child/children to join these classes in September 2026, please fill in the [waitlist application form](/waitlist), and add your own location (postcode area, e.g. D16).
+I live in Rathfarnham. A location for the academy has not been selected yet. If there is sufficent interest, it will be chosen in June 2026 based on the area most convenient to the majority on the waitlist. If you wish to express an interest for your own child/children to join these classes in September 2026, please fill in the [waitlist application form](/waitlist), and add your own location (postcode area, e.g. D16).

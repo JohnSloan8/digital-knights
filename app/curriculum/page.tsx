@@ -53,17 +53,20 @@ export default function Curriculum() {
           </div>
           <div className="prose prose-invert w-full max-w-none md:text-lg">
             <p>
-              The Digital Knights curriculum aims to structure a learning pathway for children which
-              produces technologically proficient individuals who control their data, devices and
-              digital footprint. The curriculum is designed to be taught in-person, once a week for
-              1 hour. Class sizes are limited to small groups (max 8), and will be taught by an
-              experienced teacher and expert in computer science and cybersecurity.
+              The Digital Knights curriculum is being designed with a focus on cybersecurity and
+              digital literacy. It will include a mix of hands-on activities, projects and games to
+              keep children interested and motivated.
             </p>
             <p>
-              There are <strong>3 levels</strong> to the curriculum - Page, Squire and Knight. Each
-              level builds upon the previous to develop the necessary skills with respect to the age
-              and ability of the children. A secondary aim is to complement the National Council for
-              Curriculum and Assessment's STEM{' '}
+              Classes will be taught in-person, once a week for 1 hour. Class sizes are limited to
+              small groups (max 8), and will be taught by an experienced teacher and expert in
+              computer science and cybersecurity.
+            </p>
+            <p>
+              There are 3 levels to the curriculum - Page, Squire and Knight. Each level builds upon
+              the previous to develop the necessary skills with respect to the age and ability of
+              the children. A secondary aim is to complement the National Council for Curriculum and
+              Assessment's STEM{' '}
               <Link href="https://www.curriculumonline.ie/getmedia/70081350-c004-4773-8948-f70b0d4ef554/Primary-STE-and-MATHS-Spec-ENG.pdf">
                 Education Specification
               </Link>{' '}

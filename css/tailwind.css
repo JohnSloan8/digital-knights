@@ -92,6 +92,7 @@ html {
   .prose {
     & a {
       color: var(--color-primary-500);
+      text-decoration: none;
 
       &:hover {
         color: var(--color-primary-600);
@@ -119,6 +120,7 @@ html {
   .prose-invert {
     & a {
       color: var(--color-primary-500);
+      text-decoration: none;
 
       &:hover {
         color: var(--color-primary-400);
