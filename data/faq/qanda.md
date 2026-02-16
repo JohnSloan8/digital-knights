@@ -7,9 +7,9 @@ layout: 'FaqLayout'
 
 ### What is Digital Knights?
 
-Digital Knights is a new after-school academy in South Dublin for teaching children aged 7-15 tech and cybersecurity skills prior to, and during, first posession of a device with online capabilities. Opening is planned for September 2026.
+Digital Knights is a new academy in South Dublin for teaching children (and parents) tech and cybersecurity skills prior to, and during, first posession of a device with online capabilities. Opening is planned for September 2026.
 
-### Why an after-school academy?
+### Why an academy?
 
 Becoming a parent changed my relationship with technology. While I love all things tech, my concerns about how our personal data is being gathered and used by companies and governments have grown. While my background means I can protect my own devices, data and digital footprint, doing so for my children will require education - one that is not currently covered in the curricula for primary or secondary schools. In putting together an draft of what I intend for my own kids to learn (see: [curriculum](/curriculum) ), I felt other parents who share my concerns may be interested in a similar program for their own children.
 

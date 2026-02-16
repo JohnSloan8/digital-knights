@@ -46,7 +46,7 @@
   },
   {
     "title": "Squire",
-    "ages": "9-12",
+    "ages": "9-13",
     "duration": "2 years",
     "description": "Practical computing and networking fundamentals are introduced using a small Single Board Computer (Raspberry Pi). The programming language Python is used to control sensors, LEDs, and motors, and a simple website is designed, built and hosted. Students learn how computers and websites like these connect to the internet and the means through which data is sent and received. This forms the foundation for understanding data privacy and security concepts in the next stage.",
     "skills": [
@@ -95,7 +95,7 @@
   },
   {
     "title": "Knight",
-    "ages": "12-15",
+    "ages": "12-16",
     "duration": "2 years",
     "description": "The mobile phone and computer are introduced. Students are taught how to set up and use their own devices to ensure privacy and safety while accessing the internet. This includes managing their own home network and small homelab for hosting useful services (photo & document storage, passwords, media etc.) and backing up data. Cloud computing, AI and virtualization technologies extend the homelab, providing students with a solid understanding of modern computing infrastructure and security principles underpinned by cryptography.",
     "skills": [
