@@ -38,12 +38,11 @@ export default function Home({ posts }) {
           <div className="prose prose-invert w-full max-w-none md:text-lg">
             <h2>Introduction</h2>
             <p>
-              Digital Knights is a new after-school academy in South Dublin, dedicated to teaching
-              children tech and cybersecurity skills to prepare them for entry into the digital
-              world.
+              Digital Knights is a new academy in South Dublin dedicated to teaching children tech
+              and cybersecurity skills to prepare them for entry into the digital world.
             </p>
             <p>
-              Students aged 7-15 will learn to become technically self-sufficient digital citizens
+              Students aged 7-16 will learn to become technically self-sufficient digital citizens
               who understand how to manage their devices, data and digital footprint in order to
               navigate online spaces safely and privately.
             </p>
@@ -52,8 +51,8 @@ export default function Home({ posts }) {
               principles to give them a head start in secondary school and beyond.
             </p>
             <p>
-              Parents will be included in the learning journey with regular updates and resources to
-              support their children..
+              Parents are included in the learning journey through information sessions and
+              additional classes, alongside regular updates and resources to support their children.
             </p>
             <p>
               Digital Knights was founded by father, Computer Science PhD, Trinity College Assistant
