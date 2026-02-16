@@ -7,7 +7,7 @@ layout: 'FaqLayout'
 
 ### What is Digital Knights?
 
-Digital Knights is a new educational intiative in South Dublin for teaching children (and parents) tech and cybersecurity skills prior to, and during, first posession of a device with online capabilities. An fter school academy for children is planned for September 2026, depending on demand.
+Digital Knights is a new educational intiative in South Dublin for teaching children (and parents) tech and cybersecurity skills prior to, and during, first posession of a device with online capabilities. An after school academy for children is planned for September 2026, depending on demand.
 
 ### Why is there a need for this?
 
@@ -19,7 +19,7 @@ There are many - from cyberbullying to viewing inappropriate or disturbing conte
 
 ### What will kids learn in Digital Knights?
 
-The core learning outcome for a child attending Digital Knights is to become a technologically self-sufficient digital citizen - one who is in control of their own devices, data and digital footprint. They can use technology in creative ways to solve real-world problems to benefit the communities in which they are a part. The curriculum is currently under developemnt - full information can be found on the [curriculum](/curriculum) page.
+The core learning outcome for a child attending Digital Knights is to become a technologically self-sufficient digital citizen - one who is in control of their own devices, data and digital footprint. They can use technology in creative ways to solve real-world problems to benefit the communities in which they are a part. The curriculum is currently under development - full information can be found on the [curriculum](/curriculum) page.
 
 ### Why the medieval theme?
 
@@ -41,7 +41,7 @@ I believe this topic is best taught by experts in the field who actively keep up
 
 If a parent has the knowledge and time to educate their children on this subject, then of course they are ideally placed to do so.
 
-### Won't the upcoming smartphone and social media bans for kids solve the problems you have indetified?
+### Won't the upcoming smartphone and social media bans for kids solve the problems you have identified?
 
 No. See [article](/blog/bans).
 
@@ -69,15 +69,15 @@ Not at the moment. Possibly in the future if there is demand.
 
 ### Will there be education for parents?
 
-Yes. In parallel to the curriculum, there will be information sessions, [articles](/articles) published on this website and classes for parents if there is demand.
+Yes. In parallel to the curriculum, there will be information sessions, [articles](/blog) published on this website and classes for parents if there is demand.
 
 ### When is the ideal time to enroll?
 
-Three years prior to possessing their first mobile phone, beginning at 7-10 years old. This will allow them to follow the standard [curriculum](/curriculum)schedule.
+Three years prior to possessing their first mobile phone, beginning at 7-10 years old. This will allow them to follow the standard [curriculum](/curriculum).
 
 ### What is my child already has a smartphone?
 
-They can still follow the curriculum. However, unless their phone is compatible with the privacy focussed Operating System used in the course (currently Graphene OS running on Google Pixel), they will need to change phones upon entering level 3. Additionally, any existing email accounts, logins, passwords, browser etc. will also likely require an overhaul.
+They can still follow the curriculum. However, unless their phone is compatible with the privacy focussed Operating System used in the course (provisionally [Graphene OS](https://grapheneos.org/)), they will need to change phones upon entering level 3. Additionally, any existing email accounts, logins, passwords, browser etc. will also likely require an overhaul.
 
 ### What if my child uses the tech skills they learn to get around my parental controls etc.?
 
