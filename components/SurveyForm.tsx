@@ -1864,9 +1864,8 @@ export default function SurveyForm() {
               Section 5: Basic Demographics
             </h2>
             <p className="mb-4 text-gray-300 md:text-lg">
-              Questions on your awareness of trends in children's use of technology, risks with
-              using currently popular devices/websites/apps, and currently available educational
-              resources.
+              Questions on basic information about you and your child/children, e.g. parental role,
+              number of children, child/children's ages.
             </p>
             <h3 className="mb-2 text-lg font-semibold text-white md:text-xl">
               Why are these questions being asked?

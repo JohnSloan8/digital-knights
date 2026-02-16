@@ -53,12 +53,11 @@ export default function Curriculum() {
           </div>
           <div className="prose prose-invert w-full max-w-none md:text-lg">
             <p>
-              The Digital Knights curriculum will structure a learning pathway for children,
-              starting from 7-10 years old, to technologically proficient individuals at 16 who
-              control their data, devices and digital footprint. The curriculum is designed to be
-              taught in-person, once a week for 1 hour. Class sizes are limited to small groups (max
-              8), and will be taught by an experienced teacher and expert in computer science and
-              cybersecurity.
+              The Digital Knights curriculum aims to structure a learning pathway for children which
+              produces technologically proficient individuals who control their data, devices and
+              digital footprint. The curriculum is designed to be taught in-person, once a week for
+              1 hour. Class sizes are limited to small groups (max 8), and will be taught by an
+              experienced teacher and expert in computer science and cybersecurity.
             </p>
             <p>
               There are <strong>3 levels</strong> to the curriculum - Page, Squire and Knight. Each
