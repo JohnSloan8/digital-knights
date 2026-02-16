@@ -211,7 +211,7 @@ export default function WaitlistForm() {
             htmlFor="email"
             className={`mb-2 block text-base font-medium ${errors.has('email') ? 'text-red-500' : 'text-white'}`}
           >
-            Your Email address
+            Email address
           </label>
           <input
             id="email"

@@ -7,19 +7,19 @@ layout: 'FaqLayout'
 
 ### What is Digital Knights?
 
-Digital Knights is a new educational intiative in South Dublin for teaching children (and parents) tech and cybersecurity skills prior to, and during, first posession of a device with online capabilities. An after school academy for children is planned for September 2026, depending on demand.
+Digital Knights is a new educational initiative in South Dublin for teaching children (and parents) tech and cybersecurity skills prior to, and during, first possession of a device with online capabilities. An after school academy for children is planned for September 2026, depending on demand.
 
 ### Why is there a need for this?
 
-Becoming a parent changed my relationship with technology. My concerns about how our personal data is being gathered and used by companies and governments have grown. While my background means I can protect my own devices, data and digital footprint, doing so for my children will require teaching them an important set of skills. These skills are not currently covered in the curricula for primary or secondary schools. In putting together an draft of what I intend for my own kids to learn (see: [curriculum](/curriculum) ), I felt other parents who share my concerns may be interested in a similar program for their own children.
+Becoming a parent changed my relationship with technology. My concerns about how our personal data is being gathered and used by companies and governments have grown. While my background means I can protect my own devices, data and digital footprint, doing so for my children will require teaching them an important set of skills. These skills are not currently covered in the curricula for primary or secondary schools. In putting together a draft of what I intend for my own kids to learn (see: [curriculum](/curriculum) ), I felt other parents who share my concerns may be interested in a similar program for their own children.
 
 ### What are these concerns about tech?
 
-There are many - from cyberbullying to viewing inappropriate or disturbing content. However, my primary concern is the collection of data for profiling and targeting content. I don't want my child getting a stream of content related to plastic surgery because they once searched for 'nose job' out of curiousity. I don't want my child getting alerts about the latest deals on a product when they happen to be in the proximity of a particular location. And, I particularly don't want my kids getting a deluge of polarising political content, specifically crafted to sway the opinions of young people.
+There are many - from cyberbullying to viewing inappropriate or disturbing content. However, my primary concern is the collection of data for profiling and targeting content. I don't want my child getting a stream of content related to plastic surgery because they once searched for 'nose job' out of curiosity. I don't want my child getting alerts about the latest deals on a product when they happen to be in the proximity of a particular location. And, I particularly don't want my kids getting a deluge of polarising political content, specifically crafted to sway the opinions of young people.
 
 ### What will kids learn in Digital Knights?
 
-The core learning outcome for a child attending Digital Knights is to become a technologically self-sufficient digital citizen - one who is in control of their own devices, data and digital footprint. They can use technology in creative ways to solve real-world problems to benefit the communities in which they are a part. The curriculum is currently under development - full information can be found on the [curriculum](/curriculum) page.
+The core learning outcome for a child attending Digital Knights is to become a technologically self-sufficient digital citizen - one who is in control of their own devices, data and digital footprint. They can use technology in creative ways to solve real-world problems to benefit the communities of which they are a part. The curriculum is currently under development - full information can be found on the [curriculum](/curriculum) page.
 
 ### Why the medieval theme?
 
@@ -63,7 +63,7 @@ If you are reading this page, it is likely you are a parent who has an interest 
 
 It is not that long ago that computer and tech related skills were only learned by a small subset of the population who had a special interest or aptitude for the subject. Today, these skills need to be learned by everyone, not just the 'techy' types. It is the responsibility of those who design and deliver education in this field (including myself) to make sure it is accessible to everyone.
 
-### Will there be classes/grinds for these Junior and leaving Cert subjects?
+### Will there be classes/grinds for these Junior and Leaving Cert subjects?
 
 Not at the moment. Possibly in the future if there is demand.
 
@@ -75,7 +75,7 @@ Yes. In parallel to the curriculum, there will be information sessions, [article
 
 Three years prior to possessing their first mobile phone, beginning at 7-10 years old. This will allow them to follow the standard [curriculum](/curriculum).
 
-### What is my child already has a smartphone?
+### What if my child already has a smartphone?
 
 They can still follow the curriculum. However, unless their phone is compatible with the privacy focussed Operating System used in the course (provisionally [Graphene OS](https://grapheneos.org/)), they will need to change phones upon entering level 3. Additionally, any existing email accounts, logins, passwords, browser etc. will also likely require an overhaul.
 
