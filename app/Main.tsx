@@ -45,9 +45,9 @@ export default function Home({ posts }) {
               >
                 curriculum
               </Link>{' '}
-              is currently under development which will be published on this website. In-person and
-              online classes for children and parents will be made available if there is demand.
-              Parents input into the curriculum is being actively sought through a{' '}
+              is currently under development which will be published on this website. In-person or
+              online classes for children and parents will be made available if required. Parents
+              input into the curriculum is being actively sought through a{' '}
               <Link
                 href="/survey"
                 className="text-primary-500 hover:text-primary-400 !no-underline"

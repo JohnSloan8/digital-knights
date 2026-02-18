@@ -39,7 +39,7 @@ The current educational resources available do not solve the problems I am most 
 
 ### Will there be in-person classes?
 
-Yes, if there is demand.
+If there is interest in the curriculum being taught by me, I will arrange classes.
 
 ### Will parents be able to educate their own children following the Digital Knights curriculum?
 
@@ -68,7 +68,7 @@ It is not that long ago that computer and tech related skills were only learned 
 
 ### Will there be education for parents?
 
-Yes. Informative [articles](/blog) will be published on this website, with information sessions and classes for parents offered if there is demand.
+Yes. Informative [articles](/blog) will be published on this website, with information sessions and classes for parents offered if requested.
 
 ### When is the ideal time for a child to start learning?
 
