@@ -23,53 +23,49 @@ export default function Home({ posts }) {
         <ThreeScene className="absolute top-0 left-0 h-[100svh] w-full" />
       </div>
       <div className="relative z-10 mx-auto mt-[calc(100svh-64px)] w-full md:mt-[calc(100svh-96px)]">
-        {/* <div className="border-primary-500 bg-primary-500/10 mb-8 flex flex-col items-center justify-between gap-4 rounded-lg border p-6 text-center shadow-lg md:flex-row md:text-left">
-          <h2 className="text-primary-200 text-lg font-bold">
-            New academy opening in South Dublin - September 2026!
-          </h2>
-          <Link
-            href="/waitlist"
-            className="bg-primary-800 hover:bg-primary-900 focus:ring-primary-600 rounded-md px-5 py-2.5 text-base font-medium whitespace-nowrap !text-white !no-underline ring-offset-black transition-colors focus:ring-2 focus:ring-offset-2 focus:outline-none"
-          >
-            Join waitlist
-          </Link>
-        </div> */}
         <div className="">
           <div className="prose prose-invert w-full max-w-none md:text-lg">
             <h2>Introduction</h2>
             <p>
-              Digital Knights is a new initiative in South Dublin dedicated to teaching children
-              tech and cybersecurity skills to prepare them for entry into the digital world.
+              Digital Knights is a new, educational initiative in South Dublin dedicated to teaching
+              children tech and cybersecurity skills to prepare them for entry into the digital
+              world.
             </p>
             <p>
-              A curriculum for ages 7-16 is under development. The primary goal is to teach children
-              how to manage their devices, data and digital footprint in a way that allows them to
-              navigate online spaces safely and privately. Additionally, the curriculum aims to
-              develop a strong foundation in computer science and cybersecurity principles to give
-              students a head start in secondary school and beyond. (Provide your own input in the{' '}
+              The main goal of Digital Knights is to provide children with sufficient technical
+              skills to manage their devices, data and digital footprint in a way that enables them
+              to navigate online spaces safely and privately. A secondary goal is to provide
+              information to parents to support their children's learning and development.
+            </p>
+            <p>
+              A{' '}
+              <Link
+                href="/curriculum"
+                className="text-primary-500 hover:text-primary-400 !no-underline"
+              >
+                curriculum
+              </Link>{' '}
+              is currently under development which will be published on this website. In-person and
+              online classes for children and parents will be made available if there is demand.
+              Parents input into the curriculum is being actively sought through a{' '}
               <Link
                 href="/survey"
                 className="text-primary-500 hover:text-primary-400 !no-underline"
               >
                 survey
-              </Link>
-              )
-            </p>
-
-            <p>
-              Parents will be included in the learning journey through information sessions,
-              workshops and additional classes.
+              </Link>{' '}
+              and follow-up discussions.
             </p>
             <p>
-              Digital Knights was founded by father, Computer Science PhD, Trinity College Assistant
-              Professor and CISSP Cybersecurity expert,{' '}
+              Digital Knights was founded by{' '}
               <Link
                 href="/about#about-me"
                 className="text-primary-500 hover:text-primary-400 !no-underline"
               >
                 John Sloan
-              </Link>
-              .
+              </Link>{' '}
+              - a father, Computer Science PhD, Trinity College lecturer and CISSP certified
+              cybersecurity expert .
             </p>
           </div>
 
@@ -115,7 +111,7 @@ export default function Home({ posts }) {
               </div>
             </div>
 
-            <div>
+            {/* <div>
               <p className="mb-2">If interested in your child/children joining a class:</p>
               <div className="flex flex-col space-y-1">
                 <Link
@@ -125,7 +121,7 @@ export default function Home({ posts }) {
                   Waitlist <span aria-hidden="true">&rarr;</span>
                 </Link>
               </div>
-            </div>
+            </div> */}
 
             <div>
               <p className="mb-2">
@@ -141,7 +137,7 @@ export default function Home({ posts }) {
               </div>
             </div>
           </div>
-          <div className="my-10 border-t border-gray-700 text-gray-300 md:text-lg">
+          {/* <div className="my-10 border-t border-gray-700 text-gray-300 md:text-lg">
             <h2 className="mt-10 mb-4 text-2xl leading-8 font-bold tracking-tight text-gray-100">
               Timeline
             </h2>
@@ -203,7 +199,7 @@ export default function Home({ posts }) {
                 </tbody>
               </table>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </>

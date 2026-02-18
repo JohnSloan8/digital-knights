@@ -53,30 +53,29 @@ export default function Curriculum() {
           </div>
           <div className="prose prose-invert w-full max-w-none md:text-lg">
             <p>
-              The Digital Knights curriculum is being designed with a focus on cybersecurity and
-              digital literacy. It will include a mix of hands-on activities, projects and games to
-              keep children interested and motivated.
+              The Digital Knights curriculum is being designed for children aged 7-16 with a focus
+              on technical skills and cybersecurity. It is set to begin approximately three years
+              prior to the child possessing their own internet enabled device, and run for two
+              further years. This is to ensure that students have a sufficient level of technical
+              knowledge to control their devices, data and digital footprint when they start using
+              the internet, and ensure these skills are being used correctly in the early stages.
             </p>
             <p>
-              Classes will be taught in-person, once a week for 1 hour. Class sizes are limited to
-              small groups (max 8), and will be taught by an experienced teacher and expert in
-              computer science and cybersecurity.
-            </p>
-            <p>
-              There are 3 levels to the curriculum - Page, Squire and Knight. Each level builds upon
-              the previous to develop the necessary skills with respect to the age and ability of
-              the children. A secondary aim is to complement the National Council for Curriculum and
-              Assessment's STEM{' '}
+              There are 3 levels planned for the curriculum - Page, Squire and Knight. Each level
+              builds upon the previous to develop the necessary skills with respect to the age and
+              ability of the children. The curriculum will include a mix of hands-on activities,
+              projects and games to keep children interested and motivated. A secondary aim is to
+              complement the{' '}
               <Link href="https://www.curriculumonline.ie/getmedia/70081350-c004-4773-8948-f70b0d4ef554/Primary-STE-and-MATHS-Spec-ENG.pdf">
-                Education Specification
+                National Council for Curriculum and Assessment's STEM Education Specification
               </Link>{' '}
-              to prepare solid foundations for Junior Cycle{' '}
+              to prepare solid foundations for{' '}
               <Link href="https://curriculumonline.ie/getmedia/934299b8-d2d8-461e-8d80-cca9d96e656b/JCSEC27_technology_syllabus.pdf">
-                Technology
+                Junior Cycle Technology
               </Link>{' '}
-              and Leaving Certificate{' '}
+              and{' '}
               <Link href="https://curriculumonline.ie/getmedia/cff6eb86-9ff8-4e68-abf9-e42ca637492d/LC-Computer-Science-specification-updated.pdf">
-                Computer Science
+                Leaving Certificate Computer Science
               </Link>
               .
             </p>
@@ -189,11 +188,11 @@ export default function Curriculum() {
           </h2>
           <div className="text-gray-300 md:text-lg md:leading-7">
             <p>
-              At the conclusion of Level 3, students will have the skills to enter the digital world
-              with full control over their own devices, data and digital footprint. In addition,
-              they will have acquired a strong foundation in digital skills and computational
-              thinking which will feed into the Junior Cycle Technology, and Leaving Certificate
-              Computer Science curricula.
+              At the conclusion of Level 3, students should have sufficient skills to enter the
+              digital world with full control over their own devices, data and digital footprint. In
+              addition, they should have a strong foundation in digital skills and computational
+              thinking to feed into the Junior Cycle Technology, and Leaving Certificate Computer
+              Science curricula.
             </p>
           </div>
         </div>
