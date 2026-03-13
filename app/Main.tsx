@@ -25,32 +25,19 @@ export default function Home({ posts }) {
       <div className="relative z-10 mx-auto mt-[calc(100svh-64px)] w-full md:mt-[calc(100svh-96px)]">
         <div className="">
           <div className="prose prose-invert w-full max-w-none md:text-lg">
-            <h2>Introduction</h2>
             <p>
               Digital Knights is an independent educational initiative dedicated to preparing
-              children in Ireland for entry into the digital world.
+              children for entry into the digital world. It is based on the belief that education is
+              more effective than bans. We should teach children how computers and the internet work{' '}
+              <i>before</i> giving them an internet enabled device. This knowledge will help the
+              13-year-old who gets their first smartphone to make informed decisions about how to
+              use it safely and responsibly.
             </p>
+
             <p>
-              {' '}
-              It offers a significantly more <strong>technical</strong> and{' '}
-              <strong>privacy-focused</strong> approach to online safety than is currently available
-              in other common resources (e.g. Webwise, CyberSafeKids, Comisiún ).
-            </p>
-            <p>
-              A core driver of the project is the belief that children should have a solid
-              understanding of how computers and the internet work <strong>before</strong> posessing
-              an internet enabled device.
-            </p>
-            <p>
-              This knowledge will help the 13-year-old who gets their first smartphone to make
-              informed decisions about how to use it safely and responsibly.
-            </p>
-            <p>
-              On this website, articles and guides for parents and ch on a range of tech and
-              cybersecurity topics are published regularly on this website.
-            </p>
-            <p>
-              A{' '}
+              This website offers a range of resources for parents and children on the topics of
+              tech and cybersecurity. Articles, advice and guides are published regularly, and a
+              structured{' '}
               <Link
                 href="/curriculum"
                 className="text-primary-500 hover:text-primary-400 !no-underline"
@@ -69,24 +56,17 @@ export default function Home({ posts }) {
             </p>
 
             <p>
-              Digital Knights was founded by{' '}
+              Digital Knights was created by{' '}
               <Link
                 href="/about#about-me"
                 className="text-primary-500 hover:text-primary-400 !no-underline"
               >
                 John Sloan
               </Link>{' '}
-              - a father, Computer Science PhD, Trinity College lecturer and CISSP certified
+              - a father, Computer Science PhD, Trinity College Research Fellow and CISSP certified
               cybersecurity professional.
             </p>
-
-            <p>
-              Many thanks to the parents who have already contributed to this project through
-              discussions and the survey - your input is invaluable!
-            </p>
           </div>
-
-          <div className="my-10 border-t border-gray-700" />
 
           <h2 className="mt-10 mb-4 text-2xl leading-8 font-bold tracking-tight text-gray-100">
             Navigate Site

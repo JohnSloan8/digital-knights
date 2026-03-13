@@ -7,17 +7,21 @@ layout: 'FaqLayout'
 
 ### What is Digital Knights?
 
-Digital Knights is a new educational initiative in South Dublin for teaching children (and parents) tech and cybersecurity skills prior to, and during, first possession of a device with online capabilities. A curriculum is currently under development, with classes for children and parents planned.
+Digital Knights is a new, educational initiative for teaching children (and parents) in Ireland tech and cybersecurity skills prior to first possession of a mobile phone.
 
 ### Why is there a need for this?
 
-Becoming a parent changed my relationship with technology. My concerns about how our personal data is being gathered and used by companies and governments have grown. While my background means I can protect my own devices, data and digital footprint, doing so for my children will require teaching them an important set of skills. These skills are not currently covered in the curricula for primary or secondary schools. In putting together a draft of what I intend for my own kids to learn (see: [curriculum](/curriculum) ), I felt other parents who share my concerns may be interested in a similar program for their own children.
+Some of the dangers associated with going online are better tackled with an understanding of how computers and the internet actually work. The current primary school curriculum and resources for online safety do not
 
-### What are these concerns about tech?
+### Which dangers?
 
-There are many - from cyberbullying to viewing inappropriate or disturbing content. However, my primary concern is the collection of data for profiling and targeting content. I don't want my children getting a stream of content related to plastic surgery because they once searched for 'nose job' out of curiosity. I don't want my children getting alerts about the latest deals on a product when they happen to be in the proximity of a particular location. And, I particularly don't want my children getting a deluge of extreme political content specifically crafted to impact the minds of young people.
+There are many - from cyberbullying to viewing inappropriate or disturbing content. However, my primary concern is the collection of data for profiling and targeting content. I don't want my children getting a stream of content related to plastic surgery because they once searched for 'nose job' out of curiosity. I don't want my children getting alerts about the latest deals on a particular product because they are in the vicinity of . I particularly don't want my children getting a deluge of extreme political content specifically crafted to impact the minds of young people.
+
+### How
 
 ### What will children learn?
+
+Articles and guides for parents are published on this website, with a curriculum for children aged 8-13 also under development.
 
 The core learning outcome for a child following the Digital Knights curriculum is to become a technologically self-sufficient digital citizen - one who is in control of their own devices, data and digital footprint. They can use technology in creative ways to solve real-world problems to benefit the communities of which they are a part. This curriculum is currently under development - full information can be found on the [curriculum](/curriculum) page.
 

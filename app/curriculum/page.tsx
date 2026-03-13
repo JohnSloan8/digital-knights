@@ -19,7 +19,7 @@ export default function Curriculum() {
       <div className="divide-y divide-gray-700">
         <PageHeader
           title="Curriculum"
-          description="Preparing children for the digital world in 3 structured levels."
+          description="Preparing children aged 8-13 for the digital world."
         />
         <div className="py-12">
           <div className="relative space-y-8 py-12 pt-0">
@@ -51,6 +51,8 @@ export default function Curriculum() {
               </div>
             </div>
           </div>
+
+          {/* 
           <div className="prose prose-invert w-full max-w-none md:text-lg">
             <p>
               The Digital Knights curriculum is being designed for children aged 7-16 with a focus
@@ -83,7 +85,7 @@ export default function Curriculum() {
           <div className="flex flex-col pt-12">
             {levels.map((level, index) => (
               <div key={level.title} className="relative pb-24 last:pb-0">
-                {/* Content Card with Image overlapping */}
+                {/* Content Card with Image overlapping * /}
                 <div
                   className={`relative z-10 rounded-xl border ${level.borderColor} ${level.cardBg} p-3 md:p-6`}
                 >
@@ -95,7 +97,7 @@ export default function Curriculum() {
                     </div>
                   </div>
                   <div className="flex flex-col gap-6">
-                    {/* Title Row - Centered Full Width */}
+                    {/* Title Row - Centered Full Width * /}
                     <div className="relative flex flex-col items-center justify-center gap-4 py-2 md:flex-row md:gap-0">
                       <div className="flex items-center gap-3">
                         <TechLine side="left" className="text-gray-400" />
@@ -106,9 +108,9 @@ export default function Curriculum() {
                       </div>
                     </div>
 
-                    {/* Content Row: Image + Data */}
+                    {/* Content Row: Image + Data * /}
                     <div className="flex flex-col gap-6 md:flex-row md:items-start">
-                      {/* Image Box */}
+                      {/* Image Box * /}
                       <div
                         className={`mx-auto flex h-32 w-48 flex-shrink-0 items-center justify-center overflow-hidden rounded-xl border bg-gray-900 ${level.cardBorder} md:mx-0`}
                       >
@@ -123,7 +125,7 @@ export default function Curriculum() {
                         </div>
                       </div>
 
-                      {/* Right Data: Age/Duration/Tools/Skills */}
+                      {/* Right Data: Age/Duration/Tools/Skills * /}
                       <div className="flex flex-1 flex-col gap-4">
                         <div className="flex flex-col gap-4 md:gap-2">
                           <div className="flex flex-col gap-1 md:flex-row md:items-center md:gap-2">
@@ -135,7 +137,7 @@ export default function Curriculum() {
                             <span className="text-gray-300">{level.duration}</span>
                           </div>
 
-                          {/* Equipment */}
+                          {/* Equipment * /}
                           {level.tools && level.tools.length > 0 && (
                             <div className="flex flex-col gap-1 md:flex-row md:items-start md:gap-2">
                               <span className="font-semibold text-gray-200">EQUIPMENT:</span>
@@ -145,7 +147,7 @@ export default function Curriculum() {
                             </div>
                           )}
 
-                          {/* Skills */}
+                          {/* Skills * /}
                           <div className="flex flex-col gap-1 md:flex-row md:items-start md:gap-2">
                             <span className="font-semibold text-gray-200">SKILLS:</span>
                             <span className="text-gray-300">
@@ -156,7 +158,7 @@ export default function Curriculum() {
                       </div>
                     </div>
 
-                    {/* Description and Link */}
+                    {/* Description and Link * /}
                     <div>
                       <p className="mb-4 text-gray-300 md:text-lg">{level.description}</p>
                       <div className="mt-2">
@@ -168,7 +170,7 @@ export default function Curriculum() {
                   </div>
                 </div>
 
-                {/* Arrow connecting to next level */}
+                {/* Arrow connecting to next level * /}
                 {index < levels.length - 1 && (
                   <div className="absolute -bottom-0 left-1/2 flex h-24 w-12 -translate-x-1/2 transform items-center justify-center pb-0">
                     <CalligraphyArrow
@@ -195,6 +197,8 @@ export default function Curriculum() {
               Science curricula.
             </p>
           </div>
+        </div>
+*/}
         </div>
       </div>
     </>
