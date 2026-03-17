@@ -898,7 +898,7 @@ export default function ThreeScene({ className }: { className?: string }) {
           </svg>
           <p className="text-center text-base leading-7 font-medium text-gray-300 md:text-xl">
             <span className="inline-block">Tech & Cybersecurity education</span>{' '}
-            <span className="inline-block">for children and parents</span>
+            <span className="inline-block">for parents and children</span>
           </p>
           <svg
             width="60"

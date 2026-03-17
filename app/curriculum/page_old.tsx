@@ -1,0 +1,206 @@
+import { genPageMetadata } from 'app/seo'
+import CalligraphyArrow from '@/components/CalligraphyArrow'
+import Image from '@/components/Image'
+import Link from '@/components/Link'
+import PageHeader from '@/components/PageHeader'
+import TechLine from '@/components/TechLine'
+import levels from '../data/curriculum.json'
+import CurriculumModal from '@/components/CurriculumModal'
+
+// Safelist for dynamic gradient classes
+// from-yellow-500 from-emerald-500 from-blue-500
+// to-yellow-500 to-emerald-500 to-blue-500
+
+export const metadata = genPageMetadata({ title: 'Curriculum' })
+
+export default function Curriculum() {
+  return (
+    <>
+      <div className="divide-y divide-gray-700">
+        <PageHeader
+          title="Curriculum"
+          description="Preparing children aged 8-13 for smartphones, the internet, and the digital world."
+        />
+        <div className="py-12">
+          <div className="relative space-y-8 py-12 pt-0">
+            <div className="rounded-lg border-l-4 border-blue-500 bg-blue-500/10 p-4 md:p-6">
+              <div className="mb-2 flex items-center">
+                <div className="mr-4 flex-shrink-0">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    className="h-6 w-6 text-blue-500"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 2-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.5-2.598-4.5L9.4 3.003zM12 8.25a.75.75 0 01.75.75v3.75a.75.75 0 01-1.5 0V9a.75.75 0 01.75-.75zm0 8.25a.75.75 0 100-1.5.75.75 0 000 1.5z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </div>
+                <h5 className="font-bold text-blue-500">Under Development</h5>
+              </div>
+              <div className="space-y-2 text-gray-300 md:ml-10">
+                <p>The Digital Knights curriculum is currently under development.</p>
+
+                <p>
+                  Parental input is actively being sought through a survey{' '}
+                  <Link href={'/survey'}>here</Link> and follow-up discussions.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* 
+          <div className="prose prose-invert w-full max-w-none md:text-lg">
+            <p>
+              The Digital Knights curriculum is being designed for children aged 7-16 with a focus
+              on technical skills and cybersecurity. It is set to begin approximately three years
+              prior to the child possessing their own internet enabled device, and run for two
+              further years. This is to ensure that students have a sufficient level of technical
+              knowledge to control their devices, data and digital footprint when they start using
+              the internet, and ensure these skills are being used correctly in the early stages.
+            </p>
+            <p>
+              There are 3 levels planned for the curriculum - Page, Squire and Knight. Each level
+              builds upon the previous to develop the necessary skills with respect to the age and
+              ability of the children. The curriculum will include a mix of hands-on activities,
+              projects and games to keep children interested and motivated. A secondary aim is to
+              complement the{' '}
+              <Link href="https://www.curriculumonline.ie/getmedia/70081350-c004-4773-8948-f70b0d4ef554/Primary-STE-and-MATHS-Spec-ENG.pdf">
+                National Council for Curriculum and Assessment's STEM Education Specification
+              </Link>{' '}
+              to prepare solid foundations for{' '}
+              <Link href="https://curriculumonline.ie/getmedia/934299b8-d2d8-461e-8d80-cca9d96e656b/JCSEC27_technology_syllabus.pdf">
+                Junior Cycle Technology
+              </Link>{' '}
+              and{' '}
+              <Link href="https://curriculumonline.ie/getmedia/cff6eb86-9ff8-4e68-abf9-e42ca637492d/LC-Computer-Science-specification-updated.pdf">
+                Leaving Certificate Computer Science
+              </Link>
+              .
+            </p>
+          </div>
+          <div className="flex flex-col pt-12">
+            {levels.map((level, index) => (
+              <div key={level.title} className="relative pb-24 last:pb-0">
+                {/* Content Card with Image overlapping * /}
+                <div
+                  className={`relative z-10 rounded-xl border ${level.borderColor} ${level.cardBg} p-3 md:p-6`}
+                >
+                  <div className="mb-4 flex justify-center md:absolute md:top-6 md:left-6 md:mb-0">
+                    <div
+                      className={`flex items-center justify-center rounded-lg px-3 py-1 text-sm font-bold tracking-wider text-white shadow-sm ${level.dotColor}`}
+                    >
+                      LEVEL {index + 1}
+                    </div>
+                  </div>
+                  <div className="flex flex-col gap-6">
+                    {/* Title Row - Centered Full Width * /}
+                    <div className="relative flex flex-col items-center justify-center gap-4 py-2 md:flex-row md:gap-0">
+                      <div className="flex items-center gap-3">
+                        <TechLine side="left" className="text-gray-400" />
+                        <h2 className="font-medieval text-4xl leading-8 tracking-widest text-gray-100">
+                          {level.title}
+                        </h2>
+                        <TechLine side="right" className="text-gray-400" />
+                      </div>
+                    </div>
+
+                    {/* Content Row: Image + Data * /}
+                    <div className="flex flex-col gap-6 md:flex-row md:items-start">
+                      {/* Image Box * /}
+                      <div
+                        className={`mx-auto flex h-32 w-48 flex-shrink-0 items-center justify-center overflow-hidden rounded-xl border bg-gray-900 ${level.cardBorder} md:mx-0`}
+                      >
+                        <div className="relative h-full w-full">
+                          <Image
+                            alt={level.title}
+                            src={level.imgSrc}
+                            className="object-contain"
+                            fill
+                            sizes="(max-width: 768px) 192px, 192px"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Right Data: Age/Duration/Tools/Skills * /}
+                      <div className="flex flex-1 flex-col gap-4">
+                        <div className="flex flex-col gap-4 md:gap-2">
+                          <div className="flex flex-col gap-1 md:flex-row md:items-center md:gap-2">
+                            <span className="font-semibold text-gray-200">AGE:</span>
+                            <span className="text-gray-300">{level.ages}</span>
+                          </div>
+                          <div className="flex flex-col gap-1 md:flex-row md:items-center md:gap-2">
+                            <span className="font-semibold text-gray-200">DURATION:</span>
+                            <span className="text-gray-300">{level.duration}</span>
+                          </div>
+
+                          {/* Equipment * /}
+                          {level.tools && level.tools.length > 0 && (
+                            <div className="flex flex-col gap-1 md:flex-row md:items-start md:gap-2">
+                              <span className="font-semibold text-gray-200">EQUIPMENT:</span>
+                              <span className="text-gray-300">
+                                {level.tools.map((t) => t.name).join(', ')}
+                              </span>
+                            </div>
+                          )}
+
+                          {/* Skills * /}
+                          <div className="flex flex-col gap-1 md:flex-row md:items-start md:gap-2">
+                            <span className="font-semibold text-gray-200">SKILLS:</span>
+                            <span className="text-gray-300">
+                              {level.skills.map((skill) => skill.name).join(', ')}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Description and Link * /}
+                    <div>
+                      <p className="mb-4 text-gray-300 md:text-lg">{level.description}</p>
+                      <div className="mt-2">
+                        <CurriculumModal
+                          className={`cursor-pointer text-sm font-semibold tracking-wider uppercase ${level.dotColor.replace('bg-', 'text-')} hover:opacity-80`}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Arrow connecting to next level * /}
+                {index < levels.length - 1 && (
+                  <div className="absolute -bottom-0 left-1/2 flex h-24 w-12 -translate-x-1/2 transform items-center justify-center pb-0">
+                    <CalligraphyArrow
+                      fromClass={level.dotColor}
+                      toClass={levels[index + 1].dotColor}
+                      className="h-full w-full"
+                    />
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="py-12">
+          <h2 className="mb-8 text-2xl leading-8 font-bold tracking-tight text-gray-100 sm:text-3xl md:text-4xl">
+            Towards Junior and Leaving Cert
+          </h2>
+          <div className="text-gray-300 md:text-lg md:leading-7">
+            <p>
+              At the conclusion of Level 3, students should have sufficient skills to enter the
+              digital world with full control over their own devices, data and digital footprint. In
+              addition, they should have a strong foundation in digital skills and computational
+              thinking to feed into the Junior Cycle Technology, and Leaving Certificate Computer
+              Science curricula.
+            </p>
+          </div>
+        </div>
+*/}
+        </div>
+      </div>
+    </>
+  )
+}

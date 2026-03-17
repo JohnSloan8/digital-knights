@@ -27,11 +27,11 @@ export default function Home({ posts }) {
           <div className="prose prose-invert w-full max-w-none md:text-lg">
             <p>
               Digital Knights is an independent educational initiative dedicated to preparing
-              children for entry into the digital world. It is based on the belief that education is
-              more effective than bans. We should teach children how computers and the internet work{' '}
-              <i>before</i> giving them an internet enabled device. This knowledge will help the
-              13-year-old who gets their first smartphone to make informed decisions about how to
-              use it safely and responsibly.
+              children for entry into the digital world. It is based on the belief that a
+              comprehensive education is the best weapon a child can have. Children should learn how
+              computers and the internet work <i>before</i> possessing an internet enabled device.
+              This knowledge will help the 13-year-old who gets their first smartphone to make
+              informed decisions about how to use it safely and responsibly.
             </p>
 
             <p>
@@ -44,7 +44,7 @@ export default function Home({ posts }) {
               >
                 curriculum
               </Link>{' '}
-              for 8-13 year olds is under development - parents' input is being actively sought
+              for 8-13 year olds is under development (parents' input is being actively sought
               through a{' '}
               <Link
                 href="/survey"
@@ -52,7 +52,7 @@ export default function Home({ posts }) {
               >
                 survey
               </Link>{' '}
-              and discussions.
+              and discussions).
             </p>
 
             <p>
@@ -64,7 +64,14 @@ export default function Home({ posts }) {
                 John Sloan
               </Link>{' '}
               - a father, Computer Science PhD, Trinity College Research Fellow and CISSP certified
-              cybersecurity professional.
+              cybersecurity professional. Feel free to get in{' '}
+              <Link
+                href="/about#about-me"
+                className="text-primary-500 hover:text-primary-400 !no-underline"
+              >
+                contact
+              </Link>{' '}
+              if you have any comments or questions.
             </p>
           </div>
 

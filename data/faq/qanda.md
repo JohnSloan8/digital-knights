@@ -11,7 +11,7 @@ Digital Knights is a new, educational initiative for teaching children (and pare
 
 ### Why is there a need for this?
 
-Some of the dangers associated with going online are better tackled with an understanding of how computers and the internet actually work. The current primary school curriculum and resources for online safety do not
+The current solution to the dangers associated with children in digital spaces is to ban phones, social media, apps etc. This is not a panacea for the problems associated with going online. Education is a much more effective and empowering approach than restriction. The current primary school curriculum and resources for online safety do not provide sufficient technical depth
 
 ### Which dangers?
 

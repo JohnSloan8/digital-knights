@@ -1,0 +1,156 @@
+[
+  {
+    "year": 1,
+    "title": "Computational Thinking & Creativity",
+    "summary": "Students begin their journey by learning how computers 'think' through logic puzzles and unplugged activities. The focus is on understanding sequences and cause-and-effect before moving to screens.",
+    "terms": [
+      {
+        "number": 1,
+        "title": "Foundations of Logic",
+        "outcomes": "Understanding sequences, patterns, and cause-and-effect through unplugged activities."
+      },
+      {
+        "number": 2,
+        "title": "Algorithms in Daily Life",
+        "outcomes": "Developing step-by-step instructions for everyday tasks (e.g., making a sandwich) to understand algorithmic thinking."
+      },
+      {
+        "number": 3,
+        "title": "Digital Logic Games",
+        "outcomes": "Applying logic to solve puzzles in games like Lightbot and Scratch Jr, introducing loops and conditionals visually."
+      },
+      {
+        "number": 4,
+        "title": "Creative Coding Project",
+        "outcomes": "Creating a simple interactive story or animation using block-based coding, emphasizing creativity and expression."
+      }
+    ],
+    "materials": [
+      "Tablets/Laptops",
+      "Logic Games (e.g., Lightbot, Scratch Jr)",
+      "Paper and Pencils for flowcharts"
+    ],
+    "safety": "Introduces the concept of rules in games as analogous to laws and safety guidelines online. Fair play and kindness in digital spaces are emphasized."
+  },
+  {
+    "year": 2,
+    "title": "The Brain: Raspberry Pi & LEDs",
+    "summary": "The core of the phone\u2014the Raspberry Pi computer\u2014is introduced. Students learn to set up the operating system and write their first Python scripts to control simple electronic circuits.",
+    "terms": [
+      {
+        "number": 1,
+        "title": "Unboxing the Brain",
+        "outcomes": "Introduction to the Raspberry Pi. Identifying ports (USB, HDMI, GPIO) and setting up the Operating System."
+      },
+      {
+        "number": 2,
+        "title": "Hello World (Physical)",
+        "outcomes": "Building a simple circuit on a breadboard to light up an LED. Understanding voltage, current, and resistance."
+      },
+      {
+        "number": 3,
+        "title": "Coding the Light",
+        "outcomes": "Using Python to control the LED (blink, flash patterns). Bridging the gap between software code and physical hardware."
+      },
+      {
+        "number": 4,
+        "title": "Traffic Light Project",
+        "outcomes": "Simulating a traffic light sequence using multiple LEDs and Python logic. Introduction to timing and loops."
+      }
+    ],
+    "materials": ["Raspberry Pi 5/Zero", "Breadboards", "LEDs", "Jumper Wires", "Resistors"],
+    "safety": "Basic electrical safety (short circuits). Introduction to the concept that hardware can be controlled by software, and that malicious software could potentially misuse hardware."
+  },
+  {
+    "year": 3,
+    "title": "Input: Sensors & Environment",
+    "summary": "Focusing on how devices perceive the world, students work with sensors that detect touch, motion, and light. This module lays the groundwork for understanding how phones respond to user environment.",
+    "terms": [
+      {
+        "number": 1,
+        "title": "The Sense of Touch",
+        "outcomes": "Implementing capacitive touch sensors. replacing physical buttons with touch interfaces."
+      },
+      {
+        "number": 2,
+        "title": "Motion and Orientation",
+        "outcomes": "Interfacing with an Accelerometer/Gyroscope. Detecting tilt and shake gestures."
+      },
+      {
+        "number": 3,
+        "title": "Environmental Awareness",
+        "outcomes": "Reading light and temperature sensors. Creating automated reactions (e.g., screen auto-brightness)."
+      },
+      {
+        "number": 4,
+        "title": "Smart Sensor Hub",
+        "outcomes": "A mini-project combining multiple sensors to log environmental data or control outputs based on gestures."
+      }
+    ],
+    "materials": [
+      "Raspberry Pi",
+      "Touch Sensors",
+      "Accelerometers (MPU6050)",
+      "Light Sensors (LDR)"
+    ],
+    "safety": "Privacy implication of sensors: Discussing how apps can track physical activity (steps/motion) and environment. Students learn what data can be inferred from simple sensor readings."
+  },
+  {
+    "year": 4,
+    "title": "Connectivity: Wi-Fi & Bluetooth",
+    "summary": "The device connects to the world as students explore the invisible networks that link computers. Practical exercises involve scanning for networks and sending messages between devices.",
+    "terms": [
+      {
+        "number": 1,
+        "title": "Wireless Basics",
+        "outcomes": "Understanding radio waves. Scanning for Wi-Fi networks and Bluetooth devices using the Pi."
+      },
+      {
+        "number": 2,
+        "title": "Client and Server",
+        "outcomes": "Setting up a simple web server on the Pi. Accessing a custom webpage from another device on the same network."
+      },
+      {
+        "number": 3,
+        "title": "Bluetooth Chat",
+        "outcomes": "Pairing devices and sending simple text strings between them over Bluetooth."
+      },
+      {
+        "number": 4,
+        "title": "IoT Controller",
+        "outcomes": "Controlling the LEDs/Motors from a smartphone browser over the local Wi-Fi network."
+      }
+    ],
+    "materials": ["Raspberry Pi (built-in Wi-Fi/BT)", "Another device to pair with"],
+    "safety": "Understanding public vs. private networks. The risks of open Wi-Fi/Bluetooth, 'Bluebugging', and the importance of encryption when sending data over the air."
+  },
+  {
+    "year": 5,
+    "title": "Telecommunications: SIM & 4G/5G",
+    "summary": "The final hardware component\u2014the cellular modem\u2014transforms the computer into a true mobile phone. Students learn how cellular networks function and write scripts to send SMS and make calls.",
+    "terms": [
+      {
+        "number": 1,
+        "title": "The SIM Card",
+        "outcomes": "What is a Subscriber Identity Module? Connecting a 4G HAT and inserting a SIM."
+      },
+      {
+        "number": 2,
+        "title": "AT Commands",
+        "outcomes": "Communicating directly with the modem using standard AT commands. checking signal strength and network status."
+      },
+      {
+        "number": 3,
+        "title": "Sending SMS",
+        "outcomes": "Writing a script to send and receive text messages programmatically."
+      },
+      {
+        "number": 4,
+        "title": "Making a Call",
+        "outcomes": "Initiating a voice call through the Pi. Routing audio to the microphone and speaker."
+      }
+    ],
+    "materials": ["4G/LTE HAT for Raspberry Pi", "SIM Card"],
+    "safety": "Metadata retention: Understanding that even if the content of a call is private, the 'who, when, and where' (metadata) is tracked by telecom operators. Spam calls and SMS phishing ('smishing')."
+  }
+]

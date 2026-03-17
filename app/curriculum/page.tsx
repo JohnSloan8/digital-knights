@@ -1,206 +1,166 @@
 import { genPageMetadata } from 'app/seo'
-import CalligraphyArrow from '@/components/CalligraphyArrow'
-import Image from '@/components/Image'
-import Link from '@/components/Link'
 import PageHeader from '@/components/PageHeader'
-import TechLine from '@/components/TechLine'
-import levels from '../data/curriculum.json'
-import CurriculumModal from '@/components/CurriculumModal'
-
-// Safelist for dynamic gradient classes
-// from-yellow-500 from-emerald-500 from-blue-500
-// to-yellow-500 to-emerald-500 to-blue-500
+import SectionContainer from '@/components/SectionContainer'
+import PhoneVisual from './PhoneVisual'
+import Link from '@/components/Link'
+import curriculumData from './curriculum.json'
 
 export const metadata = genPageMetadata({ title: 'Curriculum' })
 
+const YearBlock = ({
+  year,
+  title,
+  summary,
+  terms,
+  materials,
+  safety,
+}: {
+  year: number
+  title: string
+  summary: string
+  terms: { number: number; title: string; outcomes: string }[]
+  materials: string[]
+  safety: string
+}) => (
+  <div className="scroll-mt-24 rounded-xl border border-gray-700 bg-gray-800/20 p-6 shadow-xl backdrop-blur-sm">
+    {/* Header */}
+    <div className="mb-6 border-b border-gray-700/50 pb-6">
+      <h2 className="text-3xl font-bold text-emerald-400">
+        Year {year}: {title}
+      </h2>
+      <p className="mt-4 text-lg leading-relaxed text-gray-300">{summary}</p>
+    </div>
+
+    <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+      {/* Visual & Materials Column */}
+      <div className="space-y-6">
+        <div className="rounded-lg border border-gray-700/50 bg-gray-950/50 p-4 shadow-inner">
+          <PhoneVisual step={year * 2} />
+        </div>
+        <div>
+          <h4 className="mb-3 text-lg font-semibold text-white">Core Materials</h4>
+          <ul className="grid grid-cols-1 gap-2 text-sm text-gray-400 sm:grid-cols-2">
+            {materials.map((m, i) => (
+              <li key={i} className="flex items-center gap-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500/50" />
+                {m}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      {/* Terms & Outcomes */}
+      <div className="space-y-6">
+        <h4 className="text-xl font-semibold text-white">Learning Outcomes</h4>
+        <div className="relative space-y-6 before:absolute before:top-2 before:bottom-2 before:left-[15px] before:w-0.5 before:bg-gray-700/50">
+          {terms.map((term) => (
+            <div key={term.number} className="relative pl-10">
+              {/* Timeline Dot */}
+              <div className="absolute top-1.5 left-0 flex h-8 w-8 items-center justify-center rounded-full border border-gray-700 bg-gray-800 font-mono text-xs font-bold text-emerald-400 shadow-sm">
+                {term.number}
+              </div>
+              <h5 className="mb-1 text-lg font-medium text-emerald-300">{term.title}</h5>
+              <p className="text-sm leading-relaxed text-gray-400">{term.outcomes}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    {/* Safety Footer */}
+    <div className="mt-8 flex items-start gap-4 rounded-lg border border-emerald-500/20 bg-emerald-950/20 p-4">
+      <svg
+        className="mt-0.5 h-6 w-6 flex-shrink-0 text-emerald-400"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={1.5}
+          d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z"
+        />
+      </svg>
+      <div>
+        <h4 className="mb-1 text-sm font-bold tracking-wider text-emerald-400 uppercase">
+          Safety Focus
+        </h4>
+        <p className="text-sm text-gray-400">{safety}</p>
+      </div>
+    </div>
+  </div>
+)
+
 export default function Curriculum() {
   return (
-    <>
+    <SectionContainer>
       <div className="divide-y divide-gray-700">
         <PageHeader
           title="Curriculum"
-          description="Preparing children aged 8-13 for the digital world."
+          description="Build a phone from the ground up: a structured learning journey for 8-13 year olds."
         />
-        <div className="py-12">
-          <div className="relative space-y-8 py-12 pt-0">
-            <div className="rounded-lg border-l-4 border-blue-500 bg-blue-500/10 p-4 md:p-6">
-              <div className="mb-2 flex items-center">
-                <div className="mr-4 flex-shrink-0">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                    className="h-6 w-6 text-blue-500"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 2-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.5-2.598-4.5L9.4 3.003zM12 8.25a.75.75 0 01.75.75v3.75a.75.75 0 01-1.5 0V9a.75.75 0 01.75-.75zm0 8.25a.75.75 0 100-1.5.75.75 0 000 1.5z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </div>
-                <h5 className="font-bold text-blue-500">Under Development</h5>
-              </div>
-              <div className="space-y-2 text-gray-300 md:ml-10">
-                <p>The Digital Knights curriculum is currently under development.</p>
 
-                <p>
-                  Parental input is actively being sought through a survey{' '}
-                  <Link href={'/survey'}>here</Link> and follow-up discussions.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* 
-          <div className="prose prose-invert w-full max-w-none md:text-lg">
-            <p>
-              The Digital Knights curriculum is being designed for children aged 7-16 with a focus
-              on technical skills and cybersecurity. It is set to begin approximately three years
-              prior to the child possessing their own internet enabled device, and run for two
-              further years. This is to ensure that students have a sufficient level of technical
-              knowledge to control their devices, data and digital footprint when they start using
-              the internet, and ensure these skills are being used correctly in the early stages.
-            </p>
-            <p>
-              There are 3 levels planned for the curriculum - Page, Squire and Knight. Each level
-              builds upon the previous to develop the necessary skills with respect to the age and
-              ability of the children. The curriculum will include a mix of hands-on activities,
-              projects and games to keep children interested and motivated. A secondary aim is to
-              complement the{' '}
-              <Link href="https://www.curriculumonline.ie/getmedia/70081350-c004-4773-8948-f70b0d4ef554/Primary-STE-and-MATHS-Spec-ENG.pdf">
-                National Council for Curriculum and Assessment's STEM Education Specification
-              </Link>{' '}
-              to prepare solid foundations for{' '}
-              <Link href="https://curriculumonline.ie/getmedia/934299b8-d2d8-461e-8d80-cca9d96e656b/JCSEC27_technology_syllabus.pdf">
-                Junior Cycle Technology
-              </Link>{' '}
-              and{' '}
-              <Link href="https://curriculumonline.ie/getmedia/cff6eb86-9ff8-4e68-abf9-e42ca637492d/LC-Computer-Science-specification-updated.pdf">
-                Leaving Certificate Computer Science
-              </Link>
-              .
-            </p>
-          </div>
-          <div className="flex flex-col pt-12">
-            {levels.map((level, index) => (
-              <div key={level.title} className="relative pb-24 last:pb-0">
-                {/* Content Card with Image overlapping * /}
-                <div
-                  className={`relative z-10 rounded-xl border ${level.borderColor} ${level.cardBg} p-3 md:p-6`}
-                >
-                  <div className="mb-4 flex justify-center md:absolute md:top-6 md:left-6 md:mb-0">
-                    <div
-                      className={`flex items-center justify-center rounded-lg px-3 py-1 text-sm font-bold tracking-wider text-white shadow-sm ${level.dotColor}`}
-                    >
-                      LEVEL {index + 1}
-                    </div>
-                  </div>
-                  <div className="flex flex-col gap-6">
-                    {/* Title Row - Centered Full Width * /}
-                    <div className="relative flex flex-col items-center justify-center gap-4 py-2 md:flex-row md:gap-0">
-                      <div className="flex items-center gap-3">
-                        <TechLine side="left" className="text-gray-400" />
-                        <h2 className="font-medieval text-4xl leading-8 tracking-widest text-gray-100">
-                          {level.title}
-                        </h2>
-                        <TechLine side="right" className="text-gray-400" />
-                      </div>
-                    </div>
-
-                    {/* Content Row: Image + Data * /}
-                    <div className="flex flex-col gap-6 md:flex-row md:items-start">
-                      {/* Image Box * /}
-                      <div
-                        className={`mx-auto flex h-32 w-48 flex-shrink-0 items-center justify-center overflow-hidden rounded-xl border bg-gray-900 ${level.cardBorder} md:mx-0`}
-                      >
-                        <div className="relative h-full w-full">
-                          <Image
-                            alt={level.title}
-                            src={level.imgSrc}
-                            className="object-contain"
-                            fill
-                            sizes="(max-width: 768px) 192px, 192px"
-                          />
-                        </div>
-                      </div>
-
-                      {/* Right Data: Age/Duration/Tools/Skills * /}
-                      <div className="flex flex-1 flex-col gap-4">
-                        <div className="flex flex-col gap-4 md:gap-2">
-                          <div className="flex flex-col gap-1 md:flex-row md:items-center md:gap-2">
-                            <span className="font-semibold text-gray-200">AGE:</span>
-                            <span className="text-gray-300">{level.ages}</span>
-                          </div>
-                          <div className="flex flex-col gap-1 md:flex-row md:items-center md:gap-2">
-                            <span className="font-semibold text-gray-200">DURATION:</span>
-                            <span className="text-gray-300">{level.duration}</span>
-                          </div>
-
-                          {/* Equipment * /}
-                          {level.tools && level.tools.length > 0 && (
-                            <div className="flex flex-col gap-1 md:flex-row md:items-start md:gap-2">
-                              <span className="font-semibold text-gray-200">EQUIPMENT:</span>
-                              <span className="text-gray-300">
-                                {level.tools.map((t) => t.name).join(', ')}
-                              </span>
-                            </div>
-                          )}
-
-                          {/* Skills * /}
-                          <div className="flex flex-col gap-1 md:flex-row md:items-start md:gap-2">
-                            <span className="font-semibold text-gray-200">SKILLS:</span>
-                            <span className="text-gray-300">
-                              {level.skills.map((skill) => skill.name).join(', ')}
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Description and Link * /}
-                    <div>
-                      <p className="mb-4 text-gray-300 md:text-lg">{level.description}</p>
-                      <div className="mt-2">
-                        <CurriculumModal
-                          className={`cursor-pointer text-sm font-semibold tracking-wider uppercase ${level.dotColor.replace('bg-', 'text-')} hover:opacity-80`}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Arrow connecting to next level * /}
-                {index < levels.length - 1 && (
-                  <div className="absolute -bottom-0 left-1/2 flex h-24 w-12 -translate-x-1/2 transform items-center justify-center pb-0">
-                    <CalligraphyArrow
-                      fromClass={level.dotColor}
-                      toClass={levels[index + 1].dotColor}
-                      className="h-full w-full"
-                    />
-                  </div>
-                )}
-              </div>
+        {/* Pedagogical Philosophy */}
+        <div className="prose dark:prose-invert max-w-none py-8 text-gray-300">
+          <h2 className="mb-6 text-3xl font-bold text-white">Pedagogical Approach</h2>
+          <p className="mb-6 text-lg leading-relaxed">
+            The 5-year, Digital Knights curriculum is centered on the goal of children building
+            their own functioning mobile phone from basic components. The core pedagogical idea is
+            that to understand a complex device, it is best to learn how each component works
+            individually. By starting with a simple small computer (Raspberry PI), then gradually
+            adding components (camera, GPS, wifi, touchscreen etc.), students develop a deeper
+            understanding of how their devices work, what data they are generating, and how they
+            interact with the wider internet.
+          </p>
+          <p className="text-lg leading-relaxed">
+            This curriculum is a work in progress. To contribute to its development, please complete
+            the <Link href="/survey">survey</Link> or get in <Link href="/contact">contact</Link>.
+          </p>
+        </div>
+        <div className="py-8">
+          <h2 className="mb-6 text-3xl font-bold text-white">Structure</h2>
+          <p className="mb-6 text-lg leading-relaxed">
+            The curriculum is split into 5 years, with 4 terms of 7/8 weeks. Each year focuses on a
+            specific theme, with each term dedicated to a single component within that theme.
+          </p>
+          <div className="space-y-12">
+            {curriculumData.map((year) => (
+              <YearBlock key={year.year} {...year} />
             ))}
           </div>
         </div>
-        <div className="py-12">
-          <h2 className="mb-8 text-2xl leading-8 font-bold tracking-tight text-gray-100 sm:text-3xl md:text-4xl">
-            Towards Junior and Leaving Cert
-          </h2>
-          <div className="text-gray-300 md:text-lg md:leading-7">
+      </div>
+
+      {/* Future Directions */}
+      <div className="prose dark:prose-invert mt-12 max-w-none border-t border-gray-700 py-12 text-gray-300">
+        <h2 className="mb-6 text-3xl font-bold text-white">Future Directions</h2>
+        <p className="text-lg leading-relaxed">
+          The journey doesn't end with a built phone. Future steps will involve building up a small{' '}
+          <strong>homelab</strong>. Students will learn about server ownership, understanding cloud
+          computing for backups, and syncing data privately.
+        </p>
+        <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
+          <div className="rounded-lg bg-gray-800 p-6">
+            <h3 className="mb-2 text-xl font-bold text-emerald-400">Junior Cert Technology</h3>
             <p>
-              At the conclusion of Level 3, students should have sufficient skills to enter the
-              digital world with full control over their own devices, data and digital footprint. In
-              addition, they should have a strong foundation in digital skills and computational
-              thinking to feed into the Junior Cycle Technology, and Leaving Certificate Computer
-              Science curricula.
+              The skills learned (electronics, soldering, materials, design process) directly map to
+              the Junior Cycle Technology and Engineering curricula.
+            </p>
+          </div>
+          <div className="rounded-lg bg-gray-800 p-6">
+            <h3 className="mb-2 text-xl font-bold text-emerald-400">
+              Leaving Cert Computer Science
+            </h3>
+            <p>
+              The programming (Python), computational thinking, and understanding of computer
+              architecture provide a significant head-start for Leaving Certificate Computer
+              Science.
             </p>
           </div>
         </div>
-*/}
-        </div>
       </div>
-    </>
+    </SectionContainer>
   )
 }
