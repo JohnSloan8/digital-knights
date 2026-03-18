@@ -11,14 +11,14 @@ const YearBlock = ({
   year,
   title,
   summary,
-  terms,
+  semesters,
   materials,
   safety,
 }: {
   year: number
   title: string
   summary: string
-  terms: { number: number; title: string; outcomes: string }[]
+  semesters: { number: number; title: string; outcomes: string }[]
   materials: string[]
   safety: string
 }) => (
@@ -50,18 +50,18 @@ const YearBlock = ({
         </div>
       </div>
 
-      {/* Terms & Outcomes */}
+      {/* Semesters & Outcomes */}
       <div className="space-y-6">
         <h4 className="text-xl font-semibold text-white">Learning Outcomes</h4>
         <div className="relative space-y-6 before:absolute before:top-2 before:bottom-2 before:left-[15px] before:w-0.5 before:bg-gray-700/50">
-          {terms.map((term) => (
-            <div key={term.number} className="relative pl-10">
+          {semesters.map((semester) => (
+            <div key={semester.number} className="relative pl-10">
               {/* Timeline Dot */}
               <div className="absolute top-1.5 left-0 flex h-8 w-8 items-center justify-center rounded-full border border-gray-700 bg-gray-800 font-mono text-xs font-bold text-emerald-400 shadow-sm">
-                {term.number}
+                {semester.number}
               </div>
-              <h5 className="mb-1 text-lg font-medium text-emerald-300">{term.title}</h5>
-              <p className="text-sm leading-relaxed text-gray-400">{term.outcomes}</p>
+              <h5 className="mb-1 text-lg font-medium text-emerald-300">{semester.title}</h5>
+              <p className="text-sm leading-relaxed text-gray-400">{semester.outcomes}</p>
             </div>
           ))}
         </div>
@@ -99,37 +99,67 @@ export default function Curriculum() {
       <div className="divide-y divide-gray-700">
         <PageHeader
           title="Curriculum"
-          description="Build a phone from the ground up: a structured learning journey for 8-13 year olds."
+          description="Building a smart phone from scratch: a structured learning journey for 8-13 year olds."
         />
 
-        {/* Pedagogical Philosophy */}
+        {/* Introduction */}
         <div className="prose dark:prose-invert max-w-none py-8 text-gray-300">
-          <h2 className="mb-6 text-3xl font-bold text-white">Pedagogical Approach</h2>
-          <p className="mb-6 text-lg leading-relaxed">
-            The 5-year, Digital Knights curriculum is centered on the goal of children building
-            their own functioning mobile phone from basic components. The core pedagogical idea is
-            that to understand a complex device, it is best to learn how each component works
-            individually. By starting with a simple small computer (Raspberry PI), then gradually
-            adding components (camera, GPS, wifi, touchscreen etc.), students develop a deeper
-            understanding of how their devices work, what data they are generating, and how they
-            interact with the wider internet.
-          </p>
+          <h2 className="mb-6 text-3xl font-bold text-white">Introduction</h2>
           <p className="text-lg leading-relaxed">
-            This curriculum is a work in progress. To contribute to its development, please complete
-            the <Link href="/survey">survey</Link> or get in <Link href="/contact">contact</Link>.
+            The Digital Knights curriculum presents a five-year educational framework designed to
+            equip children with an understanding of modern computing and communication technologies.
+            It is intended to be taught before children receive their first internet-enabled device,
+            typically around the age of 13. The curriculum is structured around the hands-on project
+            of building a functional mobile phone from basic components.
           </p>
         </div>
+
+        {/* Rationale */}
+        <div className="prose dark:prose-invert max-w-none py-8 text-gray-300">
+          <h2 className="mb-6 text-3xl font-bold text-white">Rationale</h2>
+          <p className="text-lg leading-relaxed">
+            An understanding of how computers and the internet work can help young people to make
+            informed decisions about how to engage with technology and the online world safely and
+            responsibly. By building a smartphone from scratch, students will gain a deeper
+            understanding of the individual components that make up a modern smart device, the data
+            they generate, and how that data is transmitted and stored across the internet.
+          </p>
+        </div>
+
+        {/* Aims */}
+        <div className="prose dark:prose-invert max-w-none py-8 text-gray-300">
+          <h2 className="mb-6 text-3xl font-bold text-white">Aims</h2>
+          <p className="text-lg leading-relaxed">
+            The primary aim of this curriculum is to provide children with an understanding of
+            computing and communication technologies before they receive their first smartphone.
+            Secondary aims include inspiring a passion for technology, laying foundations for Junior
+            Cert Technology and Leaving Cert Computer Science subjects, and providing a useful set
+            of skills which can be used in a wide range of fields.
+          </p>
+        </div>
+
         <div className="py-8">
           <h2 className="mb-6 text-3xl font-bold text-white">Structure</h2>
-          <p className="mb-6 text-lg leading-relaxed">
-            The curriculum is split into 5 years, with 4 terms of 7/8 weeks. Each year focuses on a
-            specific theme, with each term dedicated to a single component within that theme.
-          </p>
           <div className="space-y-12">
             {curriculumData.map((year) => (
               <YearBlock key={year.year} {...year} />
             ))}
           </div>
+        </div>
+
+        {/* Learning Outcomes */}
+        <div className="prose dark:prose-invert max-w-none py-8 text-gray-300">
+          <h2 className="mb-6 text-3xl font-bold text-white">Learning Outcomes</h2>
+          <p className="text-lg leading-relaxed">
+            Upon completion of the curriculum, students will have demonstrated a comprehensive
+            understanding of computer architecture, having successfully integrated disparate
+            hardware modules into a cohesive, functional system. Learners will exhibit proficiency
+            in procedural programming and algorithmic logic, applying these skills to control
+            physical inputs and outputs with precision. Beyond technical execution, students will
+            possess the analytical tools to evaluate digital safety risks and the ethical dimensions
+            of technology use. This holistic skill set ensures they are prepared not only to build
+            technology but to use it responsibly and innovatively.
+          </p>
         </div>
       </div>
 
@@ -137,29 +167,15 @@ export default function Curriculum() {
       <div className="prose dark:prose-invert mt-12 max-w-none border-t border-gray-700 py-12 text-gray-300">
         <h2 className="mb-6 text-3xl font-bold text-white">Future Directions</h2>
         <p className="text-lg leading-relaxed">
-          The journey doesn't end with a built phone. Future steps will involve building up a small{' '}
-          <strong>homelab</strong>. Students will learn about server ownership, understanding cloud
-          computing for backups, and syncing data privately.
+          The educational journey extends beyond the construction of the handset, seamlessly
+          bridging the gap between primary exploration and secondary specification. The competencies
+          acquired—ranging from circuit design to Python programming—provide a distinct advantage
+          for students progressing to Junior Cycle Technology and Leaving Certificate Computer
+          Science. Looking ahead, the curriculum envisions a broadening of scope to include personal
+          server management and private cloud infrastructure, further empowering students to assert
+          sovereignty over their digital data. This forward-looking perspective ensures that
+          learning remains relevant and adaptable to the evolving landscape of personal computing.
         </p>
-        <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
-          <div className="rounded-lg bg-gray-800 p-6">
-            <h3 className="mb-2 text-xl font-bold text-emerald-400">Junior Cert Technology</h3>
-            <p>
-              The skills learned (electronics, soldering, materials, design process) directly map to
-              the Junior Cycle Technology and Engineering curricula.
-            </p>
-          </div>
-          <div className="rounded-lg bg-gray-800 p-6">
-            <h3 className="mb-2 text-xl font-bold text-emerald-400">
-              Leaving Cert Computer Science
-            </h3>
-            <p>
-              The programming (Python), computational thinking, and understanding of computer
-              architecture provide a significant head-start for Leaving Certificate Computer
-              Science.
-            </p>
-          </div>
-        </div>
       </div>
     </SectionContainer>
   )

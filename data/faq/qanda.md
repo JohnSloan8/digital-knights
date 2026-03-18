@@ -57,6 +57,10 @@ No. See [article](/blog/bans).
 
 From a review of the publicly available information on other technology and computer-related educational resources currently available for children in Ireland, the focus is primarily be on coding as a useful skill for future success. Digital Knights aims to cover a broader range of technical skills, as the primary focus is on building general technical self-sufficiency to ensure safety and privacy when the child possesses an internet enabled device of their own.
 
+### Why don't you use Scratch or other common coding tools for children?
+
+Two main reasons. First, there is a huge dropoff in interest from children when they 'graduate' from simple to real programming languages. Second, the focus on this curriculum is not on programming skills alone, but on broader technologies and their interactions (hardware, software and networks).
+
 ### Who might be interested in these resources?
 
 If you are reading this page, it is likely you are a parent who has an interest in this subject matter. You probably fall into one or more of the following groups:

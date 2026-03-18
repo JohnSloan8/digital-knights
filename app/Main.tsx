@@ -3,6 +3,7 @@ import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import { formatDate } from 'pliny/utils/formatDate'
 import ThreeScene from '@/components/ThreeScene'
+import Quote from '@/components/Quote'
 import headerNavLinks from '@/data/headerNavLinks'
 
 const MAX_DISPLAY = 5
@@ -23,28 +24,61 @@ export default function Home({ posts }) {
         <ThreeScene className="absolute top-0 left-0 h-[100svh] w-full" />
       </div>
       <div className="relative z-10 mx-auto mt-[calc(100svh-64px)] w-full md:mt-[calc(100svh-96px)]">
-        <div className="">
+        <div className="py-6 backdrop-blur-sm">
+          <div className="mx-auto max-w-4xl space-y-8 px-4">
+            <Quote>
+              <p className="mb-6 text-lg font-light text-blue-100 italic md:text-xl">
+                Starting digital media and literacy education at secondary level is simply too late
+              </p>
+              <footer className="text-right">
+                <Link
+                  href="https://www.cybersafekids.ie/report2025/"
+                  className="text-primary-500 hover:text-primary-400 text-base not-italic !no-underline md:text-lg"
+                >
+                  CyberSafeKids 'Trends and Usage' (2025)
+                </Link>
+              </footer>
+            </Quote>
+            <Quote>
+              <p className="mb-6 text-lg font-light text-blue-100 italic md:text-xl">
+                We need to invest more in resources for digital education
+              </p>
+              <footer className="text-right">
+                <Link
+                  href="https://www.oco.ie/app/uploads/2025/09/OCO-Smartphone-Ban-Child-Friendly-Report.pdf"
+                  className="text-primary-500 hover:text-primary-400 text-base not-italic !no-underline md:text-lg"
+                >
+                  Ombudsman for Children's Office 'One Size Does Not Fit All' (2025)
+                </Link>
+              </footer>
+            </Quote>
+          </div>
+        </div>
+        <div className="container mx-auto px-4 py-12">
           <div className="prose prose-invert w-full max-w-none md:text-lg">
             <p>
               Digital Knights is an independent educational initiative dedicated to preparing
-              children for entry into the digital world. It is based on the belief that a
-              comprehensive education is the best weapon a child can have. Children should learn how
-              computers and the internet work <i>before</i> possessing an internet enabled device.
-              This knowledge will help the 13-year-old who gets their first smartphone to make
-              informed decisions about how to use it safely and responsibly.
+              children in Ireland for entry into the digital world. It is based on the belief that
+              education is the most effective weapon against the dangers associated with technology
+              and online communications.
             </p>
-
             <p>
-              This website offers a range of resources for parents and children on the topics of
-              tech and cybersecurity. Articles, advice and guides are published regularly, and a
-              structured{' '}
+              A strong understanding of how computers and the internet work can help young people
+              make informed decisions about how to engage with technology and the online world
+              safely and responsibly. It also prepares them for a future where digital skills are
+              increasingly important.
+            </p>
+            <p>
+              This website offers a range of educational resources for parents and children on the
+              topics of tech and cybersecurity. Articles and guides for parents are published
+              regularly, and a structured{' '}
               <Link
                 href="/curriculum"
                 className="text-primary-500 hover:text-primary-400 !no-underline"
               >
                 curriculum
               </Link>{' '}
-              for 8-13 year olds is under development (parents' input is being actively sought
+              for 8-13 year olds is under development. Parents' input is being actively sought
               through a{' '}
               <Link
                 href="/survey"
@@ -52,7 +86,7 @@ export default function Home({ posts }) {
               >
                 survey
               </Link>{' '}
-              and discussions).
+              and follow-up discussions.
             </p>
 
             <p>
@@ -61,17 +95,12 @@ export default function Home({ posts }) {
                 href="/about#about-me"
                 className="text-primary-500 hover:text-primary-400 !no-underline"
               >
-                John Sloan
+                Dr. John Sloan
               </Link>{' '}
-              - a father, Computer Science PhD, Trinity College Research Fellow and CISSP certified
-              cybersecurity professional. Feel free to get in{' '}
-              <Link
-                href="/about#about-me"
-                className="text-primary-500 hover:text-primary-400 !no-underline"
-              >
-                contact
-              </Link>{' '}
-              if you have any comments or questions.
+              - a father, Trinity College Research Fellow and CISSP certified cybersecurity
+              professional. It was inspired by his desire to prepare his own children for entry into
+              the digital world, chats with other parents who share similar concerns, and calls from
+              various organisations for improved education in this area.
             </p>
           </div>
 
