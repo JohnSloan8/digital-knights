@@ -58,20 +58,25 @@ export default function Home({ posts }) {
           <div className="prose prose-invert w-full max-w-none md:text-lg">
             <p>
               Digital Knights is an independent educational initiative dedicated to preparing
-              children in Ireland for entry into the digital world. It is based on the belief that
-              education is the most effective weapon against the dangers associated with technology
-              and online communications.
+              children in Ireland for entry into the digital world. It is founded on the premise
+              that children should understand how technology and the internet work <i>before</i>{' '}
+              they possess a mobile phone.
             </p>
             <p>
-              A strong understanding of how computers and the internet work can help young people
-              make informed decisions about how to engage with technology and the online world
-              safely and responsibly. It also prepares them for a future where digital skills are
+              Education is the strongest weapon against the dangers facing young people when first
+              going online. A solid foundation in digital literacy can help them make informed
+              decisions about how to engage with technology and the online world safely and
+              responsibly. It also prepares them for a future where digital skills will be
               increasingly important.
             </p>
             <p>
-              This website offers a range of educational resources for parents and children on the
-              topics of tech and cybersecurity. Articles and guides for parents are published
-              regularly, and a structured{' '}
+              On this website, you will find a range of educational resources for both parents and
+              children covering the topics of tech and cybersecurity. These resources aim to provide
+              more technical depth than other similar materials available. If you, or your
+              child(ren) are interested in understanding the 'how' and 'why' behind the advice,
+              these resources are designed to help. Articles and guides for parents are published in
+              plain language and are designed to be accessible to those with no prior technical
+              knowledge. A structured{' '}
               <Link
                 href="/curriculum"
                 className="text-primary-500 hover:text-primary-400 !no-underline"
@@ -100,7 +105,7 @@ export default function Home({ posts }) {
               - a father, Trinity College Research Fellow and CISSP certified cybersecurity
               professional. It was inspired by his desire to prepare his own children for entry into
               the digital world, chats with other parents who share similar concerns, and calls from
-              various organisations for improved education in this area.
+              various national bodies for improved education in this area.
             </p>
           </div>
 

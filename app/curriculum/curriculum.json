@@ -1,69 +1,103 @@
 [
   {
     "year": 1,
-    "title": "Computational Thinking and Simple Programming",
-    "summary": "The goal of the first year is to have fun and learn how computers 'think' through physical games, puzzles and unplugged activities. The focus is on understanding sequences and cause-and-effect before moving to screens.",
+    "title": "Games & Computational Thinking",
+    "summary": "The goal of the first year is to have fun and learn how computers 'think' through physical games, puzzles and robotics. The focus is on understanding sequences and cause-and-effect before moving to screens.",
     "semesters": [
       {
         "number": 1,
-        "title": "Foundations of Logic & Algorithms",
-        "outcomes": "Understanding sequences, patterns, and cause-and-effect through unplugged activities. Developing step-by-step instructions for everyday tasks (e.g., making a sandwich) to understand algorithmic thinking."
+        "title": "Games for Computational Thinking",
+        "materials": ["Board games (Mastermind, Decrypto, Robot Turtles, etc.)"],
+        "learningOutcomes": [
+          "Understand sequences, patterns, and cause-and-effect.",
+          "Develop clear step-by-step instructions to parallel algorithmic programming."
+        ],
+        "description": "Students explore the foundations of computational thinking through board and card games.",
+        "image": "/static/images/levels-pics/01-01-mastermind.webp"
       },
       {
         "number": 2,
-        "title": "Digital Creativity & Coding",
-        "outcomes": "Applying logic to solve puzzles in games like Lightbot and Scratch Jr, introducing loops and conditionals visually. Creating a simple interactive story or animation using block-based coding, emphasizing creativity and expression."
+        "title": "Robots & Visual Programming",
+        "materials": ["Educational robots (e.g., Ozobot, Bee-Bot)"],
+        "learningOutcomes": [
+          "Programming physical robots to follow paths and commands",
+          "Understanding sequences and loops through physical movement",
+          "Debugging robotic behaviors by observing physical outputs"
+        ],
+        "description": "Students get hands-on with educational robots, learning to program physical devices using visual codes and commands.",
+        "image": "/static/images/levels-pics/01-02-ozobot.webp"
       }
-    ],
-    "materials": [
-      "Tablets/Laptops",
-      "Logic Games (e.g., Lightbot, Scratch Jr)",
-      "Paper and Pencils for flowcharts"
-    ],
-    "safety": "Introduces the concept of rules in games as analogous to laws and safety guidelines online. Fair play and kindness in digital spaces are emphasized."
+    ]
   },
   {
     "year": 2,
-    "title": "Raspberry PI: Controlling Inputs and Outputs",
-    "summary": "The core of the phone—the Raspberry Pi computer—is introduced. Students learn to set up the operating system and write their first Python scripts to control simple electronic circuits.",
+    "title": "Computers and Simple Programming",
+    "summary": "The small, single-board Raspberry Pi computer is introduced. Students learn to code using the drag-and-drop interface of Scratch. In semester 2, they graduate to text-based programming using Python to control simple electronic circuits with LEDs and motors.",
     "semesters": [
       {
         "number": 1,
-        "title": "Hardware Basics & Simple Circuits",
-        "outcomes": "Introduction to the Raspberry Pi. Identifying ports (USB, HDMI, GPIO) and setting up the Operating System. Building a simple circuit on a breadboard to light up an LED. Understanding voltage, current, and resistance."
+        "title": "Programming with Scratch",
+        "materials": ["Raspberry Pi 5", "Scratch Software"],
+        "learningOutcomes": [
+          "Introduction to the Raspberry Pi environment",
+          "Creating interactive stories and games using Scratch",
+          "Understanding basic programming concepts like loops, events, and variables"
+        ],
+        "description": "Students take their first steps into programming using Scratch. They learn how to build interactive stories and games, developing their algorithmic thinking and problem-solving skills in a visual environment.",
+        "image": "/static/images/levels-pics/02-01-scratch.webp"
       },
       {
         "number": 2,
-        "title": "Programming Electronics",
-        "outcomes": "Using Python to control the LED (blink, flash patterns). Bridging the gap between software code and physical hardware. Simulating a traffic light sequence using multiple LEDs and Python logic. Introduction to timing and loops."
+        "title": "Programming Electronics with Python",
+        "materials": [
+          "Raspberry Pi 5/Zero",
+          "Breadboard",
+          "Switches",
+          "LEDs",
+          "Motors",
+          "Python IDE"
+        ],
+        "learningOutcomes": [
+          "Transitioning from visual blocks to text-based Python programming",
+          "Using Python to control LEDs (blink, flash patterns) and simple motors (for basic robotics)",
+          "Introduction to timing, loops, and conditional logic in Python"
+        ],
+        "description": "Building on their initial programming experience, students transition to Python, a widely used text-based language. They learn to write scripts that interact with the physical world, controlling LEDs and motors. This bridges the gap between software logic and hardware control.",
+        "image": "/static/images/levels-pics/02-02-leds.webp"
       }
-    ],
-    "materials": ["Raspberry Pi 5/Zero", "Breadboards", "LEDs", "Jumper Wires", "Resistors"],
-    "safety": "Basic electrical safety (short circuits). Introduction to the concept that hardware can be controlled by software, and that malicious software could potentially misuse hardware."
+    ]
   },
   {
     "year": 3,
     "title": "Phone Specific Components",
-    "summary": "Focusing on how devices perceive the world, students work with sensors that detect touch, motion, and light. This module lays the groundwork for understanding how phones respond to user environment.",
+    "summary": "A wide range of smartphone specific inputs and outputs are introduced. This builds familiarity with the components on a modern smartphone and lays the groundwork for understanding how we interact with these devices and the type of data created.",
     "semesters": [
       {
         "number": 1,
-        "title": "Interaction & Motion Sensors",
-        "outcomes": "Implementing capacitive touch sensors. replacing physical buttons with touch interfaces. Interfacing with an Accelerometer/Gyroscope. Detecting tilt and shake gestures."
+        "title": "Inputs",
+        "materials": ["Touch, motion and light sensors", "Microphone", "Camera", "Gyroscope"],
+        "learningOutcomes": [
+          "Replace simple switches with touch, motion and light sensors.",
+          "Record and analyze audio input from the microphone",
+          "Capture and process images from the camera",
+          "Detecting tilt and shake gestures"
+        ],
+        "description": "An array of sensors which provide inputs to a computer are introduced. Students learn how to read data from these sensors and use it to create interactive projects that respond to touch, motion, light, sound, and images.",
+        "image": "/static/images/levels-pics/03-01-sensors.webp"
       },
       {
         "number": 2,
-        "title": "Environmental Sensing & Integration",
-        "outcomes": "Reading light and temperature sensors. Creating automated reactions (e.g., screen auto-brightness). A mini-project combining multiple sensors to log environmental data or control outputs based on gestures."
+        "title": "Outputs & Power",
+        "materials": ["Touchscreen Display", "Speaker", "Battery Pack"],
+        "learningOutcomes": [
+          "Use a touchscreen display to create interactive user interfaces",
+          "Generating audio output through speakers for alerts and media playback",
+          "Understanding battery technology and power management for portable devices."
+        ],
+        "description": "Students shift focus to the output capabilities of mobile devices, learning how to present information visually and audibly. They will also explore power management, understanding how batteries work and how to efficiently power their portable projects.",
+        "image": "/static/images/levels-pics/03-02-touchscreen.webp"
       }
-    ],
-    "materials": [
-      "Raspberry Pi",
-      "Touch Sensors",
-      "Accelerometers (MPU6050)",
-      "Light Sensors (LDR)"
-    ],
-    "safety": "Privacy implication of sensors: Discussing how apps can track physical activity (steps/motion) and environment. Students learn what data can be inferred from simple sensor readings."
+    ]
   },
   {
     "year": 4,
@@ -73,34 +107,58 @@
       {
         "number": 1,
         "title": "Wireless Networks & Servers",
-        "outcomes": "Understanding radio waves. Scanning for Wi-Fi networks and Bluetooth devices using the Pi. Setting up a simple web server on the Pi. Accessing a custom webpage from another device on the same network."
+        "materials": ["Raspberry Pi (built-in Wi-Fi/BT)", "Another device to pair with"],
+        "learningOutcomes": [
+          "Understanding radio waves",
+          "Scanning for Wi-Fi networks and Bluetooth devices using the Pi",
+          "Setting up a simple web server on the Pi",
+          "Accessing a custom webpage from another device on the same network"
+        ],
+        "description": "In this semester, students will explore wireless networks & servers, building on concepts from previous modules.",
+        "image": "/static/images/levels-pics/03-01-sensors.webp"
       },
       {
         "number": 2,
         "title": "Bluetooth Communication & IoT",
-        "outcomes": "Pairing devices and sending simple text strings between them over Bluetooth. Controlling the LEDs/Motors from a smartphone browser over the local Wi-Fi network."
+        "materials": ["Raspberry Pi (built-in Wi-Fi/BT)", "Another device to pair with"],
+        "learningOutcomes": [
+          "Pairing devices and sending simple text strings between them over Bluetooth",
+          "Controlling the LEDs/Motors from a smartphone browser over the local Wi-Fi network"
+        ],
+        "description": "In this semester, students will explore bluetooth communication & iot, building on concepts from previous modules.",
+        "image": "/static/images/levels-pics/03-03-home-network.webp"
       }
-    ],
-    "materials": ["Raspberry Pi (built-in Wi-Fi/BT)", "Another device to pair with"],
-    "safety": "Understanding public vs. private networks. The risks of open Wi-Fi/Bluetooth, 'Bluebugging', and the importance of encryption when sending data over the air."
+    ]
   },
   {
     "year": 5,
     "title": "Putting It All Together",
-    "summary": "The final hardware component—the cellular modem—transforms the computer into a true mobile phone. Students learn how cellular networks function and write scripts to send SMS and make calls.",
+    "summary": "The final hardware component\u2014the cellular modem\u2014transforms the computer into a true mobile phone. Students learn how cellular networks function and write scripts to send SMS and make calls.",
     "semesters": [
       {
         "number": 1,
         "title": "Cellular Hardware & Communication",
-        "outcomes": "What is a Subscriber Identity Module? Connecting a 4G HAT and inserting a SIM. Communicating directly with the modem using standard AT commands. checking signal strength and network status."
+        "materials": ["4G/LTE HAT for Raspberry Pi", "SIM Card"],
+        "learningOutcomes": [
+          "What is a Subscriber Identity Module? Connecting a 4G HAT and inserting a SIM",
+          "Communicating directly with the modem using standard AT commands",
+          "checking signal strength and network status"
+        ],
+        "description": "In this semester, students will explore cellular hardware & communication, building on concepts from previous modules.",
+        "image": "/static/images/levels-pics/03-01-phone.webp"
       },
       {
         "number": 2,
         "title": "SMS & Voice Integration",
-        "outcomes": "Writing a script to send and receive text messages programmatically. Initiating a voice call through the Pi. Routing audio to the microphone and speaker."
+        "materials": ["4G/LTE HAT for Raspberry Pi", "SIM Card"],
+        "learningOutcomes": [
+          "Writing a script to send and receive text messages programmatically",
+          "Initiating a voice call through the Pi",
+          "Routing audio to the microphone and speaker"
+        ],
+        "description": "In this semester, students will explore sms & voice integration, building on concepts from previous modules.",
+        "image": "/static/images/levels-pics/03-01-phone.webp"
       }
-    ],
-    "materials": ["4G/LTE HAT for Raspberry Pi", "SIM Card"],
-    "safety": "Metadata retention: Understanding that even if the content of a call is private, the 'who, when, and where' (metadata) is tracked by telecom operators. Spam calls and SMS phishing ('smishing')."
+    ]
   }
 ]

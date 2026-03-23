@@ -1,7 +1,7 @@
 import { genPageMetadata } from 'app/seo'
 import PageHeader from '@/components/PageHeader'
 import SectionContainer from '@/components/SectionContainer'
-import PhoneVisual from './PhoneVisual'
+import Image from '@/components/Image'
 import Link from '@/components/Link'
 import curriculumData from './curriculum.json'
 
@@ -12,83 +12,92 @@ const YearBlock = ({
   title,
   summary,
   semesters,
-  materials,
-  safety,
 }: {
   year: number
   title: string
   summary: string
-  semesters: { number: number; title: string; outcomes: string }[]
-  materials: string[]
-  safety: string
+  semesters: {
+    number: number
+    title: string
+    description: string
+    learningOutcomes: string[]
+    materials: string[]
+    image: string
+  }[]
 }) => (
-  <div className="scroll-mt-24 rounded-xl border border-gray-700 bg-gray-800/20 p-6 shadow-xl backdrop-blur-sm">
+  <div className="mb-16 scroll-mt-24 rounded-xl border border-gray-700 bg-gray-800/20 p-6 shadow-xl backdrop-blur-sm">
     {/* Header */}
     <div className="mb-6 border-b border-gray-700/50 pb-6">
-      <h2 className="text-3xl font-bold text-emerald-400">
+      <h2 className="text-xl font-bold text-white md:text-2xl">
         Year {year}: {title}
       </h2>
       <p className="mt-4 text-lg leading-relaxed text-gray-300">{summary}</p>
     </div>
 
-    <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
-      {/* Visual & Materials Column */}
-      <div className="space-y-6">
-        <div className="rounded-lg border border-gray-700/50 bg-gray-950/50 p-4 shadow-inner">
-          <PhoneVisual step={year * 2} />
-        </div>
-        <div>
-          <h4 className="mb-3 text-lg font-semibold text-white">Core Materials</h4>
-          <ul className="grid grid-cols-1 gap-2 text-sm text-gray-400 sm:grid-cols-2">
-            {materials.map((m, i) => (
-              <li key={i} className="flex items-center gap-2">
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500/50" />
-                {m}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
+    <div className="flex flex-col gap-12">
+      {semesters.map((semester, idx) => (
+        <div key={semester.number} className="flex flex-col gap-6">
+          {/* Divider except for the first item */}
+          {idx > 0 && <div className="border-t border-gray-700/50" />}
 
-      {/* Semesters & Outcomes */}
-      <div className="space-y-6">
-        <h4 className="text-xl font-semibold text-white">Learning Outcomes</h4>
-        <div className="relative space-y-6 before:absolute before:top-2 before:bottom-2 before:left-[15px] before:w-0.5 before:bg-gray-700/50">
-          {semesters.map((semester) => (
-            <div key={semester.number} className="relative pl-10">
-              {/* Timeline Dot */}
-              <div className="absolute top-1.5 left-0 flex h-8 w-8 items-center justify-center rounded-full border border-gray-700 bg-gray-800 font-mono text-xs font-bold text-emerald-400 shadow-sm">
-                {semester.number}
+          {/* Title & Description- Full Width */}
+          <div className="mb-2">
+            <h3 className="text-primary-500 inline-block rounded-lg border border-gray-700 bg-gray-800/50 px-4 py-3 text-lg font-bold backdrop-blur-sm md:text-xl">
+              Semester {semester.number}
+            </h3>
+          </div>
+
+          <div className="flex flex-col gap-8">
+            <div className="flex flex-col gap-8 md:flex-row">
+              {/* Left Column: Image & Materials - 1/3 width on md+ */}
+              <div className="flex w-full shrink-0 flex-col gap-6 md:w-1/3">
+                <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-gray-700/50 shadow-lg">
+                  <Image
+                    src={semester.image}
+                    alt={semester.title}
+                    width={600}
+                    height={400}
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+
+                <div className="hidden text-gray-400 md:block">
+                  <h4 className="text-primary-400 mb-2 text-lg font-semibold">Materials</h4>
+                  <ul className="marker:text-primary-500 list-disc space-y-1 pl-4">
+                    {semester.materials.map((item, i) => (
+                      <li key={i}>{item.trim()}</li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-              <h5 className="mb-1 text-lg font-medium text-emerald-300">{semester.title}</h5>
-              <p className="text-sm leading-relaxed text-gray-400">{semester.outcomes}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
 
-    {/* Safety Footer */}
-    <div className="mt-8 flex items-start gap-4 rounded-lg border border-emerald-500/20 bg-emerald-950/20 p-4">
-      <svg
-        className="mt-0.5 h-6 w-6 flex-shrink-0 text-emerald-400"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={1.5}
-          d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z"
-        />
-      </svg>
-      <div>
-        <h4 className="mb-1 text-sm font-bold tracking-wider text-emerald-400 uppercase">
-          Safety Focus
-        </h4>
-        <p className="text-sm text-gray-400">{safety}</p>
-      </div>
+              {/* Right Column: Descriptions & Outcomes - 2/3 width */}
+              <div className="flex-1 space-y-6">
+                <p className="text-lg leading-relaxed text-gray-300">{semester.description}</p>
+
+                {/* Materials - Visible only on small screens below description */}
+                <div className="block text-gray-400 md:hidden">
+                  <h4 className="text-primary-400 mb-2 text-lg font-semibold">Materials</h4>
+                  <ul className="marker:text-primary-500 list-disc space-y-1 pl-4">
+                    {semester.materials.map((item, i) => (
+                      <li key={i}>{item.trim()}</li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="space-y-4">
+                  <h4 className="text-primary-400 text-lg font-semibold">Learning Outcomes</h4>
+                  <ul className="marker:text-primary-500 list-disc space-y-2 pl-4 text-gray-400">
+                    {semester.learningOutcomes.map((outcome, i) => (
+                      <li key={i}>{outcome}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
     </div>
   </div>
 )
@@ -99,7 +108,7 @@ export default function Curriculum() {
       <div className="divide-y divide-gray-700">
         <PageHeader
           title="Curriculum"
-          description="Building a smart phone from scratch: a structured learning journey for 8-13 year olds."
+          description="Building a smartphone from scratch: a structured learning journey for 8-13 year olds."
         />
 
         {/* Introduction */}
@@ -108,21 +117,52 @@ export default function Curriculum() {
           <p className="text-lg leading-relaxed">
             The Digital Knights curriculum presents a five-year educational framework designed to
             equip children with an understanding of modern computing and communication technologies.
-            It is intended to be taught before children receive their first internet-enabled device,
-            typically around the age of 13. The curriculum is structured around the hands-on project
-            of building a functional mobile phone from basic components.
+            It is intended to be taught before children receive their first smartphone (typically
+            around the age of 13). The pedagogical philosophy is based on the idea that the best way
+            to understand a complex system is to break it down and understand each of its component
+            parts. The curriculum is therefore structured around the hands-on project of building a
+            functional mobile phone from basic components. This approach was inspired by the{' '}
+            <Link href="https://github.com/evanman83/OURS-project">OURS</Link> and{' '}
+            <Link href="https://learn.adafruit.com/piphone-a-raspberry-pi-based-cellphone?embeds=allow">
+              PiPhone
+            </Link>{' '}
+            projects.
           </p>
+        </div>
+
+        {/* OURS Project Images */}
+        <div className="grid gap-6 py-8 md:grid-cols-2">
+          <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-gray-700/50 shadow-lg">
+            <Image
+              src="/static/images/levels-pics/OURS-01.webp"
+              alt="OURS Project View 1"
+              width={800}
+              height={600}
+              className="h-full w-full object-cover"
+            />
+          </div>
+          <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-gray-700/50 shadow-lg">
+            <Image
+              src="/static/images/levels-pics/OURS-02.webp"
+              alt="OURS Project View 2"
+              width={800}
+              height={600}
+              className="h-full w-full object-cover"
+            />
+          </div>
         </div>
 
         {/* Rationale */}
         <div className="prose dark:prose-invert max-w-none py-8 text-gray-300">
           <h2 className="mb-6 text-3xl font-bold text-white">Rationale</h2>
           <p className="text-lg leading-relaxed">
-            An understanding of how computers and the internet work can help young people to make
-            informed decisions about how to engage with technology and the online world safely and
-            responsibly. By building a smartphone from scratch, students will gain a deeper
-            understanding of the individual components that make up a modern smart device, the data
-            they generate, and how that data is transmitted and stored across the internet.
+            A practical understanding of how computers and the internet work can help young people
+            make informed decisions about how to engage with technology and the online world safely
+            and responsibly. By building a smartphone from scratch, students will gain a deeper
+            understanding of the individual components that make up a modern smart device, and how
+            they combine into one cohesive system. This will enable them to understand the data that
+            is generated, and how that data is transmitted, stored, and used by others across the
+            internet.
           </p>
         </div>
 
@@ -130,17 +170,29 @@ export default function Curriculum() {
         <div className="prose dark:prose-invert max-w-none py-8 text-gray-300">
           <h2 className="mb-6 text-3xl font-bold text-white">Aims</h2>
           <p className="text-lg leading-relaxed">
-            The primary aim of this curriculum is to provide children with an understanding of
-            computing and communication technologies before they receive their first smartphone.
-            Secondary aims include inspiring a passion for technology, laying foundations for Junior
-            Cert Technology and Leaving Cert Computer Science subjects, and providing a useful set
-            of skills which can be used in a wide range of fields.
+            The primary aim of this curriculum is to prepare children for entry into the digital
+            world by providing them with a comprehensive understanding of computing and
+            communication technologies before they receive their first smartphone. Secondary aims
+            include inspiring a passion for technology, laying foundations for Junior Cert
+            Technology and Leaving Cert Computer Science subjects, and providing a valuable set of
+            skills which can be used in a wide range of fields.
           </p>
         </div>
 
-        <div className="py-8">
+        <div className="py-8 text-gray-300">
           <h2 className="mb-6 text-3xl font-bold text-white">Structure</h2>
-          <div className="space-y-12">
+          <p className="text-lg leading-relaxed">
+            The curriculum is designed to be taught over a five-year period, with each year split
+            into 2 semesters of 15 weeks to run parallel to the school year. Class sizes are
+            intended to be small (max 8 students) to allow for a hands-on, project-based learning
+            experience with sufficient individual attention.
+          </p>
+          <p className="pt-4 text-lg leading-relaxed">
+            A semester-by-semester breakdown of the curriculum is provided below. Each semester
+            includes a detailed description of the topics covered, the materials used, and the
+            learning outcomes for students.
+          </p>
+          <div className="space-y-12 pt-12">
             {curriculumData.map((year) => (
               <YearBlock key={year.year} {...year} />
             ))}
