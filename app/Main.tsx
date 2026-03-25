@@ -59,31 +59,31 @@ export default function Home({ posts }) {
             <p>
               Digital Knights is an independent educational initiative dedicated to preparing
               children in Ireland for entry into the digital world. It is founded on the premise
-              that children should understand how technology and the internet work <i>before</i>{' '}
-              they possess a mobile phone.
+              that children should have a strong understanding of how technology and the internet
+              work <i>before</i> possessing a mobile phone.
             </p>
             <p>
               Education is the strongest weapon against the dangers facing young people when first
-              going online. A solid foundation in digital literacy can help them make informed
-              decisions about how to engage with technology and the online world safely and
-              responsibly. It also prepares them for a future where digital skills will be
-              increasingly important.
+              going online. Bans offer limited protection while treating the symptoms rather than
+              the root causes. Equipping children with a solid foundation in digital literacy can
+              help them make informed decisions about how to engage with technology and the online
+              world safely and responsibly. It also prepares them for a future where these skills
+              will be increasingly important.
             </p>
             <p>
-              On this website, you will find a range of educational resources for both parents and
-              children covering the topics of tech and cybersecurity. These resources aim to provide
-              more technical depth than other similar materials available. If you, or your
-              child(ren) are interested in understanding the 'how' and 'why' behind the advice,
-              these resources are designed to help. Articles and guides for parents are published in
-              plain language and are designed to be accessible to those with no prior technical
-              knowledge. A structured{' '}
+              On this website, you will find a range of resources for both parents and children
+              covering the topics of tech and cybersecurity. These resources aim to provide more
+              technical depth on the topic than other similar materials currently available. If you
+              are interested in understanding the 'how' and 'why' behind the advice on technology
+              and online safety, this website will help. Articles and guides for parents are
+              designed to be accessible to those with no prior technical knowledge. A structured{' '}
               <Link
                 href="/curriculum"
                 className="text-primary-500 hover:text-primary-400 !no-underline"
               >
                 curriculum
               </Link>{' '}
-              for 8-13 year olds is under development. Parents' input is being actively sought
+              for 8-13 year olds is also under development. Parents' input is being actively sought
               through a{' '}
               <Link
                 href="/survey"

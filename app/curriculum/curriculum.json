@@ -32,7 +32,7 @@
   {
     "year": 2,
     "title": "Computers and Simple Programming",
-    "summary": "The small, single-board Raspberry Pi computer is introduced. Students learn to code using the drag-and-drop interface of Scratch. In semester 2, they graduate to text-based programming using Python to control simple electronic circuits with LEDs and motors.",
+    "summary": "The small, single-board Raspberry Pi computer is introduced. Students first learn to code using the drag-and-drop interface of Scratch, then graduate to text-based programming using Python to control simple electronic circuits.",
     "semesters": [
       {
         "number": 1,
@@ -70,7 +70,7 @@
   {
     "year": 3,
     "title": "Phone Specific Components",
-    "summary": "A wide range of smartphone specific inputs and outputs are introduced. This builds familiarity with the components on a modern smartphone and lays the groundwork for understanding how we interact with these devices and the type of data created.",
+    "summary": "A wide range of smartphone specific inputs and outputs are introduced to expand on the simple circuits learned in year 2. This builds familiarity with the components on a modern smartphone and lays the groundwork for understanding how these devices interact with the external world and the type of data they generate.",
     "semesters": [
       {
         "number": 1,
@@ -101,62 +101,62 @@
   },
   {
     "year": 4,
-    "title": "Connectivity: Wi-Fi & Bluetooth",
-    "summary": "The device connects to the world as students explore the invisible networks that link computers. Practical exercises involve scanning for networks and sending messages between devices.",
+    "title": "Connectivity & Networks",
+    "summary": "The device, now complete with physical components, connects to the world as students explore the invisible networks that link computers. Websites are accessed and applications downloaded, with a focus on understanding permissions and data sharing.",
     "semesters": [
       {
         "number": 1,
-        "title": "Wireless Networks & Servers",
-        "materials": ["Raspberry Pi (built-in Wi-Fi/BT)", "Another device to pair with"],
+        "title": "The Internet and websites",
+        "materials": ["No new materials needed"],
         "learningOutcomes": [
-          "Understanding radio waves",
-          "Scanning for Wi-Fi networks and Bluetooth devices using the Pi",
-          "Setting up a simple web server on the Pi",
-          "Accessing a custom webpage from another device on the same network"
+          "Build a simple web server on the Raspberry Pi and host a custom webpage",
+          "Access a custom webpage from another device on the same network",
+          "View the data being sent and received"
         ],
-        "description": "In this semester, students will explore wireless networks & servers, building on concepts from previous modules.",
-        "image": "/static/images/levels-pics/03-01-sensors.webp"
+        "description": "Students dive into the fundamentals of the Internet by turning their Raspberry Pi into a web server. They host their own custom webpage, access it from other devices on the network, and analyze the data being transmitted, gaining a practical understanding of how web servers and browsers communicate.",
+        "image": "/static/images/levels-pics/04-01-network.webp"
       },
       {
         "number": 2,
-        "title": "Bluetooth Communication & IoT",
-        "materials": ["Raspberry Pi (built-in Wi-Fi/BT)", "Another device to pair with"],
+        "title": "Apps",
+        "materials": ["No new materials needed"],
         "learningOutcomes": [
-          "Pairing devices and sending simple text strings between them over Bluetooth",
-          "Controlling the LEDs/Motors from a smartphone browser over the local Wi-Fi network"
+          "Install apps",
+          "Understand why apps request certain permissions and what data they access",
+          "Control the permissions for a range of apps"
         ],
-        "description": "In this semester, students will explore bluetooth communication & iot, building on concepts from previous modules.",
-        "image": "/static/images/levels-pics/03-03-home-network.webp"
+        "description": "The focus shifts to software applications and digital privacy. Students learn how to install apps on their device while examining the permissions they request. By controlling what data apps can access, they develop a deeper awareness of privacy and data security.",
+        "image": "/static/images/levels-pics/04-02-apps.webp"
       }
     ]
   },
   {
     "year": 5,
     "title": "Putting It All Together",
-    "summary": "The final hardware component\u2014the cellular modem\u2014transforms the computer into a true mobile phone. Students learn how cellular networks function and write scripts to send SMS and make calls.",
+    "summary": "The final hardware component, the SIM card, transforms the computer into a true mobile phone. Students learn how cell networks and mobile data operate. They then program the phone to send and receive text messages and make voice calls, integrating all the knowledge and skills from previous years into a fully functional smartphone.",
     "semesters": [
       {
         "number": 1,
-        "title": "Cellular Hardware & Communication",
+        "title": "SIM Card",
         "materials": ["4G/LTE HAT for Raspberry Pi", "SIM Card"],
         "learningOutcomes": [
-          "What is a Subscriber Identity Module? Connecting a 4G HAT and inserting a SIM",
-          "Communicating directly with the modem using standard AT commands",
-          "checking signal strength and network status"
+          "Understand the Subscriber Identity Module (SIM)",
+          "Connect a 4G HAT and inserting a SIM",
+          "Send and receive data over the cell network"
         ],
-        "description": "In this semester, students will explore cellular hardware & communication, building on concepts from previous modules.",
-        "image": "/static/images/levels-pics/03-01-phone.webp"
+        "description": "Students explore the functionality of the SIM card and how it enables mobile communication. They learn to connect a 4G HAT, insert a SIM card, and send and receive data over the cellular network.",
+        "image": "/static/images/levels-pics/05-01-SIM.webp"
       },
       {
         "number": 2,
-        "title": "SMS & Voice Integration",
-        "materials": ["4G/LTE HAT for Raspberry Pi", "SIM Card"],
+        "title": "The Trade",
+        "materials": ["Real Smartphone"],
         "learningOutcomes": [
-          "Writing a script to send and receive text messages programmatically",
-          "Initiating a voice call through the Pi",
-          "Routing audio to the microphone and speaker"
+          "Set up a smartphone for maximum privacy and safety",
+          "Understand the hardware and software components of this new device.",
+          "Practice safe and responsible use."
         ],
-        "description": "In this semester, students will explore sms & voice integration, building on concepts from previous modules.",
+        "description": "Once students have demonstrated sufficient knowledge and skills with the Raspberry Pi Phone, they transition to using a real smartphone to apply their learning in a practical context.",
         "image": "/static/images/levels-pics/03-01-phone.webp"
       }
     ]
