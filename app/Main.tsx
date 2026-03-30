@@ -35,7 +35,7 @@ export default function Home({ posts }) {
                   href="https://www.cybersafekids.ie/report2025/"
                   className="text-primary-500 hover:text-primary-400 text-base not-italic !no-underline md:text-lg"
                 >
-                  CyberSafeKids 'Trends and Usage' (2025)
+                  CyberSafeKids 'Trends and Usage' Report (2025)
                 </Link>
               </footer>
             </Quote>
@@ -48,7 +48,7 @@ export default function Home({ posts }) {
                   href="https://www.oco.ie/app/uploads/2025/09/OCO-Smartphone-Ban-Child-Friendly-Report.pdf"
                   className="text-primary-500 hover:text-primary-400 text-base not-italic !no-underline md:text-lg"
                 >
-                  Ombudsman for Children's Office 'One Size Does Not Fit All' (2025)
+                  Ombudsman for Children's Office 'One Size Does Not Fit All' Report (2025)
                 </Link>
               </footer>
             </Quote>
@@ -60,31 +60,22 @@ export default function Home({ posts }) {
               Digital Knights is an independent educational initiative dedicated to preparing
               children in Ireland for entry into the digital world. It is founded on the premise
               that children should have a strong understanding of how technology and the internet
-              work <i>before</i> possessing a mobile phone.
+              work <i>before</i> possessing a mobile phone. This knowledge can help them make
+              informed decisions about how to engage with technology and the online world safely and
+              responsibly. It also prepares them for a future where these skills will be
+              increasingly important.
             </p>
             <p>
-              Education is the strongest weapon against the dangers facing young people when first
-              going online. Bans offer limited protection while treating the symptoms rather than
-              the root causes. Equipping children with a solid foundation in digital literacy can
-              help them make informed decisions about how to engage with technology and the online
-              world safely and responsibly. It also prepares them for a future where these skills
-              will be increasingly important.
-            </p>
-            <p>
-              On this website, you will find a range of resources for both parents and children
-              covering the topics of tech and cybersecurity. These resources aim to provide more
-              technical depth on the topic than other similar materials currently available. If you
-              are interested in understanding the 'how' and 'why' behind the advice on technology
-              and online safety, this website will help. Articles and guides for parents are
-              designed to be accessible to those with no prior technical knowledge. A structured{' '}
+              On this website, you will find resources for both parents and children covering the
+              topics of tech and cybersecurity. The main focus is on developing and delivering a
+              structured{' '}
               <Link
                 href="/curriculum"
                 className="text-primary-500 hover:text-primary-400 !no-underline"
               >
                 curriculum
               </Link>{' '}
-              for 8-13 year olds is also under development. Parents' input is being actively sought
-              through a{' '}
+              for 8-13 year olds. Parents' input is being actively sought through a{' '}
               <Link
                 href="/survey"
                 className="text-primary-500 hover:text-primary-400 !no-underline"

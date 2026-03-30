@@ -42,7 +42,7 @@ const YearBlock = ({
 
           {/* Title & Description- Full Width */}
           <div className="mb-2">
-            <h3 className="text-primary-500 inline-block rounded-lg border border-gray-700 bg-gray-800/50 px-4 py-3 text-lg font-bold backdrop-blur-sm md:text-xl">
+            <h3 className="text-primary-500 text-lg font-bold md:text-xl">
               Semester {semester.number}
             </h3>
           </div>
@@ -111,45 +111,53 @@ export default function Curriculum() {
           description="Learning through doing - building a smartphone from scratch."
         />
 
-        {/* Introduction */}
-        <div className="prose dark:prose-invert max-w-none py-8 text-gray-300">
-          <h2 className="mb-6 text-3xl font-bold text-white">Introduction</h2>
-          <p className="text-lg leading-relaxed">
-            The Digital Knights curriculum presents a five-year educational framework designed to
-            equip children with an understanding of modern computing and communication technologies.
-            It is intended to be taught before children receive their first smartphone (typically
-            around the age of 13). The pedagogical philosophy is based on the idea that the best way
-            to understand a complex system is to break it down into its component parts and
-            understand each of them individually. The curriculum is therefore structured around the
-            hands-on project of building a functional mobile phone from basic components. This
-            approach was inspired by the{' '}
-            <Link href="https://github.com/evanman83/OURS-project">OURS</Link> and{' '}
-            <Link href="https://learn.adafruit.com/piphone-a-raspberry-pi-based-cellphone?embeds=allow">
-              PiPhone
-            </Link>{' '}
-            projects.
-          </p>
-        </div>
-
-        {/* OURS Project Images */}
-        <div className="grid gap-6 py-8 md:grid-cols-2">
-          <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-gray-700/50 shadow-lg">
-            <Image
-              src="/static/images/levels-pics/OURS-01.webp"
-              alt="OURS Project View 1"
-              width={800}
-              height={600}
-              className="h-full w-full object-cover"
-            />
+        <div className="py-8">
+          {/* Introduction */}
+          <div className="prose dark:prose-invert max-w-none text-gray-300">
+            <h2 className="mb-6 text-3xl font-bold text-white">Introduction</h2>
+            <p className="text-lg leading-relaxed">
+              The Digital Knights curriculum is a five-year educational framework designed to equip
+              children with an understanding of modern computing and communication technologies. It
+              is intended to be taught before children receive their first smartphone (typically
+              around the age of 13). The pedagogical philosophy is based on the idea that the best
+              way to understand a complex system is to break it down into its component parts and
+              understand each of them individually. The curriculum is therefore structured around
+              the hands-on project of building a functional mobile phone from basic components. This
+              approach was inspired by the{' '}
+              <Link href="https://github.com/evanman83/OURS-project">OURS</Link> and{' '}
+              <Link href="https://learn.adafruit.com/piphone-a-raspberry-pi-based-cellphone?embeds=allow">
+                PiPhone
+              </Link>{' '}
+              projects.
+            </p>
           </div>
-          <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-gray-700/50 shadow-lg">
-            <Image
-              src="/static/images/levels-pics/OURS-02.webp"
-              alt="OURS Project View 2"
-              width={800}
-              height={600}
-              className="h-full w-full object-cover"
-            />
+
+          {/* OURS Project Images */}
+          <div className="grid gap-6 pt-8 md:grid-cols-2">
+            <figure className="space-y-3">
+              <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-gray-700/50 shadow-lg">
+                <Image
+                  src="/static/images/levels-pics/OURS-01.webp"
+                  alt="OURS Project View 1"
+                  width={800}
+                  height={600}
+                  className="h-full w-full object-cover"
+                />
+              </div>
+              <figcaption className="text-center text-sm text-gray-400">OURS project</figcaption>
+            </figure>
+            <figure className="space-y-3">
+              <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-gray-700/50 shadow-lg">
+                <Image
+                  src="/static/images/levels-pics/OURS-02.webp"
+                  alt="OURS Project View 2"
+                  width={800}
+                  height={600}
+                  className="h-full w-full object-cover"
+                />
+              </div>
+              <figcaption className="text-center text-sm text-gray-400">PiPhone project</figcaption>
+            </figure>
           </div>
         </div>
 
@@ -159,12 +167,11 @@ export default function Curriculum() {
           <p className="text-lg leading-relaxed">
             By building a phone from scratch, students will gain a deep understanding of the
             individual components that make up a modern smart device. They will see the data
-            generated by each part, how this data is stored and used by the device and installed
-            apps, and finally, how it is transmitted across a network. This knowledge will help them
-            make informed decisions about the data they capture and share with other people,
-            applications, and websites. This project also provides a strong foundation for further
-            learning in technology and computer science, and can inspire a passion for these
-            subjects from an early age.
+            generated, the ways it is stored and used on the device, and how it is transmitted
+            across a network. This knowledge will help them make informed decisions in the future
+            about the types of data they capture and share with other people, apps, and websites. It
+            will also give them a strong foundation in the basics of computing and communication
+            technologies.
           </p>
         </div>
 
@@ -172,12 +179,12 @@ export default function Curriculum() {
         <div className="prose dark:prose-invert max-w-none py-8 text-gray-300">
           <h2 className="mb-6 text-3xl font-bold text-white">Aims</h2>
           <p className="text-lg leading-relaxed">
-            The primary aim of this curriculum is to prepare children for entry into the digital
-            world by providing them with a comprehensive understanding of computing and
-            communication technologies before they receive their first smartphone. Secondary aims
-            include inspiring a passion for technology, laying foundations for Junior Cert
-            Technology and Leaving Cert Computer Science subjects, and providing a valuable set of
-            skills which can be used in the future in a wide range of fields.
+            The main aim for each child who completes the curriculum is to become a technologically
+            self-sufficient digital citizens - one who is in control of their own devices, data and
+            digital footprint. They can use technology safely, wisely, and in creative ways to solve
+            real-world problems. Additional aims include inspiring a passion for technology, laying
+            foundations for Junior Cert Technology and Leaving Cert Computer Science subjects, and
+            providing a valuable set of skills for future success.
           </p>
         </div>
 
@@ -201,35 +208,62 @@ export default function Curriculum() {
           </div>
         </div>
 
-        {/* Learning Outcomes */}
-        <div className="prose dark:prose-invert max-w-none py-8 text-gray-300">
+        {/* Details on Classes */}
+        <div className="max-w-none py-8 text-gray-300">
           <h2 className="mb-6 text-3xl font-bold text-white">Details on Classes</h2>
-          <p className="text-lg leading-relaxed">Size: 4-8 students max.</p>
-          <p className="text-lg leading-relaxed">
-            Time: One 50-minute class each week. To take place after school during school term time.
-          </p>
-          <p className="text-lg leading-relaxed">
-            Price: €270 per 15-week semester, or €18 per class (sibling discounts available).
-          </p>
-          <p className="text-lg leading-relaxed">
-            Location: TBD (Rathfarnham, Ballinteer, Dundrum areas)
-          </p>
+          <div className="overflow-hidden rounded-xl border border-gray-700/60 bg-gray-800/20 shadow-xl backdrop-blur-sm">
+            <dl className="divide-y divide-gray-700/60">
+              <div className="grid gap-2 px-5 py-4 md:grid-cols-[11rem_1fr] md:gap-6">
+                <dt className="text-primary-400 text-sm font-semibold tracking-wide uppercase">
+                  Class Size
+                </dt>
+                <dd className="text-base leading-relaxed text-gray-200">4-8 students</dd>
+              </div>
+              <div className="grid gap-2 px-5 py-4 md:grid-cols-[11rem_1fr] md:gap-6">
+                <dt className="text-primary-400 text-sm font-semibold tracking-wide uppercase">
+                  Time
+                </dt>
+                <dd className="text-base leading-relaxed text-gray-200">
+                  One 50-minute class each week to take place after school (2-7pm) during term time.
+                </dd>
+              </div>
+              <div className="grid gap-2 px-5 py-4 md:grid-cols-[11rem_1fr] md:gap-6">
+                <dt className="text-primary-400 text-sm font-semibold tracking-wide uppercase">
+                  Start Date
+                </dt>
+                <dd className="text-base leading-relaxed text-gray-200">
+                  Autumn 2026 or Spring 2027 (depending on demand).
+                </dd>
+              </div>
+              <div className="grid gap-2 px-5 py-4 md:grid-cols-[11rem_1fr] md:gap-6">
+                <dt className="text-primary-400 text-sm font-semibold tracking-wide uppercase">
+                  Teacher
+                </dt>
+                <dd className="text-base leading-relaxed text-gray-200">
+                  <Link href="/about" noStyle className="text-primary-500 hover:text-primary-400">
+                    myself
+                  </Link>
+                </dd>
+              </div>
+              <div className="grid gap-2 px-5 py-4 md:grid-cols-[11rem_1fr] md:gap-6">
+                <dt className="text-primary-400 text-sm font-semibold tracking-wide uppercase">
+                  Price
+                </dt>
+                <dd className="text-base leading-relaxed text-gray-200">
+                  €275 per 15-week semester.
+                </dd>
+              </div>
+              <div className="grid gap-2 px-5 py-4 md:grid-cols-[11rem_1fr] md:gap-6">
+                <dt className="text-primary-400 text-sm font-semibold tracking-wide uppercase">
+                  Location
+                </dt>
+                <dd className="text-base leading-relaxed text-gray-200">
+                  TBD (Rathfarnham, Ballinteer, Dundrum areas)
+                </dd>
+              </div>
+            </dl>
+          </div>
         </div>
-      </div>
-
-      {/* Future Directions */}
-      <div className="prose dark:prose-invert mt-12 max-w-none border-t border-gray-700 py-12 text-gray-300">
-        <h2 className="mb-6 text-3xl font-bold text-white">Future Directions</h2>
-        <p className="text-lg leading-relaxed">
-          The educational journey extends beyond the construction of the handset, seamlessly
-          bridging the gap between primary exploration and secondary specification. The competencies
-          acquired—ranging from circuit design to Python programming—provide a distinct advantage
-          for students progressing to Junior Cycle Technology and Leaving Certificate Computer
-          Science. Looking ahead, the curriculum envisions a broadening of scope to include personal
-          server management and private cloud infrastructure, further empowering students to assert
-          sovereignty over their digital data. This forward-looking perspective ensures that
-          learning remains relevant and adaptable to the evolving landscape of personal computing.
-        </p>
       </div>
     </SectionContainer>
   )

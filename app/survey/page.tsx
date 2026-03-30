@@ -4,6 +4,7 @@ import { genPageMetadata } from 'app/seo'
 import PageHeader from '@/components/PageHeader'
 import { redirect } from 'next/navigation'
 import SurveyScene from '@/components/SurveyScene'
+import Link from '@/components/Link'
 
 export const metadata = genPageMetadata({ title: 'Survey' })
 
@@ -29,8 +30,9 @@ export default async function SurveyPage(props: {
               <SurveyScene className="relative mb-8 h-[300px] w-full md:float-left md:mr-8 md:mb-4 md:h-[500px] md:w-1/2" />
               <h3>What is the purpose of this survey?</h3>
               <p>
-                To inform the development of an independent tech and cybersecurity curriculum for
-                children in Ireland.
+                To inform the development of an independent tech and cybersecurity{' '}
+                <Link href="/curriculum">curriculum</Link> for children aged 7-13 in Ireland, and
+                gauge parents' interest in classes based on this curriculum.
               </p>
 
               <h3>Who is this survey for?</h3>
@@ -48,7 +50,7 @@ export default async function SurveyPage(props: {
               <h3>Is this survey anonymous?</h3>
               <p>
                 Yes. You will be given an option at the end of the survey to include your email
-                address if you want to learn more.
+                address if you want to be contacted.
               </p>
 
               <h3>What types of questions are asked?</h3>
@@ -67,15 +69,14 @@ export default async function SurveyPage(props: {
 
               <h3>Why are you asking these questions?</h3>
               <p>
-                Parents' experience and opinions on tech and cybersecurity have a significant impact
-                on their child/children's interaction with the digital world. Understanding this
-                persepective is important for designing a curriculum.
+                Understanding the parent's persepective is necessary to determine whether the
+                proposed curriculum and classes meets their needs and expectations.
               </p>
 
               <h3>What will happen with the results of the survey?</h3>
               <p>
-                The results will be used to inform the development of a curriculum for educating
-                children on tech and cybersecurity.
+                The results will be used to inform the development of the curriculum and decide on
+                whether to offer classes.
               </p>
             </div>
             <StartSurveyButton />
