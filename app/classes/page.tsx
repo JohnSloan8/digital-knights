@@ -4,16 +4,13 @@ import WaitlistForm from './WaitlistForm'
 import Link from '@/components/Link'
 import WaitingScene from '@/components/WaitingScene'
 
-export const metadata = genPageMetadata({ title: 'Waitlist' })
+export const metadata = genPageMetadata({ title: 'Classes' })
 
-export default function WaitlistPage() {
+export default function ClassesPage() {
   return (
     <>
       <div className="divide-y divide-gray-700">
-        <PageHeader
-          title="Waitlist"
-          description="Add your child/children to the waitlist for future classes"
-        />
+        <PageHeader title="Classes" description="Information about Digital Knights classes" />
         <div className="py-12">
           <div className="prose prose-invert mb-8 w-full max-w-none md:text-lg">
             <p>
