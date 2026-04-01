@@ -207,63 +207,6 @@ export default function Curriculum() {
             ))}
           </div>
         </div>
-
-        {/* Details on Classes */}
-        <div className="max-w-none py-8 text-gray-300">
-          <h2 className="mb-6 text-3xl font-bold text-white">Details on Classes</h2>
-          <div className="overflow-hidden rounded-xl border border-gray-700/60 bg-gray-800/20 shadow-xl backdrop-blur-sm">
-            <dl className="divide-y divide-gray-700/60">
-              <div className="grid gap-2 px-5 py-4 md:grid-cols-[11rem_1fr] md:gap-6">
-                <dt className="text-primary-400 text-sm font-semibold tracking-wide uppercase">
-                  Class Size
-                </dt>
-                <dd className="text-base leading-relaxed text-gray-200">4-8 students</dd>
-              </div>
-              <div className="grid gap-2 px-5 py-4 md:grid-cols-[11rem_1fr] md:gap-6">
-                <dt className="text-primary-400 text-sm font-semibold tracking-wide uppercase">
-                  Time
-                </dt>
-                <dd className="text-base leading-relaxed text-gray-200">
-                  One 50-minute class each week to take place after school (2-7pm) during term time.
-                </dd>
-              </div>
-              <div className="grid gap-2 px-5 py-4 md:grid-cols-[11rem_1fr] md:gap-6">
-                <dt className="text-primary-400 text-sm font-semibold tracking-wide uppercase">
-                  Start Date
-                </dt>
-                <dd className="text-base leading-relaxed text-gray-200">
-                  Autumn 2026 or Spring 2027 (depending on demand).
-                </dd>
-              </div>
-              <div className="grid gap-2 px-5 py-4 md:grid-cols-[11rem_1fr] md:gap-6">
-                <dt className="text-primary-400 text-sm font-semibold tracking-wide uppercase">
-                  Teacher
-                </dt>
-                <dd className="text-base leading-relaxed text-gray-200">
-                  <Link href="/about" noStyle className="text-primary-500 hover:text-primary-400">
-                    myself
-                  </Link>
-                </dd>
-              </div>
-              <div className="grid gap-2 px-5 py-4 md:grid-cols-[11rem_1fr] md:gap-6">
-                <dt className="text-primary-400 text-sm font-semibold tracking-wide uppercase">
-                  Price
-                </dt>
-                <dd className="text-base leading-relaxed text-gray-200">
-                  €275 per 15-week semester.
-                </dd>
-              </div>
-              <div className="grid gap-2 px-5 py-4 md:grid-cols-[11rem_1fr] md:gap-6">
-                <dt className="text-primary-400 text-sm font-semibold tracking-wide uppercase">
-                  Location
-                </dt>
-                <dd className="text-base leading-relaxed text-gray-200">
-                  TBD (Rathfarnham, Ballinteer, Dundrum areas)
-                </dd>
-              </div>
-            </dl>
-          </div>
-        </div>
       </div>
     </SectionContainer>
   )
