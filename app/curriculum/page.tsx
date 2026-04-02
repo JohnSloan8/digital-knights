@@ -118,12 +118,12 @@ export default function Curriculum() {
             <p className="text-lg leading-relaxed">
               The Digital Knights curriculum is a five-year educational framework designed to equip
               children with an understanding of modern computing and communication technologies. It
-              is intended to be taught before children receive their first smartphone (typically
-              around the age of 13). The pedagogical philosophy is based on the idea that the best
-              way to understand a complex system is to break it down into its component parts and
-              understand each of them individually. The curriculum is therefore structured around
-              the hands-on project of building a functional mobile phone from basic components. This
-              approach was inspired by the{' '}
+              is intended to be taught before children receive their first smartphone (at
+              approximately 13 years old). The pedagogical approach is based on the idea that the
+              best way to understand a complex system is to break it down into its component parts
+              and understand each of them individually. The curriculum is therefore structured
+              around the hands-on project of building a functional mobile phone from basic
+              components. This approach was inspired by the{' '}
               <Link href="https://github.com/evanman83/OURS-project">OURS</Link> and{' '}
               <Link href="https://learn.adafruit.com/piphone-a-raspberry-pi-based-cellphone?embeds=allow">
                 PiPhone

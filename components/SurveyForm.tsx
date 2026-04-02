@@ -85,7 +85,7 @@ const ProgressBar = ({ currentStep, setStep }: ProgressBarProps) => {
               onClick={() => {
                 setStep(step)
               }}
-              className={`flex h-10 w-10 cursor-pointer items-center justify-center rounded-full text-base font-bold transition-all duration-200 md:text-xl ${
+              className={`flex h-10 w-10 cursor-pointer items-center justify-center rounded-full text-base font-bold transition-all duration-200 md:text-lg ${
                 step === currentStep
                   ? 'bg-primary-500 ring-primary-500/30 text-white ring-4'
                   : step < currentStep
@@ -120,7 +120,7 @@ const NavButtons = ({
       <button
         type="button"
         onClick={prev}
-        className="group text-primary-500 hover:text-primary-400 flex cursor-pointer items-center text-base font-medium transition-colors duration-200 md:text-xl"
+        className="group text-primary-500 hover:text-primary-400 flex cursor-pointer items-center text-base font-medium transition-colors duration-200 md:text-lg"
       >
         <svg
           className="mr-2 h-5 w-5 transform transition-transform group-hover:-translate-x-1"
@@ -140,7 +140,7 @@ const NavButtons = ({
       <button
         type="button"
         onClick={next}
-        className="group text-primary-500 hover:text-primary-400 flex cursor-pointer items-center text-base font-medium transition-colors duration-200 md:text-xl"
+        className="group text-primary-500 hover:text-primary-400 flex cursor-pointer items-center text-base font-medium transition-colors duration-200 md:text-lg"
       >
         {nextLabel}
         <svg
@@ -220,22 +220,22 @@ const MatrixRadio = ({
       className={`mb-10 border-b pb-6 ${error ? 'rounded-lg border-2 border-red-500 p-4' : 'border-gray-700'}`}
     >
       <h3
-        className={`mb-2 text-lg font-semibold md:text-xl ${error ? 'text-red-500' : 'text-white'}`}
+        className={`mb-2 text-lg font-semibold md:text-lg ${error ? 'text-red-500' : 'text-white'}`}
       >
         {questionLabel}
       </h3>
-      <p className="mb-8 text-base text-gray-300 md:text-xl">{questionText}</p>
+      <p className="mb-8 text-base text-gray-300 md:text-lg">{questionText}</p>
 
       {/* Desktop table */}
       <div className="hidden overflow-x-auto md:block">
-        <table className="min-w-full table-fixed text-left text-base text-gray-300 md:text-xl">
+        <table className="min-w-full table-fixed text-left text-base text-gray-300 md:text-lg">
           <colgroup>
             <col style={{ width: '50%' }} />
             {options.map((_, idx) => (
               <col key={idx} style={{ width: `${50 / options.length}%` }} />
             ))}
           </colgroup>
-          <thead className="bg-gray-700 text-sm text-white uppercase md:text-lg">
+          <thead className="bg-gray-700 text-sm text-white uppercase md:text-base">
             <tr>
               <th scope="col" className="px-4 py-3">
                 Statement
@@ -311,7 +311,7 @@ const MatrixRadio = ({
           const displayRow = formatSubQuestion(text, rowIdx)
           return (
             <div key={rowIdx} className="rounded-lg border border-gray-700 bg-gray-800 p-4">
-              <p className="mb-3 text-base text-white md:text-xl">
+              <p className="mb-3 text-base text-white md:text-lg">
                 {displayRow}
                 {link && (
                   <a
@@ -420,11 +420,11 @@ const MatrixSlider = ({
       className={`mb-10 border-b pb-6 ${error ? 'rounded-lg border-2 border-red-500 p-4' : 'border-gray-700'}`}
     >
       <h3
-        className={`mb-2 text-lg font-semibold md:text-xl ${error ? 'text-red-500' : 'text-white'}`}
+        className={`mb-2 text-lg font-semibold md:text-lg ${error ? 'text-red-500' : 'text-white'}`}
       >
         {questionLabel}
       </h3>
-      <p className="mb-8 text-base text-gray-300 md:text-xl">{questionText}</p>
+      <p className="mb-8 text-base text-gray-300 md:text-lg">{questionText}</p>
       <div className="space-y-6">
         {rows.map((row, idx) => {
           const displayRow = formatSubQuestion(row, idx)
@@ -442,7 +442,7 @@ const MatrixSlider = ({
               className="rounded-lg border border-gray-700 bg-gray-800 p-4 md:border-0 md:bg-transparent md:p-0"
             >
               <div className="flex flex-col space-y-2">
-                <label className="text-base text-white md:text-xl">{displayRow}</label>
+                <label className="text-base text-white md:text-lg">{displayRow}</label>
                 <div className="flex items-center space-x-4">
                   <input
                     type="range"
@@ -465,7 +465,7 @@ const MatrixSlider = ({
                     }}
                     className={`h-2 w-full cursor-pointer appearance-none rounded-lg [&::-moz-range-thumb]:rounded-full [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full ${thumbClasses} ${showActuals ? 'cursor-not-allowed opacity-60' : ''}`}
                   />
-                  <span className="w-12 text-base text-white md:text-xl">
+                  <span className="w-12 text-base text-white md:text-lg">
                     {val}
                     {suffix}
                   </span>
@@ -493,7 +493,7 @@ const MatrixSlider = ({
                       }}
                       className="h-2 w-full appearance-none rounded-lg [&::-moz-range-thumb]:hidden [&::-webkit-slider-thumb]:hidden"
                     />
-                    <span className="w-12 text-base font-bold text-green-400 md:text-xl">
+                    <span className="w-12 text-base font-bold text-green-400 md:text-lg">
                       {actualVal}
                       {suffix}
                     </span>
@@ -557,11 +557,11 @@ const Checkboxes = ({ questionLabel, questionText, options, name, error }: Check
       className={`mb-10 border-b pb-6 ${error ? 'rounded-lg border-2 border-red-500 p-4' : 'border-gray-700'}`}
     >
       <h3
-        className={`mb-2 text-lg font-semibold md:text-xl ${error ? 'text-red-500' : 'text-white'}`}
+        className={`mb-2 text-lg font-semibold md:text-lg ${error ? 'text-red-500' : 'text-white'}`}
       >
         {questionLabel}
       </h3>
-      <p className="mb-4 text-base text-gray-300 md:text-xl">{questionText}</p>
+      <p className="mb-4 text-base text-gray-300 md:text-lg">{questionText}</p>
       {options.some((o) => o.description) && (
         <p className="mb-8 text-sm text-gray-500 italic md:text-lg">
           (Click the &apos;?&apos; for further information and links)
@@ -582,7 +582,7 @@ const Checkboxes = ({ questionLabel, questionText, options, name, error }: Check
               />
               <label
                 htmlFor={`${name}-${idx}`}
-                className="ml-2 cursor-pointer text-base text-white md:text-xl"
+                className="ml-2 cursor-pointer text-base text-white md:text-lg"
               >
                 {option.label}
               </label>
@@ -682,15 +682,15 @@ const MatrixRating = ({
       className={`mb-10 border-b pb-6 ${error ? 'rounded-lg border-2 border-red-500 p-4' : 'border-gray-700'}`}
     >
       <h3
-        className={`mb-2 text-lg font-semibold md:text-xl ${error ? 'text-red-500' : 'text-white'}`}
+        className={`mb-2 text-lg font-semibold md:text-lg ${error ? 'text-red-500' : 'text-white'}`}
       >
         {questionLabel}
       </h3>
-      <p className="mb-8 text-base text-gray-300 md:text-xl">{questionText}</p>
+      <p className="mb-8 text-base text-gray-300 md:text-lg">{questionText}</p>
 
       {/* Desktop table */}
       <div className="hidden overflow-x-auto md:block">
-        <table className="min-w-full border-separate border-spacing-y-2 text-left text-base text-gray-300 md:text-xl">
+        <table className="min-w-full border-separate border-spacing-y-2 text-left text-base text-gray-300 md:text-lg">
           <colgroup>
             <col style={{ width: '30%' }} />
             {scaleArr.map((_, idx) => (
@@ -767,7 +767,7 @@ const MatrixRating = ({
 
           return (
             <div key={rowIdx} className="rounded-lg border border-gray-700 bg-gray-800 p-4">
-              <p className="mb-4 text-base font-medium text-white md:text-xl">{displayRow}</p>
+              <p className="mb-4 text-base font-medium text-white md:text-lg">{displayRow}</p>
 
               <div className="flex w-full">
                 {scaleArr.map((s) => {
@@ -826,12 +826,12 @@ const ChildrenTable = ({ validationErrors }: { validationErrors: Set<string> }) 
 
   return (
     <div className="mb-8 overflow-hidden">
-      <h3 className="mb-2 text-lg font-semibold text-white md:text-xl">
+      <h3 className="mb-2 text-lg font-semibold text-white md:text-lg">
         Q.16 For each of your children, please provide their age, gender, and whether they currently
         possess their own smartphone.
       </h3>
       <div className="hidden overflow-x-auto md:block">
-        <table className="min-w-full text-left text-base text-gray-300 md:text-xl">
+        <table className="min-w-full text-left text-base text-gray-300 md:text-lg">
           <thead className="bg-gray-700 text-sm text-gray-300 uppercase md:text-lg">
             <tr>
               <th className="px-6 py-3">#</th>
@@ -853,7 +853,7 @@ const ChildrenTable = ({ validationErrors }: { validationErrors: Set<string> }) 
                     name={`child-${r}-age`}
                     defaultValue={(surveyData[`child-${r}-age`] as string) || ''}
                     onChange={(e) => saveResponse(`child-${r}-age`, e.target.value)}
-                    className={`focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border bg-gray-700 p-2.5 text-base text-white placeholder-gray-400 md:text-xl ${validationErrors.has(`child-${r}-age`) ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-600'}`}
+                    className={`focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border bg-gray-700 p-2.5 text-base text-white placeholder-gray-400 md:text-lg ${validationErrors.has(`child-${r}-age`) ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-600'}`}
                   >
                     <option value="">Select...</option>
                     {Array.from({ length: 19 }, (_, i) => i).map((age) => (
@@ -869,7 +869,7 @@ const ChildrenTable = ({ validationErrors }: { validationErrors: Set<string> }) 
                     name={`child-${r}-gender`}
                     defaultValue={(surveyData[`child-${r}-gender`] as string) || ''}
                     onChange={(e) => saveResponse(`child-${r}-gender`, e.target.value)}
-                    className={`focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border bg-gray-700 p-2.5 text-base text-white placeholder-gray-400 md:text-xl ${validationErrors.has(`child-${r}-gender`) ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-600'}`}
+                    className={`focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border bg-gray-700 p-2.5 text-base text-white placeholder-gray-400 md:text-lg ${validationErrors.has(`child-${r}-gender`) ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-600'}`}
                   >
                     <option value="">Select...</option>
                     <option value="Male">Male</option>
@@ -900,7 +900,7 @@ const ChildrenTable = ({ validationErrors }: { validationErrors: Set<string> }) 
             key={r}
             className="animate-in fade-in slide-in-from-top-4 rounded-lg border border-gray-700 bg-gray-800 p-4 duration-500 ease-out"
           >
-            <h4 className="mb-4 text-base font-semibold text-white md:text-xl">Child {r}</h4>
+            <h4 className="mb-4 text-base font-semibold text-white md:text-lg">Child {r}</h4>
             <div className="space-y-4">
               <div>
                 <label
@@ -914,7 +914,7 @@ const ChildrenTable = ({ validationErrors }: { validationErrors: Set<string> }) 
                   name={`child-${r}-age`}
                   defaultValue={(surveyData[`child-${r}-age`] as string) || ''}
                   onChange={(e) => saveResponse(`child-${r}-age`, e.target.value)}
-                  className={`focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border bg-gray-700 p-2.5 text-base text-white placeholder-gray-400 md:text-xl ${validationErrors.has(`child-${r}-age`) ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-600'}`}
+                  className={`focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border bg-gray-700 p-2.5 text-base text-white placeholder-gray-400 md:text-lg ${validationErrors.has(`child-${r}-age`) ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-600'}`}
                 >
                   <option value="">Select...</option>
                   {Array.from({ length: 19 }, (_, i) => i).map((age) => (
@@ -937,7 +937,7 @@ const ChildrenTable = ({ validationErrors }: { validationErrors: Set<string> }) 
                   name={`child-${r}-gender`}
                   defaultValue={(surveyData[`child-${r}-gender`] as string) || ''}
                   onChange={(e) => saveResponse(`child-${r}-gender`, e.target.value)}
-                  className={`focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border bg-gray-700 p-2.5 text-base text-white placeholder-gray-400 md:text-xl ${validationErrors.has(`child-${r}-gender`) ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-600'}`}
+                  className={`focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border bg-gray-700 p-2.5 text-base text-white placeholder-gray-400 md:text-lg ${validationErrors.has(`child-${r}-gender`) ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-600'}`}
                 >
                   <option value="">Select...</option>
                   <option value="Male">Male</option>
@@ -999,8 +999,6 @@ export default function SurveyForm() {
     }
 
     if (step === 2) {
-      for (let i = 0; i < 7; i++)
-        if (data[`trends_8_12-${i}`] === undefined) errors.add('trends_8_12')
       for (let i = 0; i < 7; i++)
         if (data[`trends_12_15-${i}`] === undefined) errors.add('trends_12_15')
 
@@ -1067,13 +1065,7 @@ export default function SurveyForm() {
 
     if (step === 1) fieldOrder = ['tech_knowledge', 'privacy_attitude', 'tools_usage']
     if (step === 2)
-      fieldOrder = [
-        'trends_8_12',
-        'trends_12_15',
-        'recent_media',
-        'privacy_violations',
-        'edu_resources',
-      ]
+      fieldOrder = ['trends_12_15', 'recent_media', 'privacy_violations', 'edu_resources']
     if (step === 3) fieldOrder = ['safety_concerns', 'tech_attitude', 'controls']
     if (step === 4) fieldOrder = ['expert_opinions', 'skills_importance', 'edu_opinion']
     if (step === 5) {
@@ -1243,8 +1235,6 @@ export default function SurveyForm() {
   return (
     <SurveyContext.Provider value={{ saveResponse, surveyData }}>
       <div className="space-y-8">
-        <ProgressBar currentStep={currentStep} setStep={handleSetStep} />
-
         <form
           className="space-y-12"
           onSubmit={async (e) => {
@@ -1273,24 +1263,27 @@ export default function SurveyForm() {
         >
           {/* SECTION 1 */}
           <div className={currentStep === 1 ? 'block' : 'hidden'}>
-            <h2 className="mb-6 pb-2 text-center text-2xl font-bold text-white md:text-3xl">
-              Section 1: Competency
-            </h2>
-            <p className="mb-4 text-gray-300">
-              Questions relating to your technical ability, attitude to cybersecurity, and
-              cybersecurity practices.
-            </p>
-            <h3 className="mb-2 text-lg font-semibold text-white md:text-xl">
-              Why are these questions being asked?
-            </h3>
-            <p className="mb-6 text-gray-300">
-              A parent's competency in technology and cybersecurity may exert a strong influence on
-              how their children interact online.
-            </p>
-            <h3 className="mb-2 text-lg font-semibold text-white md:text-xl">
-              How many questions in this section?
-            </h3>
-            <p className="mb-6 text-gray-300">3</p>
+            <div className="mb-8 rounded-xl border border-blue-800/60 bg-blue-950/35 p-5 md:p-6">
+              <ProgressBar currentStep={currentStep} setStep={handleSetStep} />
+              <h2 className="mb-6 pb-2 text-center text-2xl font-bold text-white md:text-3xl">
+                Section 1: Competency
+              </h2>
+              <p className="mb-4 text-base text-gray-300 md:text-lg">
+                Questions relating to your technical ability, attitude to cybersecurity, and
+                cybersecurity practices.
+              </p>
+              <h3 className="mb-2 text-base font-semibold text-white md:text-lg">
+                Why are these questions being asked?
+              </h3>
+              <p className="mb-6 text-base text-gray-300 md:text-lg">
+                A parent's competency in technology and cybersecurity may exert a strong influence
+                on how their children interact online.
+              </p>
+              <h3 className="mb-2 text-base font-semibold text-white md:text-lg">
+                How many questions in this section?
+              </h3>
+              <p className="mb-0 text-base text-gray-300 md:text-lg">3</p>
+            </div>
             <div className="border-t border-gray-700 pt-8">
               {firstError === 'tech_knowledge' && <ErrorBanner />}
               <MatrixRadio
@@ -1389,35 +1382,38 @@ export default function SurveyForm() {
 
           {/* SECTION 2 */}
           <div className={currentStep === 2 ? 'block' : 'hidden'}>
-            <h2 className="mb-6 pb-2 text-center text-2xl font-bold text-white md:text-3xl">
-              Section 2: Awareness
-            </h2>
-            {/* Same content ... */}
-            <p className="mb-4 text-gray-300">
-              Questions on your awareness of trends in children's use of technology, risks with
-              using currently popular devices/websites/apps, and currently available educational
-              resources.
-            </p>
-            <h3 className="mb-2 text-lg font-semibold text-white md:text-xl">
-              Why are these questions being asked?
-            </h3>
-            <p className="mb-6 text-gray-300">
-              Awareness of current trends of technology use, the risks involved, and the tools
-              available to combat these risks, are important factors in a parent's approach to their
-              child/children's online safety.
-            </p>
-            <h3 className="mb-2 text-lg font-semibold text-white md:text-xl">
-              How many questions in this section?
-            </h3>
-            <p className="mb-6 text-gray-300">5</p>
+            <div className="mb-8 rounded-xl border border-blue-800/60 bg-blue-950/35 p-5 md:p-6">
+              <ProgressBar currentStep={currentStep} setStep={handleSetStep} />
+              <h2 className="mb-6 pb-2 text-center text-2xl font-bold text-white md:text-3xl">
+                Section 2: Awareness
+              </h2>
+              {/* Same content ... */}
+              <p className="mb-4 text-base text-gray-300 md:text-lg">
+                Questions on your awareness of trends in children's use of technology, risks with
+                using currently popular devices/websites/apps, and currently available educational
+                resources.
+              </p>
+              <h3 className="mb-2 text-base font-semibold text-white md:text-lg">
+                Why are these questions being asked?
+              </h3>
+              <p className="mb-6 text-base text-gray-300 md:text-lg">
+                Awareness of current trends of technology use, the risks involved, and the tools
+                available to combat these risks, are important factors in a parent's approach to
+                their child/children's online safety.
+              </p>
+              <h3 className="mb-2 text-base font-semibold text-white md:text-lg">
+                How many questions in this section?
+              </h3>
+              <p className="mb-0 text-base text-gray-300 md:text-lg">4</p>
+            </div>
 
             <div className="border-t border-gray-700 pt-8">
-              {firstError === 'trends_8_12' && <ErrorBanner />}
+              {firstError === 'trends_12_15' && <ErrorBanner />}
               <MatrixSlider
-                name="trends_8_12"
-                error={validationErrors.has('trends_8_12')}
-                questionLabel="Q.4 Current tech trends for 8-12 year olds"
-                questionText="Estimate the percentage of 8-12 year olds in Ireland who..."
+                name="trends_12_15"
+                error={validationErrors.has('trends_12_15')}
+                questionLabel="Q.4 Current tech trends for 12-15 year olds"
+                questionText="Estimate the percentage of 12-15 year olds in Ireland who..."
                 rows={[
                   'have their own smart device',
                   'have accounts on 13+ social media/messaging apps',
@@ -1427,273 +1423,259 @@ export default function SurveyForm() {
                   'have used AI chatbots',
                   'have shared images or videos of themselves online',
                 ]}
-                actualValues={[93, 71, 22, 66, 41, 26, 16]}
+                actualValues={[99, 99, 34, 52, 41, 36, 34]}
                 note="*Figures based on data from the 'Cybersafekids Trends and Usage Report Academic Year 2024-2025'."
               />
+
+              {firstError === 'recent_media' && <ErrorBanner />}
+              <Checkboxes
+                name="recent_media"
+                error={validationErrors.has('recent_media')}
+                questionLabel="Q.6 Recent Media"
+                questionText="Below are some examples of coverage of cybersecurity issues relating to children in the media. Select all that you have encountered."
+                options={[
+                  {
+                    label: 'Report: Grok AI making child sexual imagery',
+                    description:
+                      'Users utilized Grok AI on X (formerly Twitter) to generate non-consensual sexual imagery, including child sexual abuse material (CSAM). This highlights the lack of robust safety guardrails in some generative AI models compared to others.',
+                    links: [
+                      {
+                        url: 'https://www.bbc.com/news/articles/cvg1mzlryxeo',
+                      },
+                    ],
+                  },
+                  {
+                    label:
+                      'TV Programme: Prime Time - Real time location tracking of 64,000 Irish phones',
+                    description:
+                      'A Prime Time investigation exposed the sale of real time location data for thousands of Irish smart phones (including children) from sellers in digital marketing and advertising.',
+                    links: [
+                      {
+                        url: 'https://www.rte.ie/news/primetime/2025/0922/1534716-gra-raco-and-womens-aid-call-for-end-to-sale-of-location-data/',
+                      },
+                    ],
+                  },
+                  {
+                    label: "Report: Australia's social media ban for under 16s",
+                    description:
+                      'Australia has introduced legislation to ban children under 16 from using social media platforms. The law places the onus on tech companies to enforce age verification or face significant fines.',
+                    links: [
+                      {
+                        url: 'https://www.digitalidsystem.gov.au/news/social-media-minimum-age-verification-law-and-digital-id',
+                      },
+                    ],
+                  },
+                  {
+                    label: 'TV Series: Adolescence',
+                    description:
+                      'A 2025 psychological crime drama television series centred on a 13-year-old schoolboy who is arrested after the murder of a girl in his school.',
+                    links: [
+                      {
+                        url: 'https://www.rte.ie/news/analysis-and-comment/2025/0326/1504004-adolescence-five-talking-points/',
+                      },
+                    ],
+                  },
+                  {
+                    label: 'Report: Children tempted to gamble online by celebrity endorsements',
+                    description:
+                      'A recent study found that children as young as 11 are being influenced to try online betting due to the prevalence of celebrity endorsements and aggressive marketing in sports and social media.',
+                    links: [
+                      {
+                        url: 'https://www.theguardian.com/society/2025/sep/02/children-as-young-as-11-tempted-to-try-betting-after-being-flooded-by-celebrity-endorsement',
+                      },
+                    ],
+                  },
+
+                  {
+                    label: 'Documentary: The Social Dilemma',
+                    description:
+                      'A 2020 docudrama that explores the dangerous human impact of social networking, with tech experts sounding the alarm on their own creations, highlighting how algorithms manipulate users and addict children.',
+                    links: [
+                      {
+                        url: 'https://en.wikipedia.org/wiki/The_Social_Dilemma',
+                      },
+                    ],
+                  },
+                  {
+                    label: 'None of the above',
+                  },
+                ]}
+              />
+
+              {firstError === 'privacy_violations' && <ErrorBanner />}
+              <Checkboxes
+                name="privacy_violations"
+                error={validationErrors.has('privacy_violations')}
+                questionLabel="Q.7 Privacy violations relating to children"
+                questionText="Below is a list of fines imposed on tech firms for privacy violations specifically relating to children. Please check those that you are aware of."
+                options={[
+                  {
+                    label:
+                      "Epic Games/Fortnite (2022): Unauthorised collection of children's data - 20 million",
+                    description:
+                      'The US Federal Trade Commission fined Epic for collecting personal data from children under 13 without parental consent and for using dark patterns that tricked players into paying. Epic also enabled live voice and text chat by default, exposing children to adult strangers. The settlement forced Epic to adopt new privacy defaults.',
+                    links: [
+                      {
+                        url: 'https://www.ftc.gov/news-events/news/press-releases/2022/12/fortnite-video-game-maker-epic-games-pay-more-half-billion-dollars-over-ftc-allegations',
+                      },
+                    ],
+                  },
+                  {
+                    label:
+                      "Meta/Instagram (2022): Children's accounts default to public - €405 million",
+                    description:
+                      'Ireland’s Data Protection Commission ruled that Instagram exposed minors’ email addresses and phone numbers by defaulting accounts to public business profiles. Investigators also found under-18 analytics dashboards showing follower data. Meta was ordered to rework teen privacy settings and pay €405m.',
+                    links: [
+                      {
+                        url: 'https://www.dataprotection.ie/en/news-media/press-releases/data-protection-commission-announces-decision-instagram-inquiry',
+                      },
+                    ],
+                  },
+                  {
+                    label:
+                      "TikTok (2023): Unauthorised access to children's accounts - €345 million",
+                    description:
+                      'TikTok was fined after regulators discovered default public profiles for teens, weak age verification, and a “Family Pairing” feature that allowed adults to read private messages without proof of guardianship. The ruling emphasized TikTok’s failure to explain privacy risks to young users.',
+                    links: [
+                      {
+                        url: 'https://www.dataprotection.ie/en/news-media/press-releases/DPC-announces-345-million-euro-fine-of-TikTok',
+                      },
+                    ],
+                  },
+                  {
+                    label:
+                      "Google/YouTube (2019 & 2025): Repeated, unauthorised collection of children's data for targetted ads - 70 Million & 0 million",
+                    description:
+                      'US regulators said YouTube knowingly tracked viewing habits on kid-focused channels to sell ads, violating COPPA. Google promised to treat all kid content as child-directed and limit personalization, yet faced another 0m penalty in 2025 for allowing similar tracking on the YouTube Kids app.',
+                    links: [
+                      {
+                        url: 'https://www.bbc.com/news/technology-49578971',
+                        label: '2019: https://www.bbc.com/news/technology-49578971',
+                      },
+                      {
+                        url: 'https://cybernews.com/privacy/google-settles-youtube-childrens-privacy-lawsuit-30m/',
+                        label:
+                          '2025: https://cybernews.com/privacy/google-settles-youtube-childrens-privacy-lawsuit-30m/',
+                      },
+                    ],
+                  },
+                  {
+                    label:
+                      "Amazon/Alexa (2023): - Recording and not deleting children's voices - 5 Million",
+                    description:
+                      'Amazon retained voice recordings and location data from Alexa devices used by children even after parents tried to delete them. Regulators argued the company kept the data to refine its voice model, contradicting privacy promises. Amazon must now purge inactive child profiles.',
+                    links: [
+                      {
+                        url: 'https://www.justice.gov/archives/opa/pr/amazon-agrees-injunctive-relief-and-25-million-civil-penalty-alleged-violations-childrens',
+                      },
+                    ],
+                  },
+                  {
+                    label:
+                      "Microsoft/Xbox (2023): - Unauthorised collection and retention of children's data - 0 Million",
+                    description:
+                      'Microsoft collected children’s names, emails, and phone numbers during Xbox sign-up without timely parental consent and stored the data even when families abandoned the process. The FTC said this violated COPPA’s data minimization rules, resulting in a 0m fine.',
+                    links: [
+                      {
+                        url: 'https://www.ftc.gov/news-events/news/press-releases/2023/06/ftc-will-require-microsoft-pay-20-million-over-charges-it-illegally-collected-personal-information',
+                      },
+                    ],
+                  },
+                  {
+                    label: 'None of the above',
+                  },
+                ]}
+              />
+
+              {firstError === 'edu_resources' && <ErrorBanner />}
+              <Checkboxes
+                name="edu_resources"
+                error={validationErrors.has('edu_resources')}
+                questionLabel="Q.8 Available educational resources"
+                questionText="Below is a list of resources for educating children in Ireland on online safety and cybersecurity. Please check those that you are familiar with."
+                options={[
+                  {
+                    label: 'CyberSafeKids',
+                    description:
+                      'CyberSafeKids is an Irish non-profit that delivers classroom workshops, parent nights, and research on young peoples’ digital habits. Their guides cover cyberbullying, gaming, privacy settings, and include downloadable lesson plans. Examples: Primary school workshops, Annual Trends & Usage Report.',
+                    links: [{ url: 'https://www.cybersafekids.ie' }],
+                  },
+                  {
+                    label: 'TUSLA - Online Safety',
+                    description:
+                      'TUSLA—the Child and Family Agency—publishes safeguarding guidance for carers, foster parents, and social workers on topics like inappropriate contact, grooming, and image-based abuse. Their online safety hub links to reporting pathways and age-appropriate conversation starters.',
+                    links: [{ url: 'https://www.tusla.ie/children-first/online-safety/' }],
+                  },
+                  {
+                    label: 'Webwise',
+                    description:
+                      "Webwise is Ireland's Safer Internet Centre for schools, offering SPHE-aligned lesson packs, teenager peer-leader programs, and parent advice helplines. Their 'Connected' and 'MySelfie' resources combine videos with classroom activities.",
+                    links: [{ url: 'https://www.webwise.ie/' }],
+                  },
+                  {
+                    label: 'National Parents Council - Internet Safety Training',
+                    description:
+                      'The NPC runs free webinars and in-person sessions that teach parents how to configure devices, spot red flags, and support children after online incidents. Sessions typically include live demos of safety settings plus Q&A.',
+                    links: [
+                      {
+                        url: 'https://www.npc.ie/training-and-resources/training-we-offer/internet-safety-in-your-school',
+                      },
+                    ],
+                  },
+                  {
+                    label: 'ISPCC - Digital Ready Hub',
+                    description:
+                      'The ISPCC’s Digital Ready Hub combines articles, printable checklists, and youth stories that focus on resilience and coping strategies. It also signposts to the Childline listening service for children who experience online harm.',
+                    links: [{ url: 'https://www.ispcc.ie/ispcc-digital-ready-hub/' }],
+                  },
+                  {
+                    label: 'Comisiún na Meán - Keeping Safe Online',
+                    description:
+                      'Comisiún na Meán (Ireland’s media regulator) curates Keeping Safe Online guidance that explains video-sharing code rules, complaint routes, and media literacy tips. The material helps families understand how Irish and EU regulations protect young audiences.',
+                    links: [
+                      {
+                        url: 'https://www.cnam.ie/general-public/children-young-people/keeping-safe-online/',
+                      },
+                    ],
+                  },
+                  {
+                    label: 'None of the above',
+                  },
+                ]}
+              />
+              <NavButtons
+                prev={prevStep}
+                prevLabel="Go to Section 1"
+                next={handleNextStep}
+                nextLabel="Go to Section 3"
+              />
             </div>
-
-            {firstError === 'trends_12_15' && <ErrorBanner />}
-            <MatrixSlider
-              name="trends_12_15"
-              error={validationErrors.has('trends_12_15')}
-              questionLabel="Q.5 Current tech trends for 12-15 year olds"
-              questionText="Estimate the percentage of 12-15 year olds in Ireland who..."
-              rows={[
-                'have their own smart device',
-                'have accounts on 13+ social media/messaging apps',
-                'have experienced cyberbullying',
-                'have talked to a parent about online safety in the past year',
-                'have engaged with people they have never met on apps/games',
-                'have used AI chatbots',
-                'have shared images or videos of themselves online',
-              ]}
-              actualValues={[99, 99, 34, 52, 41, 36, 34]}
-            />
-
-            {firstError === 'recent_media' && <ErrorBanner />}
-            <Checkboxes
-              name="recent_media"
-              error={validationErrors.has('recent_media')}
-              questionLabel="Q.6 Recent Media"
-              questionText="Below are some examples of coverage of cybersecurity issues relating to children in the media. Select all that you have encountered."
-              options={[
-                {
-                  label: 'Report: Grok AI making child sexual imagery',
-                  description:
-                    'Users utilized Grok AI on X (formerly Twitter) to generate non-consensual sexual imagery, including child sexual abuse material (CSAM). This highlights the lack of robust safety guardrails in some generative AI models compared to others.',
-                  links: [
-                    {
-                      url: 'https://www.bbc.com/news/articles/cvg1mzlryxeo',
-                    },
-                  ],
-                },
-                {
-                  label:
-                    'TV Programme: Prime Time - Real time location tracking of 64,000 Irish phones',
-                  description:
-                    'A Prime Time investigation exposed the sale of real time location data for thousands of Irish smart phones (including children) from sellers in digital marketing and advertising.',
-                  links: [
-                    {
-                      url: 'https://www.rte.ie/news/primetime/2025/0922/1534716-gra-raco-and-womens-aid-call-for-end-to-sale-of-location-data/',
-                    },
-                  ],
-                },
-                {
-                  label: "Report: Australia's social media ban for under 16s",
-                  description:
-                    'Australia has introduced legislation to ban children under 16 from using social media platforms. The law places the onus on tech companies to enforce age verification or face significant fines.',
-                  links: [
-                    {
-                      url: 'https://www.digitalidsystem.gov.au/news/social-media-minimum-age-verification-law-and-digital-id',
-                    },
-                  ],
-                },
-                {
-                  label: 'TV Series: Adolescence',
-                  description:
-                    'A 2025 psychological crime drama television series centred on a 13-year-old schoolboy who is arrested after the murder of a girl in his school.',
-                  links: [
-                    {
-                      url: 'https://www.rte.ie/news/analysis-and-comment/2025/0326/1504004-adolescence-five-talking-points/',
-                    },
-                  ],
-                },
-                {
-                  label: 'Report: Children tempted to gamble online by celebrity endorsements',
-                  description:
-                    'A recent study found that children as young as 11 are being influenced to try online betting due to the prevalence of celebrity endorsements and aggressive marketing in sports and social media.',
-                  links: [
-                    {
-                      url: 'https://www.theguardian.com/society/2025/sep/02/children-as-young-as-11-tempted-to-try-betting-after-being-flooded-by-celebrity-endorsement',
-                    },
-                  ],
-                },
-
-                {
-                  label: 'Documentary: The Social Dilemma',
-                  description:
-                    'A 2020 docudrama that explores the dangerous human impact of social networking, with tech experts sounding the alarm on their own creations, highlighting how algorithms manipulate users and addict children.',
-                  links: [
-                    {
-                      url: 'https://en.wikipedia.org/wiki/The_Social_Dilemma',
-                    },
-                  ],
-                },
-                {
-                  label: 'None of the above',
-                },
-              ]}
-            />
-
-            {firstError === 'privacy_violations' && <ErrorBanner />}
-            <Checkboxes
-              name="privacy_violations"
-              error={validationErrors.has('privacy_violations')}
-              questionLabel="Q.7 Privacy violations relating to children"
-              questionText="Below is a list of fines imposed on tech firms for privacy violations specifically relating to children. Please check those that you are aware of."
-              options={[
-                {
-                  label:
-                    "Epic Games/Fortnite (2022): Unauthorised collection of children's data - 20 million",
-                  description:
-                    'The US Federal Trade Commission fined Epic for collecting personal data from children under 13 without parental consent and for using dark patterns that tricked players into paying. Epic also enabled live voice and text chat by default, exposing children to adult strangers. The settlement forced Epic to adopt new privacy defaults.',
-                  links: [
-                    {
-                      url: 'https://www.ftc.gov/news-events/news/press-releases/2022/12/fortnite-video-game-maker-epic-games-pay-more-half-billion-dollars-over-ftc-allegations',
-                    },
-                  ],
-                },
-                {
-                  label:
-                    "Meta/Instagram (2022): Children's accounts default to public - €405 million",
-                  description:
-                    'Ireland’s Data Protection Commission ruled that Instagram exposed minors’ email addresses and phone numbers by defaulting accounts to public business profiles. Investigators also found under-18 analytics dashboards showing follower data. Meta was ordered to rework teen privacy settings and pay €405m.',
-                  links: [
-                    {
-                      url: 'https://www.dataprotection.ie/en/news-media/press-releases/data-protection-commission-announces-decision-instagram-inquiry',
-                    },
-                  ],
-                },
-                {
-                  label: "TikTok (2023): Unauthorised access to children's accounts - €345 million",
-                  description:
-                    'TikTok was fined after regulators discovered default public profiles for teens, weak age verification, and a “Family Pairing” feature that allowed adults to read private messages without proof of guardianship. The ruling emphasized TikTok’s failure to explain privacy risks to young users.',
-                  links: [
-                    {
-                      url: 'https://www.dataprotection.ie/en/news-media/press-releases/DPC-announces-345-million-euro-fine-of-TikTok',
-                    },
-                  ],
-                },
-                {
-                  label:
-                    "Google/YouTube (2019 & 2025): Repeated, unauthorised collection of children's data for targetted ads - 70 Million & 0 million",
-                  description:
-                    'US regulators said YouTube knowingly tracked viewing habits on kid-focused channels to sell ads, violating COPPA. Google promised to treat all kid content as child-directed and limit personalization, yet faced another 0m penalty in 2025 for allowing similar tracking on the YouTube Kids app.',
-                  links: [
-                    {
-                      url: 'https://www.bbc.com/news/technology-49578971',
-                      label: '2019: https://www.bbc.com/news/technology-49578971',
-                    },
-                    {
-                      url: 'https://cybernews.com/privacy/google-settles-youtube-childrens-privacy-lawsuit-30m/',
-                      label:
-                        '2025: https://cybernews.com/privacy/google-settles-youtube-childrens-privacy-lawsuit-30m/',
-                    },
-                  ],
-                },
-                {
-                  label:
-                    "Amazon/Alexa (2023): - Recording and not deleting children's voices - 5 Million",
-                  description:
-                    'Amazon retained voice recordings and location data from Alexa devices used by children even after parents tried to delete them. Regulators argued the company kept the data to refine its voice model, contradicting privacy promises. Amazon must now purge inactive child profiles.',
-                  links: [
-                    {
-                      url: 'https://www.justice.gov/archives/opa/pr/amazon-agrees-injunctive-relief-and-25-million-civil-penalty-alleged-violations-childrens',
-                    },
-                  ],
-                },
-                {
-                  label:
-                    "Microsoft/Xbox (2023): - Unauthorised collection and retention of children's data - 0 Million",
-                  description:
-                    'Microsoft collected children’s names, emails, and phone numbers during Xbox sign-up without timely parental consent and stored the data even when families abandoned the process. The FTC said this violated COPPA’s data minimization rules, resulting in a 0m fine.',
-                  links: [
-                    {
-                      url: 'https://www.ftc.gov/news-events/news/press-releases/2023/06/ftc-will-require-microsoft-pay-20-million-over-charges-it-illegally-collected-personal-information',
-                    },
-                  ],
-                },
-                {
-                  label: 'None of the above',
-                },
-              ]}
-            />
-
-            {firstError === 'edu_resources' && <ErrorBanner />}
-            <Checkboxes
-              name="edu_resources"
-              error={validationErrors.has('edu_resources')}
-              questionLabel="Q.8 Available educational resources"
-              questionText="Below is a list of resources for educating children in Ireland on online safety and cybersecurity. Please check those that you are familiar with."
-              options={[
-                {
-                  label: 'CyberSafeKids',
-                  description:
-                    'CyberSafeKids is an Irish non-profit that delivers classroom workshops, parent nights, and research on young peoples’ digital habits. Their guides cover cyberbullying, gaming, privacy settings, and include downloadable lesson plans. Examples: Primary school workshops, Annual Trends & Usage Report.',
-                  links: [{ url: 'https://www.cybersafekids.ie' }],
-                },
-                {
-                  label: 'TUSLA - Online Safety',
-                  description:
-                    'TUSLA—the Child and Family Agency—publishes safeguarding guidance for carers, foster parents, and social workers on topics like inappropriate contact, grooming, and image-based abuse. Their online safety hub links to reporting pathways and age-appropriate conversation starters.',
-                  links: [{ url: 'https://www.tusla.ie/children-first/online-safety/' }],
-                },
-                {
-                  label: 'Webwise',
-                  description:
-                    "Webwise is Ireland's Safer Internet Centre for schools, offering SPHE-aligned lesson packs, teenager peer-leader programs, and parent advice helplines. Their 'Connected' and 'MySelfie' resources combine videos with classroom activities.",
-                  links: [{ url: 'https://www.webwise.ie/' }],
-                },
-                {
-                  label: 'National Parents Council - Internet Safety Training',
-                  description:
-                    'The NPC runs free webinars and in-person sessions that teach parents how to configure devices, spot red flags, and support children after online incidents. Sessions typically include live demos of safety settings plus Q&A.',
-                  links: [
-                    {
-                      url: 'https://www.npc.ie/training-and-resources/training-we-offer/internet-safety-in-your-school',
-                    },
-                  ],
-                },
-                {
-                  label: 'ISPCC - Digital Ready Hub',
-                  description:
-                    'The ISPCC’s Digital Ready Hub combines articles, printable checklists, and youth stories that focus on resilience and coping strategies. It also signposts to the Childline listening service for children who experience online harm.',
-                  links: [{ url: 'https://www.ispcc.ie/ispcc-digital-ready-hub/' }],
-                },
-                {
-                  label: 'Comisiún na Meán - Keeping Safe Online',
-                  description:
-                    'Comisiún na Meán (Ireland’s media regulator) curates Keeping Safe Online guidance that explains video-sharing code rules, complaint routes, and media literacy tips. The material helps families understand how Irish and EU regulations protect young audiences.',
-                  links: [
-                    {
-                      url: 'https://www.cnam.ie/general-public/children-young-people/keeping-safe-online/',
-                    },
-                  ],
-                },
-                {
-                  label: 'None of the above',
-                },
-              ]}
-            />
-            <NavButtons
-              prev={prevStep}
-              prevLabel="Go to Section 1"
-              next={handleNextStep}
-              nextLabel="Go to Section 3"
-            />
           </div>
 
           {/* SECTION 3 */}
           <div className={currentStep === 3 ? 'block' : 'hidden'}>
-            <h2 className="mb-6 pb-2 text-center text-2xl font-bold text-white md:text-3xl">
-              Section 3: Concerns
-            </h2>
-            <p className="mb-4 text-gray-300">
-              The questions focus on your own concerns for your child/children regarding use of
-              technology and online safety.
-            </p>
-            <h3 className="mb-2 text-lg font-semibold text-white md:text-xl">
-              Why are these questions being asked?
-            </h3>
-            <p className="mb-6 text-gray-300">
-              There may be significant differences in the issues of concern from parent to parent.
-              It is important to understand the nature of these concerns when designing educational
-              resources for their children.
-            </p>
-            <h3 className="mb-2 text-lg font-semibold text-white md:text-xl">
-              How many questions in this section?
-            </h3>
-            <p className="mb-6 text-gray-300">3</p>
+            <div className="mb-8 rounded-xl border border-blue-800/60 bg-blue-950/35 p-5 md:p-6">
+              <ProgressBar currentStep={currentStep} setStep={handleSetStep} />
+              <h2 className="mb-6 pb-2 text-center text-2xl font-bold text-white md:text-3xl">
+                Section 3: Concerns
+              </h2>
+              <p className="mb-4 text-base text-gray-300 md:text-lg">
+                The questions focus on your own concerns for your child/children regarding use of
+                technology and online safety.
+              </p>
+              <h3 className="mb-2 text-base font-semibold text-white md:text-lg">
+                Why are these questions being asked?
+              </h3>
+              <p className="mb-6 text-base text-gray-300 md:text-lg">
+                There may be significant differences in the issues of concern from parent to parent.
+                It is important to understand the nature of these concerns when designing
+                educational resources for their children.
+              </p>
+              <h3 className="mb-2 text-base font-semibold text-white md:text-lg">
+                How many questions in this section?
+              </h3>
+              <p className="mb-0 text-base text-gray-300 md:text-lg">3</p>
+            </div>
             <div className="border-t border-gray-700 pt-8">
               {firstError === 'safety_concerns' && <ErrorBanner />}
               <MatrixRating
@@ -1741,7 +1723,7 @@ export default function SurveyForm() {
               error={validationErrors.has('controls')}
               questionLabel="Q.10 Cybersecurity controls you use or intend to use for your child/children"
               questionText="Which of the following services/controls for aiding with child smartphone safety do you currently use, or intend to use?"
-              options={['Do not/Will not use', 'Unsure', 'Use/Will use', "Don't know"]}
+              options={['Do not/Will not use', 'Unsure', 'Use/Will use']}
               rows={[
                 'Real time location tracking',
                 "Remote lock (instantly lock the device from the parent's phone)",
@@ -1760,26 +1742,29 @@ export default function SurveyForm() {
 
           {/* SECTION 4 */}
           <div className={currentStep === 4 ? 'block' : 'hidden'}>
-            <h2 className="mb-6 pb-2 text-center text-2xl font-bold text-white md:text-3xl">
-              Section 4: Education
-            </h2>
-            <p className="mb-4 text-gray-300">
-              These questions focus on your opinion of the current state of technical and online
-              safety education for children in Ireland, and wishes for your own child/children's
-              education.
-            </p>
-            <h3 className="mb-2 text-lg font-semibold text-white md:text-xl">
-              Why are these questions being asked?
-            </h3>
-            <p className="mb-6 text-gray-300">
-              There have been numerous recent calls by experts for more and earlier tech and
-              cybersecurity education in Ireland. It is important to understand if this sentiment is
-              echoed by current parents.
-            </p>
-            <h3 className="mb-2 text-lg font-semibold text-white md:text-xl">
-              How many questions in this section?
-            </h3>
-            <p className="mb-6 text-gray-300">3</p>
+            <div className="mb-8 rounded-xl border border-blue-800/60 bg-blue-950/35 p-5 md:p-6">
+              <ProgressBar currentStep={currentStep} setStep={handleSetStep} />
+              <h2 className="mb-6 pb-2 text-center text-2xl font-bold text-white md:text-3xl">
+                Section 4: Education
+              </h2>
+              <p className="mb-4 text-base text-gray-300 md:text-lg">
+                These questions focus on your opinion of the current state of technical and online
+                safety education for children in Ireland, and wishes for your own child/children's
+                education.
+              </p>
+              <h3 className="mb-2 text-base font-semibold text-white md:text-lg">
+                Why are these questions being asked?
+              </h3>
+              <p className="mb-6 text-base text-gray-300 md:text-lg">
+                There have been numerous recent calls by experts for more and earlier tech and
+                cybersecurity education in Ireland. It is important to understand if this sentiment
+                is echoed by current parents.
+              </p>
+              <h3 className="mb-2 text-base font-semibold text-white md:text-lg">
+                How many questions in this section?
+              </h3>
+              <p className="mb-0 text-base text-gray-300 md:text-lg">3</p>
+            </div>
             <div className="border-t border-gray-700 pt-8">
               {firstError === 'expert_opinions' && <ErrorBanner />}
               <MatrixRadio
@@ -1818,7 +1803,7 @@ export default function SurveyForm() {
               name="skills_importance"
               error={validationErrors.has('skills_importance')}
               questionLabel="Q.12 Aspirations for your own child/children's education"
-              questionText="How important are the following skills for your child to learn?"
+              questionText="How important are the following technical skills for your child to learn?"
               options={[
                 'Not at all important',
                 'Not important',
@@ -1827,12 +1812,14 @@ export default function SurveyForm() {
                 'Very important',
               ]}
               rows={[
-                'Scam & phishing recognition',
+                'How the internet works, e.g. what happens when they visit a website or use an app',
                 'Computational thinking & creativity, e.g. how to solve problems using technology',
+                'How to read and understand the data an app or website sends and receives',
+                'How to set up a smartphone for privacy and security from day one',
                 'Coding e.g. learning a programming language like Python, Javascript',
-                'How to minimise their online digital footprint, e.g. browse the internet/use apps without being tracked',
-                'How to store and backup personal photos/videos/documents independently, i.e. not with large tech companies',
-                'Cryptography, e.g. how to store and transmit data securely.',
+                'Web design, e.g. how to create and publish a website',
+                'How to minimise your digital footprint',
+                'How to store personal data (e.g. photos/videos/documents) securely and independently, rather than relying on cloud services',
               ]}
             />
 
@@ -1847,7 +1834,11 @@ export default function SurveyForm() {
                 'I am confident I can personally teach my child/children how to stay safe online.',
                 'I would like to learn more about how to teach my child/children how to stay safe online.',
                 'I am confident that my child/children (will) receive sufficient education in school to keep them safe online.',
-                'I am confident that the technical education my child/children (will) receive at school is sufficient for the world they will enter as adults.',
+                'I am confident that the technical education my child/children (will) receive at school prepares them for the world they will enter as adults.',
+                {
+                  text: 'I would be interested in my child/children attending extracurricular classes based on the proposed Digital Knights curriculum (opens in new tab).',
+                  link: '/curriculum',
+                },
               ]}
             />
             <NavButtons
@@ -1860,32 +1851,35 @@ export default function SurveyForm() {
 
           {/* SECTION 5 */}
           <div className={currentStep === 5 ? 'block' : 'hidden'}>
-            <h2 className="mb-6 pb-2 text-center text-2xl font-bold text-white md:text-3xl">
-              Section 5: Basic Demographics
-            </h2>
-            <p className="mb-4 text-gray-300 md:text-lg">
-              Questions on basic information about you and your child/children, e.g. parental role,
-              number of children, child/children's ages.
-            </p>
-            <h3 className="mb-2 text-lg font-semibold text-white md:text-xl">
-              Why are these questions being asked?
-            </h3>
-            <p className="mb-6 text-gray-300 md:text-lg">
-              The answers to these questions will be used to determine whether there are patterns in
-              attitudes to cybersecurity and mobile phones depending on factors such as parental
-              gender, child age and gender, siblings already possessing a smartphone etc.
-            </p>
-            <h3 className="mb-2 text-lg font-semibold text-white md:text-xl">
-              How many questions in this section?
-            </h3>
-            <p className="mb-6 text-gray-300 md:text-lg">4</p>
+            <div className="mb-8 rounded-xl border border-blue-800/60 bg-blue-950/35 p-5 md:p-6">
+              <ProgressBar currentStep={currentStep} setStep={handleSetStep} />
+              <h2 className="mb-6 pb-2 text-center text-2xl font-bold text-white md:text-3xl">
+                Section 5: Basic Demographics
+              </h2>
+              <p className="mb-4 text-base text-gray-300 md:text-lg">
+                Questions on basic information about you and your child/children, e.g. parental
+                role, number of children, child/children's ages.
+              </p>
+              <h3 className="mb-2 text-base font-semibold text-white md:text-lg">
+                Why are these questions being asked?
+              </h3>
+              <p className="mb-6 text-base text-gray-300 md:text-lg">
+                The answers to these questions will be used to determine whether there are patterns
+                in attitudes to cybersecurity and mobile phones depending on factors such as
+                parental gender, child age and gender, siblings already possessing a smartphone etc.
+              </p>
+              <h3 className="mb-2 text-base font-semibold text-white md:text-lg">
+                How many questions in this section?
+              </h3>
+              <p className="mb-0 text-base text-gray-300 md:text-lg">4</p>
+            </div>
             <div className="border-t border-gray-700 pt-8">
               <div className="mb-8 grid grid-cols-1 gap-6 md:grid-cols-2">
                 <div>
                   {firstError === 'role' && <ErrorBanner />}
                   <label
                     htmlFor="role"
-                    className="mb-2 block text-lg font-semibold text-white md:text-xl"
+                    className="mb-2 block text-lg font-semibold text-white md:text-lg"
                   >
                     Q.14 What is your role?
                   </label>
@@ -1893,7 +1887,7 @@ export default function SurveyForm() {
                     id="role"
                     defaultValue={surveyData['role'] as string}
                     onChange={(e) => saveResponse('role', e.target.value)}
-                    className={`focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border bg-gray-700 p-2.5 text-base text-white placeholder-gray-400 md:text-xl ${validationErrors.has('role') ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-600'}`}
+                    className={`focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border bg-gray-700 p-2.5 text-base text-white placeholder-gray-400 md:text-lg ${validationErrors.has('role') ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-600'}`}
                   >
                     <option value="">Select...</option>
                     <option>Father</option>
@@ -1905,7 +1899,7 @@ export default function SurveyForm() {
                   {firstError === 'children-count' && <ErrorBanner />}
                   <label
                     htmlFor="children-count"
-                    className="mb-2 block text-lg font-semibold text-white md:text-xl"
+                    className="mb-2 block text-lg font-semibold text-white md:text-lg"
                   >
                     Q.15 How many children do you have?
                   </label>
@@ -1913,7 +1907,7 @@ export default function SurveyForm() {
                     id="children-count"
                     defaultValue={surveyData['children-count'] as string}
                     onChange={(e) => saveResponse('children-count', e.target.value)}
-                    className={`focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border bg-gray-700 p-2.5 text-base text-white placeholder-gray-400 md:text-xl ${validationErrors.has('children-count') ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-600'}`}
+                    className={`focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border bg-gray-700 p-2.5 text-base text-white placeholder-gray-400 md:text-lg ${validationErrors.has('children-count') ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-600'}`}
                   >
                     <option value="">Select...</option>
                     <option>1</option>
@@ -1951,7 +1945,7 @@ export default function SurveyForm() {
               {firstError === 'email' && <ErrorBanner />}
               <label
                 htmlFor="email-input"
-                className={`mb-2 block text-base font-medium md:text-xl ${validationErrors.has('email') ? 'text-red-500' : 'text-white'}`}
+                className={`mb-2 block text-base font-medium md:text-lg ${validationErrors.has('email') ? 'text-red-500' : 'text-white'}`}
               >
                 Your Email address (optional)
               </label>
@@ -1960,14 +1954,14 @@ export default function SurveyForm() {
                 type="email"
                 defaultValue={surveyData['email'] as string}
                 onBlur={(e) => saveResponse('email', e.target.value)}
-                className="focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-base text-white placeholder-gray-400 md:text-xl"
+                className="focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-base text-white placeholder-gray-400 md:text-lg"
               />
             </div>
 
             <div className="mb-6">
               <label
                 htmlFor="comments"
-                className="mb-2 block text-base font-medium text-white md:text-xl"
+                className="mb-2 block text-base font-medium text-white md:text-lg"
               >
                 Any further comments or questions:
               </label>
@@ -1976,7 +1970,7 @@ export default function SurveyForm() {
                 rows={4}
                 defaultValue={surveyData['comments'] as string}
                 onBlur={(e) => saveResponse('comments', e.target.value)}
-                className="focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-base text-white placeholder-gray-400 md:text-xl"
+                className="focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-base text-white placeholder-gray-400 md:text-lg"
               ></textarea>
             </div>
 
@@ -1984,7 +1978,7 @@ export default function SurveyForm() {
               <button
                 type="button"
                 onClick={prevStep}
-                className="group text-primary-500 hover:text-primary-400 flex cursor-pointer items-center text-base font-medium transition-colors duration-200 md:text-xl"
+                className="group text-primary-500 hover:text-primary-400 flex cursor-pointer items-center text-base font-medium transition-colors duration-200 md:text-lg"
               >
                 <svg
                   className="mr-2 h-5 w-5 transform transition-transform group-hover:-translate-x-1"
@@ -2003,7 +1997,7 @@ export default function SurveyForm() {
               </button>
               <button
                 type="submit"
-                className="bg-primary-800 hover:bg-primary-900 focus:ring-primary-600 w-full cursor-pointer rounded-md px-5 py-2.5 text-base font-medium text-white ring-offset-black focus:ring-2 focus:ring-offset-2 focus:outline-none sm:w-auto md:text-xl"
+                className="bg-primary-800 hover:bg-primary-900 focus:ring-primary-600 w-full cursor-pointer rounded-md px-5 py-2.5 text-base font-medium text-white ring-offset-black focus:ring-2 focus:ring-offset-2 focus:outline-none sm:w-auto md:text-lg"
               >
                 Submit Survey
               </button>
