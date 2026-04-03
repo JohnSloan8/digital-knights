@@ -32,7 +32,7 @@ const getAlphabetLabel = (index: number) => {
   return label
 }
 
-const formatSubQuestion = (text: string, index: number): React.ReactNode => {
+const formatSubQuestion = (text: React.ReactNode, index: number): React.ReactNode => {
   const label = `${getAlphabetLabel(index)})`
   return (
     <>
@@ -157,8 +157,10 @@ const NavButtons = ({
 )
 
 interface MatrixRowWithLink {
-  text: string
+  text: React.ReactNode
   link?: string
+  description?: string
+  links?: { url: string; label?: string }[]
 }
 
 interface MatrixRadioProps {
@@ -180,6 +182,7 @@ const MatrixRadio = ({
 }: MatrixRadioProps) => {
   const { saveResponse, surveyData } = useSurvey()
   const [localState, setLocalState] = useState<Record<string, string>>({})
+  const [activeDescription, setActiveDescription] = useState<number | null>(null)
 
   // Initialize/Sync local state from surveyData
   useEffect(() => {
@@ -210,8 +213,16 @@ const MatrixRadio = ({
   }
 
   const getRowContent = (row: string | MatrixRowWithLink) => {
-    if (typeof row === 'string') return { text: row, link: undefined }
+    if (typeof row === 'string') {
+      return { text: row, link: undefined, description: undefined, links: undefined }
+    }
     return row
+  }
+
+  const hasDescriptions = rows.some((row) => typeof row !== 'string' && Boolean(row.description))
+
+  const toggleDescription = (rowIdx: number) => {
+    setActiveDescription((prev) => (prev === rowIdx ? null : rowIdx))
   }
 
   return (
@@ -225,6 +236,12 @@ const MatrixRadio = ({
         {questionLabel}
       </h3>
       <p className="mb-8 text-base text-gray-300 md:text-lg">{questionText}</p>
+      {hasDescriptions && (
+        <p className="mb-6 text-sm text-gray-500 italic md:text-lg">
+          (Click the &apos;?&apos; for further information and resource links. Links open in a new
+          tab.)
+        </p>
+      )}
 
       {/* Desktop table */}
       <div className="hidden overflow-x-auto md:block">
@@ -249,12 +266,44 @@ const MatrixRadio = ({
           </thead>
           <tbody>
             {rows.map((row, rowIdx) => {
-              const { text, link } = getRowContent(row)
+              const { text, link, description, links } = getRowContent(row)
               const displayRow = formatSubQuestion(text, rowIdx)
               return (
                 <tr key={rowIdx} className="border-b border-gray-700 bg-gray-800">
                   <td className="px-6 py-4 text-white">
-                    {displayRow}
+                    <div className="flex items-start justify-between gap-3">
+                      <span className="flex-1">{displayRow}</span>
+                      {description && (
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation()
+                            toggleDescription(rowIdx)
+                          }}
+                          className="focus:ring-primary-600 flex h-6 w-6 shrink-0 cursor-pointer items-center justify-center rounded-full border border-gray-600 text-sm text-white hover:bg-gray-700 focus:ring-2 focus:outline-none"
+                          aria-label="Learn more about this resource"
+                        >
+                          ?
+                        </button>
+                      )}
+                    </div>
+                    {description && activeDescription === rowIdx && (
+                      <div className="mt-3 rounded-lg border border-gray-700 bg-gray-900/70 p-3 text-sm text-gray-300 md:text-lg">
+                        <p>{description}</p>
+                        {links &&
+                          links.map((linkItem, linkIdx) => (
+                            <a
+                              key={linkIdx}
+                              href={linkItem.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-primary-500 hover:text-primary-400 mt-2 block break-all hover:underline"
+                            >
+                              {(linkItem.label || linkItem.url).replace(/https?:\/\//g, '')}
+                            </a>
+                          ))}
+                      </div>
+                    )}
                     {link && (
                       <a
                         href={link}
@@ -273,7 +322,8 @@ const MatrixRadio = ({
                         key={optIdx}
                         className="cursor-pointer px-1 py-4 text-center"
                         onClick={(e) => {
-                          if ((e.target as HTMLElement).tagName !== 'INPUT') {
+                          const tag = (e.target as HTMLElement).tagName
+                          if (!['INPUT', 'BUTTON', 'A', 'SVG', 'PATH'].includes(tag)) {
                             triggerRadioInput(inputId)
                           }
                         }}
@@ -307,12 +357,22 @@ const MatrixRadio = ({
       {/* Mobile stacked layout */}
       <div className="space-y-4 md:hidden">
         {rows.map((row, rowIdx) => {
-          const { text, link } = getRowContent(row)
+          const { text, link, description, links } = getRowContent(row)
           const displayRow = formatSubQuestion(text, rowIdx)
           return (
             <div key={rowIdx} className="rounded-lg border border-gray-700 bg-gray-800 p-4">
               <p className="mb-3 text-base text-white md:text-lg">
                 {displayRow}
+                {description && (
+                  <button
+                    type="button"
+                    onClick={() => toggleDescription(rowIdx)}
+                    className="focus:ring-primary-600 ml-3 inline-flex h-6 w-6 cursor-pointer items-center justify-center rounded-full border border-gray-600 text-sm text-white hover:bg-gray-700 focus:ring-2 focus:outline-none"
+                    aria-label="Learn more about this resource"
+                  >
+                    ?
+                  </button>
+                )}
                 {link && (
                   <a
                     href={link}
@@ -324,6 +384,23 @@ const MatrixRadio = ({
                   </a>
                 )}
               </p>
+              {description && activeDescription === rowIdx && (
+                <div className="mb-3 rounded-lg border border-gray-700 bg-gray-900/70 p-3 text-sm text-gray-300 md:text-lg">
+                  <p>{description}</p>
+                  {links &&
+                    links.map((linkItem, linkIdx) => (
+                      <a
+                        key={linkIdx}
+                        href={linkItem.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-primary-500 hover:text-primary-400 mt-2 block break-all hover:underline"
+                      >
+                        {(linkItem.label || linkItem.url).replace(/https?:\/\//g, '')}
+                      </a>
+                    ))}
+                </div>
+              )}
               <div className="grid grid-cols-5 gap-2">
                 {options.map((option, optIdx) => (
                   <label
@@ -1030,6 +1107,8 @@ export default function SurveyForm() {
         if (data[`skills_importance-${i}`] === undefined) errors.add('skills_importance')
       for (let i = 0; i < 3; i++)
         if (data[`edu_opinion-${i}`] === undefined) errors.add('edu_opinion')
+      for (let i = 0; i < 3; i++)
+        if (data[`interest_resources-${i}`] === undefined) errors.add('interest_resources')
     }
 
     if (step === 5) {
@@ -1067,7 +1146,8 @@ export default function SurveyForm() {
     if (step === 2)
       fieldOrder = ['trends_12_15', 'recent_media', 'privacy_violations', 'edu_resources']
     if (step === 3) fieldOrder = ['safety_concerns', 'tech_attitude', 'controls']
-    if (step === 4) fieldOrder = ['expert_opinions', 'skills_importance', 'edu_opinion']
+    if (step === 4)
+      fieldOrder = ['expert_opinions', 'skills_importance', 'edu_opinion', 'interest_resources']
     if (step === 5) {
       fieldOrder = ['role', 'children-count']
       // We check up to 5 children as that's the max rows in ChildrenTable
@@ -1282,7 +1362,7 @@ export default function SurveyForm() {
               <h3 className="mb-2 text-base font-semibold text-white md:text-lg">
                 How many questions in this section?
               </h3>
-              <p className="mb-0 text-base text-gray-300 md:text-lg">3</p>
+              <p className="mb-0 text-base text-gray-300 md:text-lg">4</p>
             </div>
             <div className="border-t border-gray-700 pt-8">
               {firstError === 'tech_knowledge' && <ErrorBanner />}
@@ -1758,12 +1838,13 @@ export default function SurveyForm() {
               <p className="mb-6 text-base text-gray-300 md:text-lg">
                 There have been numerous recent calls by experts for more and earlier tech and
                 cybersecurity education in Ireland. It is important to understand if this sentiment
-                is echoed by current parents.
+                is echoed by current parents, and if the resources being offered by Digital Knights
+                are in line with what parents want for their children.
               </p>
               <h3 className="mb-2 text-base font-semibold text-white md:text-lg">
                 How many questions in this section?
               </h3>
-              <p className="mb-0 text-base text-gray-300 md:text-lg">3</p>
+              <p className="mb-0 text-base text-gray-300 md:text-lg">4</p>
             </div>
             <div className="border-t border-gray-700 pt-8">
               {firstError === 'expert_opinions' && <ErrorBanner />}
@@ -1812,14 +1893,15 @@ export default function SurveyForm() {
                 'Very important',
               ]}
               rows={[
-                'How the internet works, e.g. what happens when they visit a website or use an app',
-                'Computational thinking & creativity, e.g. how to solve problems using technology',
+                'How the internet works',
+                'Computational thinking & creativity',
                 'How to read and understand the data an app or website sends and receives',
                 'How to set up a smartphone for privacy and security from day one',
-                'Coding e.g. learning a programming language like Python, Javascript',
-                'Web design, e.g. how to create and publish a website',
-                'How to minimise your digital footprint',
-                'How to store personal data (e.g. photos/videos/documents) securely and independently, rather than relying on cloud services',
+                'How to identify scams and phishing attempts online',
+                'Learning a programming language',
+                'How to develop a website or app',
+                'How to minimise their digital footprint',
+                'How to store personal data (e.g. photos/videos/documents) securely and independently',
               ]}
             />
 
@@ -1835,9 +1917,51 @@ export default function SurveyForm() {
                 'I would like to learn more about how to teach my child/children how to stay safe online.',
                 'I am confident that my child/children (will) receive sufficient education in school to keep them safe online.',
                 'I am confident that the technical education my child/children (will) receive at school prepares them for the world they will enter as adults.',
+              ]}
+            />
+
+            {firstError === 'interest_resources' && <ErrorBanner />}
+            <MatrixRadio
+              name="interest_resources"
+              error={validationErrors.has('interest_resources')}
+              questionLabel="Q.14 Interest in Digital Knights learning resources"
+              questionText="Indicate whether you would be interested in availing of the following resources provided by Digital Knights:"
+              options={['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree']}
+              rows={[
                 {
-                  text: 'I would be interested in my child/children attending extracurricular classes based on the proposed Digital Knights curriculum (opens in new tab).',
-                  link: '/curriculum',
+                  text: (
+                    <>
+                      I am interested in reading articles about tech and cybersecurity aimed at
+                      parents (see{' '}
+                      <a
+                        href="/blog"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-primary-500 hover:text-primary-400 hover:underline"
+                      >
+                        articles
+                      </a>{' '}
+                      - opens in new tab).
+                    </>
+                  ),
+                },
+                'I am interested in accessing guides for parents on how to best help introduce their child to the digital world.',
+                {
+                  text: (
+                    <>
+                      I am interested in having my child attend classes based on the Digital Knights
+                      curriculum (see{' '}
+                      <a
+                        href="/curriculum"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-primary-500 hover:text-primary-400 hover:underline"
+                      >
+                        curriculum
+                      </a>{' '}
+                      - opens in new tab).
+                    </>
+                  ),
                 },
               ]}
             />
@@ -1871,7 +1995,7 @@ export default function SurveyForm() {
               <h3 className="mb-2 text-base font-semibold text-white md:text-lg">
                 How many questions in this section?
               </h3>
-              <p className="mb-0 text-base text-gray-300 md:text-lg">4</p>
+              <p className="mb-0 text-base text-gray-300 md:text-lg">3</p>
             </div>
             <div className="border-t border-gray-700 pt-8">
               <div className="mb-8 grid grid-cols-1 gap-6 md:grid-cols-2">
