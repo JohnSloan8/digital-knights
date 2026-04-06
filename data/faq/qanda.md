@@ -57,9 +57,13 @@ If you are reading this page, it is likely you are a parent who has an interest 
 
 It is not that long ago that computer and tech related skills were only learned by a small subset of the population who had a special interest or aptitude for the subject. Today, these skills need to be learned by everyone, not just the 'techy' types. It is the responsibility of those who design and deliver education in this field (including myself) to make sure it is accessible to everyone.
 
+### If my kids learn about technology, wont they end up spend more time using technology and staring at screens?
+
+Some people think that if they send their kids to a martial arts class, they will become more agressive and get in fights. Research shows the opposite is true (See this [meta-analysis]('https://www.sciencedirect.com/science/article/abs/pii/S1359178917300976')). In the same vain, I hope that demystifying the technology behind the screen will aid children in resisting its pull. The real world is on the outside, and that is where kids should be spending their time.
+
 ### Will there be education for parents?
 
-Yes. Informative [articles](/blog) and guides will be published on this website.
+Yes. Informative [articles](/blog) will be published monthly on this website.
 
 ### When is the ideal time for a child to start learning?
 
