@@ -102,7 +102,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <meta name="theme-color" content="#141a1e" />
       <link rel="alternate" type="application/rss+xml" href={`${basePath}/feed.xml`} />
       {/* <body className="bg-[radial-gradient(ellipse_at_center,_#172554_30%,_#000000_100%)] bg-fixed pl-[calc(100vw-100%)] font-sans text-white antialiased"> */}
-      <body className="bg-background font-sans text-white antialiased" suppressHydrationWarning>
+      <body
+        className="bg-background overflow-x-hidden font-sans text-white antialiased"
+        suppressHydrationWarning
+      >
         {/* <Analytics analyticsConfig={siteMetadata.analytics as AnalyticsConfig} /> */}
         <Analytics />
         <SearchProvider searchConfig={siteMetadata.search as SearchConfig}>

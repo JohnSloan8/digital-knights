@@ -25,33 +25,38 @@ export default function Home({ posts }) {
       </div>
       <div className="relative z-10 mx-auto mt-[calc(100svh-64px)] w-full md:mt-[calc(100svh-96px)]">
         <div className="py-6 backdrop-blur-sm">
-          <div className="mx-auto max-w-4xl space-y-8 px-4">
-            <Quote>
-              <p className="mb-6 text-lg font-light text-blue-100 italic md:text-xl">
-                Starting digital media and literacy education at secondary level is simply too late
-              </p>
-              <footer className="text-right">
-                <Link
-                  href="https://www.cybersafekids.ie/report2025/"
-                  className="text-primary-500 hover:text-primary-400 text-base not-italic !no-underline md:text-lg"
-                >
-                  CyberSafeKids 'Trends and Usage' Report (2025)
-                </Link>
-              </footer>
-            </Quote>
-            <Quote>
-              <p className="mb-6 text-lg font-light text-blue-100 italic md:text-xl">
-                We need to invest more in resources for digital education
-              </p>
-              <footer className="text-right">
-                <Link
-                  href="https://www.oco.ie/app/uploads/2025/09/OCO-Smartphone-Ban-Child-Friendly-Report.pdf"
-                  className="text-primary-500 hover:text-primary-400 text-base not-italic !no-underline md:text-lg"
-                >
-                  Ombudsman for Children's Office 'One Size Does Not Fit All' Report (2025)
-                </Link>
-              </footer>
-            </Quote>
+          <div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 px-4 md:grid-cols-2">
+            <div className="rounded-2xl border border-gray-700/50 bg-gray-800/40">
+              <Quote>
+                <p className="mb-6 text-lg font-light text-blue-100 italic md:text-xl">
+                  Starting digital media and literacy education at secondary level is simply too
+                  late
+                </p>
+                <footer className="text-right">
+                  <Link
+                    href="https://www.cybersafekids.ie/report2025/"
+                    className="text-primary-500 hover:text-primary-400 text-base not-italic !no-underline md:text-lg"
+                  >
+                    CyberSafeKids 'Trends and Usage' Report (2025)
+                  </Link>
+                </footer>
+              </Quote>
+            </div>
+            <div className="rounded-2xl border border-gray-700/50 bg-gray-800/40">
+              <Quote>
+                <p className="mb-6 text-lg font-light text-blue-100 italic md:text-xl">
+                  We need to invest more in resources for digital education
+                </p>
+                <footer className="text-right">
+                  <Link
+                    href="https://www.oco.ie/app/uploads/2025/09/OCO-Smartphone-Ban-Child-Friendly-Report.pdf"
+                    className="text-primary-500 hover:text-primary-400 text-base not-italic !no-underline md:text-lg"
+                  >
+                    Ombudsman for Children's Office 'One Size Does Not Fit All' Report (2025)
+                  </Link>
+                </footer>
+              </Quote>
+            </div>
           </div>
         </div>
         <div className="container mx-auto px-4 py-12">
