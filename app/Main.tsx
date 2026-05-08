@@ -80,7 +80,7 @@ export default function Home({ posts }) {
               >
                 curriculum
               </Link>{' '}
-              for 8-13 year olds. Parents' input is being actively sought through a{' '}
+              for 7-13 year olds. Parents' input is being actively sought through a{' '}
               <Link
                 href="/survey"
                 className="text-primary-500 hover:text-primary-400 !no-underline"
@@ -88,6 +88,10 @@ export default function Home({ posts }) {
                 survey
               </Link>{' '}
               and follow-up discussions.
+              <Link href="/blog" className="text-primary-500 hover:text-primary-400 !no-underline">
+                Articles
+              </Link>{' '}
+              for parents on relevant topics will also be posted regularly.
             </p>
 
             <p>
