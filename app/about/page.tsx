@@ -15,7 +15,7 @@ export default function Page() {
   return (
     <>
       <div className="divide-y divide-gray-700">
-        <PageHeader title="About" description="Information about the Digital Knights project." />
+        <PageHeader title="About" description="More information about me and the project." />
         <AuthorLayout content={mainContent}>
           <MDXLayoutRenderer code={author.body.code} components={components} />
         </AuthorLayout>

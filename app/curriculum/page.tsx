@@ -106,10 +106,7 @@ export default function Curriculum() {
   return (
     <SectionContainer>
       <div className="divide-y divide-gray-700">
-        <PageHeader
-          title="Curriculum"
-          description="Learning through doing - building a smartphone from scratch."
-        />
+        <PageHeader title="Curriculum" description="You want a phone? Build it." />
 
         <div className="py-8">
           {/* Introduction */}
@@ -179,12 +176,12 @@ export default function Curriculum() {
         <div className="prose dark:prose-invert max-w-none py-8 text-gray-300">
           <h2 className="mb-6 text-3xl font-bold text-white">Aims</h2>
           <p className="text-lg leading-relaxed">
-            The main aim for each child who completes the curriculum is to become a technologically
-            self-sufficient digital citizens - one who is in control of their own devices, data and
-            digital footprint. They can use technology safely, wisely, and in creative ways to solve
-            real-world problems. Additional aims include inspiring a passion for technology, laying
-            foundations for Junior Cert Technology and Leaving Cert Computer Science subjects, and
-            providing a valuable set of skills for future success.
+            The main aim is for each child to become a technologically self-sufficient digital
+            citizen - one who is in control of their devices, data and digital footprint. They can
+            use technology safely, wisely, and in creative ways to solve real-world problems.
+            Additional aims include inspiring a passion for technology, laying foundations for
+            Junior Cert Technology and Leaving Cert Computer Science subjects, and providing a
+            valuable set of skills for future success.
           </p>
         </div>
 
