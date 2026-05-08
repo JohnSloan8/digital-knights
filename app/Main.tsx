@@ -87,7 +87,7 @@ export default function Home({ posts }) {
               >
                 survey
               </Link>{' '}
-              and follow-up discussions.
+              and follow-up discussions.{' '}
               <Link href="/blog" className="text-primary-500 hover:text-primary-400 !no-underline">
                 Articles
               </Link>{' '}
