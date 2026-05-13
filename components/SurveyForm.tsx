@@ -237,7 +237,7 @@ const MatrixRadio = ({
       </h3>
       <p className="mb-8 text-base text-gray-300 md:text-lg">{questionText}</p>
       {hasDescriptions && (
-        <p className="mb-6 text-sm text-gray-500 italic md:text-lg">
+        <p className="mb-6 text-sm text-gray-400 italic md:text-lg">
           (Click the &apos;?&apos; for further information and resource links. Links open in a new
           tab.)
         </p>
@@ -640,7 +640,7 @@ const Checkboxes = ({ questionLabel, questionText, options, name, error }: Check
       </h3>
       <p className="mb-4 text-base text-gray-300 md:text-lg">{questionText}</p>
       {options.some((o) => o.description) && (
-        <p className="mb-8 text-sm text-gray-500 italic md:text-lg">
+        <p className="mb-8 text-sm text-gray-400 italic md:text-lg">
           (Click the &apos;?&apos; for further information and links)
         </p>
       )}
@@ -1256,9 +1256,9 @@ export default function SurveyForm() {
   }, [userId])
 
   // Debugging logs
-  useEffect(() => {
-    console.log('Survey Data:', surveyData)
-  }, [surveyData])
+  // useEffect(() => {
+  //   console.log('Survey Data:', surveyData)
+  // }, [surveyData])
 
   const saveResponse = async (key: string, value: SurveyValue) => {
     // 1. Calculate new state immediately using the Ref (source of truth for latest edits)
@@ -1624,7 +1624,7 @@ export default function SurveyForm() {
                   },
                   {
                     label:
-                      "Google/YouTube (2019 & 2025): Repeated, unauthorised collection of children's data for targetted ads - 70 Million & 0 million",
+                      "Google/YouTube (2019 & 2025): Repeated, unauthorised collection of children's data for targetted ads - 70 Million & 30 million",
                     description:
                       'US regulators said YouTube knowingly tracked viewing habits on kid-focused channels to sell ads, violating COPPA. Google promised to treat all kid content as child-directed and limit personalization, yet faced another 0m penalty in 2025 for allowing similar tracking on the YouTube Kids app.',
                     links: [
@@ -1949,7 +1949,7 @@ export default function SurveyForm() {
                 {
                   text: (
                     <>
-                      I am interested in having my child attend classes based on the Digital Knights
+                      I am interested in my child attending classes based on the Digital Knights
                       curriculum (see{' '}
                       <a
                         href="/curriculum"
@@ -2058,8 +2058,8 @@ export default function SurveyForm() {
               the development of a new tech and cybersecurity curriculum.
             </p>
             <p className="mb-6 text-gray-300 md:text-lg">
-              If you would like to stay informed about the results of this survey, please provide
-              your email address below.
+              If you would like to stay informed about the project, or are interested in future
+              classes for your child, please provide your email address below.
             </p>
 
             <div

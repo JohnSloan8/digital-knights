@@ -11,17 +11,17 @@ Digital Knights is a new, educational initiative for preparing children in Irela
 
 ### Why is there a need for this?
 
-The current solution to the dangers associated with children in digital spaces is to ban phones, social media, apps etc. However, education is much more effective and empowering approach than restrictions. While the current primary school curriculum and resources for online safety include a lot of useful information on some topics (e.g. cyberbullying, appropriate vs. inappropriate content), there is a lack of detail on technical aspects.
+The current solution to the dangers associated with children in digital spaces is to ban phones, social media, apps etc. However, education is a much more effective and empowering approach than restrictions. While the current primary school curriculum and resources for online safety include a lot of useful information on some topics (e.g. cyberbullying, appropriate vs. inappropriate content), there is a lack of detail on technical aspects.
 
-Understanding basic technical details of computers, data, and networking before owning a phone can help young people make smarter choices when they do. There is ample evidence from other fields that this educational approach is effective. For example, when teaching sex education, we don't shy away from explaining details of the menstrual cycle, sperm, STDs, etc. Young people armed with this knowledge make smarter choices than those who are left ignorant. We need to do provide the same for smartphones.
+Understanding how complicated systems work can help us make informed decisions when dealing with them. There is ample evidence from other fields that this educational approach is effective - when teaching sex education, we don't shy away from explaining the menstrual cycle, sperm, STDs, etc. Young people armed with this knowledge make smarter choices than those who are left ignorant. We need to do the same for smartphones, because those who understand the basic technical details of computers, data, and networking before owning a phone will make smarter choices.
 
 ### Why not leave this education to schools?
 
-I don't believe the current curriculum and educational resources available in Irish primary schools adequately prepare children for entry to the digital world. This includes the recently announced Switched On programme for 5th and 6th class ([see article](/blog/switched-on)). The materials do not provide sufficient technical depth to solve the problems I am most concerned with. Additionally, teachers have enough on their plates without being expected to become proficient in tech and cybersecurity as well.
+I don't believe the current curriculum and educational resources available in Irish primary schools adequately prepare children for entry to the digital world. This includes the 2026 [Switched On](https://www.webwise.ie/switchedon/) programme for 5th and 6th class ([see article](/blog/switched-on)). The materials do not provide sufficient technical depth to solve the problems I am most concerned with. Additionally, teachers have enough on their plates without being expected to become proficient in tech and cybersecurity as well.
 
 ### Which problems?
 
-My background in tech and cybersecurity mean I am acutely aware of the dangers we face when going online. For young people, my primary concerns relate to the data they create and share which makes up their _digital footprint_. This digital footprint is used by tech companies to train algorithms for profiling and targeting content. I don't want my child's feed populated with celebrities/influencers who have had plastic surgery because they once searched for 'nose job' out of curiosity. I don't want my children getting alerts about the latest deals on a product because they recently searched for it and are now in the vicinity of that company's shop. And, I particularly don't want my children seeing extreme political content from only one point of view.
+My background in tech and cybersecurity mean I am acutely aware of the dangers we face when going online. For young people, my primary concerns relate to the data they create and share which makes up their _digital footprint_. This digital footprint is used by tech companies to train algorithms for profiling and targeting content. I don't want my child's feed populated with celebrities/influencers who have had plastic surgery because they once searched for 'nose job' out of curiosity. I don't want my children getting alerts about the latest deals on a product because they recently searched for it and are now in the vicinity of that company's shop. And, I particularly don't want my children being fed extreme political content from one, polarising point of view.
 
 ### Won't the upcoming smartphone and social media bans for kids solve the problems you have identified?
 
@@ -59,15 +59,15 @@ It is not that long ago that computer and tech related skills were only learned 
 
 ### If my kids learn about technology, wont they end up spend more time using technology and staring at screens?
 
-Some people think that if they send their kids to a martial arts class, they will become more agressive and get in fights. Research shows the opposite is true (See this [meta-analysis]('https://www.sciencedirect.com/science/article/abs/pii/S1359178917300976')). In the same vain, I hope that demystifying the technology behind the screen will aid children in resisting its pull. The real world is on the outside, and that is where kids should be spending their time.
+Some people think that if they send their kids to a martial arts class, they will become more agressive and get in more fights. Research shows the opposite is true (See this [meta-analysis](https://www.sciencedirect.com/science/article/abs/pii/S1359178917300976)). In the same vain, I hope that demystifying the technology behind the screen will aid children in resisting its pull. Technology is, at its best, a tool that helps us in the real world. But that real world is on the outside, and it is where kids should be spending their time.
 
 ### Will there be education for parents?
 
-Yes. Informative [articles](/blog) will be published monthly on this website.
+Yes. Informative [articles](/blog) will be published on this website (once every month or two when I have time) .
 
 ### When is the ideal time for a child to start learning?
 
-7-9 years old is ideal. This will allow them to follow the standard [curriculum](/curriculum) and graduate to a real smartphone at the smae age as their friends(approximately 13).
+7-9 years old is ideal. This will allow them to follow the standard [curriculum](/curriculum) and graduate to a real smartphone at the smae age as their friends (approximately 13).
 
 ### What if my child is too young/old to start?
 
@@ -83,7 +83,7 @@ Individual levels of parental monitoring are a family matter. Options for parent
 
 ### When/Where are classes held?
 
-See [classes]('/') page for details
+See [classes](/classes) page for details
 
 ### Can I get involved?
 

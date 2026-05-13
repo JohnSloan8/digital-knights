@@ -14,7 +14,7 @@ export default function SurveyCompletePage() {
 
           <ul>
             <li>
-              Register your interest for future classes: <Link href="/waitlist">Waitlist</Link>
+              Register your interest for future classes: <Link href="/classes">Classes</Link>
             </li>
             <li>
               View the proposed cybersecurity curriculum structure:{' '}

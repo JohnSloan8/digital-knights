@@ -143,7 +143,7 @@ export default function WaitlistForm() {
       other_info: otherInfo,
       created_at: new Date().toISOString(),
     }
-    console.log('Submitting payload:', payload)
+    // console.log('Submitting payload:', payload)
 
     try {
       const { error } = await supabase.from('waitlist').insert(payload)

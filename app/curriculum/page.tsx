@@ -106,7 +106,7 @@ export default function Curriculum() {
   return (
     <SectionContainer>
       <div className="divide-y divide-gray-700">
-        <PageHeader title="Curriculum" description="You want a phone? Build it." />
+        <PageHeader title="Curriculum" description="You want a phone? Build it yourself" />
 
         <div className="py-8">
           {/* Introduction */}
