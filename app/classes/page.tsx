@@ -2,7 +2,7 @@ import { genPageMetadata } from 'app/seo'
 import PageHeader from '@/components/PageHeader'
 import WaitlistForm from './WaitlistForm'
 import Link from '@/components/Link'
-import WaitingScene from '@/components/WaitingScene'
+import WaitingSceneWrapper from '@/components/WaitingSceneWrapper'
 
 export const metadata = genPageMetadata({ title: 'Classes' })
 
@@ -140,7 +140,7 @@ export default function ClassesPage() {
             </p>
           </div>
 
-          <WaitingScene className="relative z-[-1] -mt-[80px] mb-0 h-[300px] w-full md:h-[500px]" />
+          <WaitingSceneWrapper className="relative z-[-1] -mt-[80px] mb-0 h-[300px] w-full md:h-[500px]" />
 
           <WaitlistForm />
         </div>

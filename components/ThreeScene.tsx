@@ -883,7 +883,8 @@ export default function ThreeScene({ className }: { className?: string }) {
             alt="Digital Knights"
             width={500}
             height={120}
-            className="h-auto w-full max-w-[300px] md:max-w-[500px]"
+            className="w-full max-w-[300px] md:max-w-[500px]"
+            style={{ height: 'auto' }}
             priority
           />
         </div>

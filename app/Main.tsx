@@ -2,7 +2,7 @@ import Link from '@/components/Link'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import { formatDate } from 'pliny/utils/formatDate'
-import ThreeScene from '@/components/ThreeScene'
+import ThreeSceneWrapper from '@/components/ThreeSceneWrapper'
 import Quote from '@/components/Quote'
 import headerNavLinks from '@/data/headerNavLinks'
 
@@ -21,7 +21,7 @@ export default function Home({ posts }) {
   return (
     <>
       <div id="react-three-fibre-container">
-        <ThreeScene className="absolute top-0 left-0 h-[100svh] w-full" />
+        <ThreeSceneWrapper className="absolute top-0 left-0 h-[100svh] w-full" />
       </div>
       <div className="relative z-10 mx-auto mt-[calc(100svh-64px)] w-full md:mt-[calc(100svh-96px)]">
         <div className="py-6 backdrop-blur-sm">
