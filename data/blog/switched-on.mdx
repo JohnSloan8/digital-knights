@@ -331,36 +331,6 @@ For a malicious link like this to exist and remain undetected on the website for
 
 To be honest, I am not completely surprised that this type of serious issue is present. I had already noted several others problems prior to discovering this one. From surface-level design flaws, like the aforementioned inconsistent formatting, to more significant problems such as failed download links. In the video below you can see the take home PDFs for the Switched On project failing to load due to the error: <i>"Missing env var"</i>. This means Webwise have not properly configured the site, or even checked it. This one particularly irked me because it's very tough to do research when you can't access the materials you are trying to review!
 
-<video className="my-4 w-full rounded-lg" controls loop muted playsInline preload="metadata">
-  <source src="/static/images/blog/download-fail.webm" type="video/webm" />
-  Your browser does not support the video tag.
-</video>
-
-I ran the Webwise page for the Switched On project through [Google's PageSpeed Insights tool](https://pagespeed.web.dev/). This is a tool commonly used by technical teams to perform basic checks on performance before publishing online. A performance score of 90 and a pass on the core vitals is the minimum a developer should be aiming for. The Webwise site failed.
-
-<Image
-  src="/static/images/blog/webwise-page-speed.webp"
-  alt="Google PageSpeed results for the Webwise Switched On page"
-  width={870}
-  height={316}
-  className="mx-auto block w-full rounded-lg"
-/>
-<span className="block text-center text-sm italic">
-  Figure 8. Google PageSpeed score for the Switched On page.
-</span>
-<Image
-  src="/static/images/blog/webwise-pagespeed-fail.webp"
-  alt="Google PageSpeed fail Webwise Switched On page"
-  width={370}
-  height={116}
-  className="mx-auto block w-full max-w-[500px] rounded-lg"
-/>
-<span className="block text-center text-sm italic">
-  Figure 9. PageSpeed report showing a failed performance result.
-</span>
-
-Webwise's site fails the PageSpeed test because the developers haven't followed the most basic technical guidelines for web design. For example, the main image on the [Switched On](https://www.webwise.ie/switchedon/) page hasn't been processed for use on the web. It is 5MB in size, when images of this size should be much smaller - 0.2MB at most. I used the same image at the top of this page, converted for web use, and it is less than 0.1MB. There is no noticeable difference in display quality, and it loads fifty times more quickly.
-
 The real concern I have that arises from seeing these problems is that the people who are designing and developing the materials for keeping our kids safe online don't seem to be terribly good at doing it themselves. Their work often evidences a lack of knowledge of even the basics. I personally feel frustrated by this because I understand how people can look at a website and materials like these and automatically assume there must be experts behind them, but be ignorant of what the problems underneath show.
 
 Ok, rant almost over. I will end on a positive note though... this is the type of stuff that motivated me to create the Digital Knights in the first place. In my talks with parents, many feel that their kids have already learned about online safety in school and don't really need to know much more. In these situations, I find myself hesitant to upset the parents' feelings of security. However, when I am confronted with the issues I've outlined in this article, it reminds me that we really need to do better, and I can play my own part by offering an alternative educational solution.
