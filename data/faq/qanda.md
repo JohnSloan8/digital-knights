@@ -75,7 +75,7 @@ Please get in contact anyway. Younger children can be added to the waiting list,
 
 ## Will I be required to purchase any of the materials listed in the curriculum?
 
-No. All materials for classes wil be provided except for the smartphone the child gets in the final semester.
+No. All materials for classes wil be provided except for the smartphone the child will require in the final semester.
 
 ### What if my child uses the tech skills they learn to get around my parental controls?
 
