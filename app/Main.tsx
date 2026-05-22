@@ -138,6 +138,12 @@ export default function Home({ posts }) {
                 >
                   Curriculum <span aria-hidden="true">&rarr;</span>
                 </Link>
+                <Link
+                  href="/classes"
+                  className="text-primary-500 hover:text-primary-400 font-bold !no-underline"
+                >
+                  Classes <span aria-hidden="true">&rarr;</span>
+                </Link>
               </div>
             </div>
 
