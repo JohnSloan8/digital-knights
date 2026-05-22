@@ -60,6 +60,9 @@ export default function Home({ posts }) {
           </div>
         </div>
         <div className="container mx-auto py-12">
+          <h2 className="mt-00 mb-4 text-2xl leading-8 font-bold tracking-tight text-gray-100">
+            Introduction
+          </h2>
           <div className="prose prose-invert md:prose-lg w-full max-w-none">
             <p>
               Digital Knights is an independent educational initiative dedicated to preparing
@@ -72,15 +75,21 @@ export default function Home({ posts }) {
             </p>
             <p>
               On this website, you will find resources for both parents and children covering the
-              topics of tech and cybersecurity. The main focus is on developing and delivering a
-              structured{' '}
+              topics of tech and cybersecurity. The main focus is on developing a structured{' '}
               <Link
                 href="/curriculum"
                 className="text-primary-500 hover:text-primary-400 !no-underline"
               >
                 curriculum
               </Link>{' '}
-              for 7-13 year olds. Parents' input is being actively sought through a{' '}
+              for 7-13 year olds and delivering it through after school{' '}
+              <Link
+                href="/classes"
+                className="text-primary-500 hover:text-primary-400 !no-underline"
+              >
+                classes
+              </Link>
+              {''}. Parents' input is being actively sought through a{' '}
               <Link
                 href="/survey"
                 className="text-primary-500 hover:text-primary-400 !no-underline"
