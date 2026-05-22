@@ -74,7 +74,7 @@ const ProgressBar = ({ currentStep, setStep }: ProgressBarProps) => {
             {/* Connector Line */}
             {index > 0 && (
               <div
-                className={`h-1 w-8 sm:w-16 ${
+                className={`h-1 w-6 sm:w-16 ${
                   step <= currentStep ? 'bg-primary-500' : 'bg-gray-700'
                 }`}
               />
@@ -85,7 +85,7 @@ const ProgressBar = ({ currentStep, setStep }: ProgressBarProps) => {
               onClick={() => {
                 setStep(step)
               }}
-              className={`flex h-10 w-10 cursor-pointer items-center justify-center rounded-full text-base font-bold transition-all duration-200 md:text-lg ${
+              className={`flex h-8 w-8 cursor-pointer items-center justify-center rounded-full text-sm font-bold transition-all duration-200 sm:h-10 sm:w-10 sm:text-base md:text-lg ${
                 step === currentStep
                   ? 'bg-primary-500 ring-primary-500/30 text-white ring-4'
                   : step < currentStep
@@ -360,7 +360,7 @@ const MatrixRadio = ({
           const { text, link, description, links } = getRowContent(row)
           const displayRow = formatSubQuestion(text, rowIdx)
           return (
-            <div key={rowIdx} className="rounded-lg border border-gray-700 bg-gray-800 p-4">
+            <div key={rowIdx} className="border-b border-gray-700/50 py-4 last:border-0">
               <p className="mb-3 text-base text-white md:text-lg">
                 {displayRow}
                 {description && (
@@ -401,25 +401,31 @@ const MatrixRadio = ({
                     ))}
                 </div>
               )}
-              <div className="grid grid-cols-5 gap-2">
-                {options.map((option, optIdx) => (
-                  <label
-                    key={optIdx}
-                    className="flex w-full flex-col items-center justify-end text-center text-xs text-white"
-                  >
-                    <span className="mb-2 flex min-h-[36px] items-end justify-center px-1 text-white uppercase">
+              <div className="mt-4 flex flex-col gap-2 sm:gap-3">
+                {[...options].reverse().map((option) => {
+                  const optIdx = options.indexOf(option)
+                  const isSelected = localState[`${name}-${rowIdx}`] === option
+                  return (
+                    <label
+                      key={optIdx}
+                      className={`w-full cursor-pointer rounded-lg border p-3 text-center text-sm font-medium transition-colors ${
+                        isSelected
+                          ? 'border-primary-500 bg-primary-500/20 text-white'
+                          : 'border-gray-600 bg-gray-700/50 text-gray-300 hover:bg-gray-600'
+                      }`}
+                    >
+                      <input
+                        type="radio"
+                        name={`${name}-${rowIdx}-mobile`}
+                        value={option}
+                        checked={isSelected}
+                        onChange={(e) => handleChange(`${name}-${rowIdx}`, e.target.value)}
+                        className="sr-only"
+                      />
                       {option}
-                    </span>
-                    <input
-                      type="radio"
-                      name={`${name}-${rowIdx}-mobile`}
-                      value={option}
-                      checked={localState[`${name}-${rowIdx}`] === option}
-                      onChange={(e) => handleChange(`${name}-${rowIdx}`, e.target.value)}
-                      className="focus:ring-primary-600 text-primary-600 h-4 w-4 cursor-pointer border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-2"
-                    />
-                  </label>
-                ))}
+                    </label>
+                  )
+                })}
               </div>
             </div>
           )
@@ -516,7 +522,7 @@ const MatrixSlider = ({
           return (
             <div
               key={idx}
-              className="rounded-lg border border-gray-700 bg-gray-800 p-4 md:border-0 md:bg-transparent md:p-0"
+              className="border-b border-gray-700/50 py-4 last:border-0 md:border-0 md:p-0"
             >
               <div className="flex flex-col space-y-2">
                 <label className="text-base text-white md:text-lg">{displayRow}</label>
@@ -843,7 +849,7 @@ const MatrixRating = ({
           const currentVal = parseInt(localState[`${name}-${rowIdx}`] || '0', 10)
 
           return (
-            <div key={rowIdx} className="rounded-lg border border-gray-700 bg-gray-800 p-4">
+            <div key={rowIdx} className="border-b border-gray-700/50 py-4 last:border-0">
               <p className="mb-4 text-base font-medium text-white md:text-lg">{displayRow}</p>
 
               <div className="flex w-full">
@@ -975,7 +981,7 @@ const ChildrenTable = ({ validationErrors }: { validationErrors: Set<string> }) 
         {rows.map((r) => (
           <div
             key={r}
-            className="animate-in fade-in slide-in-from-top-4 rounded-lg border border-gray-700 bg-gray-800 p-4 duration-500 ease-out"
+            className="animate-in fade-in slide-in-from-top-4 border-b border-gray-700/50 py-4 duration-500 ease-out last:border-0"
           >
             <h4 className="mb-4 text-base font-semibold text-white md:text-lg">Child {r}</h4>
             <div className="space-y-4">
@@ -1058,6 +1064,7 @@ export default function SurveyForm() {
   const [surveyData, setSurveyData] = useState<Record<string, SurveyValue>>({})
   const surveyDataRef = React.useRef<Record<string, SurveyValue>>({})
   const [isLoading, setIsLoading] = useState(!!userId)
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const [validationErrors, setValidationErrors] = useState<Set<string>>(new Set())
   const [showErrorSummary, setShowErrorSummary] = useState(false)
 
@@ -1326,6 +1333,7 @@ export default function SurveyForm() {
             if (errors.size > 0) {
               scrollToFirstError(5, errors)
             } else {
+              setIsSubmitting(true)
               // Mark as complete in DB
               if (userId) {
                 await supabase
@@ -1343,7 +1351,7 @@ export default function SurveyForm() {
         >
           {/* SECTION 1 */}
           <div className={currentStep === 1 ? 'block' : 'hidden'}>
-            <div className="mb-8 rounded-xl border border-blue-800/60 bg-blue-950/35 p-5 md:p-6">
+            <div className="mb-8 rounded-xl border border-blue-800/60 bg-blue-950/35 px-3 py-5 md:p-6">
               <ProgressBar currentStep={currentStep} setStep={handleSetStep} />
               <h2 className="mb-6 pb-2 text-center text-2xl font-bold text-white md:text-3xl">
                 Section 1: Competency
@@ -1462,7 +1470,7 @@ export default function SurveyForm() {
 
           {/* SECTION 2 */}
           <div className={currentStep === 2 ? 'block' : 'hidden'}>
-            <div className="mb-8 rounded-xl border border-blue-800/60 bg-blue-950/35 p-5 md:p-6">
+            <div className="mb-8 rounded-xl border border-blue-800/60 bg-blue-950/35 px-3 py-5 md:p-6">
               <ProgressBar currentStep={currentStep} setStep={handleSetStep} />
               <h2 className="mb-6 pb-2 text-center text-2xl font-bold text-white md:text-3xl">
                 Section 2: Awareness
@@ -1734,7 +1742,7 @@ export default function SurveyForm() {
 
           {/* SECTION 3 */}
           <div className={currentStep === 3 ? 'block' : 'hidden'}>
-            <div className="mb-8 rounded-xl border border-blue-800/60 bg-blue-950/35 p-5 md:p-6">
+            <div className="mb-8 rounded-xl border border-blue-800/60 bg-blue-950/35 px-3 py-5 md:p-6">
               <ProgressBar currentStep={currentStep} setStep={handleSetStep} />
               <h2 className="mb-6 pb-2 text-center text-2xl font-bold text-white md:text-3xl">
                 Section 3: Concerns
@@ -1822,7 +1830,7 @@ export default function SurveyForm() {
 
           {/* SECTION 4 */}
           <div className={currentStep === 4 ? 'block' : 'hidden'}>
-            <div className="mb-8 rounded-xl border border-blue-800/60 bg-blue-950/35 p-5 md:p-6">
+            <div className="mb-8 rounded-xl border border-blue-800/60 bg-blue-950/35 px-3 py-5 md:p-6">
               <ProgressBar currentStep={currentStep} setStep={handleSetStep} />
               <h2 className="mb-6 pb-2 text-center text-2xl font-bold text-white md:text-3xl">
                 Section 4: Education
@@ -1975,7 +1983,7 @@ export default function SurveyForm() {
 
           {/* SECTION 5 */}
           <div className={currentStep === 5 ? 'block' : 'hidden'}>
-            <div className="mb-8 rounded-xl border border-blue-800/60 bg-blue-950/35 p-5 md:p-6">
+            <div className="mb-8 rounded-xl border border-blue-800/60 bg-blue-950/35 px-3 py-5 md:p-6">
               <ProgressBar currentStep={currentStep} setStep={handleSetStep} />
               <h2 className="mb-6 pb-2 text-center text-2xl font-bold text-white md:text-3xl">
                 Section 5: Basic Demographics
@@ -1998,8 +2006,8 @@ export default function SurveyForm() {
               <p className="mb-0 text-base text-gray-300 md:text-lg">3</p>
             </div>
             <div className="border-t border-gray-700 pt-8">
-              <div className="mb-8 grid grid-cols-1 gap-6 md:grid-cols-2">
-                <div>
+              <div className="mb-8 grid grid-cols-1 gap-y-8 md:grid-cols-2 md:gap-y-0">
+                <div className="border-b border-gray-700 pb-8 md:border-r md:border-b-0 md:pr-6 md:pb-0">
                   {firstError === 'role' && <ErrorBanner />}
                   <label
                     htmlFor="role"
@@ -2019,7 +2027,7 @@ export default function SurveyForm() {
                     <option>Guardian</option>
                   </select>
                 </div>
-                <div>
+                <div className="md:pl-6">
                   {firstError === 'children-count' && <ErrorBanner />}
                   <label
                     htmlFor="children-count"
@@ -2044,13 +2052,15 @@ export default function SurveyForm() {
               </div>
             </div>
 
-            {firstError && firstError.startsWith('child-') && <ErrorBanner />}
-            <ChildrenTable validationErrors={validationErrors} />
+            <div className="border-t border-gray-700 pt-8">
+              {firstError && firstError.startsWith('child-') && <ErrorBanner />}
+              <ChildrenTable validationErrors={validationErrors} />
+            </div>
           </div>
 
           {/* FINAL */}
           <div
-            className={`rounded-lg bg-gray-800 p-4 sm:p-8 ${currentStep === 5 ? 'block' : 'hidden'}`}
+            className={`mt-8 border-t border-gray-700 pt-8 ${currentStep === 5 ? 'block' : 'hidden'}`}
           >
             <h3 className="mb-4 text-xl font-bold text-white md:text-2xl">Finally</h3>
             <p className="mb-6 text-gray-300 md:text-lg">
@@ -2121,9 +2131,10 @@ export default function SurveyForm() {
               </button>
               <button
                 type="submit"
-                className="bg-primary-800 hover:bg-primary-900 focus:ring-primary-600 w-full cursor-pointer rounded-md px-5 py-2.5 text-base font-medium text-white ring-offset-black focus:ring-2 focus:ring-offset-2 focus:outline-none sm:w-auto md:text-lg"
+                disabled={isSubmitting}
+                className="bg-primary-800 hover:bg-primary-900 focus:ring-primary-600 w-full cursor-pointer rounded-md px-5 py-2.5 text-base font-medium text-white ring-offset-black transition-colors focus:ring-2 focus:ring-offset-2 focus:outline-none disabled:cursor-wait disabled:opacity-70 sm:w-auto md:text-lg"
               >
-                Submit Survey
+                {isSubmitting ? 'Submitting...' : 'Submit Survey'}
               </button>
             </div>
           </div>
