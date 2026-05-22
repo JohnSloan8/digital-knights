@@ -17,6 +17,7 @@ const space_grotesk = Space_Grotesk({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-space-grotesk',
+  preload: false,
 })
 
 const medievalSharp = MedievalSharp({
@@ -24,6 +25,7 @@ const medievalSharp = MedievalSharp({
   display: 'swap',
   weight: '400',
   variable: '--font-medieval-sharp',
+  preload: false,
 })
 
 export const metadata: Metadata = {
@@ -75,32 +77,34 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${space_grotesk.variable} ${medievalSharp.variable}`}
       suppressHydrationWarning
     >
-      <link
-        rel="apple-touch-icon"
-        sizes="180x180"
-        href={`${basePath}/static/favicons/apple-touch-icon.png`}
-      />
-      <link
-        rel="icon"
-        type="image/png"
-        sizes="32x32"
-        href={`${basePath}/static/favicons/favicon-32x32.png`}
-      />
-      <link
-        rel="icon"
-        type="image/png"
-        sizes="16x16"
-        href={`${basePath}/static/favicons/favicon-16x16.png`}
-      />
-      <link rel="manifest" href={`${basePath}/static/favicons/site.webmanifest`} />
-      <link
-        rel="mask-icon"
-        href={`${basePath}/static/favicons/safari-pinned-tab.svg`}
-        color="#5bbad5"
-      />
-      <meta name="msapplication-TileColor" content="#000000" />
-      <meta name="theme-color" content="#141a1e" />
-      <link rel="alternate" type="application/rss+xml" href={`${basePath}/feed.xml`} />
+      <head>
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href={`${basePath}/static/favicons/apple-touch-icon.png`}
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href={`${basePath}/static/favicons/favicon-32x32.png`}
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href={`${basePath}/static/favicons/favicon-16x16.png`}
+        />
+        <link rel="manifest" href={`${basePath}/static/favicons/site.webmanifest`} />
+        <link
+          rel="mask-icon"
+          href={`${basePath}/static/favicons/safari-pinned-tab.svg`}
+          color="#5bbad5"
+        />
+        <meta name="msapplication-TileColor" content="#000000" />
+        <meta name="theme-color" content="#141a1e" />
+        <link rel="alternate" type="application/rss+xml" href={`${basePath}/feed.xml`} />
+      </head>
       {/* <body className="bg-[radial-gradient(ellipse_at_center,_#172554_30%,_#000000_100%)] bg-fixed pl-[calc(100vw-100%)] font-sans text-white antialiased"> */}
       <body
         className="bg-background overflow-x-hidden font-sans text-white antialiased"

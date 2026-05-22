@@ -7,13 +7,13 @@ layout: 'FaqLayout'
 
 ### What is Digital Knights?
 
-Digital Knights is a new, educational initiative for preparing children in Ireland for entry into the digital world.
+Digital Knights is an independent, educational initiative which aims to prepare children in Ireland for entry into the digital world.
 
 ### Why is there a need for this?
 
-The current solution to the dangers associated with children in digital spaces is to ban phones, social media, apps etc. However, education is a much more effective and empowering approach than restrictions. While the current primary school curriculum and resources for online safety include a lot of useful information on some topics (e.g. cyberbullying, appropriate vs. inappropriate content), there is a lack of detail on technical aspects.
+The current solution to the dangers associated with children in digital spaces is to restrict or ban phones, social media, apps etc. However, education is a much more effective and empowering approach than restrictions. While the current primary school curriculum and resources for online safety include a lot of useful information on some topics (e.g. cyberbullying, appropriate vs. inappropriate content), there is a lack of detail on technical aspects.
 
-Understanding how complicated systems work can help us make informed decisions when dealing with them. There is ample evidence from other fields that this educational approach is effective - when teaching sex education, we don't shy away from explaining the menstrual cycle, sperm, STDs, etc. Young people armed with this knowledge make smarter choices than those who are left ignorant. We need to do the same for smartphones, because those who understand the basic technical details of computers, data, and networking before owning a phone will make smarter choices.
+Understanding how complicated systems work can help us make informed decisions when dealing with them. There is ample evidence from other fields that this educational approach is effective. When teaching sex education, we don't shy away from explaining the menstrual cycle, sperm, STDs, etc., as young people armed with this knowledge make smarter choices than those who are left ignorant. We need to do the same for smartphones, because those who understand the basic technical details of computers, data, and networking before owning a phone will make smarter choices when they do.
 
 ### Why not leave this education to schools?
 
@@ -23,7 +23,7 @@ I don't believe the current curriculum and educational resources available in Ir
 
 My background in tech and cybersecurity mean I am acutely aware of the dangers we face when going online. For young people, my primary concerns relate to the data they create and share which makes up their _digital footprint_. This digital footprint is used by tech companies to train algorithms for profiling and targeting content. I don't want my child's feed populated with celebrities/influencers who have had plastic surgery because they once searched for 'nose job' out of curiosity. I don't want my children getting alerts about the latest deals on a product because they recently searched for it and are now in the vicinity of that company's shop. And, I particularly don't want my children being fed extreme political content from one, polarising point of view.
 
-### Won't the upcoming smartphone and social media bans for kids solve the problems you have identified?
+### Won't smartphone or social media bans for kids solve the problems you have identified?
 
 No. See [article](/blog/bans).
 
@@ -63,7 +63,7 @@ Some people think that if they send their kids to a martial arts class, they wil
 
 ### Will there be education for parents?
 
-Yes. Informative [articles](/blog) will be published on this website (once every month or two when I have time) .
+Yes. Informative [articles](/blog) will be published on this website (once every month or two when I have time...).
 
 ### When is the ideal time for a child to start learning?
 

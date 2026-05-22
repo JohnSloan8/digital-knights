@@ -43,7 +43,10 @@ const icon = fromHtmlIsomorphic(
 )
 
 const computedFields: ComputedFields = {
-  readingTime: { type: 'json', resolve: (doc) => readingTime(doc.body.raw) },
+  readingTime: {
+    type: 'json',
+    resolve: (doc) => readingTime(doc.body.raw, { wordsPerMinute: 400 }),
+  },
   slug: {
     type: 'string',
     resolve: (doc) => doc._raw.flattenedPath.replace(/^.+?(\/)/, ''),

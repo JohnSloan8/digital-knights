@@ -16,7 +16,7 @@ const Header = () => {
 
   return (
     <header className={headerClass}>
-      <div className="flex w-full items-center justify-between px-4 sm:px-6 xl:px-8">
+      <div className="flex w-full items-center justify-between px-5 sm:px-6 xl:px-8">
         <Link href="/" aria-label={siteMetadata.headerTitle} noStyle>
           <div className="flex items-center justify-between">
             <div className="mr-3 origin-left translate-y-[0px]">

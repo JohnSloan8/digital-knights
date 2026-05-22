@@ -128,7 +128,7 @@ export default function ClassesPage() {
               </div>
             </dl>
           </div>
-          <div className="prose prose-invert mb-8 w-full max-w-none md:text-lg">
+          <div className="prose prose-invert md:prose-lg mb-8 w-full max-w-none">
             <h2 id="waitlist" className="mb-6 pt-12 text-3xl font-bold text-white">
               Waitlist
             </h2>

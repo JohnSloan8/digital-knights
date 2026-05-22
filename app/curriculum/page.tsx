@@ -25,30 +25,30 @@ const YearBlock = ({
     image: string
   }[]
 }) => (
-  <div className="mb-16 scroll-mt-24 rounded-xl border border-gray-700 bg-gray-800/20 p-6 shadow-xl backdrop-blur-sm">
+  <div className="mb-8 scroll-mt-24 rounded-xl border border-gray-700 bg-gray-800/20 p-3 shadow-xl backdrop-blur-sm md:mb-16 md:p-6">
     {/* Header */}
-    <div className="mb-6 border-b border-gray-700/50 pb-6">
+    <div className="mb-4 border-b border-gray-700/50 pb-4 md:mb-6 md:pb-6">
       <h2 className="text-xl font-bold text-white md:text-2xl">
         Year {year}: {title}
       </h2>
-      <p className="mt-4 text-lg leading-relaxed text-gray-300">{summary}</p>
+      <p className="mt-3 leading-relaxed text-gray-300 md:mt-4">{summary}</p>
     </div>
 
-    <div className="flex flex-col gap-12">
+    <div className="flex flex-col gap-6 md:gap-12">
       {semesters.map((semester, idx) => (
-        <div key={semester.number} className="flex flex-col gap-6">
+        <div key={semester.number} className="flex flex-col gap-4 md:gap-6">
           {/* Divider except for the first item */}
           {idx > 0 && <div className="border-t border-gray-700/50" />}
 
           {/* Title & Description- Full Width */}
-          <div className="mb-2">
+          <div className="mb-1 md:mb-2">
             <h3 className="text-primary-500 text-lg font-bold md:text-xl">
               Semester {semester.number}
             </h3>
           </div>
 
-          <div className="flex flex-col gap-8">
-            <div className="flex flex-col gap-8 md:flex-row">
+          <div className="flex flex-col gap-6 md:gap-8">
+            <div className="flex flex-col gap-6 md:flex-row md:gap-8">
               {/* Left Column: Image & Materials - 1/3 width on md+ */}
               <div className="flex w-full shrink-0 flex-col gap-6 md:w-1/3">
                 <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-gray-700/50 shadow-lg">
@@ -73,7 +73,7 @@ const YearBlock = ({
 
               {/* Right Column: Descriptions & Outcomes - 2/3 width */}
               <div className="flex-1 space-y-6">
-                <p className="text-lg leading-relaxed text-gray-300">{semester.description}</p>
+                <p className="leading-relaxed text-gray-300">{semester.description}</p>
 
                 {/* Materials - Visible only on small screens below description */}
                 <div className="block text-gray-400 md:hidden">
@@ -110,9 +110,9 @@ export default function Curriculum() {
 
         <div className="py-8">
           {/* Introduction */}
-          <div className="prose dark:prose-invert max-w-none text-gray-300">
+          <div className="prose dark:prose-invert md:prose-lg max-w-none text-gray-300">
             <h2 className="mb-6 text-3xl font-bold text-white">Introduction</h2>
-            <p className="text-lg leading-relaxed">
+            <p className="leading-relaxed">
               The Digital Knights curriculum is a five-year educational framework designed to equip
               children with an understanding of modern computing and communication technologies. It
               is intended to be taught before children receive their first smartphone (at
@@ -159,9 +159,9 @@ export default function Curriculum() {
         </div>
 
         {/* Rationale */}
-        <div className="prose dark:prose-invert max-w-none py-8 text-gray-300">
+        <div className="prose dark:prose-invert md:prose-lg max-w-none py-8 text-gray-300">
           <h2 className="mb-6 text-3xl font-bold text-white">Rationale</h2>
-          <p className="text-lg leading-relaxed">
+          <p className="leading-relaxed">
             By building a phone from scratch, students will gain a deep understanding of the
             individual components that make up a modern smart device. They will see the data
             generated, the ways it is stored and used on the device, and how it is transmitted
@@ -173,9 +173,9 @@ export default function Curriculum() {
         </div>
 
         {/* Aims */}
-        <div className="prose dark:prose-invert max-w-none py-8 text-gray-300">
+        <div className="prose dark:prose-invert md:prose-lg max-w-none py-8 text-gray-300">
           <h2 className="mb-6 text-3xl font-bold text-white">Aims</h2>
-          <p className="text-lg leading-relaxed">
+          <p className="leading-relaxed">
             The main aim is for each child to become a technologically self-sufficient digital
             citizen - one who is in control of their devices, data and digital footprint. They can
             use technology safely, wisely, and in creative ways to solve real-world problems.
@@ -187,18 +187,18 @@ export default function Curriculum() {
 
         <div className="pt-8 text-gray-300">
           <h2 className="mb-6 text-3xl font-bold text-white">Structure</h2>
-          <p className="text-lg leading-relaxed">
+          <p className="leading-relaxed">
             The curriculum is designed to be taught over a five-year period, with each year split
             into 2 semesters of 15 weeks running parallel to the school year. Class sizes are
             intended to be small (max 8 students) to allow for a hands-on, project-based learning
             experience with sufficient individual attention.
           </p>
-          <p className="pt-4 text-lg leading-relaxed">
+          <p className="pt-4 leading-relaxed">
             A semester-by-semester breakdown of the curriculum is provided below. Each semester
             includes a detailed description of the topics covered, the materials used, and the
             learning outcomes for students.
           </p>
-          <div className="space-y-12 pt-12">
+          <div className="space-y-8 pt-8 md:space-y-12 md:pt-12">
             {curriculumData.map((year) => (
               <YearBlock key={year.year} {...year} />
             ))}

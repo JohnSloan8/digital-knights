@@ -12,7 +12,7 @@ export default function PrivacyPolicy() {
         <div className="flex flex-col items-center pt-8">
           <p className="text-gray-400">Last updated: February 9, 2026</p>
         </div>
-        <div className="prose prose-invert max-w-none pt-8 pb-8 xl:col-span-2">
+        <div className="prose prose-invert md:prose-lg max-w-none pt-8 pb-8 xl:col-span-2">
           <h2>Introduction</h2>
           <p>How data is handled when visiting this website is explained in this Privacy Policy.</p>
 

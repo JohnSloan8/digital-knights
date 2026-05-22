@@ -506,7 +506,7 @@ function OrbitingCubes({
     return () => window.removeEventListener('resize', checkSize)
   }, [])
 
-  const radius = isSmall ? 1.7 : 2
+  const radius = isSmall ? 1.6 : 2
   const yPos = 0.9
 
   return (
@@ -671,7 +671,7 @@ function CameraHandler() {
       if (camera instanceof THREE.PerspectiveCamera) {
         // Medium screens start at 768px in Tailwind
         const isSmall = window.innerWidth < 768
-        const targetFov = isSmall ? 55 : 40
+        const targetFov = isSmall ? 60 : 40
         if (camera.fov !== targetFov) {
           camera.fov = targetFov
           camera.updateProjectionMatrix()
@@ -883,8 +883,7 @@ export default function ThreeScene({ className }: { className?: string }) {
             alt="Digital Knights"
             width={500}
             height={120}
-            className="w-full max-w-[300px] md:max-w-[500px]"
-            style={{ height: 'auto' }}
+            className="h-auto w-full max-w-[300px] md:max-w-[500px]"
             priority
           />
         </div>
@@ -899,7 +898,7 @@ export default function ThreeScene({ className }: { className?: string }) {
           </svg>
           <p className="text-center text-base leading-7 font-medium text-gray-300 md:text-xl">
             <span className="inline-block">Tech & cybersecurity education</span>{' '}
-            <span className="inline-block">for children</span>
+            <span className="inline-block">for children and parents</span>
           </p>
           <svg
             width="60"

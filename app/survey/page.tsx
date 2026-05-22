@@ -26,7 +26,7 @@ export default async function SurveyPage(props: {
         />
         <div className="py-4">
           <div className="flex flex-col items-center justify-center space-y-4">
-            <div className="prose prose-invert w-full max-w-none pb-8 md:text-lg">
+            <div className="prose prose-invert md:prose-lg w-full max-w-none pb-8">
               <SurveySceneWrapper className="relative mb-8 h-[300px] w-full md:float-left md:mr-8 md:mb-4 md:h-[500px] md:w-1/2" />
               <h3>What is the purpose of this survey?</h3>
               <p>
