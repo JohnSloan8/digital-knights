@@ -121,18 +121,6 @@ export default function Home({ posts }) {
               <p className="mb-2">For more information about Digital Knights:</p>
               <div className="flex flex-col space-y-1">
                 <Link
-                  href="/about"
-                  className="text-primary-500 hover:text-primary-400 font-bold !no-underline"
-                >
-                  About <span aria-hidden="true">&rarr;</span>
-                </Link>
-                <Link
-                  href="/faq"
-                  className="text-primary-500 hover:text-primary-400 font-bold !no-underline"
-                >
-                  FAQ <span aria-hidden="true">&rarr;</span>
-                </Link>
-                <Link
                   href="/curriculum"
                   className="text-primary-500 hover:text-primary-400 font-bold !no-underline"
                 >
@@ -143,6 +131,18 @@ export default function Home({ posts }) {
                   className="text-primary-500 hover:text-primary-400 font-bold !no-underline"
                 >
                   Classes <span aria-hidden="true">&rarr;</span>
+                </Link>
+                <Link
+                  href="/faq"
+                  className="text-primary-500 hover:text-primary-400 font-bold !no-underline"
+                >
+                  FAQ <span aria-hidden="true">&rarr;</span>
+                </Link>
+                <Link
+                  href="/about"
+                  className="text-primary-500 hover:text-primary-400 font-bold !no-underline"
+                >
+                  About <span aria-hidden="true">&rarr;</span>
                 </Link>
               </div>
             </div>

@@ -67,7 +67,7 @@ Yes. Informative [articles](/blog) will be published on this website (once every
 
 ### When is the ideal time for a child to start learning?
 
-7-9 years old is ideal. This will allow them to follow the standard [curriculum](/curriculum) and graduate to a real smartphone at the smae age as their friends (approximately 13).
+7-9 years old is ideal. This will allow them to follow the standard [curriculum](/curriculum) and graduate to a real smartphone at the same age as their friends (approximately 13).
 
 ### What if my child is too young/old to start?
 
@@ -87,4 +87,4 @@ See [classes](/classes) page for details
 
 ### Can I get involved?
 
-Yes! Please provide your input to the curriculum design by completing the [survey]('/survey') and leave your email address at the end. Alternatively, go to the [contact]('/contact') page and leave a message. If you have time for an in-person chat, that can be arranged too.
+Yes! Please provide your input to the curriculum design by completing the [survey](/survey) and leave your email address at the end. Alternatively, go to the [contact](/contact) page and leave a message. If you have time for an in-person chat, that can be arranged too.
