@@ -247,9 +247,9 @@ const MatrixRadio = ({
       <div className="hidden overflow-x-auto md:block">
         <table className="min-w-full table-fixed text-left text-base text-gray-300 lg:text-lg">
           <colgroup>
-            <col style={{ width: '40%' }} className="lg:w-1/2" />
+            <col style={{ width: '50%' }} />
             {options.map((_, idx) => (
-              <col key={idx} style={{ width: `${60 / options.length}%` }} className="lg:w-[10%]" />
+              <col key={idx} style={{ width: `${50 / options.length}%` }} />
             ))}
           </colgroup>
           <thead className="bg-gray-700 text-xs text-white uppercase md:text-sm lg:text-base">
@@ -309,7 +309,7 @@ const MatrixRadio = ({
                         href={link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-primary-500 hover:text-primary-400 mt-1 block text-sm hover:underline lg:text-lg"
+                        className="text-primary-500 hover:text-primary-400 mt-1 block text-sm break-all hover:underline lg:text-lg"
                       >
                         {link.replace(/https?:\/\//g, '')}
                       </a>
