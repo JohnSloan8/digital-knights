@@ -106,29 +106,9 @@ export default function Curriculum() {
   return (
     <SectionContainer>
       <div className="divide-y divide-gray-700">
-        <PageHeader title="Curriculum" description="Want a phone? Build it yourself" />
+        <PageHeader title="Curriculum" description="Want a phone? Build it yourself! :-)" />
 
         <div className="py-8">
-          {/* Introduction */}
-          <div className="prose dark:prose-invert md:prose-lg max-w-none text-gray-300">
-            <h2 className="mb-6 text-3xl font-bold text-white">Introduction</h2>
-            <p className="leading-relaxed">
-              The Digital Knights curriculum is a five-year educational framework designed to equip
-              children with an understanding of modern computing and communication technologies. It
-              is intended to be taught before children receive their first smartphone (at
-              approximately 13 years old). The pedagogical approach is based on the idea that the
-              best way to understand a complex system is to break it down into its component parts
-              and understand each of them individually. The curriculum is therefore structured
-              around the hands-on project of building a functional mobile phone from basic
-              components. This approach was inspired by the{' '}
-              <Link href="https://github.com/evanman83/OURS-project">OURS</Link> and{' '}
-              <Link href="https://learn.adafruit.com/piphone-a-raspberry-pi-based-cellphone?embeds=allow">
-                PiPhone
-              </Link>{' '}
-              projects.
-            </p>
-          </div>
-
           {/* OURS Project Images */}
           <div className="grid gap-6 pt-8 md:grid-cols-2">
             <figure className="space-y-3">
@@ -156,6 +136,25 @@ export default function Curriculum() {
               <figcaption className="text-center text-sm text-gray-400">PiPhone project</figcaption>
             </figure>
           </div>
+        </div>
+
+        {/* Introduction */}
+        <div className="prose dark:prose-invert md:prose-lg max-w-none py-8 text-gray-300">
+          <h2 className="mb-6 text-3xl font-bold text-white">Introduction</h2>
+          <p className="leading-relaxed">
+            The Digital Knights curriculum is a five-year educational framework designed to equip
+            children with an understanding of modern computing and communication technologies. It is
+            intended to be taught before children receive their first smartphone (at approximately
+            13 years old). The pedagogical approach is based on the idea that the best way to
+            understand a complex system is to break it down into its component parts and understand
+            each of them individually. The curriculum is therefore structured around the hands-on
+            project of building a functional mobile phone from basic components. This approach was
+            inspired by the <Link href="https://github.com/evanman83/OURS-project">OURS</Link> and{' '}
+            <Link href="https://learn.adafruit.com/piphone-a-raspberry-pi-based-cellphone?embeds=allow">
+              PiPhone
+            </Link>{' '}
+            projects.
+          </p>
         </div>
 
         {/* Rationale */}
@@ -203,6 +202,13 @@ export default function Curriculum() {
               <YearBlock key={year.year} {...year} />
             ))}
           </div>
+
+          <p className="mt-8 text-lg md:mt-12">
+            For more information on classes, or to add your child(ren) to the waitlist, see:{' '}
+            <Link href="/classes" className="text-primary-500 hover:text-primary-400 !no-underline">
+              Classes
+            </Link>
+          </p>
         </div>
       </div>
     </SectionContainer>

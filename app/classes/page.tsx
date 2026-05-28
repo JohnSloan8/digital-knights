@@ -45,7 +45,7 @@ export default function ClassesPage() {
                 >
                   survey
                 </Link>
-                , and can express an interest in a place by joining the{' '}
+                , and express an interest in a place by joining the{' '}
                 <a href="#waitlist" className="font-semibold text-blue-300 hover:text-blue-200">
                   waitlist below
                 </a>

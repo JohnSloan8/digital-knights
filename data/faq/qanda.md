@@ -19,9 +19,9 @@ Understanding how complicated systems work can help us make informed decisions w
 
 I don't believe the current curriculum and educational resources available in Irish primary schools adequately prepare children for entry to the digital world. This includes the 2026 [Switched On](https://www.webwise.ie/switchedon/) programme for 5th and 6th class ([see article](/blog/switched-on)). The materials do not provide sufficient technical depth to solve the problems I am most concerned with. Additionally, teachers have enough on their plates without being expected to become proficient in tech and cybersecurity as well.
 
-### Which problems?
+### Which problems are you concerned with?
 
-My background in tech and cybersecurity mean I am acutely aware of the dangers we face when going online. For young people, my primary concerns relate to the data they create and share which makes up their _digital footprint_. This digital footprint is used by tech companies to train algorithms for profiling and targeting content. I don't want my child's feed populated with celebrities/influencers who have had plastic surgery because they once searched for 'nose job' out of curiosity. I don't want my children getting alerts about the latest deals on a product because they recently searched for it and are now in the vicinity of that company's shop. And, I particularly don't want my children being fed extreme political content from one, polarising point of view.
+My background in technology and cybersecurity mean I am acutely aware of the dangers we all face when going online. For young people, my primary concerns relate to the data they create and share which makes up their _digital footprint_. This digital footprint is used by tech companies to train algorithms for profiling and targeting content. I don't want my child's feed populated with celebrities/influencers who have had plastic surgery because they once searched for 'nose job' out of curiosity. I don't want my children getting alerts about the latest deals on a product because they recently searched for it and are now in the vicinity of that company's shop. And, I particularly don't want my children being fed extreme political content from one, polarising point of view.
 
 ### Won't smartphone or social media bans for kids solve the problems you have identified?
 
@@ -51,7 +51,7 @@ If you are reading this page, it is likely you are a parent who has an interest 
 - You want this education to happen before they get an internet enabled device of their own.
 - You want your children to truly understand technology rather than simply being passive consumers.
 - You want to provide a solid foundation for Junior Cert Technology and Leaving Cert Computer Science options.
-- You want to give you children a skill which will be useful for the rest of their lives in whichever career they choose.
+- You want to give your children a skill which will be useful for the rest of their lives in whichever career they choose.
 
 ### What if my child is not the 'techy' type?
 
@@ -59,11 +59,11 @@ It is not that long ago that computer and tech related skills were only learned 
 
 ### If my kids learn about technology, wont they end up spend more time using technology and staring at screens?
 
-Some people think that if they send their kids to a martial arts class, they will become more agressive and get in more fights. Research shows the opposite is true (See this [meta-analysis](https://www.sciencedirect.com/science/article/abs/pii/S1359178917300976)). In the same vain, I hope that demystifying the technology behind the screen will aid children in resisting its pull. Technology is, at its best, a tool that helps us in the real world. But that real world is on the outside, and it is where kids should be spending their time.
+Some people think that if they send their kids to a martial arts class, they will end up getting into lots of fights. Research shows the opposite is true (See this [meta-analysis](https://www.sciencedirect.com/science/article/abs/pii/S1359178917300976)). In the same vain, I hope that demystifying the technology behind the screen will aid children in resisting its pull. Technology is, at its best, a tool that helps us in the real world. But that real world is on the outside, and that is where kids should be spending their time.
 
 ### Will there be education for parents?
 
-Yes. Informative [articles](/blog) will be published on this website (once every month or two when I have time...).
+Yes. Informative [articles](/blog) will be published on this website every month or two (when I have time away from work...).
 
 ### When is the ideal time for a child to start learning?
 

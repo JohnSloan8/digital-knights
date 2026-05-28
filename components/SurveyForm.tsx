@@ -1939,8 +1939,7 @@ export default function SurveyForm() {
                 {
                   text: (
                     <>
-                      I am interested in reading articles about tech and cybersecurity aimed at
-                      parents (see{' '}
+                      I am interested in reading{' '}
                       <a
                         href="/blog"
                         target="_blank"
@@ -1949,7 +1948,7 @@ export default function SurveyForm() {
                       >
                         articles
                       </a>{' '}
-                      - opens in new tab).
+                      about tech and cybersecurity aimed at parents
                     </>
                   ),
                 },
@@ -1957,8 +1956,16 @@ export default function SurveyForm() {
                 {
                   text: (
                     <>
-                      I am interested in my child attending classes based on the Digital Knights
-                      curriculum (see{' '}
+                      I am interested in my child attending{' '}
+                      <a
+                        href="/classes"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-primary-500 hover:text-primary-400 hover:underline"
+                      >
+                        classes
+                      </a>{' '}
+                      based on the Digital Knights{' '}
                       <a
                         href="/curriculum"
                         target="_blank"
@@ -1966,8 +1973,7 @@ export default function SurveyForm() {
                         className="text-primary-500 hover:text-primary-400 hover:underline"
                       >
                         curriculum
-                      </a>{' '}
-                      - opens in new tab).
+                      </a>
                     </>
                   ),
                 },

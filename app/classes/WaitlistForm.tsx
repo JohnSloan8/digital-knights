@@ -192,7 +192,7 @@ export default function WaitlistForm() {
           }`}
         >
           <h3 className="mb-4 text-2xl font-bold text-white">Successfully added to waitlist!</h3>
-          <p className="text-lg text-gray-400">
+          <p className="text-md text-gray-400">
             Thank you for expressing an interest in future classes. I will be in contact soon.
           </p>
         </div>

@@ -77,7 +77,7 @@ export default function Home({ posts }) {
               >
                 curriculum
               </Link>{' '}
-              for 7-13 year olds and and delivering after school{' '}
+              for 7-13 year olds and delivering after school{' '}
               <Link
                 href="/classes"
                 className="text-primary-500 hover:text-primary-400 !no-underline"
