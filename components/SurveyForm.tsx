@@ -1110,11 +1110,11 @@ export default function SurveyForm() {
     if (step === 4) {
       for (let i = 0; i < 5; i++)
         if (data[`expert_opinions-${i}`] === undefined) errors.add('expert_opinions')
-      for (let i = 0; i < 6; i++)
+      for (let i = 0; i < 9; i++)
         if (data[`skills_importance-${i}`] === undefined) errors.add('skills_importance')
-      for (let i = 0; i < 3; i++)
+      for (let i = 0; i < 4; i++)
         if (data[`edu_opinion-${i}`] === undefined) errors.add('edu_opinion')
-      for (let i = 0; i < 3; i++)
+      for (let i = 0; i < 2; i++)
         if (data[`interest_resources-${i}`] === undefined) errors.add('interest_resources')
     }
 
@@ -1952,7 +1952,6 @@ export default function SurveyForm() {
                     </>
                   ),
                 },
-                'I am interested in accessing guides for parents on how to best help introduce their child to the digital world.',
                 {
                   text: (
                     <>
