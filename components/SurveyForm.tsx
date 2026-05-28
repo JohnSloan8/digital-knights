@@ -85,7 +85,7 @@ const ProgressBar = ({ currentStep, setStep }: ProgressBarProps) => {
               onClick={() => {
                 setStep(step)
               }}
-              className={`flex h-8 w-8 cursor-pointer items-center justify-center rounded-full text-sm font-bold transition-all duration-200 sm:h-10 sm:w-10 sm:text-base md:text-lg ${
+              className={`flex h-8 w-8 cursor-pointer items-center justify-center rounded-full text-sm font-bold transition-all duration-200 sm:h-10 sm:w-10 sm:text-base lg:text-lg ${
                 step === currentStep
                   ? 'bg-primary-500 ring-primary-500/30 text-white ring-4'
                   : step < currentStep
@@ -120,7 +120,7 @@ const NavButtons = ({
       <button
         type="button"
         onClick={prev}
-        className="group text-primary-500 hover:text-primary-400 flex cursor-pointer items-center text-base font-medium transition-colors duration-200 md:text-lg"
+        className="group text-primary-500 hover:text-primary-400 flex cursor-pointer items-center text-base font-medium transition-colors duration-200 lg:text-lg"
       >
         <svg
           className="mr-2 h-5 w-5 transform transition-transform group-hover:-translate-x-1"
@@ -140,7 +140,7 @@ const NavButtons = ({
       <button
         type="button"
         onClick={next}
-        className="group text-primary-500 hover:text-primary-400 flex cursor-pointer items-center text-base font-medium transition-colors duration-200 md:text-lg"
+        className="group text-primary-500 hover:text-primary-400 flex cursor-pointer items-center text-base font-medium transition-colors duration-200 lg:text-lg"
       >
         {nextLabel}
         <svg
@@ -231,13 +231,13 @@ const MatrixRadio = ({
       className={`mb-10 border-b pb-6 ${error ? 'rounded-lg border-2 border-red-500 p-4' : 'border-gray-700'}`}
     >
       <h3
-        className={`mb-2 text-lg font-semibold md:text-lg ${error ? 'text-red-500' : 'text-white'}`}
+        className={`mb-2 text-lg font-semibold lg:text-lg ${error ? 'text-red-500' : 'text-white'}`}
       >
         {questionLabel}
       </h3>
-      <p className="mb-8 text-base text-gray-300 md:text-lg">{questionText}</p>
+      <p className="mb-8 text-base text-gray-300 lg:text-lg">{questionText}</p>
       {hasDescriptions && (
-        <p className="mb-6 text-sm text-gray-400 italic md:text-lg">
+        <p className="mb-6 text-sm text-gray-400 italic lg:text-lg">
           (Click the &apos;?&apos; for further information and resource links. Links open in a new
           tab.)
         </p>
@@ -245,14 +245,14 @@ const MatrixRadio = ({
 
       {/* Desktop table */}
       <div className="hidden overflow-x-auto md:block">
-        <table className="min-w-full table-fixed text-left text-base text-gray-300 md:text-lg">
+        <table className="min-w-full table-fixed text-left text-base text-gray-300 lg:text-lg">
           <colgroup>
-            <col style={{ width: '50%' }} />
+            <col style={{ width: '40%' }} className="lg:w-1/2" />
             {options.map((_, idx) => (
-              <col key={idx} style={{ width: `${50 / options.length}%` }} />
+              <col key={idx} style={{ width: `${60 / options.length}%` }} className="lg:w-[10%]" />
             ))}
           </colgroup>
-          <thead className="bg-gray-700 text-sm text-white uppercase md:text-base">
+          <thead className="bg-gray-700 text-xs text-white uppercase md:text-sm lg:text-base">
             <tr>
               <th scope="col" className="px-4 py-3">
                 Statement
@@ -270,7 +270,7 @@ const MatrixRadio = ({
               const displayRow = formatSubQuestion(text, rowIdx)
               return (
                 <tr key={rowIdx} className="border-b border-gray-700 bg-gray-800">
-                  <td className="px-6 py-4 text-white">
+                  <td className="px-3 py-4 text-white lg:px-6">
                     <div className="flex items-start justify-between gap-3">
                       <span className="flex-1">{displayRow}</span>
                       {description && (
@@ -288,7 +288,7 @@ const MatrixRadio = ({
                       )}
                     </div>
                     {description && activeDescription === rowIdx && (
-                      <div className="mt-3 rounded-lg border border-gray-700 bg-gray-900/70 p-3 text-sm text-gray-300 md:text-lg">
+                      <div className="mt-3 rounded-lg border border-gray-700 bg-gray-900/70 p-3 text-sm text-gray-300 lg:text-lg">
                         <p>{description}</p>
                         {links &&
                           links.map((linkItem, linkIdx) => (
@@ -309,7 +309,7 @@ const MatrixRadio = ({
                         href={link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-primary-500 hover:text-primary-400 mt-1 block text-sm hover:underline md:text-lg"
+                        className="text-primary-500 hover:text-primary-400 mt-1 block text-sm hover:underline lg:text-lg"
                       >
                         {link.replace(/https?:\/\//g, '')}
                       </a>
@@ -361,7 +361,7 @@ const MatrixRadio = ({
           const displayRow = formatSubQuestion(text, rowIdx)
           return (
             <div key={rowIdx} className="border-b border-gray-700/50 py-4 last:border-0">
-              <p className="mb-3 text-base text-white md:text-lg">
+              <p className="mb-3 text-base text-white lg:text-lg">
                 {displayRow}
                 {description && (
                   <button
@@ -378,14 +378,14 @@ const MatrixRadio = ({
                     href={link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-primary-500 hover:text-primary-400 mt-1 block text-sm break-all hover:underline md:text-lg"
+                    className="text-primary-500 hover:text-primary-400 mt-1 block text-sm break-all hover:underline lg:text-lg"
                   >
                     {link.replace(/https?:\/\//g, '')}
                   </a>
                 )}
               </p>
               {description && activeDescription === rowIdx && (
-                <div className="mb-3 rounded-lg border border-gray-700 bg-gray-900/70 p-3 text-sm text-gray-300 md:text-lg">
+                <div className="mb-3 rounded-lg border border-gray-700 bg-gray-900/70 p-3 text-sm text-gray-300 lg:text-lg">
                   <p>{description}</p>
                   {links &&
                     links.map((linkItem, linkIdx) => (
@@ -503,11 +503,11 @@ const MatrixSlider = ({
       className={`mb-10 border-b pb-6 ${error ? 'rounded-lg border-2 border-red-500 p-4' : 'border-gray-700'}`}
     >
       <h3
-        className={`mb-2 text-lg font-semibold md:text-lg ${error ? 'text-red-500' : 'text-white'}`}
+        className={`mb-2 text-lg font-semibold lg:text-lg ${error ? 'text-red-500' : 'text-white'}`}
       >
         {questionLabel}
       </h3>
-      <p className="mb-8 text-base text-gray-300 md:text-lg">{questionText}</p>
+      <p className="mb-8 text-base text-gray-300 lg:text-lg">{questionText}</p>
       <div className="space-y-6">
         {rows.map((row, idx) => {
           const displayRow = formatSubQuestion(row, idx)
@@ -525,7 +525,7 @@ const MatrixSlider = ({
               className="border-b border-gray-700/50 py-4 last:border-0 md:border-0 md:p-0"
             >
               <div className="flex flex-col space-y-2">
-                <label className="text-base text-white md:text-lg">{displayRow}</label>
+                <label className="text-base text-white lg:text-lg">{displayRow}</label>
                 <div className="flex items-center space-x-4">
                   <input
                     type="range"
@@ -548,7 +548,7 @@ const MatrixSlider = ({
                     }}
                     className={`h-2 w-full cursor-pointer appearance-none rounded-lg [&::-moz-range-thumb]:rounded-full [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full ${thumbClasses} ${showActuals ? 'cursor-not-allowed opacity-60' : ''}`}
                   />
-                  <span className="w-12 text-base text-white md:text-lg">
+                  <span className="w-12 text-base text-white lg:text-lg">
                     {val}
                     {suffix}
                   </span>
@@ -576,7 +576,7 @@ const MatrixSlider = ({
                       }}
                       className="h-2 w-full appearance-none rounded-lg [&::-moz-range-thumb]:hidden [&::-webkit-slider-thumb]:hidden"
                     />
-                    <span className="w-12 text-base font-bold text-green-400 md:text-lg">
+                    <span className="w-12 text-base font-bold text-green-400 lg:text-lg">
                       {actualVal}
                       {suffix}
                     </span>
@@ -591,20 +591,20 @@ const MatrixSlider = ({
       {actualValues && !showActuals && (
         <div className="mt-8 flex flex-col items-center justify-center space-y-3">
           {showError && (
-            <p className="text-sm text-red-400 md:text-lg">
+            <p className="text-sm text-red-400 lg:text-lg">
               Please make a guess for each question before revealing actual figures
             </p>
           )}
           <button
             type="button"
             onClick={handleShowActuals}
-            className={`cursor-pointer rounded-lg border border-green-600 bg-green-900/30 px-6 py-2.5 text-sm font-semibold text-green-400 transition-colors hover:bg-green-900/50 focus:ring-4 focus:ring-green-900/50 focus:outline-none md:text-lg ${!allTouched ? 'opacity-50' : ''}`}
+            className={`cursor-pointer rounded-lg border border-green-600 bg-green-900/30 px-6 py-2.5 text-sm font-semibold text-green-400 transition-colors hover:bg-green-900/50 focus:ring-4 focus:ring-green-900/50 focus:outline-none lg:text-lg ${!allTouched ? 'opacity-50' : ''}`}
           >
             Show Actual Figures*
           </button>
 
           {note && (
-            <p className="mt-4 max-w-3xl text-center text-sm text-green-400 md:text-lg">{note}</p>
+            <p className="mt-4 max-w-3xl text-center text-sm text-green-400 lg:text-lg">{note}</p>
           )}
         </div>
       )}
@@ -640,13 +640,13 @@ const Checkboxes = ({ questionLabel, questionText, options, name, error }: Check
       className={`mb-10 border-b pb-6 ${error ? 'rounded-lg border-2 border-red-500 p-4' : 'border-gray-700'}`}
     >
       <h3
-        className={`mb-2 text-lg font-semibold md:text-lg ${error ? 'text-red-500' : 'text-white'}`}
+        className={`mb-2 text-lg font-semibold lg:text-lg ${error ? 'text-red-500' : 'text-white'}`}
       >
         {questionLabel}
       </h3>
-      <p className="mb-4 text-base text-gray-300 md:text-lg">{questionText}</p>
+      <p className="mb-4 text-base text-gray-300 lg:text-lg">{questionText}</p>
       {options.some((o) => o.description) && (
-        <p className="mb-8 text-sm text-gray-400 italic md:text-lg">
+        <p className="mb-8 text-sm text-gray-400 italic lg:text-lg">
           (Click the &apos;?&apos; for further information and links)
         </p>
       )}
@@ -665,7 +665,7 @@ const Checkboxes = ({ questionLabel, questionText, options, name, error }: Check
               />
               <label
                 htmlFor={`${name}-${idx}`}
-                className="ml-2 cursor-pointer text-base text-white md:text-lg"
+                className="ml-2 cursor-pointer text-base text-white lg:text-lg"
               >
                 {option.label}
               </label>
@@ -673,7 +673,7 @@ const Checkboxes = ({ questionLabel, questionText, options, name, error }: Check
                 <button
                   type="button"
                   onClick={() => toggleDescription(option.label)}
-                  className="focus:ring-primary-600 ml-3 flex h-6 w-6 cursor-pointer items-center justify-center rounded-full border border-gray-600 text-sm text-white hover:bg-gray-700 focus:ring-2 focus:outline-none md:text-lg"
+                  className="focus:ring-primary-600 ml-3 flex h-6 w-6 cursor-pointer items-center justify-center rounded-full border border-gray-600 text-sm text-white hover:bg-gray-700 focus:ring-2 focus:outline-none lg:text-lg"
                   aria-label={`Learn more about ${option.label}`}
                 >
                   ?
@@ -681,7 +681,7 @@ const Checkboxes = ({ questionLabel, questionText, options, name, error }: Check
               )}
             </div>
             {option.description && activeDescription === option.label && (
-              <div className="ml-10 rounded-lg border border-gray-700 bg-gray-900/70 p-3 text-sm text-gray-300 md:text-lg">
+              <div className="ml-10 rounded-lg border border-gray-700 bg-gray-900/70 p-3 text-sm text-gray-300 lg:text-lg">
                 <p>{option.description}</p>
                 {option.links &&
                   option.links.map((linkItem, linkIdx) => (
@@ -765,15 +765,15 @@ const MatrixRating = ({
       className={`mb-10 border-b pb-6 ${error ? 'rounded-lg border-2 border-red-500 p-4' : 'border-gray-700'}`}
     >
       <h3
-        className={`mb-2 text-lg font-semibold md:text-lg ${error ? 'text-red-500' : 'text-white'}`}
+        className={`mb-2 text-lg font-semibold lg:text-lg ${error ? 'text-red-500' : 'text-white'}`}
       >
         {questionLabel}
       </h3>
-      <p className="mb-8 text-base text-gray-300 md:text-lg">{questionText}</p>
+      <p className="mb-8 text-base text-gray-300 lg:text-lg">{questionText}</p>
 
       {/* Desktop table */}
       <div className="hidden overflow-x-auto md:block">
-        <table className="min-w-full border-separate border-spacing-y-2 text-left text-base text-gray-300 md:text-lg">
+        <table className="min-w-full border-separate border-spacing-y-2 text-left text-base text-gray-300 lg:text-lg">
           <colgroup>
             <col style={{ width: '30%' }} />
             {scaleArr.map((_, idx) => (
@@ -789,7 +789,7 @@ const MatrixRating = ({
                 <th
                   key={s}
                   scope="col"
-                  className="px-0 py-3 text-center text-sm font-medium text-gray-500 md:text-lg"
+                  className="px-0 py-3 text-center text-xs font-medium text-gray-500 md:text-sm lg:text-lg"
                 >
                   {s}
                 </th>
@@ -850,7 +850,7 @@ const MatrixRating = ({
 
           return (
             <div key={rowIdx} className="border-b border-gray-700/50 py-4 last:border-0">
-              <p className="mb-4 text-base font-medium text-white md:text-lg">{displayRow}</p>
+              <p className="mb-4 text-base font-medium text-white lg:text-lg">{displayRow}</p>
 
               <div className="flex w-full">
                 {scaleArr.map((s) => {
@@ -909,13 +909,13 @@ const ChildrenTable = ({ validationErrors }: { validationErrors: Set<string> }) 
 
   return (
     <div className="mb-8 overflow-hidden">
-      <h3 className="mb-2 text-lg font-semibold text-white md:text-lg">
+      <h3 className="mb-2 text-lg font-semibold text-white lg:text-lg">
         Q.16 For each of your children, please provide their age, gender, and whether they currently
         possess their own smartphone.
       </h3>
       <div className="hidden overflow-x-auto md:block">
-        <table className="min-w-full text-left text-base text-gray-300 md:text-lg">
-          <thead className="bg-gray-700 text-sm text-gray-300 uppercase md:text-lg">
+        <table className="min-w-full text-left text-base text-gray-300 lg:text-lg">
+          <thead className="bg-gray-700 text-sm text-gray-300 uppercase lg:text-lg">
             <tr>
               <th className="px-6 py-3">#</th>
               <th className="px-6 py-3">Age</th>
@@ -936,7 +936,7 @@ const ChildrenTable = ({ validationErrors }: { validationErrors: Set<string> }) 
                     name={`child-${r}-age`}
                     defaultValue={(surveyData[`child-${r}-age`] as string) || ''}
                     onChange={(e) => saveResponse(`child-${r}-age`, e.target.value)}
-                    className={`focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border bg-gray-700 p-2.5 text-base text-white placeholder-gray-400 md:text-lg ${validationErrors.has(`child-${r}-age`) ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-600'}`}
+                    className={`focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border bg-gray-700 p-2.5 text-base text-white placeholder-gray-400 lg:text-lg ${validationErrors.has(`child-${r}-age`) ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-600'}`}
                   >
                     <option value="">Select...</option>
                     {Array.from({ length: 19 }, (_, i) => i).map((age) => (
@@ -952,7 +952,7 @@ const ChildrenTable = ({ validationErrors }: { validationErrors: Set<string> }) 
                     name={`child-${r}-gender`}
                     defaultValue={(surveyData[`child-${r}-gender`] as string) || ''}
                     onChange={(e) => saveResponse(`child-${r}-gender`, e.target.value)}
-                    className={`focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border bg-gray-700 p-2.5 text-base text-white placeholder-gray-400 md:text-lg ${validationErrors.has(`child-${r}-gender`) ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-600'}`}
+                    className={`focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border bg-gray-700 p-2.5 text-base text-white placeholder-gray-400 lg:text-lg ${validationErrors.has(`child-${r}-gender`) ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-600'}`}
                   >
                     <option value="">Select...</option>
                     <option value="Male">Male</option>
@@ -983,12 +983,12 @@ const ChildrenTable = ({ validationErrors }: { validationErrors: Set<string> }) 
             key={r}
             className="animate-in fade-in slide-in-from-top-4 border-b border-gray-700/50 py-4 duration-500 ease-out last:border-0"
           >
-            <h4 className="mb-4 text-base font-semibold text-white md:text-lg">Child {r}</h4>
+            <h4 className="mb-4 text-base font-semibold text-white lg:text-lg">Child {r}</h4>
             <div className="space-y-4">
               <div>
                 <label
                   htmlFor={`child-${r}-age-mobile`}
-                  className="mb-2 block text-sm font-medium text-gray-300 md:text-lg"
+                  className="mb-2 block text-sm font-medium text-gray-300 lg:text-lg"
                 >
                   Age
                 </label>
@@ -997,7 +997,7 @@ const ChildrenTable = ({ validationErrors }: { validationErrors: Set<string> }) 
                   name={`child-${r}-age`}
                   defaultValue={(surveyData[`child-${r}-age`] as string) || ''}
                   onChange={(e) => saveResponse(`child-${r}-age`, e.target.value)}
-                  className={`focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border bg-gray-700 p-2.5 text-base text-white placeholder-gray-400 md:text-lg ${validationErrors.has(`child-${r}-age`) ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-600'}`}
+                  className={`focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border bg-gray-700 p-2.5 text-base text-white placeholder-gray-400 lg:text-lg ${validationErrors.has(`child-${r}-age`) ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-600'}`}
                 >
                   <option value="">Select...</option>
                   {Array.from({ length: 19 }, (_, i) => i).map((age) => (
@@ -1011,7 +1011,7 @@ const ChildrenTable = ({ validationErrors }: { validationErrors: Set<string> }) 
               <div>
                 <label
                   htmlFor={`child-${r}-gender-mobile`}
-                  className="mb-2 block text-sm font-medium text-gray-300 md:text-lg"
+                  className="mb-2 block text-sm font-medium text-gray-300 lg:text-lg"
                 >
                   Gender
                 </label>
@@ -1020,7 +1020,7 @@ const ChildrenTable = ({ validationErrors }: { validationErrors: Set<string> }) 
                   name={`child-${r}-gender`}
                   defaultValue={(surveyData[`child-${r}-gender`] as string) || ''}
                   onChange={(e) => saveResponse(`child-${r}-gender`, e.target.value)}
-                  className={`focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border bg-gray-700 p-2.5 text-base text-white placeholder-gray-400 md:text-lg ${validationErrors.has(`child-${r}-gender`) ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-600'}`}
+                  className={`focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border bg-gray-700 p-2.5 text-base text-white placeholder-gray-400 lg:text-lg ${validationErrors.has(`child-${r}-gender`) ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-600'}`}
                 >
                   <option value="">Select...</option>
                   <option value="Male">Male</option>
@@ -1033,7 +1033,7 @@ const ChildrenTable = ({ validationErrors }: { validationErrors: Set<string> }) 
               <div className="flex items-center justify-between rounded-lg border border-gray-700 bg-gray-700/50 p-3">
                 <label
                   htmlFor={`child-${r}-smartphone-mobile`}
-                  className="text-sm font-medium text-gray-300 md:text-lg"
+                  className="text-sm font-medium text-gray-300 lg:text-lg"
                 >
                   Has Own Smartphone?
                 </label>
@@ -1356,21 +1356,21 @@ export default function SurveyForm() {
               <h2 className="mb-6 pb-2 text-center text-2xl font-bold text-white md:text-3xl">
                 Section 1: Competency
               </h2>
-              <p className="mb-4 text-base text-gray-300 md:text-lg">
+              <p className="mb-4 text-base text-gray-300 lg:text-lg">
                 Questions relating to your technical ability, attitude to cybersecurity, and
                 cybersecurity practices.
               </p>
-              <h3 className="mb-2 text-base font-semibold text-white md:text-lg">
+              <h3 className="mb-2 text-base font-semibold text-white lg:text-lg">
                 Why are these questions being asked?
               </h3>
-              <p className="mb-6 text-base text-gray-300 md:text-lg">
+              <p className="mb-6 text-base text-gray-300 lg:text-lg">
                 A parent's competency in technology and cybersecurity may exert a strong influence
                 on how their children interact online.
               </p>
-              <h3 className="mb-2 text-base font-semibold text-white md:text-lg">
+              <h3 className="mb-2 text-base font-semibold text-white lg:text-lg">
                 How many questions in this section?
               </h3>
-              <p className="mb-0 text-base text-gray-300 md:text-lg">4</p>
+              <p className="mb-0 text-base text-gray-300 lg:text-lg">4</p>
             </div>
             <div className="border-t border-gray-700 pt-8">
               {firstError === 'tech_knowledge' && <ErrorBanner />}
@@ -1476,23 +1476,23 @@ export default function SurveyForm() {
                 Section 2: Awareness
               </h2>
               {/* Same content ... */}
-              <p className="mb-4 text-base text-gray-300 md:text-lg">
+              <p className="mb-4 text-base text-gray-300 lg:text-lg">
                 Questions on your awareness of trends in children's use of technology, risks with
                 using currently popular devices/websites/apps, and currently available educational
                 resources.
               </p>
-              <h3 className="mb-2 text-base font-semibold text-white md:text-lg">
+              <h3 className="mb-2 text-base font-semibold text-white lg:text-lg">
                 Why are these questions being asked?
               </h3>
-              <p className="mb-6 text-base text-gray-300 md:text-lg">
+              <p className="mb-6 text-base text-gray-300 lg:text-lg">
                 Awareness of current trends of technology use, the risks involved, and the tools
                 available to combat these risks, are important factors in a parent's approach to
                 their child/children's online safety.
               </p>
-              <h3 className="mb-2 text-base font-semibold text-white md:text-lg">
+              <h3 className="mb-2 text-base font-semibold text-white lg:text-lg">
                 How many questions in this section?
               </h3>
-              <p className="mb-0 text-base text-gray-300 md:text-lg">4</p>
+              <p className="mb-0 text-base text-gray-300 lg:text-lg">4</p>
             </div>
 
             <div className="border-t border-gray-700 pt-8">
@@ -1747,22 +1747,22 @@ export default function SurveyForm() {
               <h2 className="mb-6 pb-2 text-center text-2xl font-bold text-white md:text-3xl">
                 Section 3: Concerns
               </h2>
-              <p className="mb-4 text-base text-gray-300 md:text-lg">
+              <p className="mb-4 text-base text-gray-300 lg:text-lg">
                 The questions focus on your own concerns for your child/children regarding use of
                 technology and online safety.
               </p>
-              <h3 className="mb-2 text-base font-semibold text-white md:text-lg">
+              <h3 className="mb-2 text-base font-semibold text-white lg:text-lg">
                 Why are these questions being asked?
               </h3>
-              <p className="mb-6 text-base text-gray-300 md:text-lg">
+              <p className="mb-6 text-base text-gray-300 lg:text-lg">
                 There may be significant differences in the issues of concern from parent to parent.
                 It is important to understand the nature of these concerns when designing
                 educational resources for their children.
               </p>
-              <h3 className="mb-2 text-base font-semibold text-white md:text-lg">
+              <h3 className="mb-2 text-base font-semibold text-white lg:text-lg">
                 How many questions in this section?
               </h3>
-              <p className="mb-0 text-base text-gray-300 md:text-lg">3</p>
+              <p className="mb-0 text-base text-gray-300 lg:text-lg">3</p>
             </div>
             <div className="border-t border-gray-700 pt-8">
               {firstError === 'safety_concerns' && <ErrorBanner />}
@@ -1835,31 +1835,31 @@ export default function SurveyForm() {
               <h2 className="mb-6 pb-2 text-center text-2xl font-bold text-white md:text-3xl">
                 Section 4: Education
               </h2>
-              <p className="mb-4 text-base text-gray-300 md:text-lg">
+              <p className="mb-4 text-base text-gray-300 lg:text-lg">
                 These questions focus on your opinion of the current state of technical and online
                 safety education for children in Ireland, and wishes for your own child/children's
                 education.
               </p>
-              <h3 className="mb-2 text-base font-semibold text-white md:text-lg">
+              <h3 className="mb-2 text-base font-semibold text-white lg:text-lg">
                 Why are these questions being asked?
               </h3>
-              <p className="mb-6 text-base text-gray-300 md:text-lg">
+              <p className="mb-6 text-base text-gray-300 lg:text-lg">
                 There have been numerous recent calls by experts for more and earlier tech and
                 cybersecurity education in Ireland. It is important to understand if this sentiment
                 is echoed by current parents, and if the resources being offered by Digital Knights
                 are in line with what parents want for their children.
               </p>
-              <h3 className="mb-2 text-base font-semibold text-white md:text-lg">
+              <h3 className="mb-2 text-base font-semibold text-white lg:text-lg">
                 How many questions in this section?
               </h3>
-              <p className="mb-0 text-base text-gray-300 md:text-lg">4</p>
+              <p className="mb-0 text-base text-gray-300 lg:text-lg">4</p>
             </div>
             <div className="border-t border-gray-700 pt-8">
               {firstError === 'expert_opinions' && <ErrorBanner />}
               <MatrixRadio
                 name="expert_opinions"
                 error={validationErrors.has('expert_opinions')}
-                questionLabel="Q.11 Opinions of experts and children"
+                questionLabel="Q.11 Opinions of experts"
                 questionText="Select how strongly you agree or disagree with the following statements."
                 options={['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree']}
                 rows={[
@@ -1994,22 +1994,22 @@ export default function SurveyForm() {
               <h2 className="mb-6 pb-2 text-center text-2xl font-bold text-white md:text-3xl">
                 Section 5: Basic Demographics
               </h2>
-              <p className="mb-4 text-base text-gray-300 md:text-lg">
+              <p className="mb-4 text-base text-gray-300 lg:text-lg">
                 Questions on basic information about you and your child/children, e.g. parental
                 role, number of children, child/children's ages.
               </p>
-              <h3 className="mb-2 text-base font-semibold text-white md:text-lg">
+              <h3 className="mb-2 text-base font-semibold text-white lg:text-lg">
                 Why are these questions being asked?
               </h3>
-              <p className="mb-6 text-base text-gray-300 md:text-lg">
+              <p className="mb-6 text-base text-gray-300 lg:text-lg">
                 The answers to these questions will be used to determine whether there are patterns
                 in attitudes to cybersecurity and mobile phones depending on factors such as
                 parental gender, child age and gender, siblings already possessing a smartphone etc.
               </p>
-              <h3 className="mb-2 text-base font-semibold text-white md:text-lg">
+              <h3 className="mb-2 text-base font-semibold text-white lg:text-lg">
                 How many questions in this section?
               </h3>
-              <p className="mb-0 text-base text-gray-300 md:text-lg">3</p>
+              <p className="mb-0 text-base text-gray-300 lg:text-lg">3</p>
             </div>
             <div className="border-t border-gray-700 pt-8">
               <div className="mb-8 grid grid-cols-1 gap-y-8 md:grid-cols-2 md:gap-y-0">
@@ -2017,7 +2017,7 @@ export default function SurveyForm() {
                   {firstError === 'role' && <ErrorBanner />}
                   <label
                     htmlFor="role"
-                    className="mb-2 block text-lg font-semibold text-white md:text-lg"
+                    className="mb-2 block text-lg font-semibold text-white lg:text-lg"
                   >
                     Q.14 What is your role?
                   </label>
@@ -2025,7 +2025,7 @@ export default function SurveyForm() {
                     id="role"
                     defaultValue={surveyData['role'] as string}
                     onChange={(e) => saveResponse('role', e.target.value)}
-                    className={`focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border bg-gray-700 p-2.5 text-base text-white placeholder-gray-400 md:text-lg ${validationErrors.has('role') ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-600'}`}
+                    className={`focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border bg-gray-700 p-2.5 text-base text-white placeholder-gray-400 lg:text-lg ${validationErrors.has('role') ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-600'}`}
                   >
                     <option value="">Select...</option>
                     <option>Father</option>
@@ -2037,7 +2037,7 @@ export default function SurveyForm() {
                   {firstError === 'children-count' && <ErrorBanner />}
                   <label
                     htmlFor="children-count"
-                    className="mb-2 block text-lg font-semibold text-white md:text-lg"
+                    className="mb-2 block text-lg font-semibold text-white lg:text-lg"
                   >
                     Q.15 How many children do you have?
                   </label>
@@ -2045,7 +2045,7 @@ export default function SurveyForm() {
                     id="children-count"
                     defaultValue={surveyData['children-count'] as string}
                     onChange={(e) => saveResponse('children-count', e.target.value)}
-                    className={`focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border bg-gray-700 p-2.5 text-base text-white placeholder-gray-400 md:text-lg ${validationErrors.has('children-count') ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-600'}`}
+                    className={`focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border bg-gray-700 p-2.5 text-base text-white placeholder-gray-400 lg:text-lg ${validationErrors.has('children-count') ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-600'}`}
                   >
                     <option value="">Select...</option>
                     <option>1</option>
@@ -2069,11 +2069,11 @@ export default function SurveyForm() {
             className={`mt-8 border-t border-gray-700 pt-8 ${currentStep === 5 ? 'block' : 'hidden'}`}
           >
             <h3 className="mb-4 text-xl font-bold text-white md:text-2xl">Finally</h3>
-            <p className="mb-6 text-gray-300 md:text-lg">
+            <p className="mb-6 text-gray-300 lg:text-lg">
               Thank you for completing the survey! Your responses will be a great help in informing
               the development of a new tech and cybersecurity curriculum.
             </p>
-            <p className="mb-6 text-gray-300 md:text-lg">
+            <p className="mb-6 text-gray-300 lg:text-lg">
               If you would like to stay informed about the project, or are interested in future
               classes for your child, please provide your email address below.
             </p>
@@ -2085,7 +2085,7 @@ export default function SurveyForm() {
               {firstError === 'email' && <ErrorBanner />}
               <label
                 htmlFor="email-input"
-                className={`mb-2 block text-base font-medium md:text-lg ${validationErrors.has('email') ? 'text-red-500' : 'text-white'}`}
+                className={`mb-2 block text-base font-medium lg:text-lg ${validationErrors.has('email') ? 'text-red-500' : 'text-white'}`}
               >
                 Your Email address (optional)
               </label>
@@ -2094,14 +2094,14 @@ export default function SurveyForm() {
                 type="email"
                 defaultValue={surveyData['email'] as string}
                 onBlur={(e) => saveResponse('email', e.target.value)}
-                className="focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-base text-white placeholder-gray-400 md:text-lg"
+                className="focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-base text-white placeholder-gray-400 lg:text-lg"
               />
             </div>
 
             <div className="mb-6">
               <label
                 htmlFor="comments"
-                className="mb-2 block text-base font-medium text-white md:text-lg"
+                className="mb-2 block text-base font-medium text-white lg:text-lg"
               >
                 Any further comments or questions:
               </label>
@@ -2110,7 +2110,7 @@ export default function SurveyForm() {
                 rows={4}
                 defaultValue={surveyData['comments'] as string}
                 onBlur={(e) => saveResponse('comments', e.target.value)}
-                className="focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-base text-white placeholder-gray-400 md:text-lg"
+                className="focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-base text-white placeholder-gray-400 lg:text-lg"
               ></textarea>
             </div>
 
@@ -2118,7 +2118,7 @@ export default function SurveyForm() {
               <button
                 type="button"
                 onClick={prevStep}
-                className="group text-primary-500 hover:text-primary-400 flex cursor-pointer items-center text-base font-medium transition-colors duration-200 md:text-lg"
+                className="group text-primary-500 hover:text-primary-400 flex cursor-pointer items-center text-base font-medium transition-colors duration-200 lg:text-lg"
               >
                 <svg
                   className="mr-2 h-5 w-5 transform transition-transform group-hover:-translate-x-1"
@@ -2138,7 +2138,7 @@ export default function SurveyForm() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="bg-primary-800 hover:bg-primary-900 focus:ring-primary-600 w-full cursor-pointer rounded-md px-5 py-2.5 text-base font-medium text-white ring-offset-black transition-colors focus:ring-2 focus:ring-offset-2 focus:outline-none disabled:cursor-wait disabled:opacity-70 sm:w-auto md:text-lg"
+                className="bg-primary-800 hover:bg-primary-900 focus:ring-primary-600 w-full cursor-pointer rounded-md px-5 py-2.5 text-base font-medium text-white ring-offset-black transition-colors focus:ring-2 focus:ring-offset-2 focus:outline-none disabled:cursor-wait disabled:opacity-70 sm:w-auto lg:text-lg"
               >
                 {isSubmitting ? 'Submitting...' : 'Submit Survey'}
               </button>
