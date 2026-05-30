@@ -1090,9 +1090,9 @@ export default function SurveyForm() {
       for (let i = 0; i < 7; i++) if (data[`recent_media-${i}`] === true) hasRm = true
       if (!hasRm) errors.add('recent_media')
 
-      let hasPv = false
-      for (let i = 0; i < 7; i++) if (data[`privacy_violations-${i}`] === true) hasPv = true
-      if (!hasPv) errors.add('privacy_violations')
+      // let hasPv = false
+      // for (let i = 0; i < 7; i++) if (data[`privacy_violations-${i}`] === true) hasPv = true
+      // if (!hasPv) errors.add('privacy_violations')
 
       let hasEr = false
       for (let i = 0; i < 7; i++) if (data[`edu_resources-${i}`] === true) hasEr = true
@@ -1108,8 +1108,8 @@ export default function SurveyForm() {
     }
 
     if (step === 4) {
-      for (let i = 0; i < 5; i++)
-        if (data[`expert_opinions-${i}`] === undefined) errors.add('expert_opinions')
+      // for (let i = 0; i < 5; i++)
+      //   if (data[`expert_opinions-${i}`] === undefined) errors.add('expert_opinions')
       for (let i = 0; i < 9; i++)
         if (data[`skills_importance-${i}`] === undefined) errors.add('skills_importance')
       for (let i = 0; i < 4; i++)
@@ -1150,11 +1150,9 @@ export default function SurveyForm() {
     let fieldOrder: string[] = []
 
     if (step === 1) fieldOrder = ['tech_knowledge', 'privacy_attitude', 'tools_usage']
-    if (step === 2)
-      fieldOrder = ['trends_12_15', 'recent_media', 'privacy_violations', 'edu_resources']
+    if (step === 2) fieldOrder = ['trends_12_15', 'recent_media', 'edu_resources']
     if (step === 3) fieldOrder = ['safety_concerns', 'tech_attitude', 'controls']
-    if (step === 4)
-      fieldOrder = ['expert_opinions', 'skills_importance', 'edu_opinion', 'interest_resources']
+    if (step === 4) fieldOrder = ['skills_importance', 'edu_opinion', 'interest_resources']
     if (step === 5) {
       fieldOrder = ['role', 'children-count']
       // We check up to 5 children as that's the max rows in ChildrenTable
@@ -1370,7 +1368,7 @@ export default function SurveyForm() {
               <h3 className="mb-2 text-base font-semibold text-white lg:text-lg">
                 How many questions in this section?
               </h3>
-              <p className="mb-0 text-base text-gray-300 lg:text-lg">4</p>
+              <p className="mb-0 text-base text-gray-300 lg:text-lg">3</p>
             </div>
             <div className="border-t border-gray-700 pt-8">
               {firstError === 'tech_knowledge' && <ErrorBanner />}
@@ -1492,10 +1490,11 @@ export default function SurveyForm() {
               <h3 className="mb-2 text-base font-semibold text-white lg:text-lg">
                 How many questions in this section?
               </h3>
-              <p className="mb-0 text-base text-gray-300 lg:text-lg">4</p>
+              <p className="mb-0 text-base text-gray-300 lg:text-lg">3</p>
             </div>
 
             <div className="border-t border-gray-700 pt-8">
+              {/* Q.4 stays Q.4 */}
               {firstError === 'trends_12_15' && <ErrorBanner />}
               <MatrixSlider
                 name="trends_12_15"
@@ -1519,7 +1518,7 @@ export default function SurveyForm() {
               <Checkboxes
                 name="recent_media"
                 error={validationErrors.has('recent_media')}
-                questionLabel="Q.6 Recent Media"
+                questionLabel="Q.5 Recent Media"
                 questionText="Below are some examples of coverage of cybersecurity issues relating to children in the media. Select all that you have encountered."
                 options={[
                   {
@@ -1590,7 +1589,7 @@ export default function SurveyForm() {
                 ]}
               />
 
-              {firstError === 'privacy_violations' && <ErrorBanner />}
+              {/* {firstError === 'privacy_violations' && <ErrorBanner />}
               <Checkboxes
                 name="privacy_violations"
                 error={validationErrors.has('privacy_violations')}
@@ -1673,13 +1672,13 @@ export default function SurveyForm() {
                     label: 'None of the above',
                   },
                 ]}
-              />
+              /> */}
 
               {firstError === 'edu_resources' && <ErrorBanner />}
               <Checkboxes
                 name="edu_resources"
                 error={validationErrors.has('edu_resources')}
-                questionLabel="Q.8 Available educational resources"
+                questionLabel="Q.6 Available educational resources"
                 questionText="Below is a list of resources for educating children in Ireland on online safety and cybersecurity. Please check those that you are familiar with."
                 options={[
                   {
@@ -1769,7 +1768,7 @@ export default function SurveyForm() {
               <MatrixRating
                 name="safety_concerns"
                 error={validationErrors.has('safety_concerns')}
-                questionLabel="Q.8 Online safety concerns for children"
+                questionLabel="Q.7 Online safety concerns for children"
                 questionText="Rank the following concerns you have for your own child/children from 1 - Not concerned at all, to 10 - Extremely concerned."
                 rows={[
                   'Cyberbullying',
@@ -1791,7 +1790,7 @@ export default function SurveyForm() {
             <MatrixRadio
               name="tech_attitude"
               error={validationErrors.has('tech_attitude')}
-              questionLabel="Q.9 Attitude to child/children's use of technology"
+              questionLabel="Q.8 Attitude to child/children's use of technology"
               questionText="Select how strongly you agree or disagree with the following statements on children's use of phones/internet."
               options={['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree']}
               rows={[
@@ -1809,7 +1808,7 @@ export default function SurveyForm() {
             <MatrixRadio
               name="controls"
               error={validationErrors.has('controls')}
-              questionLabel="Q.10 Cybersecurity controls you use or intend to use for your child/children"
+              questionLabel="Q.9 Cybersecurity controls you use or intend to use for your child/children"
               questionText="Which of the following services/controls for aiding with child smartphone safety do you currently use, or intend to use?"
               options={['Do not/Will not use', 'Unsure', 'Use/Will use']}
               rows={[
@@ -1852,10 +1851,10 @@ export default function SurveyForm() {
               <h3 className="mb-2 text-base font-semibold text-white lg:text-lg">
                 How many questions in this section?
               </h3>
-              <p className="mb-0 text-base text-gray-300 lg:text-lg">4</p>
+              <p className="mb-0 text-base text-gray-300 lg:text-lg">3</p>
             </div>
             <div className="border-t border-gray-700 pt-8">
-              {firstError === 'expert_opinions' && <ErrorBanner />}
+              {/* {firstError === 'expert_opinions' && <ErrorBanner />}
               <MatrixRadio
                 name="expert_opinions"
                 error={validationErrors.has('expert_opinions')}
@@ -1884,14 +1883,14 @@ export default function SurveyForm() {
                     link: 'https://www.webwise.ie/parents/',
                   },
                 ]}
-              />
+              /> */}
             </div>
 
             {firstError === 'skills_importance' && <ErrorBanner />}
             <MatrixRadio
               name="skills_importance"
               error={validationErrors.has('skills_importance')}
-              questionLabel="Q.12 Aspirations for your own child/children's education"
+              questionLabel="Q.10 Aspirations for your own child/children's education"
               questionText="How important are the following technical skills for your child to learn?"
               options={[
                 'Not at all important',
@@ -1917,7 +1916,7 @@ export default function SurveyForm() {
             <MatrixRadio
               name="edu_opinion"
               error={validationErrors.has('edu_opinion')}
-              questionLabel="Q.13 Your opinion on your child/children's tech & cybersecurity education"
+              questionLabel="Q.11 Your opinion on your child/children's tech & cybersecurity education"
               questionText="Select how strongly you agree or disagree with the following statements on online safety and tech education."
               options={['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree']}
               rows={[
@@ -1932,7 +1931,7 @@ export default function SurveyForm() {
             <MatrixRadio
               name="interest_resources"
               error={validationErrors.has('interest_resources')}
-              questionLabel="Q.14 Interest in Digital Knights learning resources"
+              questionLabel="Q.12 Interest in Digital Knights learning resources"
               questionText="Indicate whether you would be interested in availing of the following resources provided by Digital Knights:"
               options={['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree']}
               rows={[
@@ -2008,7 +2007,7 @@ export default function SurveyForm() {
               <h3 className="mb-2 text-base font-semibold text-white lg:text-lg">
                 How many questions in this section?
               </h3>
-              <p className="mb-0 text-base text-gray-300 lg:text-lg">3</p>
+              <p className="mb-0 text-base text-gray-300 lg:text-lg">2</p>
             </div>
             <div className="border-t border-gray-700 pt-8">
               <div className="mb-8 grid grid-cols-1 gap-y-8 md:grid-cols-2 md:gap-y-0">
@@ -2018,7 +2017,7 @@ export default function SurveyForm() {
                     htmlFor="role"
                     className="mb-2 block text-lg font-semibold text-white lg:text-lg"
                   >
-                    Q.14 What is your role?
+                    Q.13 What is your role?
                   </label>
                   <select
                     id="role"
@@ -2038,7 +2037,7 @@ export default function SurveyForm() {
                     htmlFor="children-count"
                     className="mb-2 block text-lg font-semibold text-white lg:text-lg"
                   >
-                    Q.15 How many children do you have?
+                    Q.14 How many children do you have?
                   </label>
                   <select
                     id="children-count"

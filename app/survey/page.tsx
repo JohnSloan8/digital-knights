@@ -42,10 +42,10 @@ export default async function SurveyPage(props: {
               </p>
 
               <h3>How many questions are there?</h3>
-              <p>16.</p>
+              <p>14.</p>
 
               <h3>How long will this survey take?</h3>
-              <p>5-10 minutes.</p>
+              <p>5 minutes.</p>
 
               <h3>Is this survey anonymous?</h3>
               <p>
