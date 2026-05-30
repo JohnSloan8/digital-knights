@@ -910,7 +910,7 @@ const ChildrenTable = ({ validationErrors }: { validationErrors: Set<string> }) 
   return (
     <div className="mb-8 overflow-hidden">
       <h3 className="mb-2 text-lg font-semibold text-white lg:text-lg">
-        Q.16 For each of your children, please provide their age, gender, and whether they currently
+        For each of your children, please provide their age, gender, and whether they currently
         possess their own smartphone.
       </h3>
       <div className="hidden overflow-x-auto md:block">
