@@ -35,9 +35,9 @@ export default function ClassesPage() {
             </div>
             <div className="px-5 py-4">
               <p className="text-base leading-relaxed">
-                Classes are currently scheduled to begin in{' '}
-                <strong className="text-blue-100">Autumn 2026</strong>. Parents can help shape the
-                curriculum by completing the{' '}
+                Classes are planned to begin at participating schools in{' '}
+                <strong className="text-blue-100">September 2026 or January 2027</strong>. Parents
+                can help shape the curriculum by completing the{' '}
                 <Link
                   href="/survey"
                   noStyle
@@ -97,7 +97,7 @@ export default function ClassesPage() {
                   Start Date
                 </dt>
                 <dd className="text-base leading-relaxed text-gray-200">
-                  Autumn 2026 or Spring 2027 (depending on demand).
+                  September 2026 or January 2027 (depending on the school).
                 </dd>
               </div>
               <div className="grid gap-2 px-5 py-4 md:grid-cols-[11rem_1fr] md:gap-6">
@@ -112,18 +112,10 @@ export default function ClassesPage() {
               </div>
               <div className="grid gap-2 px-5 py-4 md:grid-cols-[11rem_1fr] md:gap-6">
                 <dt className="text-primary-400 text-sm font-semibold tracking-wide uppercase">
-                  Price
-                </dt>
-                <dd className="text-base leading-relaxed text-gray-200">
-                  €275 per 15-week semester.
-                </dd>
-              </div>
-              <div className="grid gap-2 px-5 py-4 md:grid-cols-[11rem_1fr] md:gap-6">
-                <dt className="text-primary-400 text-sm font-semibold tracking-wide uppercase">
                   Location
                 </dt>
                 <dd className="text-base leading-relaxed text-gray-200">
-                  TBD (Rathfarnham, Ballinteer, Dundrum areas)
+                  At participating schools (Rathfarnham, Ballinteer, Dundrum areas)
                 </dd>
               </div>
             </dl>

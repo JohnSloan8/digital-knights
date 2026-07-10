@@ -58,6 +58,7 @@ const LOCATIONS = [...DUBLIN_POSTCODES, ...OTHER_COUNTIES].sort((a, b) => {
 type ChildData = {
   birthYear: string
   gender: string
+  school: string
 }
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -68,7 +69,7 @@ export default function WaitlistForm() {
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
   const [location, setLocation] = useState('')
-  const [children, setChildren] = useState<ChildData[]>([{ birthYear: '', gender: '' }])
+  const [children, setChildren] = useState<ChildData[]>([{ birthYear: '', gender: '', school: '' }])
   const [otherInfo, setOtherInfo] = useState('')
   const [errors, setErrors] = useState<Set<string>>(new Set())
 
@@ -82,7 +83,7 @@ export default function WaitlistForm() {
   }, [isSubmitted])
 
   const handleAddChild = () => {
-    setChildren([...children, { birthYear: '', gender: '' }])
+    setChildren([...children, { birthYear: '', gender: '', school: '' }])
   }
 
   const handleChildChange = (index: number, field: keyof ChildData, value: string) => {
@@ -110,7 +111,7 @@ export default function WaitlistForm() {
     }
 
     // Check if first child has details
-    if (!children[0].birthYear || !children[0].gender) {
+    if (!children[0].birthYear || !children[0].gender || !children[0].school) {
       newErrors.add('children-0')
     }
 
@@ -331,10 +332,26 @@ export default function WaitlistForm() {
                       <option value="Prefer not to say">Prefer not to say</option>
                     </select>
                   </div>
+                  <div className="sm:col-span-2">
+                    <label
+                      htmlFor={`child-school-${index}`}
+                      className="mb-2 block text-sm font-medium text-gray-300"
+                    >
+                      School
+                    </label>
+                    <input
+                      id={`child-school-${index}`}
+                      type="text"
+                      value={child.school}
+                      onChange={(e) => handleChildChange(index, 'school', e.target.value)}
+                      placeholder="e.g. St. Colmcille's National School"
+                      className="focus:border-primary-500 focus:ring-primary-500 block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-base text-white placeholder-gray-400"
+                    />
+                  </div>
                 </div>
                 {isError && (
                   <p className="mt-2 text-sm text-red-500">
-                    Please provide details for at least one child.
+                    Please provide birth year, gender, and school for at least one child.
                   </p>
                 )}
               </div>
