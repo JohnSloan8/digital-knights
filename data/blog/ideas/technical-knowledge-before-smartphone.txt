@@ -1,0 +1,18 @@
+article link: https://www.rte.ie/news/primetime/2025/0918/1534034-data-for-sale/
+images: /public/static/images/blog/gps-primetime-rte-still.webp, /public/static/images/blog/gps-data-prime-time.webp
+my highlights from programme: /home/john/Documents/digital-knights/media/primetime-gps-episode/highlights.txt
+
+Plan:
+(show the first image at the top of the article.)
+I want to emphasise why some level of technical knowledge can be helpful for people to help stay safe online.
+The example I am using comes from an RTÉ Primetime episode last year which showed thousands of peoples live location data was being sold. THis included sensitive informaiton (See article link for full details)
+The problem, emphasised by the TD, was that they didn't realise that this data was being provided by the people, i.e. they were not aware.
+However, this data collection and sale is legal in the EU under GDPR because all these thousands of people agreed to sharing their location, and then allowed the companies to share this data with their 'partners'
+The argument the TD makes is that people weren't aware. 
+I want to argue that the reason people aren't aware, despite tapping to provide consent, is that people many people don't really knwo that when you give 'location' access, this is 2 numbers, latitude and longitude pinged every second or so, which give a very precise record of your exact movements. 
+It was only when people where shown these numbers on a map with a red dot moving along it that they then udnerstaood. (show the second image here)
+So, there is a gap in the understanding of the languagea round consent, and what this actually means on a technical level.
+If people were educated on what exactly their location data is, and how it is sharde/sold and the consequences, it is likely that fewer would agree to give it away in the first place. 
+Then, we can segway into other data types and gaps in knowledge. for example, many people think that when they send an image to a friend via snapchat/whatsapp, that photo exists on your phone and then on the phone fo the person yous ent it to. However, the technical reality is that the photo is sent to a cloud server of that company, and a link is sent to the other person, who downloads from this cloud. To go even further, a small amount of technical knowledge will allow a person to know that when they click 'delete' on this photo in the cloud, that photo itself is not actually deleted. just the pointer to it. So if you are sending a sensitive piece of media, it may exist on the internet forever, even if you think you have deleted it. This is another example of how even a small amount of technical knowledge coudl help people make smarter, safer choices online. 
+OK, so, I think we have enough to write this article. 
+BEfore doing so, read the other articles I have written and try to write in the same style. You can see I don't use too much flowery langauge and have my own personal style.

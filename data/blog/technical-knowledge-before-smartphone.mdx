@@ -1,114 +1,98 @@
 ---
 title: 'Why Technical Knowledge is Required Before Smartphone Possession (and How to Provide It)'
 date: '2026-09-11'
-lastmod: '2026-09-11'
+lastmod: '2026-10-28'
 tags: ['smartphones', 'technical skills', 'curriculum']
 draft: true
 layout: PostSimple
-summary: Handing a child a smartphone without first teaching them how the technology actually works leaves them exposed to risks they can't recognise or defend against. This article argues that technical literacy must come before device ownership, and sets out a practical path for building it.
+summary: Thousands of people in Ireland agreed to share their location data without understanding what that meant. This article uses the RTÉ Prime Time investigation into location data for sale to argue that a small amount of technical knowledge can make a big difference to how safely we use our phones.
 ---
 
 <div className="mt-0 space-y-2">
   <Image
-    src="https://picsum.photos/seed/dk-smartphone-01/1098/609"
-    alt="Placeholder image 1"
-    width={1098}
-    height={609}
+    src="/static/images/blog/gps-primetime-rte-still.webp"
+    alt="Still from the RTÉ Prime Time investigation into location data for sale"
+    width={1673}
+    height={911}
     className="mx-auto block w-full max-w-[600px] rounded-lg"
   />
   <span className="block text-center text-sm italic">
-    Figure 1. Placeholder image — replace with a real image before publishing.
+    Figure 1. Still from RTÉ Prime Time, September 2025.
   </span>
 </div>
 
 ## Introduction
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+In September of last year, RTÉ's Prime Time aired an [investigation into location data for sale](https://www.rte.ie/news/primetime/2025/0918/1534034-data-for-sale/) here in Ireland. Posing as the founders of a new data analytics company, journalists approached a number of firms working in digital marketing and advertising, and asked to buy people's location data. One of these firms handed over a free sample. It contained the movements of **64,000 phones** in Ireland over a two week period, tracked minute by minute, precise enough to show people moving from room to room inside their own homes.
 
-Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+The data included phones at high-security prisons, health clinics, mental health facilities, military bases, and Leinster House itself. For a paying customer, this was available as a constantly updated feed, with a delay of only 24 to 72 hours.
 
-## What Kids Don't Know They Don't Know
+### But didn't they agree to it?
 
-Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.
+Yes. And that is what makes this story so interesting. The companies selling the data were quite relaxed about the whole thing. Their position was that the data was collected in line with EU privacy laws, because every one of those 64,000 phone owners had given their consent. At some point, each of them had tapped _'Allow'_ when an app asked for their location, and agreed to terms and conditions which permitted that data to be _'Shared'_ with the app's 'partners'. Whether this actually holds up legally is disputed - the Irish Council for Civil Liberties argues we are meant to be protected by law against exactly this, and the Data Protection Commission said it was _"extremely concerned"_. But, as things stand, consent is the foundation the whole industry is built on.
 
-Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur.
+One of the phones in the sample was linked to the parliamentary office of Fine Gael TD Barry Ward. A member of his staff confirmed the data was accurate, and agreed to let Prime Time show Ward their mapped movements. His reaction:
+
+<Quote>totally inappropriate, and definitely dangerous.</Quote>
+
+Well, yes. Of course it is. Later in the programme, Ward makes what I think is the most important point of the whole episode - that **people simply don't realise what they are consenting to.**
+
+{/* TODO: insert exact quote from the TD at 17:25 in the programme */}
+
+He's right. But I think it is worth asking _why_ people don't realise.
+
+### What exactly is 'location'?
+
+When your phone asks _"Allow this app to access your location?"_, the word 'location' can be quite vague. Most people, I suspect, imagine something like _"roughly where I am"_ - the town, maybe the street.
+
+Here is what it actually is. Two numbers: a **latitude** and a **longitude**. Your phone's GPS calculates these, and the app records them, along with the time, over and over again, every second or so, often all day every day for as long as it has permission. It looks something like this:
+
+| Time     | Latitude | Longitude |
+| -------- | -------- | --------- |
+| 08:01:12 | 53.34412 | -6.26721  |
+| 08:01:13 | 53.34411 | -6.26719  |
+| 08:01:14 | 53.34410 | -6.26717  |
+| 08:01:15 | 53.34409 | -6.26715  |
+
+_(These numbers are made up for illustration.)_
+
+On its own, this looks like nothing. A spreadsheet of decimals. Nobody is going to be alarmed by a table like that, which is exactly the problem. Those five decimal places are accurate to around one metre. String a few days of these together and you have a precise record of where you sleep, where you work, where your children go to school, which doctor you visit, which church or gym or pub you go to, and what time you do all of it. You don't need a name attached to work out who someone is - the place they spend every night is a fairly strong clue.
+
+What struck me watching the programme was that the people involved only really understood what they had given away when they were shown those numbers plotted on a map - a red dot moving through their day.
 
 <div className="my-8">
   <Image
-    src="https://picsum.photos/seed/dk-smartphone-02/1098/609"
-    alt="Placeholder image 2"
-    width={1098}
-    height={609}
-    className="mx-auto block w-full rounded-lg"
+    src="/static/images/blog/gps-data-prime-time.webp"
+    alt="Location data from the Prime Time sample plotted on a map"
+    width={614}
+    height={443}
+    className="mx-auto block w-full max-w-[450px] rounded-lg"
   />
   <span className="block text-center text-sm italic">
-    Figure 2. Placeholder image — replace with a real image before publishing.
+    Figure 2. Location data plotted on a map. Source: RTÉ Prime Time.
   </span>
 </div>
 
-At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.
+### The gap between consent and understanding
 
-### The Gap Between Awareness and Understanding
+So there is a gap. On one side, the language of consent - 'location', 'partners', 'improve your experience'. On the other, the technical reality - a continuous stream of coordinates, packaged up and sold on to companies you have never heard of. People are agreeing to the first without any idea of the second.
 
-Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.
+I don't believe 64,000 people in Ireland would knowingly agree to have their every movement recorded and sold. If they had understood what location data is, how it is shared, and what it can reveal, I think a lot fewer of them would have tapped 'Allow'. This is the same argument I made in [Social Media Bans for Children - Not a Panacea](/blog/bans): knowing how a thing actually works is what allows us to make good decisions about it. Being told _"be careful with your personal information"_ is not the same thing.
 
-- Temporibus autem quibusdam et aut officiis debitis
-- Aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae
-- Sint et molestiae non recusandae, itaque earum rerum hic tenetur
+### Another example: the photo you 'sent'
 
-Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
+Location data is just one example. There are plenty of other everyday activities where a small gap in technical understanding can lead to a big mistake.
 
-## What Technical Knowledge Actually Looks Like
+Take sending a photo to a friend on a messaging app. Ask most people (adults included) what happens, and they will describe something like this: the photo is on my phone, I press send, and now it is on my friend's phone too. Two copies, two phones.
 
-Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+In reality, there is a third place. In most messaging apps, the photo is uploaded from your phone to the company's servers, and your friend's phone then downloads it from there. Depending on the app, the copy on the server may be encrypted, and it may be kept for a few hours, a few weeks, or much longer. Either way, the photo has left your phone and passed through someone else's computer.
 
-<Quote>
+Then there is 'delete'. A little technical knowledge tells you that, in a lot of systems, deleting something doesn't actually remove the data itself. It removes the _pointer_ to it - the reference that tells the system where to find it. The data can sit there until it happens to be overwritten. Add in backups, screenshots, and the copy already downloaded to your friend's phone, and the conclusion is simple: once a sensitive photo has left your device, you should assume you no longer control it, no matter how many times you press delete.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit — placeholder quote to be replaced with a
-real citation or expert quote before publishing.
+This matters a great deal for teenagers. A child who believes a photo only exists on two phones, and can be deleted at any time, is going to make very different choices from one who understands where that photo actually goes.
 
-</Quote>
+### Summary
 
-Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt, neque porro quisquam est qui dolorem ipsum quia dolor sit amet.
+None of this is complicated. Latitude and longitude, servers, pointers - these are concepts that can be explained to a 10 or 11 year old in a single lesson. But they make the difference between consenting to something and _understanding_ what you have consented to. The 64,000 people in the Prime Time sample weren't careless. They just didn't have the technical knowledge to see what was behind the 'Allow' button.
 
-<div className="my-8 grid grid-cols-1 items-start gap-4 md:grid-cols-2">
-  <div>
-    <Image
-      src="https://picsum.photos/seed/dk-smartphone-03/800/600"
-      alt="Placeholder image 3"
-      width={800}
-      height={600}
-      className="mx-auto block w-full max-w-[400px] rounded-lg"
-    />
-    <span className="mt-4 block text-center text-sm italic">
-      Figure 3. Placeholder image — replace before publishing.
-    </span>
-  </div>
-  <div>
-    <Image
-      src="https://picsum.photos/seed/dk-smartphone-04/800/600"
-      alt="Placeholder image 4"
-      width={800}
-      height={600}
-      className="mx-auto block w-full max-w-[400px] rounded-lg"
-    />
-    <span className="mt-4 block text-center text-sm italic">
-      Figure 4. Placeholder image — replace before publishing.
-    </span>
-  </div>
-</div>
-
-## How to Provide It
-
-Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-
-1. Lorem ipsum dolor sit amet, first placeholder step
-2. Consectetur adipiscing elit, second placeholder step
-3. Sed do eiusmod tempor incididunt, third placeholder step
-4. Ut labore et dolore magna aliqua, fourth placeholder step
-
-Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum, replace this section with the concrete, actionable guidance parents and educators can follow.
-
-## Summary
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. This closing section should restate the core argument — that technical knowledge must precede smartphone possession — and point readers toward the [curriculum](/curriculum) as the practical next step.
+That is why I believe this knowledge needs to come _before_ the smartphone, not after. Our children are going to be asked to tap 'Allow' hundreds of times. We owe it to them to make sure they know what they are agreeing to. This is exactly what our [curriculum](/curriculum) is designed to do.
