@@ -15,6 +15,7 @@ export default function Home({ posts }) {
     FAQ: 'Answers to common questions about our programs.',
     Curriculum: 'Explore our 5-level structured learning path.',
     Waitlist: 'Sign up to be notified when spots open.',
+    Talks: 'Talks and workshops for secondary school students.',
     About: 'Our mission, vision, and the team behind Digital Knights.',
   }
 
@@ -70,7 +71,8 @@ export default function Home({ posts }) {
             </p>
             <p>
               On this website, you will find resources for both parents and children covering the
-              topics of tech and cybersecurity. The main focus is on developing a structured{' '}
+              topics of tech and cybersecurity. The main focus is on developing and delivering a
+              structured{' '}
               <Link
                 href="/curriculum"
                 className="text-primary-500 hover:text-primary-400 !no-underline"
@@ -84,7 +86,11 @@ export default function Home({ posts }) {
               >
                 classes
               </Link>
-              {''}. Parents' input is being actively sought through a{' '}
+              {''}. For teenagers, we also offer additional support and resources in the form of{' '}
+              <Link href="/talks" className="text-primary-500 hover:text-primary-400 !no-underline">
+                talks and workshops
+              </Link>{' '}
+              for secondary schools. Parents' input is continuously sought through a{' '}
               <Link
                 href="/survey"
                 className="text-primary-500 hover:text-primary-400 !no-underline"
@@ -131,6 +137,12 @@ export default function Home({ posts }) {
                   className="text-primary-500 hover:text-primary-400 font-bold !no-underline"
                 >
                   Classes <span aria-hidden="true">&rarr;</span>
+                </Link>
+                <Link
+                  href="/talks"
+                  className="text-primary-500 hover:text-primary-400 font-bold !no-underline"
+                >
+                  Talks <span aria-hidden="true">&rarr;</span>
                 </Link>
                 <Link
                   href="/faq"

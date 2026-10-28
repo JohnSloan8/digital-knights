@@ -35,17 +35,9 @@ export default function ClassesPage() {
             </div>
             <div className="px-5 py-4">
               <p className="text-base leading-relaxed">
-                Classes are planned to begin at participating schools in{' '}
-                <strong className="text-blue-100">September 2026 or January 2027</strong>. Parents
-                can help shape the curriculum by completing the{' '}
-                <Link
-                  href="/survey"
-                  noStyle
-                  className="font-semibold text-blue-300 hover:text-blue-200"
-                >
-                  survey
-                </Link>
-                , and express an interest in a place by joining the{' '}
+                Class start dates and locations are{' '}
+                <strong className="text-blue-100">based on demand</strong>. Parents can express an
+                interest in a place by joining the{' '}
                 <a href="#waitlist" className="font-semibold text-blue-300 hover:text-blue-200">
                   waitlist below
                 </a>
@@ -97,7 +89,11 @@ export default function ClassesPage() {
                   Start Date
                 </dt>
                 <dd className="text-base leading-relaxed text-gray-200">
-                  September 2026 or January 2027 (depending on the school).
+                  Based on demand. Join the{' '}
+                  <a href="#waitlist" className="text-primary-500 hover:text-primary-400">
+                    waitlist
+                  </a>{' '}
+                  to register interest.
                 </dd>
               </div>
               <div className="grid gap-2 px-5 py-4 md:grid-cols-[11rem_1fr] md:gap-6">
@@ -115,7 +111,8 @@ export default function ClassesPage() {
                   Location
                 </dt>
                 <dd className="text-base leading-relaxed text-gray-200">
-                  At participating schools (Rathfarnham, Ballinteer, Dundrum areas)
+                  At participating schools or local venues, based on demand (currently focusing on
+                  the Rathfarnham, Ballinteer and Dundrum areas)
                 </dd>
               </div>
             </dl>
@@ -128,7 +125,14 @@ export default function ClassesPage() {
             <p>
               If you would like to express an interest in your child/children joining a Digital
               Knights class in the future, please complete the form below to be added to the
-              waitlist. Places will be assigned on a first-come-first-served basis
+              waitlist. Places will be assigned on a first-come-first-served basis.
+            </p>
+            <p>
+              Looking for talks or workshops for secondary school students? See the{' '}
+              <Link href="/talks" className="text-primary-500 hover:text-primary-400 !no-underline">
+                talks
+              </Link>{' '}
+              page.
             </p>
           </div>
 

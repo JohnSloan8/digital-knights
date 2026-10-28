@@ -11,17 +11,17 @@ Digital Knights is an independent, educational initiative which aims to prepare 
 
 ### Why is there a need for this?
 
-The current solution to the dangers associated with children in digital spaces is to restrict or ban phones, social media, apps etc. However, education is a much more effective and empowering approach than restrictions. While the current primary school curriculum and resources for online safety include a lot of useful information on some topics (e.g. cyberbullying, appropriate vs. inappropriate content), there is a lack of detail on technical aspects.
+Most current responses to the dangers children face online focus on restriction, such as banning phones, social media and certain apps. However, education is a much more effective and empowering approach than restrictions. While the current primary school curriculum and resources for online safety include a lot of useful information on some topics (e.g. cyberbullying, appropriate vs. inappropriate content), there is a lack of detail on technical aspects.
 
 Understanding how complicated systems work can help us make informed decisions when dealing with them. There is ample evidence from other fields that this educational approach is effective. When teaching sex education, we don't shy away from explaining the menstrual cycle, sperm, STDs, etc., as young people armed with this knowledge make smarter choices than those who are left ignorant. We need to do the same for smartphones, because those who understand the basic technical details of computers, data, and networking before owning a phone will make smarter choices when they do.
 
-### Why not leave this education to schools?
+### Don't schools already cover this subject?
 
-I don't believe the current curriculum and educational resources available in Irish primary schools adequately prepare children for entry to the digital world. This includes the 2026 [Switched On](https://www.webwise.ie/switchedon/) programme for 5th and 6th class ([see article](/blog/switched-on)). The materials do not provide sufficient technical depth to solve the problems I am most concerned with. Additionally, teachers have enough on their plates without being expected to become proficient in tech and cybersecurity as well.
+To some extent, yes they do. However, I don't believe the current curriculum and educational resources available in Irish primary schools adequately prepare children for entry to the digital world. This includes the 2026 [Switched On](https://www.webwise.ie/switchedon/) programme for 5th and 6th class ([see article](/blog/switched-on)). The materials do not provide sufficient technical depth to solve the problems I am most concerned with. Additionally, teachers have enough on their plates without being expected to become proficient in tech and cybersecurity as well.
 
 ### Which problems are you concerned with?
 
-My background in technology and cybersecurity mean I am acutely aware of the dangers we all face when going online. For young people, my primary concerns relate to the data they create and share which makes up their _digital footprint_. This digital footprint is used by tech companies to train algorithms for profiling and targeting content. I don't want my child's feed populated with celebrities/influencers who have had plastic surgery because they once searched for 'nose job' out of curiosity. I don't want my children getting alerts about the latest deals on a product because they recently searched for it and are now in the vicinity of that company's shop. And, I particularly don't want my children being fed extreme political content from one, polarising point of view.
+My background in technology and cybersecurity mean I am acutely aware of the dangers we all face when going online. For young people, my primary concerns relate to the data they create and share which makes up their _digital footprint_. This digital footprint is used by tech companies to train algorithms for profiling and targeting content. I don't want my child's feed populated with celebrities/influencers who have had plastic surgery because they once searched for 'nose job' out of curiosity. I don't want my children getting alerts about the latest deals on a product because they recently searched for it and are now in the vicinity of that company's shop. And, I particularly don't want my children being fed extreme political content from one, polarised point of view.
 
 ### Won't smartphone or social media bans for kids solve the problems you have identified?
 
@@ -31,13 +31,17 @@ No. See [article](/blog/bans).
 
 They will learn how a mobile phone works by building one from scratch. Full details can be found on the [curriculum](/curriculum) page.
 
+### What will teenagers learn in Digital Knights talks?
+
+They will learn about the data they create and share, how to recognise scams and manipulation, and the use and abuse of AI. Full details can be found on the [talks](/talks) page.
+
 ### Why the medieval theme?
 
 It can be beneficial to relate the learning of a new and unfamiliar topic to one a student already has knowledge of and a positive attitude towards. This is particularly true for younger learners. A lot of the concepts around computing, networking and online safety can be captured well in an analogy to elements from popular medieval fairytales, e.g. inside the castle walls is safe (home network), while outside (internet) can be dangerous. The castle wall is a firewall, drawbridges are ports, anonymity is putting on a helmet etc.
 
 ### What skills/experience do you have for designing this curriculum?
 
-I have spent over two decades in the fields of technology and education designing and delivering courses for children and college students. I hold a PhD in Computer Science from UCD and the CISSP cybersecurity certification from ISC2. I spent 5 years developing and delivering a curriculum for primary school ESL students, 4 years as a Teaching Assistant for UCD Computer Science, and most recently, 2 years lecturing at Trinity College Dublin in Speech and Language Technologies. For more information, see the [about](/about#about-me) section.
+I have spent over two decades in the fields of technology and education, designing and delivering courses for children and college students. I hold a PhD in Computer Science from UCD and the CISSP cybersecurity certification from ISC2. I spent 5 years developing and delivering a curriculum for primary school ESL students, 4 years as a Teaching Assistant for UCD Computer Science, and most recently, 2 years lecturing at Trinity College Dublin in Speech and Language Technologies. For more information, see the [about](/about#about-me) section.
 
 ### How does Digital Knights differ from other tech education/coding classes for kids?
 
@@ -71,9 +75,9 @@ Yes. Informative [articles](/blog) will be published on this website every month
 
 ### What if my child is too young/old to start?
 
-Please get in contact anyway. Younger children can be added to the waiting list, while accomodations could be made for older children if there is sufficient interest.
+Please get in contact anyway. Younger children can be added to the waiting list, while accomodations could be made for older children if there is sufficient interest. For secondary school students, Digital Knights also offers [talks and workshops](/talks) delivered in schools.
 
-## Will I be required to purchase any of the materials listed in the curriculum?
+### Will I be required to purchase any of the materials listed in the curriculum?
 
 No. All materials for classes wil be provided except for the smartphone the child will require in the final semester.
 
@@ -83,7 +87,7 @@ Individual levels of parental monitoring are a family matter. Options for parent
 
 ### When/Where are classes held?
 
-See [classes](/classes) page for details
+Class start dates and locations are based on demand. See the [classes](/classes) page for details and join the waitlist to register your interest.
 
 ### Can I get involved?
 

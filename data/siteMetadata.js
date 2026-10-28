@@ -3,7 +3,7 @@ const siteMetadata = {
   title: 'Digital Knights',
   author: 'John Sloan',
   headerTitle: 'Digital Knights',
-  description: 'Tech & cybersecurity education for children and parents',
+  description: 'Tech & cybersecurity education for children, teenagers and parents',
   language: 'en-IE',
   siteUrl: 'https://digitalknights.ie',
   siteRepo: 'https://github.com/JohnSloan8/digital-knights',

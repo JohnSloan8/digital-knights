@@ -50,7 +50,7 @@ export default function Contact() {
       <div className="divide-y divide-gray-700">
         <PageHeader
           title="Contact"
-          description="Get in touch about classes, curriculum, or general questions."
+          description="Get in touch about classes, school talks, the curriculum, or general questions."
         />
         <div className="py-12">
           {status === 'success' ? (
